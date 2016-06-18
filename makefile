@@ -1,7 +1,7 @@
 SOURCE_PATH = src/
 OBJ_PATH = build/obj/
-DEBUG_PATH = bin/debug/Last-Day-D
-RELEASE_PATH = bin/release/Last-Day
+DEBUG_PATH = Last-Day-D
+RELEASE_PATH = Last-Day
 TARGET_PATH = $(DEBUG_PATH)
 INCLUDE_PATH = $(SOURCE_PATH)
 LIBRARY_PATH = lib/

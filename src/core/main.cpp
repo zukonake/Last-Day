@@ -1,11 +1,9 @@
-#include <core/server.hpp>
-#include <core/client.hpp>
+#include <core/game.hpp>
 
 int main( int argv, char* argc[] )
 {
-	Server main = Server();
-	Client* localClient = new Client( "TestClient" );
-	main.connectClient( localClient );
-	main.disconnectClient( localClient );
+	Game* game = new Game();
+	game->start();
+	game->end();
 	return 0;
 }
