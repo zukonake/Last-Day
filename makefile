@@ -13,7 +13,7 @@ OBJS = $(SOURCES:.cpp=.o)
 CXX = g++
 DEBUG = -g
 STD = -std=c++14
-LDLIBS = -lglut -lGLU -lGL
+LDLIBS = 
 INCFLAGS = -I $(INCLUDE_PATH)
 LIBFLAGS = -L $(LIBRARY_PATH)
 CXXFLAGS = $(STD) -Wall $(LDLIBS) $(DEBUG) $(INCFLAGS) $(LIBFLAGS)

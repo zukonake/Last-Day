@@ -6,12 +6,20 @@
 
 class ObjectInitializer
 {
-	const std::string rootFolder = "dataset/";
-	std::vector< std::string > listFiles( std::string folderPath );
-	std::string loadFile();
+	const std::string datasetDirectory = "dataset/";
+	std::vector< std::string > listFiles( std::string directoryPath );
+	std::string loadFile( std::string filePath );
 public:
-	template < typename T > std::vector< T > initializeObjectVector( std::string folderPath );
+	template < typename objectType >
+	std::vector< objectType > initializeObjectVector( std::string directoryPath );
 	ObjectInitializer();
 };
+
+template < typename objectType >
+std::vector< objectType > ObjectInitializer::initializeObjectVector( std::string directoryPath )
+{
+	std::vector< objectType > output;
+	return output;
+}
 
 #endif

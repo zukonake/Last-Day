@@ -1,5 +1,5 @@
-#ifndef DATSET_HPP
-#define DATSET_HPP
+#ifndef DATASET_HPP
+#define DATASET_HPP
 
 #include <vector>
 //

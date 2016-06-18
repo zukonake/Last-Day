@@ -5,9 +5,9 @@
 
 class Camera
 {
-	Point2D position;
+	Point2D* position;
 	unsigned int viewRange;
-	
+
 };
 
 #endif

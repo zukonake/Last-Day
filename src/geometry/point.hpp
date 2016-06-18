@@ -12,7 +12,7 @@ struct Point2D
 struct Point3D : public Point2D
 {
 	coordinate z;
-	Point3D( coordinate x, coordinate y, coordinate z ) : x(x), y(y), z(z) { }
+	Point3D( coordinate x, coordinate y, coordinate z ) : Point2D( x, y ), z(z) { }
 };
 
 #endif
