@@ -1,14 +1,12 @@
 #ifndef BUILDINGSUBTYPE_HPP
 #define BUILDINGSUBTYPE_HPP
 
-#include <string>
-//
-#include <render/sprite.hpp>
+#include <entity/entitySubtype.hpp>
+#include <geometry/rectangle.hpp>
 
-class BuildingSubtype
+class BuildingSubtype : protected EntitySubtype
 {
-	std::string name;
-	Sprite* sprite;
+	Rectangle shape;
 };
 
 #endif

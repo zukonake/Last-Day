@@ -1,7 +1,9 @@
 #ifndef BUILDING_HPP
 #define BUILDING_HPP
 
-class Building
+#include <entity/entity.hpp>
+
+class Building : protected Entity< BuildingSubtype >
 {
 
 };

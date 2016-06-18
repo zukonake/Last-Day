@@ -3,19 +3,21 @@
 
 #include <vector>
 //
-#include <entity/entity.hpp>
-#include <entity/building.hpp>
-#include <world/resource.hpp>
+#include <entity/mobSubtype.hpp>
+#include <entity/buildingSubtype.hpp>
+#include <world/resourceSubtype.hpp>
 #include <world/world.hpp>
+#include <core/objectInitializer.hpp>
 
 class Dataset
 {
-	std::vector< Building > initializedBuildings;
-	std::vector< Entity > initializedEntities;
-	std::vector< Resource > initializedResources;
-	std::vector< World > initializedWorlds;
+	std::vector< MobSubtype > initializedMobSubtypes;
+	std::vector< BuildingSubtype > initializedBuildingSubtypes;
+	std::vector< ResourceSubtype > initializedResourceSubtypes;
+	World* mainWorld;
+	ObjectInitializer initializer;
 public:
-	void initializeFromFiles();
+	void initializeVectorsFromFiles();
 	Dataset();
 };
 
