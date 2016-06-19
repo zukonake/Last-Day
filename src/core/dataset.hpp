@@ -14,7 +14,6 @@ class Dataset
 	std::vector< MobSubtype > initializedMobSubtypes;
 	std::vector< BuildingSubtype > initializedBuildingSubtypes;
 	std::vector< ResourceSubtype > initializedResourceSubtypes;
-	World* mainWorld;
 	ObjectInitializer initializer;
 public:
 	void initializeVectorsFromFiles();

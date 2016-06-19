@@ -10,7 +10,7 @@ class BuildingSubtype : protected EntitySubtype
 public:
 	friend std::istream& operator >> ( std::istream& in, BuildingSubtype& obj );
 	friend std::ostream& operator << ( std::ostream& out, const BuildingSubtype& obj );
-	BuildingSubtype( std::istream& in );
+	BuildingSubtype();
 };
 
 #endif

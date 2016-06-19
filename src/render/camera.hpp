@@ -5,9 +5,10 @@
 
 class Camera
 {
+	World* world;
 	Point2D* position;
 	unsigned int viewRange;
-
+	void render();
 };
 
 #endif

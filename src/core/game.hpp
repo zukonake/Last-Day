@@ -10,6 +10,7 @@ class Game
 	FileHandler* fileHandler;
 	Dataset dataset;
 	Player* player;
+	World* world;
 public:
 	void start();
 	void end();
