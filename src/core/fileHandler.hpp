@@ -10,15 +10,15 @@ class FileHandler
 public:
 	std::vector< std::string > listFilesInDirectory( boost::filesystem::path directoryPath );
 	std::string loadFileIntoString( boost::filesystem::path filePath );
-	template < typename objectType >
-	objectType loadFileIntoObject( boost::filesystem::path filePath );
+	template < typename ObjectType >
+	ObjectType loadFileIntoObject( boost::filesystem::path filePath );
 };
 
 
-template < typename objectType >
-objectType FileHandler::loadFileIntoObject( boost::filesystem::path filePath )
+template < typename ObjectType >
+ObjectType FileHandler::loadFileIntoObject( boost::filesystem::path filePath )
 {
-	objectType output;
+	ObjectType output;
 	boost::filesystem::ifstream fileStream;
 	fileStream.open( filePath, std::ios::in );
 	if( !fileStream )

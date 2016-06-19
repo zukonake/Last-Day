@@ -16,18 +16,18 @@ class ObjectInitializer
 	const std::string datasetDirectory = "dataset/";
 	FileHandler* fileHandler;
 public:
-	template < typename objectType >
-	std::vector< objectType > initializeObjectVector( std::string directoryPath );
+	template < typename ObjectType >
+	std::vector< ObjectType > initializeObjectVector( std::string directoryPath );
 	ObjectInitializer( FileHandler* fileHandler );
 };
 
-template < typename objectType >
-std::vector< objectType > ObjectInitializer::initializeObjectVector( std::string directoryPath )
+template < typename ObjectType >
+std::vector< ObjectType > ObjectInitializer::initializeObjectVector( std::string directoryPath )
 {
-	std::vector< objectType > output;
+	std::vector< ObjectType > output;
 	for( auto iterator : fileHandler->listFilesInDirectory( "dataset/generic/" + directoryPath ) )
 	{
-		output.push_back( fileHandler->loadFileIntoObject< objectType >( iterator ) );
+		output.push_back( fileHandler->loadFileIntoObject< ObjectType >( iterator ) );
 	}
 	return output;
 }
