@@ -6,6 +6,7 @@
 #include <string>
 //
 #include <core/fileHandler.hpp>
+#include <entity/mobSubtype.hpp>
 
 class ObjectInitializer
 {
@@ -21,11 +22,10 @@ template < typename objectType >
 std::vector< objectType > ObjectInitializer::initializeObjectVector( std::string directoryPath )
 {
 	std::vector< objectType > output;
-	for( auto iterator : fileHandler->listFilesInDirectory( "dataset/generic/" ) )
+	for( auto iterator : fileHandler->listFilesInDirectory( "dataset/generic/" + directoryPath ) )
 	{
-		std::cout << fileHandler->loadFileIntoString( iterator ) << "\n";
+		output.push_back( fileHandler->loadFileIntoObject< objectType >( iterator ) );
 	}
-	std::cout << "\n";
 	return output;
 }
 

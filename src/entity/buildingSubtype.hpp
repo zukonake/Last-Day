@@ -7,6 +7,8 @@
 class BuildingSubtype : protected EntitySubtype
 {
 	Rectangle shape;
+public:
+	BuildingSubtype( std::istream& in );
 };
 
 #endif

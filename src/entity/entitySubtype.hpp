@@ -10,7 +10,6 @@ class EntitySubtype
 protected:
 	std::string name;
 	Sprite* sprite;
-private:
 	EntitySubtype();
 };
 
