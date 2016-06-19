@@ -6,7 +6,10 @@
 #include <string>
 //
 #include <core/fileHandler.hpp>
+#include <entity/entitySubtype.hpp>
 #include <entity/mobSubtype.hpp>
+#include <entity/buildingSubtype.hpp>
+#include <world/resourceSubtype.hpp>
 
 class ObjectInitializer
 {

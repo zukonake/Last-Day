@@ -2,6 +2,9 @@
 
 std::istream& operator >> ( std::istream& in, MobSubtype& obj )
 {
+	const unsigned int maximumVariableLength = 256;
+	in.ignore( maximumVariableLength, ' ' );
+	in >> static_cast< EntitySubtype& >( obj );
 	return in;
 }
 
