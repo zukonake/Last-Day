@@ -7,7 +7,7 @@ void Dataset::initializeVectorsFromFiles()
 	initializedResourceSubtypes = initializer.initializeObjectVector< ResourceSubtype >( "resourceSubtype" );
 }
 
-Dataset::Dataset()
+Dataset::Dataset( FileHandler* fileHandler ) : initializer( ObjectInitializer( fileHandler ))
 {
 
 }

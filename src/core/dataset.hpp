@@ -18,7 +18,7 @@ class Dataset
 	ObjectInitializer initializer;
 public:
 	void initializeVectorsFromFiles();
-	Dataset();
+	Dataset( FileHandler* fileHandler );
 };
 
 #endif

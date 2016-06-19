@@ -4,7 +4,7 @@ DEBUG_PATH = Last-Day-D
 RELEASE_PATH = Last-Day
 TARGET_PATH = $(DEBUG_PATH)
 INCLUDE_PATH = $(SOURCE_PATH)
-LIBRARY_PATH = lib/
+LIBRARY_PATH = /usr/lib
 DEPEND_PATH = build/depend
 SOURCES = $(shell find $(SOURCE_PATH) -type f -name "*.cpp" -printf '%p ')
 #STO = $(OBJ_PATH)$(shell basename -a $(SOURCES))
@@ -13,26 +13,30 @@ OBJS = $(SOURCES:.cpp=.o)
 CXX = g++
 DEBUG = -g
 STD = -std=c++14
-LDLIBS = 
+LDLIBS =  -lboost_filesystem -lboost_system
 INCFLAGS = -I $(INCLUDE_PATH)
 LIBFLAGS = -L $(LIBRARY_PATH)
 CXXFLAGS = $(STD) -Wall $(LDLIBS) $(DEBUG) $(INCFLAGS) $(LIBFLAGS)
 LDFLAGS = $(STD) -Wall $(LDLIBS) $(DEBUG) $(INCFLAGS) $(LIBFLAGS)
 
-.PHONY : depend clean all
+.PHONY : depend clean all run
 
 all : $(SOURCES) $(TARGET_PATH)
 
 $(TARGET_PATH) : $(OBJS)
 	$(CXX) $(LDFLAGS) $(OBJS) -o $@
 
-%.o : %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+%.o : %.cpp %.hpp
+	$(CXX) $(CXXFLAGS) -c -MMD $< -o $@
 
 depend : $(SOURCES)
 	$(CXX) $(CXXFLAGS) -MM $(SOURCES) > $(DEPEND_PATH)
 
 clean :
-	$(RM) $(OBJS) *~ $(TARGET_PATH) $(DEPEND_PATH)
+	$(RM) $(OBJS) $(OBJS:.o=.d) *~ $(TARGET_PATH) $(DEPEND_PATH)
+
+run : $(TARGET_PATH)
+	./$(TARGET_PATH)
+
 
 -include $(DEPEND_PATH)

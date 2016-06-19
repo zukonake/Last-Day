@@ -2,7 +2,7 @@
 
 void Game::start()
 {
-	
+	dataset.initializeVectorsFromFiles();
 }
 
 void Game::end()
@@ -10,7 +10,7 @@ void Game::end()
 
 }
 
-Game::Game()
+Game::Game() : dataset( Dataset( fileHandler ))
 {
 
 }
