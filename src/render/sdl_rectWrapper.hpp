@@ -1,15 +1,34 @@
 #ifndef SDL_RECTWRAPPER_HPP
 #define SDL_RECTWRAPPER_HPP
 
-#include <SDL/SDL.h>
 #include <cstdint>
+#include <SDL/SDL.h>
+//
+#include <geometry/point.hpp>
 
-class SDL_RectWrapper : private SDL_Rect
+struct SDL_RectWrapper : public SDL_Rect
 {
-public:
-	SDL_RectWrapper( Point2D NWCorner, uint16_t w, uint16_t h ) : x(NWCorner.x), y(NWCorner.y), w(w), h(h) { }
-	SDL_RectWrapper( int16_t x, int16_t y, uint16_t w, uint16_t h ) : x(x), y(y), w(w), h(h) { }
-	SDL_RectWrapper( uint16_t w, uint16_t h ) : w(w), h(h) { }
+	SDL_RectWrapper( const Point2D& NWCorner, const uint16_t& w, const uint16_t& h ) : SDL_Rect()
+	{
+		SDL_Rect::x = NWCorner.x;
+		SDL_Rect::y = NWCorner.y;
+		SDL_Rect::w = w;
+		SDL_Rect::h = h;
+	}
+
+	SDL_RectWrapper( const int16_t& x, const int16_t& y, const uint16_t& w, const uint16_t& h ) : SDL_Rect()
+	{
+		SDL_Rect::x = x;
+		SDL_Rect::y = y;
+		SDL_Rect::w = w;
+		SDL_Rect::h = h;
+	}
+
+	SDL_RectWrapper( const uint16_t& w, const uint16_t& h ) : SDL_Rect()
+	{
+		SDL_Rect::w = w;
+		SDL_Rect::h = h;
+	}
 };
 
 #endif

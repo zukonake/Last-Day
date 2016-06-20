@@ -12,10 +12,10 @@ class FileHandler
 public:
 	std::vector< std::string > getFilesInDirectory( const std::string& directoryPath );
 
-	void openFile( const std::string& filePath, std::ios_base::openmode mode );
+	void openFile( const std::string& filePath, const std::ios_base::openmode& mode );
 	void closeFile();
 
-	operator std::istream& ();
+	operator std::iostream& ();
 	FileHandler();
 };
 

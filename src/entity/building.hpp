@@ -5,7 +5,7 @@
 
 class Building : protected Entity< BuildingSubtype >
 {
-
+	
 };
 
 #endif

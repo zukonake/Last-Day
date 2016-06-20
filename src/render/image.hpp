@@ -13,6 +13,7 @@ public:
 	friend std::ostream& operator << ( std::ostream& out, const Image& obj );
 	virtual void render( SDL_Rect* sourcePosition, SDL_Surface* targetSurface, SDL_Rect* targetPosition );
 	Image();
+	operator SDL_Surface ();
 };
 
 #endif

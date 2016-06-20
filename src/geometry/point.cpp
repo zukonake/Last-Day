@@ -1,5 +1,20 @@
 #include "point.hpp"
 
+Point2D Point2D::operator * ( const int& multiplier ) const
+{
+	return Point2D( this->x * multiplier, this->y * multiplier );
+}
+
+Point2D Point2D::operator / ( const int& divider ) const
+{
+	return Point2D( this->x / divider, this->y / divider );
+}
+
+Point2D Point2D::operator % ( const int& modulus ) const
+{
+	return Point2D( this->x % modulus, this->y % modulus );
+}
+
 std::istream& operator >> ( std::istream& in, Point2D& obj )
 {
 	const unsigned int maximumVariableLength = 256;
@@ -14,24 +29,19 @@ std::ostream& operator << ( std::ostream& out, const Point2D& obj )
 	return out;
 }
 
-Point2D Point2D::operator * ( const int& multiplier )
+Point3D Point3D::operator * ( const int& multiplier ) const
 {
-	return Point2D( this->x * multiplier, this->y * multiplier );
+	return Point3D( this->x * multiplier, this->y * multiplier, this->z / multiplier );
 }
 
-Point2D Point2D::operator / ( const int& divider )
+Point3D Point3D::operator / ( const int& divider ) const
 {
-	return Point2D( this->x / divider, this->y / divider );
+	return Point3D( this->x / divider, this->y / divider, this->z / divider );
 }
 
-Point2D Point2D::operator % ( const int& modulus )
+Point3D Point3D::operator % ( const int& modulus ) const
 {
-	return Point2D( this->x % modulus, this->y % modulus );
-}
-
-bool Point2D::operator == ( const Point2D& target )
-{
-	return this->x == target.x && this->y == target.y;
+	return Point3D( this->x % modulus, this->y % modulus, this->z % modulus );
 }
 
 std::istream& operator >> ( std::istream& in, Point3D& obj )
@@ -46,24 +56,4 @@ std::istream& operator >> ( std::istream& in, Point3D& obj )
 std::ostream& operator << ( std::ostream& out, const Point3D& obj )
 {
 	return out;
-}
-
-Point3D Point3D::operator * ( const int& multiplier )
-{
-	return Point3D( this->x * multiplier, this->y * multiplier, this->z / multiplier );
-}
-
-Point3D Point3D::operator / ( const int& divider )
-{
-	return Point3D( this->x / divider, this->y / divider, this->z / divider );
-}
-
-Point3D Point3D::operator % ( const int& modulus )
-{
-	return Point3D( this->x % modulus, this->y % modulus, this->z % modulus );
-}
-
-bool Point3D::operator == ( const Point3D& target )
-{
-	return this->x == target.x && this->y == target.y && this->z == target.z;
 }

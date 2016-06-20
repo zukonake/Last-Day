@@ -24,7 +24,7 @@ std::vector< std::string > FileHandler::getFilesInDirectory( const std::string& 
 	return output;
 }
 
-void FileHandler::openFile( const std::string& filePath, std::ios_base::openmode mode )
+void FileHandler::openFile( const std::string& filePath, const std::ios_base::openmode& mode )
 {
 	fileStream.open( filePath, mode );
 	if( !fileStream.good() )
@@ -39,9 +39,9 @@ void FileHandler::closeFile()
 	fileStream.close();
 }
 
-FileHandler::operator std::istream& ()
+FileHandler::operator std::iostream& ()
 {
-	return fileStream;
+	return fileStream; //TODO check file mode
 }
 
 FileHandler::FileHandler()

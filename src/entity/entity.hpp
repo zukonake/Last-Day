@@ -9,7 +9,7 @@ protected:
 	Point2D position;
 	Subtype* subtype;
 public:
-	void render( Interface* targetInterface, SDL_Rect* targetPosition );
+	virtual void render( Interface* targetInterface, SDL_Rect* targetPosition );
 private:
 	Entity();
 };

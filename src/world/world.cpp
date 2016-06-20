@@ -1,6 +1,6 @@
 #include "world.hpp"
 
-Chunk* World::getChunk( Point2D targetTilePosition )
+Chunk* World::getChunk( const Point2D& targetTilePosition )
 {
 	for( auto iterator : loadedChunks )
 	{
@@ -12,12 +12,12 @@ Chunk* World::getChunk( Point2D targetTilePosition )
 	return loadChunk( Chunk::transformPositionToChunkPosition( targetTilePosition ) );
 }
 
-Chunk* World::loadChunk( Point2D targetChunkPosition )
+Chunk* World::loadChunk( const Point2D& targetChunkPosition )
 {
 	loadedChunks.push_back( new Chunk( targetChunkPosition ) );
 }
 
-Tile* World::operator()( Point2D targetTilePosition )
+Tile* World::operator()( const Point2D& targetTilePosition )
 {
 	return ( *getChunk( targetTilePosition ) )( Chunk::transformPositionToInternalPosition( targetTilePosition ) );
 }

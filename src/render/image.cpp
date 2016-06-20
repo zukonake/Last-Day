@@ -23,3 +23,8 @@ Image::Image() : surface( NULL )
 {
 
 }
+
+Image::operator SDL_Surface ()
+{
+	return *surface;
+}

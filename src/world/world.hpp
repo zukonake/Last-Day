@@ -16,10 +16,10 @@ class World
 	std::string name;
 	ChunkVector loadedChunks;
 	WorldGenerator* generator;
-	Chunk* getChunk( Point2D targetTilePosition );
-	Chunk* loadChunk( Point2D targetChunkPosition );
+	Chunk* getChunk( const Point2D& targetTilePosition );
+	Chunk* loadChunk( const Point2D& targetChunkPosition );
 public:
-	Tile* operator()( Point2D targetTilePosition );
+	Tile* operator()( const Point2D& targetTilePosition );
 	World();
 };
 

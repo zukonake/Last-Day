@@ -18,3 +18,8 @@ Rectangle::Rectangle()
 {
 
 }
+
+Rectangle::operator SDL_Rect ()
+{
+	return static_cast< SDL_Rect >( SDL_RectWrapper( this->width, this->height ) );
+}
