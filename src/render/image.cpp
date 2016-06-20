@@ -14,7 +14,12 @@ std::ostream& operator << ( std::ostream& out, const Image& obj )
 	return out;
 }
 
-Image::Image() : value( NULL )
+void Image::render( SDL_Rect* sourcePosition, SDL_Surface* targetSurface, SDL_Rect* targetPosition )
+{
+	SDL_BlitSurface( surface, sourcePosition, targetSurface , targetPosition );
+}
+
+Image::Image() : surface( NULL )
 {
 
 }

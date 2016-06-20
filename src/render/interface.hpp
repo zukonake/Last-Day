@@ -1,9 +1,17 @@
 #ifndef INTERFACE_HPP
 #define INTERFACE_HPP
 
-class Interface
+#include <string>
+#include <SDL/SDL.h>
+//
+#include <render/image.hpp>
+
+class Interface : protected Image
 {
 	std::string name;
+public:
+	virtual operator SDL_Surface();
+	Interface();
 };
 
 #endif

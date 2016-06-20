@@ -11,11 +11,15 @@
 
 class World
 {
-	typename std::vector< std::vector< Chunk* > > ChunkVector2D
+	typedef std::vector< Chunk* > ChunkVector;
+	const static unsigned int chunkLoadingRange = 3;
 	std::string name;
-	ChunkVector2D value;
+	ChunkVector loadedChunks;
 	WorldGenerator* generator;
-	Tile* operator( Point2D targetPosition );
+	Chunk* getChunk( Point2D targetTilePosition );
+	Chunk* loadChunk( Point2D targetChunkPosition );
+public:
+	Tile* operator()( Point2D targetTilePosition );
 	World();
 };
 

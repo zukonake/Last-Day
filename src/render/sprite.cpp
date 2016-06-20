@@ -17,6 +17,11 @@ std::ostream& operator << ( std::ostream& out, const Sprite& obj )
 	return out;
 }
 
+void Sprite::render( Interface* targetInterface, SDL_Rect* targetPosition )
+{
+	sourceImage->render( &positionOnImage, dynamic_cast< SDL_Surface* >( targetInterface ), targetPosition );
+}
+
 Sprite::Sprite() : sourceImage( new Image() )
 {
 

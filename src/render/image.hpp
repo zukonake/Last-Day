@@ -3,16 +3,15 @@
 
 #include <iostream>
 #include <SDL/SDL.h>
-//
-#include <render/interface.hpp>
 
 class Image
 {
-	SDL_Surface* value;
+protected:
+	SDL_Surface* surface;
 public:
 	friend std::istream& operator >> ( std::istream& in, Image& obj );
 	friend std::ostream& operator << ( std::ostream& out, const Image& obj );
-	void render( SDL_Rect* sourcePosition, Interface* targetInterface, SDL_Rect* targetPosition );
+	virtual void render( SDL_Rect* sourcePosition, SDL_Surface* targetSurface, SDL_Rect* targetPosition );
 	Image();
 };
 

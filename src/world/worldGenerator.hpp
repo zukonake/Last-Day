@@ -4,7 +4,6 @@
 class WorldGenerator
 {
 public:
-	enum worldGeneratorType;
 	WorldGenerator();
 };
 
