@@ -23,7 +23,7 @@ LDFLAGS = $(STD) -Wall $(LDLIBS) $(DEBUG) $(INCFLAGS) $(LIBFLAGS)
 
 all : $(SOURCES) $(TARGET_PATH)
 
-$(TARGET_PATH) : $(OBJS)
+$(TARGET_PATH) : depend $(OBJS)
 	$(CXX) $(LDFLAGS) $(OBJS) -o $@
 
 %.o : %.cpp
