@@ -39,7 +39,7 @@ void FileHandler::closeFile()
 	fileStream.close();
 }
 
-FileHandler::operator std::istream&()
+FileHandler::operator std::istream& ()
 {
 	return fileStream;
 }

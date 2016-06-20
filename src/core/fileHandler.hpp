@@ -15,7 +15,7 @@ public:
 	void openFile( const std::string& filePath, std::ios_base::openmode mode );
 	void closeFile();
 
-	operator std::istream&();
+	operator std::istream& ();
 	FileHandler();
 };
 

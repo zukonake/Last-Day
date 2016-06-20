@@ -1,6 +1,6 @@
 #include "interface.hpp"
 
-Interface::operator SDL_Surface()
+Interface::operator SDL_Surface ()
 {
 	return *surface;
 }
