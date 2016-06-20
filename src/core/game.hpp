@@ -7,13 +7,14 @@
 
 class Game
 {
-	FileHandler* fileHandler;
+	FileHandler fileHandler;
 	Dataset dataset;
 	Player* player;
 	World* world;
+	int mainLoop();
 public:
-	void start();
-	void end();
+	int start();
+	int end();
 	Game();
 };
 

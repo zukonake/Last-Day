@@ -14,10 +14,11 @@ class Dataset
 	std::vector< MobSubtype > initializedMobSubtypes;
 	std::vector< BuildingSubtype > initializedBuildingSubtypes;
 	std::vector< ResourceSubtype > initializedResourceSubtypes;
+	std::vector< Tile > initializedTiles;
 	ObjectInitializer initializer;
 public:
-	void initializeVectorsFromFiles();
-	Dataset( FileHandler* fileHandler );
+	void initializeVectorsFromFiles( FileHandler& fileHandler );
+	Dataset();
 };
 
 #endif

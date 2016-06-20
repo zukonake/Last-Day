@@ -1,16 +1,16 @@
 #include "game.hpp"
 
-void Game::start()
+int Game::start()
 {
-	dataset.initializeVectorsFromFiles();
+	dataset.initializeVectorsFromFiles( fileHandler );
 }
 
-void Game::end()
+int Game::end()
 {
 
 }
 
-Game::Game() : dataset( Dataset( fileHandler ))
+Game::Game()
 {
 
 }

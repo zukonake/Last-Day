@@ -3,31 +3,22 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 #include <boost/filesystem.hpp>
 
 class FileHandler
 {
+	std::fstream fileStream;
 public:
-	std::vector< std::string > listFilesInDirectory( boost::filesystem::path directoryPath );
-	std::string loadFileIntoString( boost::filesystem::path filePath );
-	template < typename ObjectType >
-	ObjectType loadFileIntoObject( boost::filesystem::path filePath );
+	std::vector< std::string > getFilesInDirectory( const std::string& directoryPath );
+
+	void openFile( const std::string& filePath, std::ios_base::openmode mode );
+	void closeFile();
+
+	//friend std::istream& operator << ( std::istream& in, FileHandler& obj );
+	//std::istream& operator >> ( std::istream& in );
+	operator std::istream&();
+	FileHandler();
 };
-
-
-template < typename ObjectType >
-ObjectType FileHandler::loadFileIntoObject( boost::filesystem::path filePath )
-{
-	ObjectType output;
-	boost::filesystem::ifstream fileStream;
-	fileStream.open( filePath, std::ios::in );
-	if( !fileStream )
-	{
-		//TODO throw exception
-	}
-
-	fileStream >> output;
-	return output;
-}
 
 #endif

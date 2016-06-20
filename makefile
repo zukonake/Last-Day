@@ -19,21 +19,21 @@ LIBFLAGS = -L $(LIBRARY_PATH)
 CXXFLAGS = $(STD) -Wall $(LDLIBS) $(DEBUG) $(INCFLAGS) $(LIBFLAGS)
 LDFLAGS = $(STD) -Wall $(LDLIBS) $(DEBUG) $(INCFLAGS) $(LIBFLAGS)
 
-.PHONY : depend clean all run
+.PHONY : depend clean all run remake
 
 all : $(SOURCES) $(TARGET_PATH)
 
 $(TARGET_PATH) : $(OBJS)
 	$(CXX) $(LDFLAGS) $(OBJS) -o $@
 
-%.o : %.cpp %.hpp
-	$(CXX) $(CXXFLAGS) -c -MMD $< -o $@
+%.o : %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 depend : $(SOURCES)
 	$(CXX) $(CXXFLAGS) -MM $(SOURCES) > $(DEPEND_PATH)
 
 clean :
-	$(RM) $(OBJS) $(OBJS:.o=.d) *~ $(TARGET_PATH) $(DEPEND_PATH)
+	$(RM) $(OBJS) *~ $(TARGET_PATH) $(DEPEND_PATH)
 
 run : $(TARGET_PATH)
 	./$(TARGET_PATH)

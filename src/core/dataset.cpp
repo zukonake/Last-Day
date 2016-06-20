@@ -1,13 +1,14 @@
 #include "dataset.hpp"
 #include <iostream>
-void Dataset::initializeVectorsFromFiles()
+void Dataset::initializeVectorsFromFiles( FileHandler& fileHandler )
 {
-	initializedMobSubtypes = initializer.initializeObjectVector< MobSubtype >( "mobSubtype" );
-	initializedBuildingSubtypes = initializer.initializeObjectVector< BuildingSubtype >( "buildingSubtype" );
-	initializedResourceSubtypes = initializer.initializeObjectVector< ResourceSubtype >( "resourceSubtype" );
+	initializedMobSubtypes = initializer.initializeObjectVector< MobSubtype >( fileHandler, "mobSubtype" );/*
+	initializedBuildingSubtypes = initializer.initializeObjectVector< BuildingSubtype >( fileHandler, "buildingSubtype" );
+	initializedResourceSubtypes = initializer.initializeObjectVector< ResourceSubtype >( fileHandler, "resourceSubtype" );
+	initializedTiles = initializer.initializeObjectVector< Tile >( fileHandler, "tile" );*/
 }
 
-Dataset::Dataset( FileHandler* fileHandler ) : initializer( ObjectInitializer( fileHandler ))
+Dataset::Dataset()
 {
 
 }

@@ -1,7 +1,6 @@
 #include "fileHandler.hpp"
-#include <sstream>
 
-std::vector< std::string > FileHandler::listFilesInDirectory( boost::filesystem::path directoryPath )
+std::vector< std::string > FileHandler::getFilesInDirectory( const std::string& directoryPath )
 {
 	std::vector< std::string > output;
 	if( boost::filesystem::is_directory( directoryPath ))
@@ -19,22 +18,33 @@ std::vector< std::string > FileHandler::listFilesInDirectory( boost::filesystem:
 	}
 	else
 	{
+		std::cout << "ERROR: Couldn't open directory: " << directoryPath << "\n";
 		//TODO throw exception
 	}
 	return output;
 }
 
-std::string FileHandler::loadFileIntoString( boost::filesystem::path filePath )
+void FileHandler::openFile( const std::string& filePath, std::ios_base::openmode mode )
 {
-	std::stringstream stringStream;
-	boost::filesystem::ifstream fileStream;
-
-	fileStream.open( filePath, std::ios::in );
-	if( !fileStream )
+	fileStream.open( filePath, mode );
+	if( !fileStream.good() )
 	{
+		std::cout << "ERROR: Couldn't open file: " << filePath << "\n";
 		//TODO throw exception
-		return NULL;
 	}
-	stringStream << fileStream.rdbuf();
-	return stringStream.str();
+}
+
+void FileHandler::closeFile()
+{
+	fileStream.close();
+}
+
+FileHandler::operator std::istream&()
+{
+	return fileStream;
+}
+
+FileHandler::FileHandler()
+{
+
 }
