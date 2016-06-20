@@ -20,6 +20,7 @@ class Chunk
 	static Point2D transformPositionToTilePosition( const Point2D& targetChunkPosition );
 
 	Chunk( const Point2D& position );
+	
 	Tile* operator()( const Point2D& targetInternalPosition );
 };
 

@@ -10,8 +10,9 @@ class Interface : protected Image
 {
 	std::string name;
 public:
-	virtual operator SDL_Surface ();
 	Interface();
+	
+	virtual operator SDL_Surface ();
 };
 
 #endif

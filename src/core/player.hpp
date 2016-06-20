@@ -7,6 +7,7 @@
 class Player : protected Mob
 {
 	Camera* camera;
+	
 	Player();
 };
 

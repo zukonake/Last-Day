@@ -15,9 +15,11 @@ class Dataset
 	std::vector< BuildingSubtype > initializedBuildingSubtypes;
 	std::vector< ResourceSubtype > initializedResourceSubtypes;
 	std::vector< Tile > initializedTiles;
+	
 	ObjectInitializer initializer;
 public:
 	void initializeVectorsFromFiles( FileHandler& fileHandler );
+
 	Dataset();
 };
 
