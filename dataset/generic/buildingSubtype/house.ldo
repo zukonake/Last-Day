@@ -1,1 +1,3 @@
-house
+name= house
+sprite= house.png 0 0 64 64
+shape= 2 2
