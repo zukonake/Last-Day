@@ -9,7 +9,6 @@ LIBRARY_PATH = /usr/lib
 SOURCES = $(shell find $(SOURCE_PATH) -type f -name "*.cpp" -printf '%p ')
 HEADERS = $(shell find $(SOURCE_PATH) -type f -name "*.hpp" -printf '%p ')
 OBJS = $(addprefix $(OBJ_PATH),$(patsubst %.cpp,%.o,$(shell find $(SOURCE_PATH) -type f -name "*.cpp" -exec basename {} \;)))
-CXX = g++
 DEBUG = -g -O0
 STD = -std=c++14
 LDLIBS =  -lboost_filesystem -lboost_system -lSDL
