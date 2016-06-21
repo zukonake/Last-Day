@@ -30,16 +30,17 @@ Chunk* World::getChunk( const Point2D& targetTilePosition )
 Chunk* World::loadChunk( const Point2D& targetChunkPosition )
 {
 	loadedChunks.push_back( new Chunk( targetChunkPosition ) );
+	return loadedChunks.back();
 }
 
-World::World() : generator( new WorldGenerator() )
+World::World()
 {
 
 }
 
 World::~World()
 {
-	delete generator;
+
 }
 
 Tile* World::operator()( const Point2D& targetTilePosition )

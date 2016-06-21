@@ -5,14 +5,14 @@
 #include <SDL/SDL.h>
 //
 #include <render/image.hpp>
-#include <render/interface.hpp>
+#include <render/userInterface.hpp>
 
 class Sprite : protected Image
 {
 protected:
 	SDL_Rect positionOnImage;
 public:
-	virtual void render( Interface* targetInterface, SDL_Rect* targetPosition );
+	virtual void render( UserInterface* targetUserInterface, SDL_Rect* targetPosition );
 protected:
 	Sprite();
 	virtual ~Sprite();

@@ -20,5 +20,5 @@ MobSubtype::MobSubtype()
 
 MobSubtype::~MobSubtype()
 {
-	
+
 }

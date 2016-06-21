@@ -1,6 +1,6 @@
 #include "camera.hpp"
 
-void Camera::render( Interface* targetInterface, SDL_Rect* targetPosition )
+void Camera::render( UserInterface* targetUserInterface, SDL_Rect* targetPosition )
 {
 	for( unsigned int iteratorY = position->y - viewRange;
 		iteratorY < position->y + viewRange;
@@ -10,7 +10,7 @@ void Camera::render( Interface* targetInterface, SDL_Rect* targetPosition )
 			iteratorX < position->x + viewRange;
 			iteratorX++ )
 		{
-			( *world )( Point2D( iteratorX, iteratorY ) )->render( targetInterface, targetPosition );
+			( *world )( Point2D( iteratorX, iteratorY ) )->render( targetUserInterface, targetPosition );
 		}
 	}
 }

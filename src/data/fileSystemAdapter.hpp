@@ -1,12 +1,12 @@
-#ifndef FILEHANDLER_HPP
-#define FILEHANDLER_HPP
+#ifndef FILESYSTEMADAPTER_HPP
+#define FILESYSTEMADAPTER_HPP
 
 #include <string>
 #include <vector>
+#include <fstream>
 #include <iostream>
-#include <boost/filesystem.hpp>
 
-class FileHandler
+class FileSystemAdapter
 {
 	std::fstream fileStream;
 public:
@@ -15,8 +15,8 @@ public:
 	void openFile( const std::string& filePath, const std::ios_base::openmode& mode );
 	void closeFile();
 
-	FileHandler();
-	~FileHandler();
+	FileSystemAdapter();
+	~FileSystemAdapter();
 
 	operator std::iostream& ();
 };

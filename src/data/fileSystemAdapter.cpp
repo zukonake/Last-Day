@@ -1,7 +1,7 @@
-#include "fileHandler.hpp"
-#include <unistd.h>
+#include "fileSystemAdapter.hpp"
+#include <boost/filesystem.hpp>
 
-std::vector< std::string > FileHandler::getFilesInDirectory( const std::string& directoryPath )
+std::vector< std::string > FileSystemAdapter::getFilesInDirectory( const std::string& directoryPath )
 {
 	std::vector< std::string > output;
 	if( boost::filesystem::is_directory( directoryPath ))
@@ -25,7 +25,7 @@ std::vector< std::string > FileHandler::getFilesInDirectory( const std::string& 
 	return output;
 }
 
-void FileHandler::changeWorkDirectory( const std::string& directoryPath )
+void FileSystemAdapter::changeWorkDirectory( const std::string& directoryPath )
 {
 	if( boost::filesystem::is_directory( directoryPath ))
 	{
@@ -38,7 +38,7 @@ void FileHandler::changeWorkDirectory( const std::string& directoryPath )
 	}
 }
 
-void FileHandler::openFile( const std::string& filePath, const std::ios_base::openmode& mode )
+void FileSystemAdapter::openFile( const std::string& filePath, const std::ios_base::openmode& mode )
 {
 	fileStream.open( filePath, mode );
 	if( !fileStream.good() )
@@ -48,22 +48,22 @@ void FileHandler::openFile( const std::string& filePath, const std::ios_base::op
 	}
 }
 
-void FileHandler::closeFile()
+void FileSystemAdapter::closeFile()
 {
 	fileStream.close();
 }
 
-FileHandler::operator std::iostream& ()
+FileSystemAdapter::operator std::iostream& ()
 {
 	return fileStream; //TODO check file mode
 }
 
-FileHandler::FileHandler()
+FileSystemAdapter::FileSystemAdapter()
 {
 
 }
 
-FileHandler::~FileHandler()
+FileSystemAdapter::~FileSystemAdapter()
 {
 	closeFile();
 }

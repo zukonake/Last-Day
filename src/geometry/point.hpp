@@ -12,6 +12,7 @@ struct Point2D
 	coordinate y;
 
 	Point2D( const coordinate& x, const coordinate& y ) : x(x), y(y) { }
+	Point2D() { }
 
 	Point2D operator * ( const int& multiplier ) const;
 	Point2D operator / ( const int& divider ) const;
@@ -33,6 +34,7 @@ struct Point3D : public Point2D
 	coordinate z;
 
 	Point3D( const coordinate& x, const coordinate& y, const coordinate& z ) : Point2D( x, y ), z(z) { }
+	Point3D() { }
 
 	Point3D operator * ( const int& multiplier ) const;
 	Point3D operator / ( const int& divider ) const;

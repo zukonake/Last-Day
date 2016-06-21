@@ -6,7 +6,7 @@
 //
 #include <SDL/SDL.h>
 #include <render/sprite.hpp>
-#include <render/interface.hpp>
+#include <render/userInterface.hpp>
 
 class Tile : public Sprite
 {

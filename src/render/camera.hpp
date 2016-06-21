@@ -5,15 +5,15 @@
 //
 #include <geometry/point.hpp>
 #include <world/world.hpp>
-#include <render/interface.hpp>
+#include <render/userInterface.hpp>
 
 class Camera
 {
-	World* world;
 	Point2D* position;
+	World* world;
 	unsigned int viewRange;
 public:
-	void render( Interface* targetInterface, SDL_Rect* targetPosition );
+	void render( UserInterface* targetUserInterface, SDL_Rect* targetPosition );
 
 	Camera();
 	~Camera();

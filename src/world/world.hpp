@@ -7,7 +7,6 @@
 #include <geometry/point.hpp>
 #include <world/tile.hpp>
 #include <world/chunk.hpp>
-#include <world/worldGenerator.hpp>
 
 class World
 {
@@ -16,12 +15,11 @@ class World
 
 	std::string name;
 	ChunkVector loadedChunks;
-	WorldGenerator* generator;
 
 	static Point2D transformPositionToChunkPosition( const Point2D& targetTilePosition );
 	static Point2D transformPositionToInternalPosition( const Point2D& targetTilePosition );
 	static Point2D transformPositionToTilePosition( const Point2D& targetChunkPosition );
-
+protected:
 	Chunk* getChunk( const Point2D& targetTilePosition );
 	Chunk* loadChunk( const Point2D& targetChunkPosition );
 public:

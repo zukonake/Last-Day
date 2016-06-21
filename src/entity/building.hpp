@@ -6,6 +6,7 @@
 
 class Building : protected Entity< BuildingSubtype >
 {
+public:
 	Building();
 	~Building();
 };
