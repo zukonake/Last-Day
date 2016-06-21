@@ -12,9 +12,9 @@ class Camera
 	World* world;
 	Point2D* position;
 	unsigned int viewRange;
-
+public:
 	void render( Interface* targetInterface, SDL_Rect* targetPosition );
-	
+
 	Camera();
 };
 

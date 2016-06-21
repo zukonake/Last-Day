@@ -12,8 +12,8 @@ class Sprite
 	Image* sourceImage;
 	SDL_Rect positionOnImage;
 public:
-	void render( Interface* targetInterface, SDL_Rect* targetPosition );
-	
+	virtual void render( Interface* targetInterface, SDL_Rect* targetPosition );
+
 	Sprite( Image* sourceImage, SDL_Rect positionOnImage );
 	Sprite();
 

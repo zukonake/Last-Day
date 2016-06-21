@@ -20,7 +20,7 @@ void Tile::render( Interface* targetInterface, SDL_Rect* targetPosition )
 	sprite->render( targetInterface, targetPosition );
 }
 
-Tile::Tile()
+Tile::Tile() : sprite( new Sprite() )
 {
 
 }

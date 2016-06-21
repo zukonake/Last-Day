@@ -1,15 +1,30 @@
 #include "world.hpp"
 
+Point2D World::transformPositionToChunkPosition( const Point2D& targetTilePosition )
+{
+	return targetTilePosition * Chunk::chunkSizeInTiles;
+}
+
+Point2D World::transformPositionToInternalPosition( const Point2D& targetTilePosition )
+{
+	return targetTilePosition % Chunk::chunkSizeInTiles;
+}
+
+Point2D World::transformPositionToTilePosition( const Point2D& targetChunkPosition )
+{
+	return targetChunkPosition / Chunk::chunkSizeInTiles;
+}
+
 Chunk* World::getChunk( const Point2D& targetTilePosition )
 {
 	for( auto iterator : loadedChunks )
 	{
-		if( iterator->position == Chunk::transformPositionToChunkPosition( targetTilePosition ) )
+		if( iterator->position == transformPositionToChunkPosition( targetTilePosition ) )
 		{
 			return iterator;
 		}
 	}
-	return loadChunk( Chunk::transformPositionToChunkPosition( targetTilePosition ) );
+	return loadChunk( transformPositionToChunkPosition( targetTilePosition ) );
 }
 
 Chunk* World::loadChunk( const Point2D& targetChunkPosition )
@@ -19,5 +34,5 @@ Chunk* World::loadChunk( const Point2D& targetChunkPosition )
 
 Tile* World::operator()( const Point2D& targetTilePosition )
 {
-	return ( *getChunk( targetTilePosition ) )( Chunk::transformPositionToInternalPosition( targetTilePosition ) );
+	return ( *getChunk( targetTilePosition ) )( transformPositionToInternalPosition( targetTilePosition ) );
 }

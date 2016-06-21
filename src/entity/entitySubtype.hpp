@@ -11,7 +11,7 @@ class EntitySubtype
 protected:
 	std::string name;
 	Sprite* sprite;
-
+public:
 	EntitySubtype();
 
 	friend std::istream& operator >> ( std::istream& in, EntitySubtype& obj );
