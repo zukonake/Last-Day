@@ -8,9 +8,7 @@ INCLUDE_PATH = $(SOURCE_PATH)
 LIBRARY_PATH = /usr/lib
 SOURCES = $(shell find $(SOURCE_PATH) -type f -name "*.cpp" -printf '%p ')
 HEADERS = $(shell find $(SOURCE_PATH) -type f -name "*.hpp" -printf '%p ')
-#STO = $(OBJ_PATH)$(shell basename -a $(SOURCES))
-#TODO prepend objs with OBJ_PATH and also update make depend rules
-OBJS = $(addprefix $(OBJ_PATH),$(shell basename -a $(SOURCES:.cpp=.o)))
+OBJS = $(addprefix $(OBJ_PATH),$(patsubst %.cpp,%.o,$(shell find $(SOURCE_PATH) -type f -name "*.cpp" -exec basename {} \;)))
 CXX = g++
 DEBUG = -g
 STD = -std=c++14
@@ -34,7 +32,7 @@ $(OBJ_PATH)%.o : $$(shell find $(SOURCE_PATH) -type f -name %.cpp)
 	@sed -i '1s/^/build\/obj\//' $(BUILD_PATH)$*.d
 
 clean :
-	$(RM) -r $(BUILD_PATH) *~ bin
+	$(RM) -r $(BUILD_PATH) *~ bin $(TARGET_PATH)
 
 run : $(TARGET_PATH)
 	./$(TARGET_PATH)
