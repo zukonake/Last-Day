@@ -9,10 +9,10 @@ matrix:
       addons:
         apt:
           packages:
-		    - g++-5
-		    - libboost-all-dev
-			- libsdl1.2-dev
-			- libsdl-image1.2-dev
+            - g++-5
+            - libboost-all-dev
+            - libsdl1.2-dev
+            - libsdl-image1.2-dev
           sources: &sources
             - llvm-toolchain-precise-3.8
             - ubuntu-toolchain-r-test
