@@ -12,10 +12,11 @@ public:
 	virtual void render( SDL_Rect* sourcePosition, SDL_Surface* targetSurface, SDL_Rect* targetPosition );
 
 	Image();
+	virtual ~Image();
 
 	friend std::istream& operator >> ( std::istream& in, Image& obj );
 	friend std::ostream& operator << ( std::ostream& out, const Image& obj );
-	
+
 	operator SDL_Surface ();
 };
 

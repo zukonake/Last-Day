@@ -3,7 +3,7 @@ BUILD_PATH = build/
 OBJ_PATH = $(BUILD_PATH)obj/
 DEBUG_PATH = Last-Day-D
 RELEASE_PATH = Last-Day
-TARGET_PATH = bin/$(DEBUG_PATH)
+TARGET_PATH = $(DEBUG_PATH)
 INCLUDE_PATH = $(SOURCE_PATH)
 LIBRARY_PATH = /usr/lib
 SOURCES = $(shell find $(SOURCE_PATH) -type f -name "*.cpp" -printf '%p ')
@@ -23,7 +23,6 @@ LDFLAGS = $(STD) -Wall $(LDLIBS) $(DEBUG) $(INCFLAGS) $(LIBFLAGS)
 .PHONY : clean run
 
 $(TARGET_PATH) : $(OBJS)
-	@mkdir -p bin
 	$(CXX) $(LDFLAGS) $(OBJS) -o $@
 
 .SECONDEXPANSION:

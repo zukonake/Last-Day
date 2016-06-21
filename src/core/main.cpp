@@ -1,7 +1,10 @@
+
 #include <core/game.hpp>
 
 int main( int argv, char* argc[] )
 {
 	Game* game = new Game();
-	return game->start();
+	int returnValue = game->start();
+	delete game;
+	return returnValue;
 }

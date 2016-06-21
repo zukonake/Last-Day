@@ -9,3 +9,8 @@ Interface::Interface()
 {
 
 }
+
+Interface::~Interface()
+{
+	
+}

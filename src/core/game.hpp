@@ -11,13 +11,14 @@ class Game
 	Dataset dataset;
 	Player* player;
 	World* world;
-	
+
 	int mainLoop();
 public:
 	int start();
 	int end();
 
 	Game();
+	~Game();
 };
 
 #endif

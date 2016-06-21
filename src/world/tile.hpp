@@ -8,15 +8,13 @@
 #include <render/sprite.hpp>
 #include <render/interface.hpp>
 
-class Tile
+class Tile : public Sprite
 {
 	std::string name;
 	bool isPassable;
-	Sprite* sprite;
 public:
-	void render( Interface* targetInterface, SDL_Rect* targetPosition );
-	
 	Tile();
+	~Tile();
 
 	friend std::istream& operator >> (std::istream& in, Tile& obj );
 	friend std::ostream& operator << (std::ostream& out, const Tile& obj );

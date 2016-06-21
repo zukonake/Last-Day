@@ -11,11 +11,13 @@ class FileHandler
 	std::fstream fileStream;
 public:
 	std::vector< std::string > getFilesInDirectory( const std::string& directoryPath );
+	void changeWorkDirectory( const std::string& directoryPath );
 	void openFile( const std::string& filePath, const std::ios_base::openmode& mode );
 	void closeFile();
 
 	FileHandler();
-	
+	~FileHandler();
+
 	operator std::iostream& ();
 };
 

@@ -5,7 +5,8 @@
 
 class Mob : protected Entity< MobSubtype >
 {
-
+	Mob();
+	virtual ~Mob();
 };
 
 #endif

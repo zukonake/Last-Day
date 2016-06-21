@@ -7,8 +7,9 @@
 class Player : protected Mob
 {
 	Camera* camera;
-	
+public:
 	Player();
+	~Player();
 };
 
 #endif

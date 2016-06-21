@@ -10,8 +10,9 @@ protected:
 	Subtype* subtype;
 public:
 	virtual void render( Interface* targetInterface, SDL_Rect* targetPosition );
-	
+
 	Entity();
+	virtual ~Entity();
 };
 
 #endif

@@ -12,5 +12,10 @@ std::ostream& operator << ( std::ostream& out, const ResourceSubtype& obj )
 
 ResourceSubtype::ResourceSubtype()
 {
-	
+
+}
+
+ResourceSubtype::~ResourceSubtype()
+{
+
 }

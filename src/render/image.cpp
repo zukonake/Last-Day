@@ -19,7 +19,12 @@ void Image::render( SDL_Rect* sourcePosition, SDL_Surface* targetSurface, SDL_Re
 	SDL_BlitSurface( surface, sourcePosition, targetSurface , targetPosition );
 }
 
-Image::Image() : surface( NULL )
+Image::Image()
+{
+
+}
+
+Image::~Image()
 {
 
 }

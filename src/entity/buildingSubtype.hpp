@@ -9,7 +9,8 @@ class BuildingSubtype : protected EntitySubtype
 	Rectangle shape;
 public:
 	BuildingSubtype();
-	
+	~BuildingSubtype();
+
 	friend std::istream& operator >> ( std::istream& in, BuildingSubtype& obj );
 	friend std::ostream& operator << ( std::ostream& out, const BuildingSubtype& obj );
 };

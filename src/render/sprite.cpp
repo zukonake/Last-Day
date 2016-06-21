@@ -4,7 +4,7 @@ std::istream& operator >> ( std::istream& in, Sprite& obj )
 {
 	const unsigned int maximumVariableLength = 256;
 	in.ignore( maximumVariableLength, ' ' );
-	in >> ( *obj.sourceImage );
+	in >> dynamic_cast< Image& >( obj );
 	in >> obj.positionOnImage.x;
 	in >> obj.positionOnImage.y;
 	in >> obj.positionOnImage.w;
@@ -19,10 +19,15 @@ std::ostream& operator << ( std::ostream& out, const Sprite& obj )
 
 void Sprite::render( Interface* targetInterface, SDL_Rect* targetPosition )
 {
-	sourceImage->render( &positionOnImage, dynamic_cast< SDL_Surface* >( targetInterface ), targetPosition );
+	Image::render( &positionOnImage, dynamic_cast< SDL_Surface* >( targetInterface ), targetPosition );
 }
 
-Sprite::Sprite() : sourceImage( new Image() )
+Sprite::Sprite()
+{
+
+}
+
+Sprite::~Sprite()
 {
 
 }

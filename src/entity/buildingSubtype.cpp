@@ -18,3 +18,8 @@ BuildingSubtype::BuildingSubtype()
 {
 
 }
+
+BuildingSubtype::~BuildingSubtype()
+{
+	
+}

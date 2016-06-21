@@ -7,15 +7,15 @@
 #include <render/image.hpp>
 #include <render/interface.hpp>
 
-class Sprite
+class Sprite : protected Image
 {
-	Image* sourceImage;
+protected:
 	SDL_Rect positionOnImage;
 public:
 	virtual void render( Interface* targetInterface, SDL_Rect* targetPosition );
-
-	Sprite( Image* sourceImage, SDL_Rect positionOnImage );
+protected:
 	Sprite();
+	virtual ~Sprite();
 
 	friend std::istream& operator >> ( std::istream& in, Sprite& obj );
 	friend std::ostream& operator << ( std::ostream& out, const Sprite& obj );

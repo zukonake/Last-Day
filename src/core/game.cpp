@@ -14,3 +14,9 @@ Game::Game()
 {
 
 }
+
+Game::~Game()
+{
+	delete player;
+	delete world;
+}

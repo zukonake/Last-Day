@@ -6,12 +6,13 @@
 //
 #include <render/image.hpp>
 
-class Interface : protected Image
+class Interface : public Image
 {
 	std::string name;
 public:
 	Interface();
-	
+	~Interface();
+
 	virtual operator SDL_Surface ();
 };
 

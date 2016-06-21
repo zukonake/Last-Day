@@ -26,6 +26,7 @@ class World
 	Chunk* loadChunk( const Point2D& targetChunkPosition );
 public:
 	World();
+	~World();
 
 	Tile* operator()( const Point2D& targetTilePosition );
 };

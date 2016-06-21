@@ -1,3 +1,4 @@
+
 #ifndef BUILDING_HPP
 #define BUILDING_HPP
 
@@ -5,7 +6,8 @@
 
 class Building : protected Entity< BuildingSubtype >
 {
-	
+	Building();
+	~Building();
 };
 
 #endif

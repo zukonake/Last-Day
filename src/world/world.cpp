@@ -32,6 +32,16 @@ Chunk* World::loadChunk( const Point2D& targetChunkPosition )
 	loadedChunks.push_back( new Chunk( targetChunkPosition ) );
 }
 
+World::World() : generator( new WorldGenerator() )
+{
+
+}
+
+World::~World()
+{
+	delete generator;
+}
+
 Tile* World::operator()( const Point2D& targetTilePosition )
 {
 	return ( *getChunk( targetTilePosition ) )( transformPositionToInternalPosition( targetTilePosition ) );

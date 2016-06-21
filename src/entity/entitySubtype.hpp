@@ -6,13 +6,13 @@
 //
 #include <render/sprite.hpp>
 
-class EntitySubtype
+class EntitySubtype : public Sprite
 {
 protected:
 	std::string name;
-	Sprite* sprite;
 public:
 	EntitySubtype();
+	virtual ~EntitySubtype();
 
 	friend std::istream& operator >> ( std::istream& in, EntitySubtype& obj );
 	friend std::ostream& operator << ( std::ostream& out, const EntitySubtype& obj );

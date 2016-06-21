@@ -17,3 +17,8 @@ MobSubtype::MobSubtype()
 {
 
 }
+
+MobSubtype::~MobSubtype()
+{
+	
+}

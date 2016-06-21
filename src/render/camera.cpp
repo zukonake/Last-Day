@@ -19,3 +19,8 @@ Camera::Camera()
 {
 
 }
+
+Camera::~Camera()
+{
+
+}

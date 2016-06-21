@@ -16,6 +16,7 @@ public:
 	void render( Interface* targetInterface, SDL_Rect* targetPosition );
 
 	Camera();
+	~Camera();
 };
 
 #endif

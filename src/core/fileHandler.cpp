@@ -1,4 +1,5 @@
 #include "fileHandler.hpp"
+#include <unistd.h>
 
 std::vector< std::string > FileHandler::getFilesInDirectory( const std::string& directoryPath )
 {
@@ -24,6 +25,19 @@ std::vector< std::string > FileHandler::getFilesInDirectory( const std::string& 
 	return output;
 }
 
+void FileHandler::changeWorkDirectory( const std::string& directoryPath )
+{
+	if( boost::filesystem::is_directory( directoryPath ))
+	{
+		chdir( directoryPath.c_str() );
+	}
+	else
+	{
+		std::cout << "ERROR: Couldn't open directory: " << directoryPath << "\n";
+		//TODO throw exception
+	}
+}
+
 void FileHandler::openFile( const std::string& filePath, const std::ios_base::openmode& mode )
 {
 	fileStream.open( filePath, mode );
@@ -47,4 +61,9 @@ FileHandler::operator std::iostream& ()
 FileHandler::FileHandler()
 {
 
+}
+
+FileHandler::~FileHandler()
+{
+	closeFile();
 }

@@ -9,6 +9,7 @@ class MobSubtype : protected EntitySubtype
 {
 public:
 	MobSubtype();
+	~MobSubtype();
 
 	friend std::istream& operator >> ( std::istream& in, MobSubtype& obj );
 	friend std::ostream& operator << ( std::ostream& out, const MobSubtype& obj );
