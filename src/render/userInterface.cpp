@@ -1,11 +1,11 @@
 #include "userInterface.hpp"
 
-void UserInterface::render( SDL_Surface* targetSurface, SDL_Rect* targetPosition )
+void UserInterface::render( SDL_Surface* targetSurface )
 {
-
+	SDL_BlitSurface( surface, NULL, targetSurface, new SDL_RectWrapper( screenPosition ) );
 }
 
-UserInterface::UserInterface()
+UserInterface::UserInterface() : Image()
 {
 
 }

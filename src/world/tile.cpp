@@ -7,6 +7,7 @@ std::istream& operator >> (std::istream& in, Tile& obj )
 	in >> obj.name;
 	in >> dynamic_cast< Sprite& >( obj );
 	in >> obj.isPassable;
+	std::cout << obj.name;
 	return in;
 }
 

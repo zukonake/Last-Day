@@ -9,12 +9,13 @@
 
 class Camera
 {
-	Point2D* position;
-	World* world;
+	const Point2D& position;
+	World& world;
 	unsigned int viewRange;
 public:
 	void render( UserInterface* targetUserInterface, SDL_Rect* targetPosition );
 
+	Camera( const Point2D& position, World& world );
 	Camera();
 	~Camera();
 };

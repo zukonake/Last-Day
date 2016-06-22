@@ -2,38 +2,38 @@
 
 Point2D World::transformPositionToChunkPosition( const Point2D& targetTilePosition )
 {
-	return targetTilePosition * Chunk::chunkSizeInTiles;
+	return targetTilePosition * Chunk::sizeInTiles;
 }
 
 Point2D World::transformPositionToInternalPosition( const Point2D& targetTilePosition )
 {
-	return targetTilePosition % Chunk::chunkSizeInTiles;
+	return targetTilePosition % Chunk::sizeInTiles;
 }
 
 Point2D World::transformPositionToTilePosition( const Point2D& targetChunkPosition )
 {
-	return targetChunkPosition / Chunk::chunkSizeInTiles;
+	return targetChunkPosition / Chunk::sizeInTiles;
 }
 
-Chunk* World::getChunk( const Point2D& targetTilePosition )
+Chunk& World::getChunk( const Point2D& targetTilePosition )
 {
-	for( auto iterator : loadedChunks )
+	for( unsigned int iterator = 0; iterator < loadedChunks.size(); iterator++ )
 	{
-		if( iterator->position == transformPositionToChunkPosition( targetTilePosition ) )
+		if( loadedChunks[ iterator ].position == transformPositionToChunkPosition( targetTilePosition ) )
 		{
-			return iterator;
+			return loadedChunks[ iterator ];
 		}
 	}
 	return loadChunk( transformPositionToChunkPosition( targetTilePosition ) );
 }
 
-Chunk* World::loadChunk( const Point2D& targetChunkPosition )
+Chunk& World::loadChunk( const Point2D& targetChunkPosition )
 {
-	loadedChunks.push_back( new Chunk( targetChunkPosition ) );
+	loadedChunks.push_back( generator.generateChunk( dataset ) );
 	return loadedChunks.back();
 }
 
-World::World()
+World::World( const Dataset& dataset ) : dataset( dataset )
 {
 
 }
@@ -43,7 +43,7 @@ World::~World()
 
 }
 
-Tile* World::operator()( const Point2D& targetTilePosition )
+Tile& World::operator()( const Point2D& targetTilePosition )
 {
-	return ( *getChunk( targetTilePosition ) )( transformPositionToInternalPosition( targetTilePosition ) );
+	return getChunk( targetTilePosition )( transformPositionToInternalPosition( targetTilePosition ) );
 }

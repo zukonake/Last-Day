@@ -4,7 +4,7 @@
 
 #include <entity/entity.hpp>
 
-class Building : protected Entity< BuildingSubtype >
+class Building : public Entity< BuildingSubtype >
 {
 public:
 	Building();

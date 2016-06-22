@@ -4,7 +4,7 @@
 #include <entity/entitySubtype.hpp>
 #include <geometry/rectangle.hpp>
 
-class BuildingSubtype : protected EntitySubtype
+class BuildingSubtype : public EntitySubtype
 {
 	Rectangle shape;
 public:

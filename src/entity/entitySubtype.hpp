@@ -8,9 +8,9 @@
 
 class EntitySubtype : public Sprite
 {
-protected:
-	std::string name;
 public:
+	std::string name;
+
 	EntitySubtype();
 	virtual ~EntitySubtype();
 

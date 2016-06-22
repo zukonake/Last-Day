@@ -8,16 +8,18 @@
 
 class Chunk
 {
-	friend class World;
-	const static unsigned int chunkSizeInTiles = 32;
-	typedef Tile* tileArray2D[ chunkSizeInTiles ][ chunkSizeInTiles ];
+public:
+	const static unsigned int sizeInTiles = 32;
+private:
+	typedef Tile* tileArray2D[ sizeInTiles ][ sizeInTiles ];
 
-	Point2D position;
 	tileArray2D tiles;
+public:
+	Point2D position;
 
 	Chunk( const Point2D& position );
 
-	Tile* operator()( const Point2D& targetInternalPosition );
+	Tile& operator()( const Point2D& targetInternalPosition );
 };
 
 #endif

@@ -26,7 +26,7 @@ Image::Image()
 
 Image::~Image()
 {
-
+	
 }
 
 Image::operator SDL_Surface ()

@@ -5,7 +5,7 @@
 //
 #include <entity/entitySubtype.hpp>
 
-class MobSubtype : protected EntitySubtype
+class MobSubtype : public EntitySubtype
 {
 public:
 	MobSubtype();

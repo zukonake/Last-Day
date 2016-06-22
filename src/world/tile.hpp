@@ -10,9 +10,10 @@
 
 class Tile : public Sprite
 {
-	std::string name;
 	bool isPassable;
 public:
+	std::string name;
+
 	Tile();
 	~Tile();
 

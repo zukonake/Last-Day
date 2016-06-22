@@ -3,8 +3,11 @@
 
 int main( int argv, char* argc[] )
 {
+	int returnValue = 0;
+
 	Game* game = new Game();
-	int returnValue = game->start();
+	returnValue = game->start();
 	delete game;
+	
 	return returnValue;
 }

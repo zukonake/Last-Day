@@ -5,11 +5,11 @@
 #include <entity/entity.hpp>
 #include <entity/mobSubtype.hpp>
 
-class Mob : protected Entity< MobSubtype >, public Direction
+class Mob : public Entity< MobSubtype >, public Direction
 {
 	void move();
 public:
-	Mob();
+	Mob( Point2D position, World& world, const MobSubtype& subtype );
 	~Mob();
 };
 
