@@ -12,6 +12,8 @@
 
 class Dataset
 {
+	friend class WorldGenerator;
+	friend class World;
 	const std::string datasetPath = "dataset/generic/";
 protected:
 	std::map< const std::string, Tile > initializedTiles;
@@ -24,8 +26,6 @@ private:
 	void initializeObjects();
 	template< typename ObjectType >
 	std::map< const std::string, ObjectType > initializeObjectVectorFromDirectory( const std::string& directoryPath );
-	template< typename ObjectType >
-	ObjectType initializeObjectFromFile( const std::string& filePath );
 protected:
 	Dataset();
 };
@@ -37,23 +37,14 @@ std::map< const std::string, ObjectType > Dataset::initializeObjectVectorFromDir
 
 	for( auto iterator : fileSystem.getFilesInDirectory( datasetPath + directoryPath ) )
 	{
-		ObjectType objectOutput = initializeObjectFromFile< ObjectType > ( iterator );
-		output[ objectOutput.name ] = objectOutput;
+		fileSystem.open( iterator, std::ios::in );
+		std::string name;
+		fileSystem >> name;
+		std::cout << "INFO: Adding object: " << name << ".\n";
+		output.emplace( name, fileSystem );
+		fileSystem.close();
 	}
 
 	return output;
 }
-
-template< typename ObjectType >
-ObjectType Dataset::initializeObjectFromFile( const std::string& filePath )
-{
-	ObjectType output;
-
-	fileSystem.openFile( filePath, std::ios::in );
-	fileSystem >> output;
-	fileSystem.closeFile();
-
-	return output;
-}
-
 #endif

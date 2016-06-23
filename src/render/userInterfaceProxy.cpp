@@ -1,11 +1,14 @@
 #include "userInterfaceProxy.hpp"
+#include <SDL/SDL_image.h>
 
 void UserInterfaceProxy::render()
 {
 	for( auto iterator : userInterfaces )
 	{
-		iterator.second.render( surface );
+		iterator.second.render( *surface );
 	}
+	player.render( *surface );
+	SDL_Flip( surface );
 }
 
 bool UserInterfaceProxy::handleEvents()
@@ -39,6 +42,7 @@ void UserInterfaceProxy::setWindowTitle( const std::string& windowTitle )
 void UserInterfaceProxy::initializeSDL()
 {
 	SDL_Init( SDL_INIT_EVERYTHING | SDL_DOUBLEBUF );
+	IMG_Init( IMG_INIT_PNG );
 }
 
 void UserInterfaceProxy::deinitializeSDL()
@@ -51,7 +55,7 @@ UserInterfaceProxy::UserInterfaceProxy( const Player& player ) :
 	player( player )
 {
 	initializeSDL();
-	initializeWindow( Rectangle( 640, 480 ), "Neue spiele" );
+	initializeWindow( Rectangle( 800, 600 ), "Neue spiele" );
 }
 
 UserInterfaceProxy::~UserInterfaceProxy()

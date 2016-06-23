@@ -12,13 +12,12 @@ class Tile : public Sprite
 {
 	bool isPassable;
 public:
+	static const unsigned int spriteSize = 32;
 	std::string name;
 
+	Tile( std::istream& in );
 	Tile();
 	~Tile();
-
-	friend std::istream& operator >> (std::istream& in, Tile& obj );
-	friend std::ostream& operator << (std::ostream& out, const Tile& obj );
 };
 
 #endif

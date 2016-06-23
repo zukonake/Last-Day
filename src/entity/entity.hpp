@@ -12,7 +12,7 @@ protected:
 	World& world;
 	const Subtype& subtype;
 public:
-	virtual void render( UserInterface* targetUserInterface, SDL_Rect* targetPosition );
+	virtual void render( UserInterface* targetUserInterface, SDL_Rect& targetPosition );
 	virtual void teleport( const Point2D& targetPosition );
 
 	Entity( Point2D position, World& world, const Subtype& subtype );
@@ -20,7 +20,7 @@ public:
 };
 
 template < typename Subtype >
-void Entity< Subtype >::render( UserInterface* targetUserInterface, SDL_Rect* targetPosition )
+void Entity< Subtype >::render( UserInterface* targetUserInterface, SDL_Rect& targetPosition )
 {
 
 }
@@ -37,7 +37,7 @@ Entity< Subtype >::Entity( Point2D position, World& world, const Subtype& subtyp
 	world( world ),
 	subtype( subtype )
 {
-
+	std::cout << "INFO: created entity: " << subtype.name << " " << position.x << " " << position.y << "\n";
 }
 
 template < typename Subtype >

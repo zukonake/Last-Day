@@ -4,10 +4,11 @@ int Game::loop()
 {
 	while( isRunning )
 	{
+		SDL_Delay( 500 );
 		userInterfaceProxy.render();
 		isRunning = userInterfaceProxy.handleEvents();
 		userInterfaceProxy.clear();
-		worldProxy->simulate();
+		worldProxy.simulate();
 	}
 	return end();
 }
@@ -24,13 +25,13 @@ int Game::end()
 }
 
 Game::Game() :
-	worldProxy( new WorldProxy() ),
-	userInterfaceProxy( worldProxy->createPlayer( Point2D( 0, 0 ) ) )
+	worldProxy(),
+	userInterfaceProxy( worldProxy.createPlayer( Point2D( 0, 0 ) ) )
 {
 
 }
 
 Game::~Game()
 {
-	delete worldProxy;
+
 }

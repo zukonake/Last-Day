@@ -11,11 +11,9 @@ class EntitySubtype : public Sprite
 public:
 	std::string name;
 
-	EntitySubtype();
+	EntitySubtype( std::istream& in );
+	EntitySubtype() { }
 	virtual ~EntitySubtype();
-
-	friend std::istream& operator >> ( std::istream& in, EntitySubtype& obj );
-	friend std::ostream& operator << ( std::ostream& out, const EntitySubtype& obj );
 };
 
 #endif

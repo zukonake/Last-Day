@@ -1,21 +1,26 @@
 #include "camera.hpp"
+#include <world/tile.hpp>
 
-void Camera::render( UserInterface* targetUserInterface, SDL_Rect* targetPosition )
+void Camera::render( SDL_Surface& targetSurface, SDL_Rect& targetPosition ) const
 {
-	for( unsigned int iteratorY = position.y - viewRange;
+	for( int iteratorY = position.y - viewRange, renderY = targetPosition.y;
 		iteratorY < position.y + viewRange;
-		iteratorY++ )
+		iteratorY++, renderY += Tile::spriteSize )
 	{
-		for( unsigned int iteratorX = position.x - viewRange;
+		for( int iteratorX = position.x - viewRange, renderX = targetPosition.x;
 			iteratorX < position.x + viewRange;
-			iteratorX++ )
+			iteratorX++, renderX += Tile::spriteSize )
 		{
-			world( Point2D( iteratorX, iteratorY ) ).render( targetUserInterface, targetPosition );
+			SDL_RectWrapper renderPosition( renderX, renderY, Tile::spriteSize, Tile::spriteSize );
+			world( Point2D( iteratorX, iteratorY ) )->render( targetSurface, renderPosition );
 		}
 	}
 }
 
-Camera::Camera( const Point2D& position, World& world ) : position( position ), world( world )
+Camera::Camera( Point2D position, World& world, const unsigned int& viewRange ) :
+	position( position ),
+	world( world ),
+	viewRange( viewRange )
 {
 
 }

@@ -4,19 +4,20 @@
 #include <SDL/SDL.h>
 //
 #include <geometry/point.hpp>
+#include <render/sdl_rectWrapper.hpp>
 #include <world/world.hpp>
 #include <render/userInterface.hpp>
 
 class Camera
 {
-	const Point2D& position;
-	World& world;
-	unsigned int viewRange;
+	Point2D position;
 public:
-	void render( UserInterface* targetUserInterface, SDL_Rect* targetPosition );
+	World& world;
+	int viewRange;
 
-	Camera( const Point2D& position, World& world );
-	Camera();
+	void render( SDL_Surface& targetSurface, SDL_Rect& targetPosition ) const;
+
+	Camera( Point2D position, World& world, const unsigned int& viewRange );
 	~Camera();
 };
 

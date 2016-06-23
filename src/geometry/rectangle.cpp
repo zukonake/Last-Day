@@ -1,22 +1,12 @@
 #include "rectangle.hpp"
 
-std::istream& operator >> ( std::istream& in, Rectangle& obj )
+Rectangle::Rectangle( std::istream& in )
 {
 	const unsigned int maximumVariableLength = 256;
 	in.ignore( maximumVariableLength, ' ' );
-	in >> obj.width;
-	in >> obj.height;
-	return in;
-}
-
-std::ostream& operator << ( std::ostream& out, const Rectangle& obj )
-{
-	return out;
-}
-
-Rectangle::Rectangle()
-{
-
+	in >> width;
+	in >> height;
+	std::cout << "INFO: Initializing rectangle.\n";
 }
 
 Rectangle::operator SDL_Rect ()

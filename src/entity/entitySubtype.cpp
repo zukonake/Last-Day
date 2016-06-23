@@ -1,21 +1,12 @@
 #include "entitySubtype.hpp"
 
-std::istream& operator >> ( std::istream& in, EntitySubtype& obj )
+EntitySubtype::EntitySubtype( std::istream& in ) :
+	Sprite( in )
 {
 	const unsigned int maximumVariableLength = 256;
-	in >> obj.name;
-	in >> dynamic_cast< Sprite& >( obj );
-	return in;
-}
-
-std::ostream& operator << ( std::ostream& out, const EntitySubtype& obj )
-{
-	return out;
-}
-
-EntitySubtype::EntitySubtype() : Sprite()
-{
-
+	in.ignore( maximumVariableLength, ' ' );
+	in >> name;
+	std::cout << "INFO: Initializing entitySubtype: " << name << " .\n";
 }
 
 EntitySubtype::~EntitySubtype()

@@ -1,3 +1,4 @@
+house
+sprite= dataset/generic/buildingSubtype/house.png 0 0 64 64
 name= house
-sprite= house.png 0 0 64 64
 shape= 2 2

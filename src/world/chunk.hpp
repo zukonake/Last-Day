@@ -12,14 +12,11 @@ public:
 	const static unsigned int sizeInTiles = 32;
 private:
 	typedef Tile* tileArray2D[ sizeInTiles ][ sizeInTiles ];
-
-	tileArray2D tiles;
 public:
 	Point2D position;
+	tileArray2D tiles;
 
-	Chunk( const Point2D& position );
-
-	Tile& operator()( const Point2D& targetInternalPosition );
+	Chunk();
 };
 
 #endif

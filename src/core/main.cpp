@@ -1,13 +1,12 @@
 
 #include <core/game.hpp>
 
-int main( int argv, char* argc[] )
+int main( int argc, char* argv[] )
 {
 	int returnValue = 0;
 
-	Game* game = new Game();
-	returnValue = game->start();
-	delete game;
-	
+	Game game;
+	returnValue = game.start();
+
 	return returnValue;
 }

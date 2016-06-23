@@ -14,9 +14,11 @@ struct Point2D
 	Point2D( const coordinate& x, const coordinate& y ) : x(x), y(y) { }
 	Point2D() { }
 
-	Point2D operator * ( const int& multiplier ) const;
-	Point2D operator / ( const int& divider ) const;
-	Point2D operator % ( const int& modulus ) const;
+	Point2D operator * ( const int& mul ) const;
+	Point2D operator / ( const int& div ) const;
+	Point2D operator % ( const int& mod ) const;
+	Point2D operator + ( const int& add ) const;
+	Point2D operator - ( const int& sub ) const;
 
 	inline bool operator == ( const Point2D& target ) const;
 

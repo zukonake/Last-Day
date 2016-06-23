@@ -1,18 +1,10 @@
 #include "resourceSubtype.hpp"
 
-std::istream& operator >> ( std::istream& in, ResourceSubtype& obj )
+ResourceSubtype::ResourceSubtype( std::istream& in )
 {
-	return in;
-}
-
-std::ostream& operator << ( std::ostream& out, const ResourceSubtype& obj )
-{
-	return out;
-}
-
-ResourceSubtype::ResourceSubtype()
-{
-
+	const unsigned int maximumVariableLength = 256;
+	in.ignore( maximumVariableLength, ' ' );
+	in >> name;
 }
 
 ResourceSubtype::~ResourceSubtype()

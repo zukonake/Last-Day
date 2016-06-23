@@ -18,7 +18,7 @@ class UserInterface : public Image
 
 	};
 public:
-	virtual void render( SDL_Surface* targetSurface );
+	virtual void render( SDL_Surface& targetSurface );
 
 	UserInterface();
 	virtual ~UserInterface();

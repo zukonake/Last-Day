@@ -4,15 +4,12 @@
 #include <entity/entitySubtype.hpp>
 #include <geometry/rectangle.hpp>
 
-class BuildingSubtype : public EntitySubtype
+class BuildingSubtype : public EntitySubtype, public Rectangle
 {
-	Rectangle shape;
 public:
-	BuildingSubtype();
+	BuildingSubtype( std::istream& in );
+	BuildingSubtype() { }
 	~BuildingSubtype();
-
-	friend std::istream& operator >> ( std::istream& in, BuildingSubtype& obj );
-	friend std::ostream& operator << ( std::ostream& out, const BuildingSubtype& obj );
 };
 
 #endif

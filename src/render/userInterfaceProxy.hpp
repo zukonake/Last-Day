@@ -10,9 +10,10 @@
 
 class UserInterfaceProxy : public UserInterface
 {
+	friend class Game;
 	std::map< const std::string, UserInterface > userInterfaces;
 	SDL_Event event;
-	const Player& player;
+	Player player;
 public:
 	void render();
 	bool handleEvents();

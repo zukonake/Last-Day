@@ -1,3 +1,4 @@
+grass
+sprite= dataset/generic/tile/grass.png 0 0 32 32
 name= Grass
 isPassable= 0
-sprite= grass.png 0 0 32 32

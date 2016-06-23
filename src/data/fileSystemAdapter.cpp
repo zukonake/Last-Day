@@ -1,7 +1,7 @@
 #include "fileSystemAdapter.hpp"
 #include <boost/filesystem.hpp>
 
-std::vector< std::string > FileSystemAdapter::getFilesInDirectory( const std::string& directoryPath )
+std::vector< std::string > FileSystemAdapter::getFilesInDirectory( const std::string& directoryPath, const std::string& targetExtension )
 {
 	std::vector< std::string > output;
 	if( boost::filesystem::is_directory( directoryPath ))
@@ -11,7 +11,7 @@ std::vector< std::string > FileSystemAdapter::getFilesInDirectory( const std::st
 			iterator != endIterator;
 			++iterator )
 		{
-			if( !boost::filesystem::is_directory( iterator->status() ) )
+			if( !boost::filesystem::is_directory( iterator->status() ) and iterator->path().extension() == targetExtension )
 			{
 				output.push_back( iterator->path().string() );
 			}
@@ -38,26 +38,6 @@ void FileSystemAdapter::changeWorkDirectory( const std::string& directoryPath )
 	}
 }
 
-void FileSystemAdapter::openFile( const std::string& filePath, const std::ios_base::openmode& mode )
-{
-	fileStream.open( filePath, mode );
-	if( !fileStream.good() )
-	{
-		std::cout << "ERROR: Couldn't open file: " << filePath << "\n";
-		//TODO throw exception
-	}
-}
-
-void FileSystemAdapter::closeFile()
-{
-	fileStream.close();
-}
-
-FileSystemAdapter::operator std::iostream& ()
-{
-	return fileStream; //TODO check file mode
-}
-
 FileSystemAdapter::FileSystemAdapter()
 {
 
@@ -65,5 +45,5 @@ FileSystemAdapter::FileSystemAdapter()
 
 FileSystemAdapter::~FileSystemAdapter()
 {
-	closeFile();
+	close();
 }

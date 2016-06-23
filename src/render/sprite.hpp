@@ -12,13 +12,11 @@ class Sprite : protected Image
 protected:
 	SDL_Rect positionOnImage;
 public:
-	virtual void render( UserInterface* targetUserInterface, SDL_Rect* targetPosition );
+	virtual void render( SDL_Surface& targetSurface, SDL_Rect& targetPosition );
 protected:
+	Sprite( std::istream& in );
 	Sprite();
 	virtual ~Sprite();
-
-	friend std::istream& operator >> ( std::istream& in, Sprite& obj );
-	friend std::ostream& operator << ( std::ostream& out, const Sprite& obj );
 };
 
 #endif

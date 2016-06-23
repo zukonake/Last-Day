@@ -1,18 +1,28 @@
 #include "point.hpp"
 
-Point2D Point2D::operator * ( const int& multiplier ) const
+Point2D Point2D::operator * ( const int& mul ) const
 {
-	return Point2D( this->x * multiplier, this->y * multiplier );
+	return Point2D( x * mul, y * mul );
 }
 
-Point2D Point2D::operator / ( const int& divider ) const
+Point2D Point2D::operator / ( const int& div ) const
 {
-	return Point2D( this->x / divider, this->y / divider );
+	return Point2D( x / div, y / div );
 }
 
-Point2D Point2D::operator % ( const int& modulus ) const
+Point2D Point2D::operator % ( const int& mod ) const
 {
-	return Point2D( this->x % modulus, this->y % modulus );
+	return Point2D( x % mod, y % mod );
+}
+
+Point2D Point2D::operator + ( const int& add ) const
+{
+	return Point2D( x + add, y + add );
+}
+
+Point2D Point2D::operator - ( const int& sub ) const
+{
+	return Point2D( x - sub, y - sub );
 }
 
 std::istream& operator >> ( std::istream& in, Point2D& obj )

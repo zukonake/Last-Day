@@ -7,7 +7,7 @@
 
 class Game
 {
-	WorldProxy* worldProxy;
+	WorldProxy worldProxy;
 	UserInterfaceProxy userInterfaceProxy;
 	bool isRunning;
 

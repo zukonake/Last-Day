@@ -8,7 +8,7 @@
 class WorldGenerator
 {
 public:
-	Chunk generateChunk( const Dataset& availableDataset );
+	Chunk generateChunk( Dataset& availableDataset, const Point2D& targetChunkPosition );
 
 	WorldGenerator();
 };
