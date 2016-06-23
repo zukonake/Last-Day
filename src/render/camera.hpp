@@ -10,14 +10,15 @@
 
 class Camera
 {
-	Point2D position;
+	friend class Player;
+	Point2D* position;
 public:
 	World& world;
 	int viewRange;
 
-	void render( SDL_Surface& targetSurface, SDL_Rect& targetPosition ) const;
+	void render( SDL_Surface& targetSurface, SDL_Rect& targetPosition );
 
-	Camera( Point2D position, World& world, const unsigned int& viewRange );
+	Camera( Point2D* position, World& world, const unsigned int& viewRange );
 	~Camera();
 };
 

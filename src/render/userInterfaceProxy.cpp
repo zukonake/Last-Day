@@ -19,6 +19,30 @@ bool UserInterfaceProxy::handleEvents()
 		{
 			return false;
 		}
+		if( event.type == SDL_KEYDOWN ) //TODO remake dis
+        {
+            switch( event.key.keysym.sym )
+            {
+            case SDLK_RIGHT:
+                player.position.x++;
+                break;
+
+			case SDLK_LEFT:
+	        	player.position.x--;
+	            break;
+
+			case SDLK_UP:
+	            player.position.y--;
+	            break;
+
+			case SDLK_DOWN:
+		        player.position.y++;
+		        break;
+
+			default:
+				break;
+            }
+        }
 	}
 	return true;
 }
@@ -26,6 +50,11 @@ bool UserInterfaceProxy::handleEvents()
 void UserInterfaceProxy::clear()
 {
 
+}
+
+void UserInterfaceProxy::initializeInterfaces()
+{
+	//userInterfaces[ "userInput" ]
 }
 
 void UserInterfaceProxy::initializeWindow( const Rectangle& windowSize, const std::string& windowTitle )

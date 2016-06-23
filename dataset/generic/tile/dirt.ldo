@@ -1,0 +1,4 @@
+dirt
+sprite= dataset/generic/tile/dirt.png 0 0 32 32
+name= Dirt
+isPassable= 0

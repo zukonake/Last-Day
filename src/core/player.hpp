@@ -8,12 +8,11 @@
 #include <entity/mobSubtype.hpp>
 #include <entity/mob.hpp>
 
-class Player : protected Mob
+class Player : public Mob
 {
 	Camera camera;
 public:
-	void render( SDL_Surface& targetSurface ) const;
-	Point2D getPosition() const;
+	void render( SDL_Surface& targetSurface );
 
 	Player( Point2D _position, World& world, const MobSubtype& subtype );
 	~Player();

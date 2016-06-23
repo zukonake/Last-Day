@@ -19,6 +19,7 @@ public:
 	bool handleEvents();
 	void clear();
 private:
+	void initializeInterfaces();
 	void initializeSDL();
 	void deinitializeSDL();
 	void initializeWindow( const Rectangle& windowSize, const std::string& windowTitle );

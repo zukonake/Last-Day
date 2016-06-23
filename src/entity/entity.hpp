@@ -8,12 +8,12 @@
 template < typename Subtype > class Entity
 {
 protected:
-	Point2D position;
 	World& world;
 	const Subtype& subtype;
 public:
 	virtual void render( UserInterface* targetUserInterface, SDL_Rect& targetPosition );
 	virtual void teleport( const Point2D& targetPosition );
+	Point2D position; //TODO protected
 
 	Entity( Point2D position, World& world, const Subtype& subtype );
 	virtual ~Entity();
@@ -28,7 +28,7 @@ void Entity< Subtype >::render( UserInterface* targetUserInterface, SDL_Rect& ta
 template < typename Subtype >
 void Entity< Subtype >::teleport( const Point2D& targetPosition )
 {
-
+	position = targetPosition;
 }
 
 template < typename Subtype >

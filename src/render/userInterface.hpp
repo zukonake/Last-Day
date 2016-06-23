@@ -12,11 +12,6 @@ class UserInterface : public Image
 {
 	std::string name;
 	Point2D screenPosition;
-	enum UserInterfaceType
-	{
-		screen,
-
-	};
 public:
 	virtual void render( SDL_Surface& targetSurface );
 

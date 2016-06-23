@@ -1,4 +1,5 @@
 #include "worldGenerator.hpp"
+#include <cstdlib>
 
 Chunk WorldGenerator::generateChunk( Dataset& availableDataset, const Point2D& targetChunkPosition )
 {
@@ -7,7 +8,14 @@ Chunk WorldGenerator::generateChunk( Dataset& availableDataset, const Point2D& t
 	{
 		for( unsigned int iteratorX = 0; iteratorX < Chunk::sizeInTiles; iteratorX++ )
 		{
-			output.tiles[ iteratorX ][ iteratorY ] = &availableDataset.initializedTiles[ "grass" ];
+			if( (rand() % 10) == 1)
+			{
+				output.tiles[ iteratorX ][ iteratorY ] = &availableDataset.initializedTiles[ "dirt" ];
+			}
+			else
+			{
+				output.tiles[ iteratorX ][ iteratorY ] = &availableDataset.initializedTiles[ "grass" ];
+			}
 		}
 	}
 	output.position = targetChunkPosition;

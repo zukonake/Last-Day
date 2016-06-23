@@ -4,11 +4,11 @@ int Game::loop()
 {
 	while( isRunning )
 	{
-		SDL_Delay( 500 );
+		SDL_Delay( 50 );
 		userInterfaceProxy.render();
 		isRunning = userInterfaceProxy.handleEvents();
-		userInterfaceProxy.clear();
-		worldProxy.simulate();
+		//userInterfaceProxy.clear();
+		//worldProxy.simulate();
 	}
 	return end();
 }
