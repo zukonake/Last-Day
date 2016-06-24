@@ -1,15 +1,14 @@
 #include "camera.hpp"
 #include <geometry/SDL_RectWrapper.hpp>
-#include <world/tile.hpp>
 
 void Camera::render( SDL_Surface& targetSurface )
 {
-	for( Point::coordinate iteratorY = position.y - viewRange, renderY = 0;
-		iteratorY < position.y + viewRange;
+	for( Point::coordinate iteratorY = position.y - viewRange.height, renderY = 0;
+		iteratorY < position.y + viewRange.height;
 		iteratorY++, renderY += Tile::spriteSize )
 	{
-		for( Point::coordinate iteratorX = position.x - viewRange, renderX = 0;
-			iteratorX < position.x + viewRange;
+		for( Point::coordinate iteratorX = position.x - viewRange.width, renderX = 0;
+			iteratorX < position.x + viewRange.width;
 			iteratorX++, renderX += Tile::spriteSize )
 		{
 			SDL_RectWrapper renderPosition( renderX, renderY, Tile::spriteSize, Tile::spriteSize );
@@ -23,10 +22,8 @@ void Camera::move( const Direction& direction )
 	position.move( direction );
 }
 
-Camera::Camera( const Point& position, World& world, const uint8_t viewRange ) :
-	position( position ),
-	world( world ),
-	viewRange( viewRange )
+Camera::Camera( const Point& position, World& world ) :
+	Entity< void >( position, world, NULL )
 {
 
 }

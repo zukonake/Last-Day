@@ -11,10 +11,9 @@ struct Chunk
 	const static unsigned int sizeInTiles = 32;
 	typedef Tile* tileArray2D[ sizeInTiles ][ sizeInTiles ];
 
-	Point position;
 	tileArray2D tiles;
 
-	Chunk( const Point& position );
+	Chunk();
 };
 
 #endif

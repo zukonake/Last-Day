@@ -1,6 +1,6 @@
 #include "mob.hpp"
 
-Mob::Mob( const Point& position, World& world, const MobSubtype& subtype ) :
+Mob::Mob( const Point& position, World& world, std::shared_ptr < MobSubtype > subtype ) :
 	Entity< MobSubtype >( position, world, subtype )
 {
 

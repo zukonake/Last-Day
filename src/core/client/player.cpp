@@ -8,7 +8,7 @@ void Player::render( SDL_Surface& targetSurface )
 }
 
 Player::Player( const Point& position, World& world ) :
-	Camera( position, world, cameraViewRange )
+	Camera( position, world )
 {
 
 }

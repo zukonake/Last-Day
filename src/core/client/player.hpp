@@ -5,12 +5,12 @@
 #include <SDL/SDL.h>
 //
 #include <geometry/point.hpp>
+#include <geometry/rectangle.hpp>
 #include <world/world.hpp>
 #include <core/client/camera.hpp>
 
 class Player : public Camera
 {
-	const static uint8_t cameraViewRange = 7;
 public:
 	void render( SDL_Surface& targetSurface );
 

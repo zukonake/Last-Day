@@ -15,39 +15,44 @@ void UserInterfaceProxy::render()
 
 bool UserInterfaceProxy::handleEvents()
 {
-	SDL_Delay( 50 );
+	uint8_t* keystate = SDL_GetKeyState(NULL);
+	bool output = true;
+	if(keystate[SDLK_LEFT])
+    {
+		player.move( Direction::WEST );
+    }
+    if(keystate[SDLK_RIGHT])
+    {
+		player.move( Direction::EAST );
+    }
+    if(keystate[SDLK_UP])
+    {
+		player.move( Direction::NORTH );
+    }
+    if(keystate[SDLK_DOWN])
+    {
+		player.move( Direction::SOUTH );
+    }
 	while( SDL_PollEvent( &event ) )
 	{
 		if( event.type == SDL_QUIT )
 		{
-			return false;
+			output = false;
 		}
 		if( event.type == SDL_KEYDOWN ) //TODO remake dis
         {
             switch( event.key.keysym.sym )
             {
-			case SDLK_UP:
-		        player.move( Direction::NORTH );
+			case SDLK_ESCAPE:
+				output = false;
 		        break;
-
-            case SDLK_LEFT:
-                player.move( Direction::WEST );
-                break;
-
-			case SDLK_DOWN:
-	        	player.move( Direction::SOUTH );
-	            break;
-
-			case SDLK_RIGHT:
-		        player.move( Direction::EAST );
-		        break;
-
 			default:
 				break;
             }
         }
 	}
-	return true;
+	SDL_Delay( 15 );
+	return output;
 }
 
 void UserInterfaceProxy::clear()
@@ -61,7 +66,7 @@ UserInterfaceProxy::UserInterfaceProxy( std::shared_ptr< WorldProxy > worldProxy
 	player( Point( 0, 0 ), dynamic_cast< World& >( *worldProxy ) )
 {
 	initializeSDL();
-	initializeSDLWindow( Rectangle( 800, 600 ), "Neue spiele" );
+	initializeSDLWindow( Rectangle( 1280, 768 ), "Neue spiele" );
 	initializeInterfaces();
 }
 

@@ -6,19 +6,20 @@
 //
 #include <geometry/direction.hpp>
 #include <geometry/point.hpp>
+#include <geometry/rectangle.hpp>
+#include <world/tile.hpp>
 #include <world/world.hpp>
+#include <entity/entity.hpp>
 
-class Camera
+class Camera : protected Entity< void >
 {
-	Point position;
-	World& world;
-	const uint8_t viewRange;
+	const Rectangle viewRange = Rectangle( 1280 / Tile::spriteSize, 768 / Tile::spriteSize ) ;
 public:
 	void render( SDL_Surface& targetSurface );
 
 	void move( const Direction& direction );
 
-	Camera( const Point& position, World& world, const uint8_t viewRange );
+	Camera( const Point& position, World& world );
 	~Camera();
 };
 

@@ -2,7 +2,7 @@
 #define WORLD_HPP
 
 #include <memory>
-#include <vector>
+#include <map>
 //
 #include <geometry/point.hpp>
 #include <world/tile.hpp>
@@ -12,19 +12,18 @@
 
 class World
 {
-	typedef std::vector< std::shared_ptr< Chunk > > ChunkVector;
+	typedef std::map< Point::coordinate, std::map< Point::coordinate, std::shared_ptr< Chunk > > > ChunkMap2D;
 	const static uint8_t chunkLoadingRange = 1;
 
-	ChunkVector loadedChunks;
+	ChunkMap2D loadedChunks;
 	WorldGenerator generator;
 	Dataset& dataset;
 
-	static Point transformPositionToChunkPosition( const Point& targetTilePosition );
-	static Point transformPositionToInternalPosition( const Point& targetTilePosition );
+	static Point chunkPosition( const Point& targetTilePosition );
+	static Point internalPosition( const Point& targetTilePosition );
 protected:
 	std::shared_ptr< Chunk > getChunk( const Point& targetTilePosition );
 	std::shared_ptr< Chunk > loadChunk( const Point& targetChunkPosition );
-	void unloadChunk( uint16_t id );
 public:
 	World( Dataset& dataset );
 	~World();

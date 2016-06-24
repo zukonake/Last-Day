@@ -1,6 +1,7 @@
 #ifndef ENTITY_HPP
 #define ENTITY_HPP
 
+#include <memory>
 #include <iostream>
 #include <SDL/SDL.h>
 //
@@ -13,12 +14,12 @@ template < typename Subtype > class Entity
 protected:
 	Point position;
 	World& world;
-	const Subtype& subtype;
+	std::shared_ptr < Subtype > subtype;
 public:
 	virtual void render( SDL_Surface& targetUserInterface, SDL_Rect& targetPosition );
 	virtual void teleport( const Point& targetPosition );
 
-	Entity( const Point& position, World& world, const Subtype& subtype );
+	Entity( const Point& position, World& world, std::shared_ptr < Subtype > subtype );
 	virtual ~Entity();
 };
 
@@ -35,12 +36,12 @@ void Entity< Subtype >::teleport( const Point& targetPosition )
 }
 
 template < typename Subtype >
-Entity< Subtype >::Entity( const Point& position, World& world, const Subtype& subtype ) :
+Entity< Subtype >::Entity( const Point& position, World& world, std::shared_ptr < Subtype > subtype ) :
 	position( position ),
 	world( world ),
 	subtype( subtype )
 {
-	std::cout << "INFO: created entity: " << subtype.name << " " << position.x << " " << position.y << "\n";
+
 }
 
 template < typename Subtype >

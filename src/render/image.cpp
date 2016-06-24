@@ -24,7 +24,7 @@ Image::Image( std::istream& in )
 
 Image::Image() : surface( NULL )
 {
-
+	
 }
 
 Image::~Image()
