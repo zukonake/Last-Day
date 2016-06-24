@@ -2,7 +2,7 @@
 #define PLAYER_HPP
 
 #include <cstdint>
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 //
 #include <geometry/point.hpp>
 #include <geometry/rectangle.hpp>
@@ -12,7 +12,7 @@
 class Player : public Camera
 {
 public:
-	void render( SDL_Surface& targetSurface );
+	void render( SDL_Renderer* targetRenderer );
 
 	Player( const Point& position, World& world );
 	~Player();

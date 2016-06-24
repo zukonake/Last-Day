@@ -5,9 +5,9 @@ void WorldProxy::simulate()
 
 }
 
-WorldProxy::WorldProxy() :
+WorldProxy::WorldProxy( ) :
 	Dataset(),
 	World( dynamic_cast< Dataset& >( *this ) )
 {
-	
+
 }

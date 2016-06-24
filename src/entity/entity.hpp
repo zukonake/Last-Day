@@ -3,7 +3,7 @@
 
 #include <memory>
 #include <iostream>
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 //
 #include <geometry/point.hpp>
 #include <geometry/direction.hpp>

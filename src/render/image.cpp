@@ -1,10 +1,12 @@
 #include "image.hpp"
 #include <string>
-#include <SDL/SDL_image.h>
+#include <SDL2/SDL_image.h>
 
-void Image::render( SDL_Rect& sourcePosition, SDL_Surface& targetSurface, SDL_Rect& targetPosition )
+SDL_Renderer* Image::renderer;
+
+void Image::render( SDL_Renderer* targetRenderer, SDL_Rect& sourcePosition, SDL_Rect& targetPosition )
 {
-	SDL_BlitSurface( surface, &sourcePosition, &targetSurface , &targetPosition );
+	SDL_RenderCopy( renderer, texture, &sourcePosition, &targetPosition );
 }
 
 Image::Image( std::istream& in )
@@ -14,29 +16,24 @@ Image::Image( std::istream& in )
 	in.ignore( maximumVariableLength, ' ' );
 	in >> imagePath;
 	std::cout << "INFO: Initializing image: "<< imagePath << " .\n";
-	surface = IMG_Load( std::string( imagePath ).c_str() );
-	if( surface == NULL )
+	texture = SDL_CreateTextureFromSurface( renderer, IMG_Load( std::string( imagePath ).c_str() ) );
+	if( texture == NULL )
 	{
 		//TODO throw exception
 		std::cout << "ERROR: Couldn't load image: "<< imagePath << " .\n";
 	}
 }
 
-Image::Image() : surface( NULL )
+Image::Image() : texture( NULL )
 {
-	
+
 }
 
 Image::~Image()
 {
-	if( surface != NULL && surface->flags != SDL_SWSURFACE )
+	if( texture != NULL )
 	{
 		std::cout << "INFO: Image destructor called\n";
-		SDL_FreeSurface( surface );
+		SDL_DestroyTexture( texture );
 	}
-}
-
-Image::operator SDL_Surface ()
-{
-	return *surface;
 }

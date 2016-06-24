@@ -4,7 +4,7 @@
 
 #include <cstdint>
 #include <iostream>
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 
 struct Rectangle
 {

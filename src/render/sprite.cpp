@@ -1,8 +1,8 @@
 #include "sprite.hpp"
 
-void Sprite::render( SDL_Surface& targetSurface, SDL_Rect& targetPosition )
+void Sprite::render( SDL_Renderer* targetRenderer, SDL_Rect& targetPosition )
 {
-	Image::render( positionOnImage, targetSurface, targetPosition );
+	Image::render( targetRenderer, positionOnImage, targetPosition );
 	//std::cout << "INFO: Rendering sprite.\n";
 }
 

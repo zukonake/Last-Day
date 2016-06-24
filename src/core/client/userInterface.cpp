@@ -1,9 +1,9 @@
 #include "userInterface.hpp"
 #include <geometry/SDL_RectWrapper.hpp>
 
-void UserInterface::render( SDL_Surface& targetSurface )
+void UserInterface::render( SDL_Renderer* targetRenderer )
 {
-	SDL_BlitSurface( surface, NULL, &targetSurface, new SDL_RectWrapper( screenPosition ) );
+	//SDL_BlitSurface( surface, NULL, &targetSurface, new SDL_RectWrapper( screenPosition ) );
 }
 
 UserInterface::UserInterface() :
@@ -15,9 +15,4 @@ UserInterface::UserInterface() :
 UserInterface::~UserInterface()
 {
 
-}
-
-UserInterface::operator SDL_Surface ()
-{
-	return *surface;
 }

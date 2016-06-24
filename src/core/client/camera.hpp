@@ -2,7 +2,7 @@
 #define CAMERA_HPP
 
 #include <cstdint>
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 //
 #include <geometry/direction.hpp>
 #include <geometry/point.hpp>
@@ -15,7 +15,7 @@ class Camera : protected Entity< void >
 {
 	const Rectangle viewRange = Rectangle( 1280 / Tile::spriteSize, 768 / Tile::spriteSize ) ;
 public:
-	void render( SDL_Surface& targetSurface );
+	void render( SDL_Renderer* targetRenderer );
 
 	void move( const Direction& direction );
 

@@ -3,20 +3,19 @@
 
 #include <memory>
 #include <iostream>
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 
 class Image
 {
 protected:
-	SDL_Surface* surface;
+	SDL_Texture* texture;
 public:
-	virtual void render( SDL_Rect& sourcePosition, SDL_Surface& targetSurface, SDL_Rect& targetPosition );
+	static SDL_Renderer* renderer;
+	virtual void render( SDL_Renderer* targetRenderer, SDL_Rect& sourcePosition, SDL_Rect& targetPosition );
 
 	Image( std::istream& in );
 	Image();
 	virtual ~Image();
-
-	operator SDL_Surface ();
 };
 
 #endif

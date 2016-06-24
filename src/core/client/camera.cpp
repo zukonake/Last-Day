@@ -1,7 +1,7 @@
 #include "camera.hpp"
 #include <geometry/SDL_RectWrapper.hpp>
 
-void Camera::render( SDL_Surface& targetSurface )
+void Camera::render( SDL_Renderer* targetRenderer )
 {
 	for( Point::coordinate iteratorY = position.y - viewRange.height, renderY = 0;
 		iteratorY < position.y + viewRange.height;
@@ -12,7 +12,7 @@ void Camera::render( SDL_Surface& targetSurface )
 			iteratorX++, renderX += Tile::spriteSize )
 		{
 			SDL_RectWrapper renderPosition( renderX, renderY, Tile::spriteSize, Tile::spriteSize );
-			world( Point( iteratorX, iteratorY ) )->render( targetSurface, renderPosition );
+			world( Point( iteratorX, iteratorY ) )->render( targetRenderer, renderPosition );
 		}
 	}
 }

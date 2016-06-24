@@ -2,7 +2,7 @@
 #define SDL_RECTWRAPPER_HPP
 
 #include <cstdint>
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 //
 #include <geometry/point.hpp>
 

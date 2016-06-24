@@ -4,32 +4,25 @@
 #include <memory>
 #include <string>
 #include <map>
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 //
 #include <geometry/rectangle.hpp>
 #include <core/server/worldProxy.hpp>
 #include <core/client/userInterface.hpp>
 #include <core/client/player.hpp>
+#include <core/client/SDLAdapter.hpp>
 
-class UserInterfaceProxy : public UserInterface
+class UserInterfaceProxy : public SDLAdapter
 {
 	std::map< const std::string, UserInterface > userInterfaces;
 	std::shared_ptr< WorldProxy > worldProxy;
-	SDL_Event event;
 	Player player;
 public:
 	void render();
 	bool handleEvents();
-	void clear();
-private:
-	void initializeSDL();
-	void initializeSDLWindow( const Rectangle& windowSize, const std::string& windowTitle );
-	void setWindowTitle( const std::string& windowTitle );
-	void initializeInterfaces();
-	void deinitializeSDL();
-public:
-	UserInterfaceProxy( std::shared_ptr< WorldProxy > worldProxy );
-	~UserInterfaceProxy();
+
+	UserInterfaceProxy();
+	~UserInterfaceProxy() { };
 };
 
 #endif
