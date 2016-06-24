@@ -1,6 +1,7 @@
 #ifndef IMAGE_HPP
 #define IMAGE_HPP
 
+#include <memory>
 #include <iostream>
 #include <SDL/SDL.h>
 

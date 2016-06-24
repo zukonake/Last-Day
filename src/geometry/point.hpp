@@ -2,55 +2,35 @@
 #define POINT_HPP
 
 #include <cstdint>
-#include <iostream>
+//
+#include <geometry/direction.hpp>
 
-struct Point2D
+struct Point
 {
-	typedef int16_t coordinate;
+	typedef int32_t coordinate;
 
 	coordinate x;
 	coordinate y;
 
-	Point2D( const coordinate& x, const coordinate& y ) : x(x), y(y) { }
-	Point2D() { }
+	void move( const Direction& direction, const int& difference = 1 );
 
-	Point2D operator * ( const int& mul ) const;
-	Point2D operator / ( const int& div ) const;
-	Point2D operator % ( const int& mod ) const;
-	Point2D operator + ( const int& add ) const;
-	Point2D operator - ( const int& sub ) const;
+	double getDistanceTo( const Point& target );
 
-	inline bool operator == ( const Point2D& target ) const;
+	Point( const coordinate& x, const coordinate& y ) : x(x), y(y) { }
+	Point() { }
 
-	friend std::istream& operator >> ( std::istream& in, Point2D& obj );
-	friend std::ostream& operator << ( std::ostream& out, const Point2D& obj );
+	Point operator * ( const int& mul ) const;
+	Point operator / ( const int& div ) const;
+	Point operator % ( const int& mod ) const;
+	Point operator + ( const int& add ) const;
+	Point operator - ( const int& sub ) const;
+
+	inline bool operator == ( const Point& target ) const;
 };
 
-bool Point2D::operator == ( const Point2D& target ) const
+bool Point::operator == ( const Point& target ) const
 {
 	return this->x == target.x && this->y == target.y;
-}
-
-struct Point3D : public Point2D
-{
-	coordinate z;
-
-	Point3D( const coordinate& x, const coordinate& y, const coordinate& z ) : Point2D( x, y ), z(z) { }
-	Point3D() { }
-
-	Point3D operator * ( const int& multiplier ) const;
-	Point3D operator / ( const int& divider ) const;
-	Point3D operator % ( const int& modulus ) const;
-
-	inline bool operator == ( const Point3D& target ) const;
-
-	friend std::istream& operator >> ( std::istream& in, Point3D& obj );
-	friend std::ostream& operator << ( std::ostream& out, const Point3D& obj );
-};
-
-bool Point3D::operator == ( const Point3D& target ) const
-{
-	return this->x == target.x && this->y == target.y && this->z == target.z;
 }
 
 #endif

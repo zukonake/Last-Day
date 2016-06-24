@@ -1,4 +1,5 @@
 #include "image.hpp"
+#include <string>
 #include <SDL/SDL_image.h>
 
 void Image::render( SDL_Rect& sourcePosition, SDL_Surface& targetSurface, SDL_Rect& targetPosition )

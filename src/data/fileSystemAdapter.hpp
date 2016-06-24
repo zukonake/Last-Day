@@ -1,10 +1,9 @@
 #ifndef FILESYSTEMADAPTER_HPP
 #define FILESYSTEMADAPTER_HPP
 
+#include <fstream>
 #include <string>
 #include <vector>
-#include <fstream>
-#include <iostream>
 
 class FileSystemAdapter : public std::fstream
 {

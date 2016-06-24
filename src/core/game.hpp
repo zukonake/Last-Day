@@ -1,13 +1,14 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
-#include <geometry/point.hpp>
-#include <data/worldProxy.hpp>
-#include <render/userInterfaceProxy.hpp>
+#include <memory>
+//
+#include <core/server/worldProxy.hpp>
+#include <core/client/userInterfaceProxy.hpp>
 
 class Game
 {
-	WorldProxy worldProxy;
+	std::shared_ptr< WorldProxy > worldProxy;
 	UserInterfaceProxy userInterfaceProxy;
 	bool isRunning;
 

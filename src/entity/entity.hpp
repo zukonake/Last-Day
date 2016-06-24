@@ -1,6 +1,9 @@
 #ifndef ENTITY_HPP
 #define ENTITY_HPP
 
+#include <iostream>
+#include <SDL/SDL.h>
+//
 #include <geometry/point.hpp>
 #include <geometry/direction.hpp>
 #include <world/world.hpp>
@@ -8,31 +11,31 @@
 template < typename Subtype > class Entity
 {
 protected:
+	Point position;
 	World& world;
 	const Subtype& subtype;
 public:
-	virtual void render( UserInterface* targetUserInterface, SDL_Rect& targetPosition );
-	virtual void teleport( const Point2D& targetPosition );
-	Point2D position; //TODO protected
+	virtual void render( SDL_Surface& targetUserInterface, SDL_Rect& targetPosition );
+	virtual void teleport( const Point& targetPosition );
 
-	Entity( Point2D position, World& world, const Subtype& subtype );
+	Entity( const Point& position, World& world, const Subtype& subtype );
 	virtual ~Entity();
 };
 
 template < typename Subtype >
-void Entity< Subtype >::render( UserInterface* targetUserInterface, SDL_Rect& targetPosition )
+void Entity< Subtype >::render( SDL_Surface& targetUserInterface, SDL_Rect& targetPosition )
 {
 
 }
 
 template < typename Subtype >
-void Entity< Subtype >::teleport( const Point2D& targetPosition )
+void Entity< Subtype >::teleport( const Point& targetPosition )
 {
 	position = targetPosition;
 }
 
 template < typename Subtype >
-Entity< Subtype >::Entity( Point2D position, World& world, const Subtype& subtype ) :
+Entity< Subtype >::Entity( const Point& position, World& world, const Subtype& subtype ) :
 	position( position ),
 	world( world ),
 	subtype( subtype )

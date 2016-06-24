@@ -5,8 +5,6 @@
 #include <cstdint>
 #include <iostream>
 #include <SDL/SDL.h>
-//
-#include <render/sdl_rectWrapper.hpp>
 
 struct Rectangle
 {

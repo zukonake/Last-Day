@@ -1,17 +1,20 @@
 #ifndef USERINTERFACEPROXY_HPP
 #define USERINTERFACEPROXY_HPP
 
+#include <memory>
 #include <string>
 #include <map>
+#include <SDL/SDL.h>
 //
 #include <geometry/rectangle.hpp>
-#include <render/userInterface.hpp>
-#include <core/player.hpp>
+#include <core/server/worldProxy.hpp>
+#include <core/client/userInterface.hpp>
+#include <core/client/player.hpp>
 
 class UserInterfaceProxy : public UserInterface
 {
-	friend class Game;
 	std::map< const std::string, UserInterface > userInterfaces;
+	std::shared_ptr< WorldProxy > worldProxy;
 	SDL_Event event;
 	Player player;
 public:
@@ -19,13 +22,13 @@ public:
 	bool handleEvents();
 	void clear();
 private:
-	void initializeInterfaces();
 	void initializeSDL();
-	void deinitializeSDL();
-	void initializeWindow( const Rectangle& windowSize, const std::string& windowTitle );
+	void initializeSDLWindow( const Rectangle& windowSize, const std::string& windowTitle );
 	void setWindowTitle( const std::string& windowTitle );
+	void initializeInterfaces();
+	void deinitializeSDL();
 public:
-	UserInterfaceProxy( const Player& player );
+	UserInterfaceProxy( std::shared_ptr< WorldProxy > worldProxy );
 	~UserInterfaceProxy();
 };
 

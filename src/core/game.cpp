@@ -1,22 +1,21 @@
 #include "game.hpp"
 
-int Game::loop()
-{
-	while( isRunning )
-	{
-		SDL_Delay( 50 );
-		userInterfaceProxy.render();
-		isRunning = userInterfaceProxy.handleEvents();
-		//userInterfaceProxy.clear();
-		//worldProxy.simulate();
-	}
-	return end();
-}
-
 int Game::start()
 {
 	isRunning = true;
 	return loop();
+}
+
+int Game::loop()
+{
+	while( isRunning )
+	{
+		userInterfaceProxy.render();
+		isRunning = userInterfaceProxy.handleEvents();
+		//userInterfaceProxy.clear();
+		worldProxy->simulate();
+	}
+	return end();
 }
 
 int Game::end()
@@ -25,8 +24,8 @@ int Game::end()
 }
 
 Game::Game() :
-	worldProxy(),
-	userInterfaceProxy( worldProxy.createPlayer( Point2D( 0, 0 ) ) )
+	worldProxy( std::shared_ptr< WorldProxy > ( new WorldProxy() ) ),
+	userInterfaceProxy( worldProxy )
 {
 
 }

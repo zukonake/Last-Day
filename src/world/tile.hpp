@@ -4,9 +4,7 @@
 #include <string>
 #include <iostream>
 //
-#include <SDL/SDL.h>
 #include <render/sprite.hpp>
-#include <render/userInterface.hpp>
 
 class Tile : public Sprite
 {

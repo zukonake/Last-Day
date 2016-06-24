@@ -1,14 +1,14 @@
 #ifndef DATASET_HPP
 #define DATASET_HPP
 
+#include <iostream>
 #include <string>
 #include <map>
 //
 #include <data/fileSystemAdapter.hpp>
 #include <world/tile.hpp>
-#include <entity/mobSubtype.hpp>
-#include <entity/buildingSubtype.hpp>
-#include <entity/resourceSubtype.hpp>
+#include <entity/mob/mobSubtype.hpp>
+#include <entity/building/buildingSubtype.hpp>
 
 class Dataset
 {
@@ -19,7 +19,6 @@ protected:
 	std::map< const std::string, Tile > initializedTiles;
 	std::map< const std::string, MobSubtype > initializedMobSubtypes;
 	std::map< const std::string, BuildingSubtype > initializedBuildingSubtypes;
-	std::map< const std::string, ResourceSubtype > initializedResourceSubtypes;
 private:
 	FileSystemAdapter fileSystem;
 

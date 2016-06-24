@@ -5,7 +5,6 @@
 #include <SDL/SDL.h>
 //
 #include <render/image.hpp>
-#include <render/userInterface.hpp>
 
 class Sprite : protected Image
 {

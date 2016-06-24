@@ -1,21 +1,17 @@
 #include "direction.hpp"
 
-Point2D Direction::movePosition( const DirectionType& direction, const Point2D& targetPosition, const int& difference )
+void Direction::rotateClockwise()
 {
 
 }
 
-Direction::DirectionType Direction::rotateClockwise( const DirectionType& direction )
+void Direction::rotateCounterClockwise()
 {
 
 }
 
-Direction::DirectionType Direction::rotateCounterClockwise( const DirectionType& direction )
+Direction::Direction( Type value ) :
+	value( value )
 {
 
-}
-
-Direction::Direction()
-{
-	
 }

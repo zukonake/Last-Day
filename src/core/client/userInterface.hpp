@@ -4,14 +4,13 @@
 #include <string>
 #include <SDL/SDL.h>
 //
-#include <render/sdl_rectWrapper.hpp>
 #include <geometry/point.hpp>
 #include <render/image.hpp>
 
 class UserInterface : public Image
 {
 	std::string name;
-	Point2D screenPosition;
+	Point screenPosition;
 public:
 	virtual void render( SDL_Surface& targetSurface );
 

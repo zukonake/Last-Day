@@ -1,4 +1,5 @@
 #include "userInterface.hpp"
+#include <geometry/SDL_RectWrapper.hpp>
 
 void UserInterface::render( SDL_Surface& targetSurface )
 {

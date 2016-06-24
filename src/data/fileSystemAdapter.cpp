@@ -1,6 +1,8 @@
 #include "fileSystemAdapter.hpp"
 #include <boost/filesystem.hpp>
 
+#include <iostream>
+
 std::vector< std::string > FileSystemAdapter::getFilesInDirectory( const std::string& directoryPath, const std::string& targetExtension )
 {
 	std::vector< std::string > output;

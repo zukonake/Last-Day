@@ -1,8 +1,10 @@
 #ifndef BUILDINGSUBTYPE_HPP
 #define BUILDINGSUBTYPE_HPP
 
-#include <entity/entitySubtype.hpp>
+#include <iostream>
+//
 #include <geometry/rectangle.hpp>
+#include <entity/entitySubtype.hpp>
 
 class BuildingSubtype : public EntitySubtype, public Rectangle
 {

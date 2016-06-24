@@ -1,6 +1,7 @@
 #include "chunk.hpp"
 
-Chunk::Chunk()
+Chunk::Chunk( const Point& position ) :
+	position( position )
 {
 
 }
