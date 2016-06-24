@@ -1,10 +1,6 @@
 #include "SDLAdapter.hpp"
-#include <SDL2/SDL_image.h>
-//
-#include <geometry/direction.hpp>
-#include <render/image.hpp>
 
-void SDLAdapter::clear()
+void SDLAdapter::update()
 {
 	SDL_RenderPresent( renderer );
 }
@@ -14,7 +10,6 @@ SDLAdapter::SDLAdapter()
 	initializeSDL();
 	initializeSDLWindow( Rectangle( 1280, 768 ), "Neue spiele" );
 	initializeSDLRenderer();
-	initializeInterfaces();
 }
 
 void SDLAdapter::initializeSDL()
@@ -44,16 +39,10 @@ void SDLAdapter::initializeSDLRenderer()
 	{
 		std::cout << "ERROR: Couldn't initialize renderer.\n";
 	}
-	Image::renderer = renderer;
 	SDL_SetRenderDrawColor( renderer, 0, 0, 0, 255 );
 	SDL_RenderClear( renderer );
 	SDL_RenderSetLogicalSize( renderer, 1280, 768);
 
-}
-
-void SDLAdapter::initializeInterfaces()
-{
-	//userInterfaces[ "userInput" ]
 }
 
 SDLAdapter::~SDLAdapter()

@@ -4,7 +4,8 @@
 
 #include <cstdint>
 #include <iostream>
-#include <SDL2/SDL.h>
+//
+#include <geometry/SDL_RectWrapper.hpp>
 
 struct Rectangle
 {
@@ -15,7 +16,7 @@ struct Rectangle
 	Rectangle( std::istream& in );
 	Rectangle() { }
 
-	operator SDL_Rect ();
+	operator SDL_RectWrapper ();
 };
 
 #endif

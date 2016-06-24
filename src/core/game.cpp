@@ -12,7 +12,7 @@ int Game::loop()
 	{
 		userInterfaceProxy.render();
 		isRunning = userInterfaceProxy.handleEvents();
-		//userInterfaceProxy.clear();
+		userInterfaceProxy.update();
 	}
 	return end();
 }
@@ -23,7 +23,8 @@ int Game::end()
 }
 
 Game::Game() :
-	userInterfaceProxy()
+	worldProxy( std::make_shared< WorldProxy > () ),
+	userInterfaceProxy( worldProxy )
 {
 
 }

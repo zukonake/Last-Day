@@ -3,7 +3,9 @@
 
 #include <string>
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 //
+#include <geometry/direction.hpp>
 #include <geometry/rectangle.hpp>
 
 class SDLAdapter
@@ -16,10 +18,9 @@ protected:
 	void initializeSDL();
 	void initializeSDLWindow( const Rectangle& windowSize, const std::string& windowTitle );
 	void initializeSDLRenderer();
-	void initializeInterfaces();
 	void deinitializeSDL();
 public:
-	void clear();
+	void update();
 
 	SDLAdapter();
 	~SDLAdapter();

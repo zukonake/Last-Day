@@ -1,5 +1,4 @@
 #include "rectangle.hpp"
-#include <geometry/SDL_RectWrapper.hpp>
 
 Rectangle::Rectangle( std::istream& in )
 {
@@ -10,7 +9,7 @@ Rectangle::Rectangle( std::istream& in )
 	std::cout << "INFO: Initializing rectangle: " << width << ", " << height << ".\n";
 }
 
-Rectangle::operator SDL_Rect ()
+Rectangle::operator SDL_RectWrapper ()
 {
-	return static_cast< SDL_Rect >( SDL_RectWrapper( this->width, this->height ) );
+	return SDL_RectWrapper( this->width, this->height );
 }

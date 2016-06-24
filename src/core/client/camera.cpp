@@ -1,5 +1,4 @@
 #include "camera.hpp"
-#include <geometry/SDL_RectWrapper.hpp>
 
 void Camera::render( SDL_Renderer* targetRenderer )
 {
@@ -15,11 +14,6 @@ void Camera::render( SDL_Renderer* targetRenderer )
 			world( Point( iteratorX, iteratorY ) )->render( targetRenderer, renderPosition );
 		}
 	}
-}
-
-void Camera::move( const Direction& direction )
-{
-	position.move( direction );
 }
 
 Camera::Camera( const Point& position, World& world ) :

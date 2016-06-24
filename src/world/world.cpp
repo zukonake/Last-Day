@@ -1,5 +1,4 @@
 #include "world.hpp"
-#include <iostream>
 
 Point World::chunkPosition( const Point& targetTilePosition )
 {

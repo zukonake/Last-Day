@@ -7,7 +7,6 @@ void UserInterfaceProxy::render()
 		iterator->second.render( renderer );
 	}
 	player.render( renderer );
-	SDLAdapter::clear();
 }
 
 bool UserInterfaceProxy::handleEvents()
@@ -48,12 +47,12 @@ bool UserInterfaceProxy::handleEvents()
             }
         }
 	}
-	SDL_Delay( 15 );
+	SDL_Delay( 25 );
 	return output;
 }
 
-UserInterfaceProxy::UserInterfaceProxy() :
-	worldProxy( std::make_shared< WorldProxy > () ),
+UserInterfaceProxy::UserInterfaceProxy( std::shared_ptr< WorldProxy > worldProxy ) :
+	worldProxy( worldProxy ),
 	player( Point( 0, 0 ), dynamic_cast< World& >( *worldProxy ) )
 {
 

@@ -3,12 +3,11 @@
 
 #include <memory>
 //
-#include <geometry/direction.hpp>
 #include <world/world.hpp>
 #include <entity/entity.hpp>
 #include <entity/mob/mobSubtype.hpp>
 
-class Mob : public Entity< MobSubtype >, public Direction
+class Mob : public Entity< MobSubtype >
 {
 	void move();
 public:

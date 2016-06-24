@@ -3,7 +3,6 @@
 
 #include <memory>
 //
-#include <geometry/point.hpp>
 #include <world/tile.hpp>
 
 struct Chunk

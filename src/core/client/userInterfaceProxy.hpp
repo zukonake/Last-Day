@@ -6,7 +6,7 @@
 #include <map>
 #include <SDL2/SDL.h>
 //
-#include <geometry/rectangle.hpp>
+#include <geometry/point.hpp>
 #include <core/server/worldProxy.hpp>
 #include <core/client/userInterface.hpp>
 #include <core/client/player.hpp>
@@ -21,7 +21,7 @@ public:
 	void render();
 	bool handleEvents();
 
-	UserInterfaceProxy();
+	UserInterfaceProxy( std::shared_ptr< WorldProxy > worldProxy );
 	~UserInterfaceProxy() { };
 };
 

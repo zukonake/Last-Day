@@ -1,11 +1,10 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
-#include <cstdint>
 #include <SDL2/SDL.h>
 //
 #include <geometry/point.hpp>
-#include <geometry/rectangle.hpp>
+#include <geometry/SDL_RectWrapper.hpp>
 #include <world/world.hpp>
 #include <core/client/camera.hpp>
 

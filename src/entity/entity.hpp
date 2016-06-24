@@ -16,15 +16,16 @@ protected:
 	World& world;
 	std::shared_ptr < Subtype > subtype;
 public:
-	virtual void render( SDL_Surface& targetUserInterface, SDL_Rect& targetPosition );
+	virtual void render( SDL_Renderer& targetRenderer, SDL_Rect& targetPosition );
 	virtual void teleport( const Point& targetPosition );
+	virtual void move( const Direction& targetDirection );
 
 	Entity( const Point& position, World& world, std::shared_ptr < Subtype > subtype );
 	virtual ~Entity();
 };
 
 template < typename Subtype >
-void Entity< Subtype >::render( SDL_Surface& targetUserInterface, SDL_Rect& targetPosition )
+void Entity< Subtype >::render( SDL_Renderer& targetRenderer, SDL_Rect& targetPosition )
 {
 
 }
@@ -33,6 +34,12 @@ template < typename Subtype >
 void Entity< Subtype >::teleport( const Point& targetPosition )
 {
 	position = targetPosition;
+}
+
+template < typename Subtype >
+void  Entity< Subtype >::move( const Direction& targetDirection )
+{
+	position.move( targetDirection );
 }
 
 template < typename Subtype >

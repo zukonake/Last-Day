@@ -4,7 +4,6 @@
 #include <iostream>
 #include <string>
 #include <map>
-#include <SDL2/SDL.h>
 //
 #include <data/fileSystemAdapter.hpp>
 #include <world/tile.hpp>

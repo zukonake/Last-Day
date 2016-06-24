@@ -1,7 +1,9 @@
 #ifndef WORLD_HPP
 #define WORLD_HPP
 
+#include <cstdint>
 #include <memory>
+#include <iostream>
 #include <map>
 //
 #include <geometry/point.hpp>

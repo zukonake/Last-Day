@@ -1,5 +1,4 @@
 #include "player.hpp"
-#include <geometry/SDL_RectWrapper.hpp>
 
 void Player::render( SDL_Renderer* targetRenderer )
 {

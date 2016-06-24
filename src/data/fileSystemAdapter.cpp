@@ -1,7 +1,4 @@
 #include "fileSystemAdapter.hpp"
-#include <boost/filesystem.hpp>
-
-#include <iostream>
 
 std::vector< std::string > FileSystemAdapter::getFilesInDirectory( const std::string& directoryPath, const std::string& targetExtension )
 {
@@ -25,19 +22,6 @@ std::vector< std::string > FileSystemAdapter::getFilesInDirectory( const std::st
 		//TODO throw exception
 	}
 	return output;
-}
-
-void FileSystemAdapter::changeWorkDirectory( const std::string& directoryPath )
-{
-	if( boost::filesystem::is_directory( directoryPath ))
-	{
-		chdir( directoryPath.c_str() );
-	}
-	else
-	{
-		std::cout << "ERROR: Couldn't open directory: " << directoryPath << "\n";
-		//TODO throw exception
-	}
 }
 
 FileSystemAdapter::FileSystemAdapter()
