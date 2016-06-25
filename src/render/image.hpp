@@ -12,7 +12,7 @@ protected:
 	SDL_Texture* texture;
 	std::string imagePath;
 public:
-	virtual void render( SDL_Renderer* targetRenderer, SDL_Rect& sourcePosition, SDL_Rect& targetPosition );
+	virtual void render( SDL_Renderer* targetRenderer, SDL_Rect& targetPosition );
 	void initialize( SDL_Renderer* targetRenderer );
 
 	Image( std::istream& in );

@@ -1,4 +1,4 @@
 dirt
-sprite= dataset/generic/tile/dirt.png 0 0 32 32
+iamge= dataset/generic/tile/dirt.png
 name= Dirt
 isPassable= 0

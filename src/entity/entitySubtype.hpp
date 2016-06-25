@@ -4,9 +4,9 @@
 #include <string>
 #include <iostream>
 //
-#include <render/sprite.hpp>
+#include <render/image.hpp>
 
-class EntitySubtype : public Sprite
+class EntitySubtype : public Image
 {
 public:
 	std::string name;

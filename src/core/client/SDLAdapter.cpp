@@ -52,5 +52,7 @@ SDLAdapter::~SDLAdapter()
 
 void SDLAdapter::deinitializeSDL()
 {
+	SDL_DestroyRenderer( renderer );
+	SDL_DestroyWindow( window );
 	SDL_Quit();
 }

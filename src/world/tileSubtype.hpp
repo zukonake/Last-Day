@@ -4,9 +4,9 @@
 #include <string>
 #include <iostream>
 //
-#include <render/sprite.hpp>
+#include <render/image.hpp>
 
-class TileSubtype : public Sprite
+class TileSubtype : public Image
 {
 	bool isPassable;
 public:

@@ -1,7 +1,7 @@
 #include "tileSubtype.hpp"
 
 TileSubtype::TileSubtype( std::istream& in ) :
-	Sprite( in )
+	Image( in )
 {
 	const unsigned int maximumVariableLength = 256;
 	in.ignore( maximumVariableLength, ' ' );

@@ -23,7 +23,7 @@ public:
 	void update();
 
 	SDLAdapter();
-	~SDLAdapter();
+	virtual ~SDLAdapter();
 };
 
 #endif
