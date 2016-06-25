@@ -2,6 +2,7 @@
 
 void Camera::render( SDL_Renderer* targetRenderer )
 {
+	viewRange = Rectangle( 1280 / TileSubtype::spriteSize, 768 / TileSubtype::spriteSize );
 	for( Point::coordinate iteratorY = position.y - viewRange.height, renderY = 0;
 		iteratorY < position.y + viewRange.height;
 		iteratorY++, renderY += TileSubtype::spriteSize )

@@ -39,9 +39,15 @@ bool UserInterfaceProxy::handleEvents()
         {
             switch( event.key.keysym.sym )
             {
-			case SDL_SCANCODE_ESCAPE:
+			case SDLK_ESCAPE:
 				output = false;
 		        break;
+			case SDLK_e:
+				TileSubtype::spriteSize *= 2;
+			    break;
+			case SDLK_q:
+				TileSubtype::spriteSize /= 2;
+				break;
 			default:
 				break;
             }
@@ -55,5 +61,5 @@ UserInterfaceProxy::UserInterfaceProxy( std::shared_ptr< WorldProxy > worldProxy
 	worldProxy( worldProxy ),
 	player( Point( 0, 0 ), dynamic_cast< World& >( *worldProxy ) )
 {
-	
+
 }

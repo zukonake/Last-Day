@@ -40,10 +40,10 @@ void SDLAdapter::initializeSDLRenderer()
 	{
 		std::cout << "ERROR: Couldn't initialize renderer.\n";
 	}
-	SDL_SetRenderDrawColor( renderer, 0, 0, 0, 255 );
+	SDL_SetRenderDrawBlendMode( renderer, SDL_BLENDMODE_BLEND );
+	SDL_SetRenderDrawColor( renderer, 0, 0, 0, 63 );
 	SDL_RenderClear( renderer );
 	SDL_RenderSetLogicalSize( renderer, 1280, 768);
-
 }
 
 SDLAdapter::~SDLAdapter()

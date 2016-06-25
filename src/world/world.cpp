@@ -22,9 +22,11 @@ void World::renderTile( const Point& targetTilePosition, SDL_Renderer* targetRen
 {
 	Tile* targetTile = this->operator()( targetTilePosition );
 	targetTile->render( targetRenderer, targetRenderPosition );
+	SDL_SetRenderDrawColor( targetRenderer, 0, 0, 0, 220 - ( ( targetTile->getHeight() + 26) * 4 ) ) ;
+	SDL_RenderFillRect( targetRenderer, &targetRenderPosition );
+	SDL_SetRenderDrawColor( targetRenderer, 0, 0, 0, 63 );
 	if( this->operator()( Point( targetTilePosition.x - 1, targetTilePosition.y ) )->getHeight() != targetTile->getHeight() )
 	{
-		//SDL_RenderDrawRect( targetRenderer, &targetRenderPosition );
 		SDL_RenderDrawLine( targetRenderer,
 			targetRenderPosition.x,
 			targetRenderPosition.y,
@@ -33,7 +35,6 @@ void World::renderTile( const Point& targetTilePosition, SDL_Renderer* targetRen
 	}
 	if( this->operator()( Point( targetTilePosition.x, targetTilePosition.y - 1) )->getHeight() != targetTile->getHeight() )
 	{
-		//SDL_RenderDrawRect( targetRenderer, &targetRenderPosition );
 		SDL_RenderDrawLine( targetRenderer,
 			targetRenderPosition.x,
 			targetRenderPosition.y,

@@ -7,11 +7,11 @@
 
 struct Chunk
 {
-	const static unsigned int sizeInTiles = 32;
+	const static unsigned int sizeInTiles = 128;
 	typedef Tile tileArray2D[ sizeInTiles ][ sizeInTiles ];
 
 	tileArray2D tiles;
-	
+
 	Chunk();
 };
 

@@ -10,7 +10,7 @@ class TileSubtype : public Image
 {
 	bool isPassable;
 public:
-	static const unsigned int spriteSize = 4;
+	static unsigned int spriteSize;
 	std::string name;
 
 	TileSubtype( std::istream& in );

@@ -12,7 +12,7 @@
 
 class Camera : public Entity< void >
 {
-	const Rectangle viewRange = Rectangle( 1280 / TileSubtype::spriteSize, 768 / TileSubtype::spriteSize ) ;
+	Rectangle viewRange;
 public:
 	void render( SDL_Renderer* targetRenderer );
 

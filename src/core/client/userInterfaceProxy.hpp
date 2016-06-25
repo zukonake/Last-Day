@@ -7,6 +7,7 @@
 #include <SDL2/SDL.h>
 //
 #include <geometry/point.hpp>
+#include <world/tileSubtype.hpp>
 #include <core/server/worldProxy.hpp>
 #include <core/client/userInterface.hpp>
 #include <core/client/player.hpp>
