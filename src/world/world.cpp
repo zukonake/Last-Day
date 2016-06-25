@@ -18,6 +18,30 @@ std::shared_ptr< Chunk > World::loadChunk( const Point& targetChunkPosition )
 	return loadedChunks[ targetChunkPosition.x ][ targetChunkPosition.y ];
 }
 
+void World::renderTile( const Point& targetTilePosition, SDL_Renderer* targetRenderer, SDL_Rect& targetRenderPosition )
+{
+	Tile* targetTile = this->operator()( targetTilePosition );
+	targetTile->render( targetRenderer, targetRenderPosition );
+	if( this->operator()( Point( targetTilePosition.x - 1, targetTilePosition.y ) )->getHeight() != targetTile->getHeight() )
+	{
+		//SDL_RenderDrawRect( targetRenderer, &targetRenderPosition );
+		SDL_RenderDrawLine( targetRenderer,
+			targetRenderPosition.x,
+			targetRenderPosition.y,
+			targetRenderPosition.x,
+			targetRenderPosition.y + targetRenderPosition.h);
+	}
+	if( this->operator()( Point( targetTilePosition.x, targetTilePosition.y - 1) )->getHeight() != targetTile->getHeight() )
+	{
+		//SDL_RenderDrawRect( targetRenderer, &targetRenderPosition );
+		SDL_RenderDrawLine( targetRenderer,
+			targetRenderPosition.x,
+			targetRenderPosition.y,
+			targetRenderPosition.x + targetRenderPosition.w,
+			targetRenderPosition.y);
+	}
+}
+
 World::World( Dataset& dataset ) : dataset( dataset )
 {
 

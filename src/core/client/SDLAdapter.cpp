@@ -3,6 +3,7 @@
 void SDLAdapter::update()
 {
 	SDL_RenderPresent( renderer );
+	SDL_RenderClear( renderer );
 }
 
 SDLAdapter::SDLAdapter()

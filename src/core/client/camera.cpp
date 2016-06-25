@@ -11,7 +11,7 @@ void Camera::render( SDL_Renderer* targetRenderer )
 			iteratorX++, renderX += TileSubtype::spriteSize )
 		{
 			SDL_RectWrapper renderPosition( renderX, renderY, TileSubtype::spriteSize, TileSubtype::spriteSize );
-			world( Point( iteratorX, iteratorY ) )->render( targetRenderer, renderPosition );
+			world.renderTile( Point( iteratorX, iteratorY ), targetRenderer, renderPosition );
 		}
 	}
 }

@@ -13,6 +13,8 @@ class Tile
 public:
 	void render( SDL_Renderer* targetRenderer, SDL_Rect& targetPosition );
 
+	int8_t& getHeight() { return height; }
+
 	Tile( int8_t height, TileSubtype* subtype );
 	Tile();
 	~Tile();

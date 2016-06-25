@@ -5,6 +5,7 @@
 #include <memory>
 #include <iostream>
 #include <map>
+#include <SDL2/SDL.h>
 //
 #include <geometry/point.hpp>
 #include <world/tile.hpp>
@@ -24,6 +25,8 @@ protected:
 	std::shared_ptr< Chunk > getChunk( const Point& targetTilePosition );
 	std::shared_ptr< Chunk > loadChunk( const Point& targetChunkPosition );
 public:
+	void renderTile( const Point& targetTilePosition, SDL_Renderer* targetRenderer, SDL_Rect& targetRenderPositionn );
+
 	World( Dataset& dataset );
 	~World();
 
