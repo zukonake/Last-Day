@@ -11,6 +11,7 @@
 
 template < typename Subtype > class Entity
 {
+	friend class EntityProxy;
 protected:
 	Point position;
 	World& world;
