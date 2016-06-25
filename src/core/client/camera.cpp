@@ -4,20 +4,20 @@ void Camera::render( SDL_Renderer* targetRenderer )
 {
 	for( Point::coordinate iteratorY = position.y - viewRange.height, renderY = 0;
 		iteratorY < position.y + viewRange.height;
-		iteratorY++, renderY += Tile::spriteSize )
+		iteratorY++, renderY += TileSubtype::spriteSize )
 	{
 		for( Point::coordinate iteratorX = position.x - viewRange.width, renderX = 0;
 			iteratorX < position.x + viewRange.width;
-			iteratorX++, renderX += Tile::spriteSize )
+			iteratorX++, renderX += TileSubtype::spriteSize )
 		{
-			SDL_RectWrapper renderPosition( renderX, renderY, Tile::spriteSize, Tile::spriteSize );
+			SDL_RectWrapper renderPosition( renderX, renderY, TileSubtype::spriteSize, TileSubtype::spriteSize );
 			world( Point( iteratorX, iteratorY ) )->render( targetRenderer, renderPosition );
 		}
 	}
 }
 
 Camera::Camera( const Point& position, World& world ) :
-	Entity< void >( position, world, NULL )
+	Entity< void >( position, world )
 {
 
 }

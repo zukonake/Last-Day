@@ -1,16 +1,22 @@
 #include "tile.hpp"
 
-Tile::Tile( std::istream& in ) :
-	Sprite( in )
+void Tile::render( SDL_Renderer* targetRenderer, SDL_Rect& targetPosition )
 {
-	const unsigned int maximumVariableLength = 256;
-	in.ignore( maximumVariableLength, ' ' );
-	in >> name;
-	std::cout << "INFO: Initializing tile: " << name << ".\n";
-	in >> isPassable;
+	if( subtype )
+	{
+		subtype->render( targetRenderer, targetPosition );
+	}
 }
 
-Tile::Tile()
+Tile::Tile( int8_t height, TileSubtype* subtype ) :
+	height( height ),
+	subtype( subtype )
+{
+
+}
+
+Tile::Tile() :
+	subtype( NULL )
 {
 
 }

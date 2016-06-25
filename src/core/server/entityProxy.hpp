@@ -13,9 +13,10 @@ class EntityProxy
 {
 	std::map< const Point::coordinate, std::map< const Point::coordinate , std::shared_ptr< Entity< EntitySubtype > > > > entities;
 public:
-	Entity< EntitySubtype >* addEntity( Entity< EntitySubtype >* entity );
-	Entity< EntitySubtype >* removeEntity( const Point& targetPosition );
-	Entity< EntitySubtype >* getEntityOnTile( const Point& targetPosition );
+	std::shared_ptr< Entity< EntitySubtype > > addEntity( std::shared_ptr< Entity< EntitySubtype > > entity );
+	void removeEntity( const Point& targetPosition );
+
+	std::shared_ptr< Entity< EntitySubtype > > getEntityOnTile( const Point& targetPosition );
 
 	std::vector< std::shared_ptr< Entity< EntitySubtype > > > getVector();
 

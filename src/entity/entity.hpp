@@ -21,7 +21,7 @@ public:
 	virtual void teleport( const Point& targetPosition );
 	virtual void move( const Direction& targetDirection );
 
-	Entity( const Point& position, World& world, std::shared_ptr < Subtype > subtype );
+	Entity( const Point& position, World& world, std::shared_ptr < Subtype > subtype = NULL );
 	virtual ~Entity();
 };
 

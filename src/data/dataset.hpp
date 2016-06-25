@@ -6,7 +6,7 @@
 #include <map>
 //
 #include <data/fileSystemAdapter.hpp>
-#include <world/tile.hpp>
+#include <world/tileSubtype.hpp>
 #include <entity/mob/mobSubtype.hpp>
 #include <entity/building/buildingSubtype.hpp>
 
@@ -16,7 +16,7 @@ class Dataset
 	friend class World;
 	const std::string datasetPath = "dataset/generic/";
 protected:
-	std::map< const std::string, Tile > initializedTiles;
+	std::map< const std::string, TileSubtype > initializedTileSubtypes;
 	std::map< const std::string, MobSubtype > initializedMobSubtypes;
 	std::map< const std::string, BuildingSubtype > initializedBuildingSubtypes;
 private:

@@ -44,7 +44,7 @@ std::shared_ptr< Chunk > World::loadChunk( const Point& targetChunkPosition )
 {
 	std::cout << "INFO: Loading chunk: " << targetChunkPosition.x << ", " << targetChunkPosition.y << "\n";
 	loadedChunks[ targetChunkPosition.x ][ targetChunkPosition.y ] = std::make_shared< Chunk > ( Chunk() );
-	generator.generateTileArray2D( loadedChunks[ targetChunkPosition.x ][ targetChunkPosition.y ]->tiles, dataset );
+	generator.generateChunk( *loadedChunks[ targetChunkPosition.x ][ targetChunkPosition.y ], dataset );
 	return loadedChunks[ targetChunkPosition.x ][ targetChunkPosition.y ];
 }
 
@@ -61,5 +61,5 @@ World::~World()
 Tile* World::operator()( const Point& targetTilePosition )
 {
 	Point targetInternalPosition = internalPosition( targetTilePosition );
-	return getChunk( targetTilePosition )->tiles[ targetInternalPosition.x ][ targetInternalPosition.y ];
+	return &getChunk( targetTilePosition )->tiles[ targetInternalPosition.x ][ targetInternalPosition.y ];
 }

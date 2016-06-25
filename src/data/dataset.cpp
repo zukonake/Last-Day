@@ -2,7 +2,7 @@
 
 Dataset::Dataset()
 {
-	initializedTiles = initializeObjectVectorFromDirectory< Tile >( "tile" );
+	initializedTileSubtypes = initializeObjectVectorFromDirectory< TileSubtype >( "tile" );
 	initializedMobSubtypes = initializeObjectVectorFromDirectory< MobSubtype >( "mobSubtype" );
 	initializedBuildingSubtypes = initializeObjectVectorFromDirectory< BuildingSubtype >( "buildingSubtype" );
 }

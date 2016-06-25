@@ -55,5 +55,5 @@ UserInterfaceProxy::UserInterfaceProxy( std::shared_ptr< WorldProxy > worldProxy
 	worldProxy( worldProxy ),
 	player( Point( 0, 0 ), dynamic_cast< World& >( *worldProxy ) )
 {
-
+	
 }

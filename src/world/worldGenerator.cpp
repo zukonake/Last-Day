@@ -1,8 +1,6 @@
 #include "worldGenerator.hpp"
-#include <cstdlib>
-#include <memory>
 
-Chunk::tileArray2D& WorldGenerator::generateTileArray2D( Chunk::tileArray2D& target, Dataset& availableDataset )
+Chunk& WorldGenerator::generateChunk( Chunk& target, Dataset& availableDataset )
 {
 	for( unsigned int iteratorY = 0; iteratorY < Chunk::sizeInTiles; iteratorY++ )
 	{
@@ -10,11 +8,11 @@ Chunk::tileArray2D& WorldGenerator::generateTileArray2D( Chunk::tileArray2D& tar
 		{
 			if( (rand() % 10) == 1)
 			{
-				target[ iteratorX ][ iteratorY ] = &availableDataset.initializedTiles[ "dirt" ];
+				target.tiles[ iteratorX ][ iteratorY ] = Tile( 1, &availableDataset.initializedTileSubtypes[ "dirt" ] );
 			}
 			else
 			{
-				target[ iteratorX ][ iteratorY ] = &availableDataset.initializedTiles[ "grass" ];
+				target.tiles[ iteratorX ][ iteratorY ] = Tile( 1, &availableDataset.initializedTileSubtypes[ "grass" ] );
 			}
 		}
 	}

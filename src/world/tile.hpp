@@ -1,19 +1,19 @@
 #ifndef TILE_HPP
 #define TILE_HPP
 
-#include <string>
-#include <iostream>
+#include <memory>
+#include <cstdint>
 //
-#include <render/sprite.hpp>
+#include <world/tileSubtype.hpp>
 
-class Tile : public Sprite
+class Tile
 {
-	bool isPassable;
+	int8_t height;
+	TileSubtype* subtype;
 public:
-	static const unsigned int spriteSize = 32;
-	std::string name;
+	void render( SDL_Renderer* targetRenderer, SDL_Rect& targetPosition );
 
-	Tile( std::istream& in );
+	Tile( int8_t height, TileSubtype* subtype );
 	Tile();
 	~Tile();
 };

@@ -6,13 +6,13 @@
 #include <geometry/point.hpp>
 #include <geometry/SDL_RectWrapper.hpp>
 #include <geometry/rectangle.hpp>
-#include <world/tile.hpp>
+#include <world/tileSubtype.hpp>
 #include <world/world.hpp>
 #include <entity/entity.hpp>
 
 class Camera : public Entity< void >
 {
-	const Rectangle viewRange = Rectangle( 1280 / Tile::spriteSize, 768 / Tile::spriteSize ) ;
+	const Rectangle viewRange = Rectangle( 1280 / TileSubtype::spriteSize, 768 / TileSubtype::spriteSize ) ;
 public:
 	void render( SDL_Renderer* targetRenderer );
 

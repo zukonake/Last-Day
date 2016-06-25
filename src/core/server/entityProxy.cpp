@@ -1,21 +1,22 @@
 #include "entityProxy.hpp"
-
-Entity< EntitySubtype >* EntityProxy::addEntity( Entity< EntitySubtype >* entity )
+/*
+std::shared_ptr< Entity< EntitySubtype > EntityProxy::addEntity( Entity< EntitySubtype > entity )
 {
-	entities[ entity->position.x ][ entity->position.y ].reset( entity );
-	return entities[ entity->position.x ][ entity->position.y ].get();
+	entities[ entity->position.x ][ entity->position.y ] = NULL;
+	entities[ entity->position.x ][ entity->position.y ] = entity;
+	return entities[ entity->position.x ][ entity->position.y ];
 }
 
-Entity< EntitySubtype >* EntityProxy::removeEntity( const Point& targetPosition )
-{
-
-}
-
-Entity< EntitySubtype >* EntityProxy::getEntityOnTile( const Point& targetPosition )
+void EntityProxy::removeEntity( const Point& targetPosition )
 {
 
 }
 
+std::shared_ptr< Entity< EntitySubtype > > EntityProxy::getEntityOnTile( const Point& targetPosition )
+{
+	return entities[ targetPosition.x ][ targetPosition.y ];
+}
+*/
 EntityProxy::EntityProxy()
 {
 

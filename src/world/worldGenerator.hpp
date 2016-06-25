@@ -1,13 +1,15 @@
 #ifndef WORLDGENERATOR_HPP
 #define WORLDGENERATOR_HPP
 
+#include <cstdlib>
+//
 #include <world/chunk.hpp>
 #include <data/dataset.hpp>
 
 class WorldGenerator
 {
 public:
-	Chunk::tileArray2D& generateTileArray2D( Chunk::tileArray2D& target, Dataset& availableDataset );
+	Chunk& generateChunk( Chunk& target, Dataset& availableDataset );
 
 	WorldGenerator();
 };
