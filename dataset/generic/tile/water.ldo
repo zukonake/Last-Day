@@ -1,0 +1,4 @@
+water
+iamge= dataset/generic/tile/water.png
+name= Water
+isPassable= 0

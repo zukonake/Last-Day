@@ -1,0 +1,4 @@
+sand
+iamge= dataset/generic/tile/sand.png
+name= Sand
+isPassable= 1

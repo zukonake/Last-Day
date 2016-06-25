@@ -1,0 +1,4 @@
+stone
+iamge= dataset/generic/tile/stone.png
+name= Stone
+isPassable= 0

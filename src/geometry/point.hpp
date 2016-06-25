@@ -14,6 +14,10 @@ struct Point
 
 	void move( const Direction& direction, const int& difference = 1 );
 
+	Point tilePosition( const uint16_t& sizeInTiles ) const;
+	Point chunkPosition( const uint16_t& sizeInTiles ) const;
+	Point internalPosition( const uint16_t& sizeInTiles ) const;
+
 	double getDistanceTo( const Point& target );
 
 	Point( const coordinate& x, const coordinate& y ) : x(x), y(y) { }

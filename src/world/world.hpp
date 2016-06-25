@@ -20,9 +20,6 @@ class World
 	ChunkMap2D loadedChunks;
 	WorldGenerator generator;
 	Dataset& dataset;
-
-	static Point chunkPosition( const Point& targetTilePosition );
-	static Point internalPosition( const Point& targetTilePosition );
 protected:
 	std::shared_ptr< Chunk > getChunk( const Point& targetTilePosition );
 	std::shared_ptr< Chunk > loadChunk( const Point& targetChunkPosition );

@@ -30,6 +30,43 @@ void Point::move( const Direction& direction, const int& difference )
 	}
 }
 
+Point Point::tilePosition( const uint16_t& sizeInTiles ) const
+{
+	Point output = *this;
+	output = output * sizeInTiles;
+	return output;
+}
+
+Point Point::chunkPosition( const uint16_t& sizeInTiles ) const
+{
+	Point output = *this;
+	if( output.x < 0 )
+	{
+		output.x -= sizeInTiles - 1;
+	}
+	if( output.y < 0 )
+	{
+		output.y -= sizeInTiles - 1;
+	}
+	output = output / sizeInTiles;
+	return output;
+}
+
+Point Point::internalPosition( const uint16_t& sizeInTiles ) const
+{
+	Point output = *this;
+	output = output % sizeInTiles;
+	if( output.x < 0 )
+	{
+		output.x +=sizeInTiles;
+	}
+	if( output.y < 0 )
+	{
+		output.y += sizeInTiles;
+	}
+	return output;
+}
+
 Point Point::operator * ( const int& mul ) const
 {
 	return Point( x * mul, y * mul );
