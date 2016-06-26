@@ -27,12 +27,12 @@ void World::renderTile( const Point& targetTilePosition, ObjectRenderer* objectR
 {
 	Tile* targetTile = this->operator()( targetTilePosition );
 	targetTile->render( objectRenderer, targetRenderPosition );
-	/*SDL_SetRenderDrawColor( targetRenderer, 0, 0, 0, 220 - ( ( targetTile->getHeight() + 26) * 4 ) ) ;
-	SDL_RenderFillRect( targetRenderer, &targetRenderPosition );
-	SDL_SetRenderDrawColor( targetRenderer, 0, 0, 0, 63 );
+	SDL_SetRenderDrawColor( objectRenderer->getRenderer(), 0, 0, 0, 220 - ( ( targetTile->getHeight() + 26) * 4 ) ) ;
+	SDL_RenderFillRect( objectRenderer->getRenderer(), &targetRenderPosition );
+	SDL_SetRenderDrawColor( objectRenderer->getRenderer(), 0, 0, 0, 63 );
 	if( this->operator()( Point( targetTilePosition.x - 1, targetTilePosition.y ) )->getHeight() != targetTile->getHeight() )
 	{
-		SDL_RenderDrawLine( targetRenderer,
+		SDL_RenderDrawLine( objectRenderer->getRenderer(),
 			targetRenderPosition.x,
 			targetRenderPosition.y,
 			targetRenderPosition.x,
@@ -40,12 +40,12 @@ void World::renderTile( const Point& targetTilePosition, ObjectRenderer* objectR
 	}
 	if( this->operator()( Point( targetTilePosition.x, targetTilePosition.y - 1) )->getHeight() != targetTile->getHeight() )
 	{
-		SDL_RenderDrawLine( targetRenderer,
+		SDL_RenderDrawLine( objectRenderer->getRenderer(),
 			targetRenderPosition.x,
 			targetRenderPosition.y,
 			targetRenderPosition.x + targetRenderPosition.w,
 			targetRenderPosition.y);
-	}*/
+	}
 }
 
 World::World( Dataset& dataset ) : dataset( dataset )

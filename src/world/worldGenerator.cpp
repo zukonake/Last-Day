@@ -12,7 +12,7 @@ Chunk& WorldGenerator::generateChunk( Chunk& target, Dataset& availableDataset, 
 			{
 				target.tiles[ iteratorX ][ iteratorY ] = Tile( &availableDataset.initializedTileSubtypes[ "stone" ], heightValue*25);
 			}
-			else if( heightValue >= 0.3 )
+			else if( heightValue >= 0.5 )
 			{
 				target.tiles[ iteratorX ][ iteratorY ] = Tile( &availableDataset.initializedTileSubtypes[ "dirt" ], heightValue*25);
 			}
