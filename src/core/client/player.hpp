@@ -11,7 +11,7 @@
 class Player : public Camera
 {
 public:
-	void render( SDL_Renderer* targetRenderer );
+	//void render( ObjectRenderer* renderer );
 
 	Player( const Point& position, World& world );
 	~Player();

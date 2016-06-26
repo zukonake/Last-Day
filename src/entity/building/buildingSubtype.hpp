@@ -6,8 +6,9 @@
 #include <geometry/rectangle.hpp>
 #include <entity/entitySubtype.hpp>
 
-class BuildingSubtype : public EntitySubtype, public Rectangle
+class BuildingSubtype : public EntitySubtype
 {
+	Rectangle shape;
 public:
 	BuildingSubtype( std::istream& in );
 	BuildingSubtype() { }

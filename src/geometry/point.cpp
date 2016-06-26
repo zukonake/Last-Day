@@ -1,7 +1,6 @@
 #include "point.hpp"
-#include <iostream>
 
-void Point::move( const Direction& direction, const int& difference )
+void Point::move( const Direction& direction, const int& difference ) noexcept
 {
 	switch( direction.value )
 	{
@@ -28,16 +27,10 @@ void Point::move( const Direction& direction, const int& difference )
 			std::cout << "ERROR: default case called in Point::move()\n";
 		break;
 	}
+	return;
 }
 
-Point Point::tilePosition( const uint16_t& sizeInTiles ) const
-{
-	Point output = *this;
-	output = output * sizeInTiles;
-	return output;
-}
-
-Point Point::chunkPosition( const uint16_t& sizeInTiles ) const
+Point Point::chunkPosition( const uint16_t& sizeInTiles ) const noexcept
 {
 	Point output = *this;
 	if( output.x < 0 )
@@ -52,7 +45,7 @@ Point Point::chunkPosition( const uint16_t& sizeInTiles ) const
 	return output;
 }
 
-Point Point::internalPosition( const uint16_t& sizeInTiles ) const
+Point Point::internalPosition( const uint16_t& sizeInTiles ) const noexcept
 {
 	Point output = *this;
 	output = output % sizeInTiles;
@@ -67,27 +60,49 @@ Point Point::internalPosition( const uint16_t& sizeInTiles ) const
 	return output;
 }
 
-Point Point::operator * ( const int& mul ) const
+Point::Point( std::istream& in ) noexcept
+{
+	in.ignore( 255, ' ' );
+	in >> x;
+	in >> y;
+}
+
+Point Point::operator * ( const int& mul ) const noexcept
 {
 	return Point( x * mul, y * mul );
 }
 
-Point Point::operator / ( const int& div ) const
+Point Point::operator / ( const int& div ) const noexcept
 {
 	return Point( x / div, y / div );
 }
 
-Point Point::operator % ( const int& mod ) const
+Point Point::operator % ( const int& mod ) const noexcept
 {
 	return Point( x % mod, y % mod );
 }
 
-Point Point::operator + ( const int& add ) const
+Point Point::operator + ( const int& add ) const noexcept
 {
 	return Point( x + add, y + add );
 }
 
-Point Point::operator - ( const int& sub ) const
+Point Point::operator - ( const int& sub ) const noexcept
 {
 	return Point( x - sub, y - sub );
+}
+
+Point::operator SDL_Rect( void ) const noexcept
+{
+	SDL_Rect output;
+	output.x = x;
+	output.y = y;
+	return output;
+}
+Point::operator SDL_Point( void ) const noexcept
+{
+	SDL_Point output;
+	output.x = x;
+	output.y = y;
+	return output;
 }

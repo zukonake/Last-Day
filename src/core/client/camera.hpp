@@ -14,7 +14,7 @@ class Camera : public Entity< void >
 {
 	Rectangle viewRange;
 public:
-	void render( SDL_Renderer* targetRenderer );
+	virtual void render( ObjectRenderer* renderer );
 
 	Camera( const Point& position, World& world );
 	~Camera();

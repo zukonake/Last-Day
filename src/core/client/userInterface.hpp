@@ -5,9 +5,8 @@
 //
 #include <geometry/point.hpp>
 #include <geometry/SDL_RectWrapper.hpp>
-#include <render/image.hpp>
 
-class UserInterface : public Image
+class UserInterface
 {
 	Point screenPosition;
 public:

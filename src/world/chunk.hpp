@@ -1,8 +1,6 @@
 #ifndef CHUNK_HPP
 #define CHUNK_HPP
 
-#include <memory>
-//
 #include <world/tile.hpp>
 
 struct Chunk
@@ -11,8 +9,6 @@ struct Chunk
 	typedef Tile tileArray2D[ sizeInTiles ][ sizeInTiles ];
 
 	tileArray2D tiles;
-
-	Chunk();
 };
 
 #endif

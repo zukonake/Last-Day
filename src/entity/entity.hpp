@@ -7,6 +7,7 @@
 //
 #include <geometry/point.hpp>
 #include <geometry/direction.hpp>
+#include <render/objectRenderer/objectRenderer.hpp>
 #include <world/world.hpp>
 
 template < typename Subtype > class Entity
@@ -15,20 +16,25 @@ template < typename Subtype > class Entity
 protected:
 	Point position;
 	World& world;
-	std::shared_ptr < Subtype > subtype;
+	Subtype* subtype;
 public:
-	virtual void render( SDL_Renderer& targetRenderer, SDL_Rect& targetPosition );
+	virtual void render( ObjectRenderer* renderer, const Point& targetPosition ) const;
 	virtual void teleport( const Point& targetPosition );
 	virtual void move( const Direction& targetDirection );
 
-	Entity( const Point& position, World& world, std::shared_ptr < Subtype > subtype = NULL );
-	virtual ~Entity();
+	Entity( Subtype* subtype, const Point& position, World& world ) noexcept :
+		subtype( subtype ),
+		position( position ),
+		world( world )
+	{
+
+	}
 };
 
 template < typename Subtype >
-void Entity< Subtype >::render( SDL_Renderer& targetRenderer, SDL_Rect& targetPosition )
+void Entity< Subtype >::render( ObjectRenderer* renderer, const Point& targetPosition ) const
 {
-
+	//subtype->render( renderer, targetPosition ); TODO
 }
 
 template < typename Subtype >
@@ -42,21 +48,5 @@ void  Entity< Subtype >::move( const Direction& targetDirection )
 {
 	position.move( targetDirection );
 }
-
-template < typename Subtype >
-Entity< Subtype >::Entity( const Point& position, World& world, std::shared_ptr < Subtype > subtype ) :
-	position( position ),
-	world( world ),
-	subtype( subtype )
-{
-
-}
-
-template < typename Subtype >
-Entity< Subtype >::~Entity()
-{
-
-}
-
 
 #endif

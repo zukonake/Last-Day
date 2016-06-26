@@ -1,21 +1,27 @@
 #ifndef TILESUBTYPE_HPP
 #define TILESUBTYPE_HPP
 
+#include <exception>
 #include <string>
 #include <iostream>
 //
-#include <render/image.hpp>
+#include <render/objectRenderer/objectRenderer.hpp>
+#include <render/renderableObject.hpp>
 
-class TileSubtype : public Image
+class TileSubtype : public RenderableObject
 {
-	bool isPassable;
-public:
 	static unsigned int spriteSize;
-	std::string name;
 
-	TileSubtype( std::istream& in );
-	TileSubtype();
-	~TileSubtype();
+	bool isPassable;
+	std::string name;
+public:
+	static void setSpriteSize( unsigned int value ) noexcept { spriteSize = value; }
+	static unsigned int getSpriteSize() noexcept { return spriteSize; }
+
+	virtual void render( ObjectRenderer* renderer, const SDL_Rect& targetPosition ) const override;
+
+	TileSubtype( std::istream& in ) noexcept;
+	TileSubtype( void ) noexcept { };
 };
 
 #endif

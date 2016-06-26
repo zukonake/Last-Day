@@ -18,11 +18,16 @@ std::shared_ptr< Chunk > World::loadChunk( const Point& targetChunkPosition )
 	return loadedChunks[ targetChunkPosition.x ][ targetChunkPosition.y ];
 }
 
-void World::renderTile( const Point& targetTilePosition, SDL_Renderer* targetRenderer, SDL_Rect& targetRenderPosition )
+void World::unloadChunk( const Point& targetChunkPosition )
+{
+
+}
+
+void World::renderTile( const Point& targetTilePosition, ObjectRenderer* objectRenderer, SDL_Rect& targetRenderPosition )
 {
 	Tile* targetTile = this->operator()( targetTilePosition );
-	targetTile->render( targetRenderer, targetRenderPosition );
-	SDL_SetRenderDrawColor( targetRenderer, 0, 0, 0, 220 - ( ( targetTile->getHeight() + 26) * 4 ) ) ;
+	targetTile->render( objectRenderer, targetRenderPosition );
+	/*SDL_SetRenderDrawColor( targetRenderer, 0, 0, 0, 220 - ( ( targetTile->getHeight() + 26) * 4 ) ) ;
 	SDL_RenderFillRect( targetRenderer, &targetRenderPosition );
 	SDL_SetRenderDrawColor( targetRenderer, 0, 0, 0, 63 );
 	if( this->operator()( Point( targetTilePosition.x - 1, targetTilePosition.y ) )->getHeight() != targetTile->getHeight() )
@@ -40,7 +45,7 @@ void World::renderTile( const Point& targetTilePosition, SDL_Renderer* targetRen
 			targetRenderPosition.y,
 			targetRenderPosition.x + targetRenderPosition.w,
 			targetRenderPosition.y);
-	}
+	}*/
 }
 
 World::World( Dataset& dataset ) : dataset( dataset )
@@ -50,7 +55,13 @@ World::World( Dataset& dataset ) : dataset( dataset )
 
 World::~World()
 {
-
+	for( auto iteratorY = loadedChunks.begin(); iteratorY != loadedChunks.end(); iteratorY++ )
+	{
+		for( auto iteratorX = iteratorY->second.begin(); iteratorX != iteratorY->second.end(); iteratorX++ )
+		{
+			iteratorX->second.reset();
+		}
+	}
 }
 
 Tile* World::operator()( const Point& targetTilePosition )

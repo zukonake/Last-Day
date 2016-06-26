@@ -2,15 +2,15 @@
 #ifndef BUILDING_HPP
 #define BUILDING_HPP
 
-#include <memory>
-//
+#include <geometry/point.hpp>
+#include <world/world.hpp>
 #include <entity/entity.hpp>
 #include <entity/building/buildingSubtype.hpp>
 
 class Building : public Entity< BuildingSubtype >
 {
 public:
-	Building( const Point& position, World& world, std::shared_ptr < BuildingSubtype > subtype );
+	Building( BuildingSubtype* subtype, const Point& position, World& world );
 	~Building();
 };
 

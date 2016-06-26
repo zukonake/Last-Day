@@ -1,15 +1,41 @@
 #include "rectangle.hpp"
 
-Rectangle::Rectangle( std::istream& in )
+Rectangle::Rectangle( std::istream& in ) noexcept
 {
-	const unsigned int maximumVariableLength = 256;
-	in.ignore( maximumVariableLength, ' ' );
+	in.ignore( 255, ' ' );
 	in >> width;
 	in >> height;
-	std::cout << "INFO: Initializing rectangle: " << width << ", " << height << ".\n";
 }
 
-Rectangle::operator SDL_RectWrapper ()
+Rectangle Rectangle::operator * ( const int& mul ) const noexcept
 {
-	return SDL_RectWrapper( this->width, this->height );
+	return Rectangle( width * mul, height * mul );
+}
+
+Rectangle Rectangle::operator / ( const int& div ) const noexcept
+{
+	return Rectangle( width / div, height / div );
+}
+
+Rectangle Rectangle::operator % ( const int& mod ) const noexcept
+{
+	return Rectangle( width % mod, height % mod );
+}
+
+Rectangle Rectangle::operator + ( const int& add ) const noexcept
+{
+	return Rectangle( width + add, height + add );
+}
+
+Rectangle Rectangle::operator - ( const int& sub ) const noexcept
+{
+	return Rectangle( width - sub, height - sub );
+}
+
+Rectangle::operator SDL_Rect( void ) const noexcept
+{
+	SDL_Rect output;
+	output.w = width;
+	output.h = height;
+	return output;
 }

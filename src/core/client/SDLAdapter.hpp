@@ -10,7 +10,7 @@
 
 class SDLAdapter
 {
-protected:
+public: //TODO change
 	SDL_Event event;
 	SDL_Window* window;
 	SDL_Renderer* renderer;

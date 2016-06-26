@@ -1,15 +1,19 @@
-#include "entitySubtype.hpp"
+ #include "entitySubtype.hpp"
 
-EntitySubtype::EntitySubtype( std::istream& in ) :
-	Image( in )
+void EntitySubtype::render( ObjectRenderer* renderer, const SDL_Rect& targetPosition ) const
 {
-	const unsigned int maximumVariableLength = 256;
-	in.ignore( maximumVariableLength, ' ' );
-	in >> name;
-	std::cout << "INFO: Initializing entitySubtype: " << name << " .\n";
+	if( renderer == NULL )
+	{
+		throw std::invalid_argument( "ERROR: EntitySubtype::render, null pointer given in argument 1." );
+		return;
+	}
+	renderer->renderEntitySubtype( this, targetPosition );
+	return;
 }
 
-EntitySubtype::~EntitySubtype()
+EntitySubtype::EntitySubtype( std::istream& in ) noexcept :
+	RenderableObject( in )
 {
-
+	in.ignore( 255, ' ' );
+	in >> name;
 }

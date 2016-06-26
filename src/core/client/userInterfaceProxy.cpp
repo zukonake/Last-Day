@@ -4,9 +4,9 @@ void UserInterfaceProxy::render()
 {
 	for( auto iterator = userInterfaces.begin(); iterator != userInterfaces.end(); iterator++ )
 	{
-		iterator->second.render( renderer );
+		//iterator->second.render( objectRenderer );
 	}
-	player.render( renderer );
+	player.render( objectRenderer.get() );
 }
 
 bool UserInterfaceProxy::handleEvents()
@@ -43,10 +43,10 @@ bool UserInterfaceProxy::handleEvents()
 				output = false;
 		        break;
 			case SDLK_e:
-				TileSubtype::spriteSize *= 2;
+				TileSubtype::setSpriteSize( TileSubtype::getSpriteSize() / 2 );
 			    break;
 			case SDLK_q:
-				TileSubtype::spriteSize /= 2;
+				TileSubtype::setSpriteSize( TileSubtype::getSpriteSize() * 2 );
 				break;
 			default:
 				break;
@@ -59,6 +59,7 @@ bool UserInterfaceProxy::handleEvents()
 
 UserInterfaceProxy::UserInterfaceProxy( std::shared_ptr< WorldProxy > worldProxy ) :
 	worldProxy( worldProxy ),
+	objectRenderer( std::make_shared< ImageRenderer >( dynamic_cast< SDLAdapter* >( this )->renderer ) ),
 	player( Point( 0, 0 ), dynamic_cast< World& >( *worldProxy ) )
 {
 

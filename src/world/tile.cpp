@@ -1,27 +1,12 @@
 #include "tile.hpp"
 
-void Tile::render( SDL_Renderer* targetRenderer, SDL_Rect& targetPosition )
+void Tile::render( ObjectRenderer* renderer, const SDL_Rect& targetPosition ) const
 {
-	if( subtype )
+	if( renderer == NULL )
 	{
-		subtype->render( targetRenderer, targetPosition );
+		throw std::invalid_argument( "ERROR: Tile::render, null pointer given in argument 1." );
+		return;
 	}
-}
-
-Tile::Tile( int8_t height, TileSubtype* subtype ) :
-	height( height ),
-	subtype( subtype )
-{
-
-}
-
-Tile::Tile() :
-	subtype( NULL )
-{
-
-}
-
-Tile::~Tile()
-{
-
+	subtype->render( renderer, targetPosition );
+	return;
 }

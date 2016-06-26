@@ -8,6 +8,7 @@
 #include <SDL2/SDL.h>
 //
 #include <geometry/point.hpp>
+#include <render/objectRenderer/objectRenderer.hpp>
 #include <world/tile.hpp>
 #include <world/chunk.hpp>
 #include <data/dataset.hpp>
@@ -23,9 +24,10 @@ class World
 	Dataset& dataset;
 protected:
 	std::shared_ptr< Chunk > getChunk( const Point& targetTilePosition );
+	void unloadChunk( const Point& targetChunkPosition );
 	std::shared_ptr< Chunk > loadChunk( const Point& targetChunkPosition );
 public:
-	void renderTile( const Point& targetTilePosition, SDL_Renderer* targetRenderer, SDL_Rect& targetRenderPositionn );
+	void renderTile( const Point& targetTilePosition, ObjectRenderer* objectRenderer, SDL_Rect& targetRenderPositionn );
 
 	World( Dataset& dataset );
 	~World();

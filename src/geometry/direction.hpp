@@ -5,19 +5,19 @@ struct Direction
 {
 	enum Type
 	{
-		NONE,
-		NORTH,
-		WEST,
-		SOUTH,
-		EAST,
+		NONE = 0,
+		NORTH = 1,
+		WEST = 2,
+		SOUTH = 3,
+		EAST = 4
 	};
 
 	Type value;
 
-	virtual void rotateClockwise();
-	virtual void rotateCounterClockwise();
+	virtual void rotateClockwise( void ) noexcept ;
+	virtual void rotateCounterClockwise( void ) noexcept;
 
-	Direction( Type value = NONE );
+	Direction( Type value = NONE ) noexcept;
 };
 
 #endif
