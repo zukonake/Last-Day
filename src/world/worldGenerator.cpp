@@ -7,7 +7,7 @@ Chunk& WorldGenerator::generateChunk( Chunk& target, Dataset& availableDataset, 
 		for( unsigned int iteratorX = 0; iteratorX < Chunk::sizeInTiles; iteratorX++ )
 		{
 			Point firstTile = targetChunkPosition.tilePosition( Chunk::sizeInTiles );
-			double heightValue = perlinNoise.GetValue( (double)( firstTile.x + (int)iteratorX ) / 10, (double)( firstTile.y + (int)iteratorY ) / 10, 0 );
+			double heightValue = perlinNoise.GetValue( (double)( firstTile.x + (int)iteratorX ) / 10, (double)( firstTile.y + (int)iteratorY ) / 10, 0 ) / 1.45;
 			if( heightValue >= 0.55 )
 			{
 				target.tiles[ iteratorX ][ iteratorY ] = Tile( &availableDataset.initializedTileSubtypes[ "stone" ], heightValue*25);
@@ -35,9 +35,9 @@ Chunk& WorldGenerator::generateChunk( Chunk& target, Dataset& availableDataset, 
 
 WorldGenerator::WorldGenerator()
 {
-	//perlinNoise.SetOctaveCount( 1 );
-	//perlinNoise.SetPersistence( 0.1 );
-	perlinNoise.SetFrequency( 0.5 );
-	//perlinNoise.SetLacunarity( 1.5 );
-	//perlinNoise.SetNoiseQuality( noise::QUALITY_NORMAL );
+	perlinNoise.SetOctaveCount( 10 );
+	perlinNoise.SetPersistence( 0.3 );
+	perlinNoise.SetFrequency( 0.2 );
+	perlinNoise.SetLacunarity( 1.7 );
+	perlinNoise.SetNoiseQuality( noise::QUALITY_STD );
 }
