@@ -1,8 +1,12 @@
 #include "camera.hpp"
 
-void Camera::render( ObjectRenderer* objectRenderer )
+void Camera::render( ObjectRenderer* objectRenderer ) const
 {
-	viewRange = Rectangle( 1280 / TileSubtype::getSpriteSize(), 768 / TileSubtype::getSpriteSize() );
+	if( objectRenderer == NULL )
+	{
+		throw std::invalid_argument( "ERROR: Camera::render, null pointer given in argument 1." );
+		return;
+	}
 	for( Point::coordinate iteratorY = position.y - viewRange.height, renderY = 0;
 		iteratorY < position.y + viewRange.height;
 		iteratorY++, renderY += TileSubtype::getSpriteSize() )
@@ -15,15 +19,5 @@ void Camera::render( ObjectRenderer* objectRenderer )
 			world.renderTile( Point( iteratorX, iteratorY ), objectRenderer, renderPosition );
 		}
 	}
-}
-
-Camera::Camera( const Point& position, World& world ) :
-	Entity< void >( NULL, position, world )
-{
-
-}
-
-Camera::~Camera()
-{
-
+	return;
 }

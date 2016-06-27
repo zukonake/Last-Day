@@ -18,6 +18,7 @@ public:
 	SDL_Renderer* getRenderer( void ) const noexcept { return renderer; }
 
 	ObjectRenderer( SDL_Renderer* renderer ) noexcept : renderer( renderer ) { }
+	virtual ~ObjectRenderer() noexcept { }
 };
 
 #endif

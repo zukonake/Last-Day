@@ -35,6 +35,9 @@ Chunk& WorldGenerator::generateChunk( Chunk& target, Dataset& availableDataset, 
 
 WorldGenerator::WorldGenerator()
 {
-	perlinNoise.SetPersistence( 0.3 );
-	perlinNoise.SetFrequency( 0.1 );
+	//perlinNoise.SetOctaveCount( 1 );
+	//perlinNoise.SetPersistence( 0.1 );
+	perlinNoise.SetFrequency( 0.5 );
+	//perlinNoise.SetLacunarity( 1.5 );
+	//perlinNoise.SetNoiseQuality( noise::QUALITY_NORMAL );
 }

@@ -14,9 +14,9 @@ template < typename Subtype > class Entity
 {
 	friend class EntityProxy;
 protected:
+	Subtype* subtype;
 	Point position;
 	World& world;
-	Subtype* subtype;
 public:
 	virtual void render( ObjectRenderer* renderer, const Point& targetPosition ) const;
 	virtual void teleport( const Point& targetPosition );

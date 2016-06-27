@@ -17,6 +17,7 @@ class TileSubtype : public RenderableObject
 public:
 	static void setSpriteSize( unsigned int value ) noexcept { spriteSize = value; }
 	static unsigned int getSpriteSize() noexcept { return spriteSize; }
+	std::string getName( void ) const noexcept { return name; }
 
 	virtual void render( ObjectRenderer* renderer, const SDL_Rect& targetPosition ) const override;
 

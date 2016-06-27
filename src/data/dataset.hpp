@@ -25,7 +25,7 @@ private:
 	void initializeObjects();
 	template< typename ObjectType >
 	std::map< const std::string, ObjectType > initializeObjectVectorFromDirectory( const std::string& directoryPath );
-protected:
+public:
 	Dataset();
 };
 

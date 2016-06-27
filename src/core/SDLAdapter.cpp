@@ -1,19 +1,37 @@
 #include "SDLAdapter.hpp"
 
-void SDLAdapter::update()
+void SDLAdapter::update( void ) noexcept
 {
 	SDL_RenderPresent( renderer );
 	SDL_RenderClear( renderer );
 }
 
-SDLAdapter::SDLAdapter()
+std::vector< SDL_Event > SDLAdapter::getEvents( void ) const noexcept
+{
+	SDL_Event event;
+	std::vector< SDL_Event > output;
+	while( SDL_PollEvent( &event ) )
+	{
+		output.push_back( event );
+	}
+	return output;
+}
+
+Rectangle SDLAdapter::getWindowSize( void ) const noexcept
+{
+	Rectangle output;
+	SDL_GetWindowSize( window, ( int* )&output.width, ( int* )&output.height );
+	return output;
+}
+
+SDLAdapter::SDLAdapter( const Rectangle& windowSize, const std::string& windowTitle )
 {
 	initializeSDL();
-	initializeSDLWindow( Rectangle( 1280, 768 ), "Neue spiele" );
+	initializeSDLWindow( windowSize, windowTitle );
 	initializeSDLRenderer();
 }
 
-void SDLAdapter::initializeSDL()
+void SDLAdapter::initializeSDL( void )
 {
 	SDL_Init( SDL_INIT_EVENTS | SDL_INIT_VIDEO );
 	IMG_Init( IMG_INIT_PNG );
@@ -33,7 +51,7 @@ void SDLAdapter::initializeSDLWindow( const Rectangle& windowSize, const std::st
 	}
 }
 
-void SDLAdapter::initializeSDLRenderer()
+void SDLAdapter::initializeSDLRenderer( void )
 {
 	renderer = SDL_CreateRenderer( window, -1, 0 );
 	if( !renderer )
@@ -46,12 +64,12 @@ void SDLAdapter::initializeSDLRenderer()
 	SDL_RenderSetLogicalSize( renderer, 1280, 768);
 }
 
-SDLAdapter::~SDLAdapter()
+SDLAdapter::~SDLAdapter( void )
 {
 	deinitializeSDL();
 }
 
-void SDLAdapter::deinitializeSDL()
+void SDLAdapter::deinitializeSDL( void )
 {
 	SDL_DestroyRenderer( renderer );
 	SDL_DestroyWindow( window );

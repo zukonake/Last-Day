@@ -27,8 +27,11 @@ void World::renderTile( const Point& targetTilePosition, ObjectRenderer* objectR
 {
 	Tile* targetTile = this->operator()( targetTilePosition );
 	targetTile->render( objectRenderer, targetRenderPosition );
-	SDL_SetRenderDrawColor( objectRenderer->getRenderer(), 0, 0, 0, 220 - ( ( targetTile->getHeight() + 26) * 4 ) ) ;
-	SDL_RenderFillRect( objectRenderer->getRenderer(), &targetRenderPosition );
+	//if( targetTile->getSubtypeName() == "Water")
+	//{
+		SDL_SetRenderDrawColor( objectRenderer->getRenderer(), 0, 0, 0, 120 - ((targetTile->getHeight() + 26) * 2) ) ;
+		SDL_RenderFillRect( objectRenderer->getRenderer(), &targetRenderPosition );
+	//}
 	SDL_SetRenderDrawColor( objectRenderer->getRenderer(), 0, 0, 0, 63 );
 	if( this->operator()( Point( targetTilePosition.x - 1, targetTilePosition.y ) )->getHeight() != targetTile->getHeight() )
 	{

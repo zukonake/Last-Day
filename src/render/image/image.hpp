@@ -9,8 +9,8 @@
 class Image
 {
 protected:
-	std::string path;
 	SDL_Texture* texture;
+	std::string path;
 
 	virtual void load( SDL_Renderer* renderer ) = 0;
 public:
