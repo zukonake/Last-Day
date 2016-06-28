@@ -6,7 +6,7 @@
 #include <entity/entity.hpp>
 #include <entity/mob/mobSubtype.hpp>
 
-class Mob : public Entity< MobSubtype >
+class Mob : public Entity
 {
 	void move();
 public:

@@ -7,7 +7,7 @@
 #include <entity/entity.hpp>
 #include <entity/building/buildingSubtype.hpp>
 
-class Building : public Entity< BuildingSubtype >
+class Building : public Entity
 {
 public:
 	Building( BuildingSubtype* subtype, const Point& position, World& world );

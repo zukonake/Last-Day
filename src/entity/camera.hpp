@@ -10,7 +10,7 @@
 #include <world/world.hpp>
 #include <entity/entity.hpp>
 
-class Camera : public Entity< void >
+class Camera : public Entity
 {
 	Rectangle viewRange = Rectangle( 5, 3 );
 public:

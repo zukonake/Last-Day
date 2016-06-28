@@ -1,6 +1,7 @@
 #ifndef WORLD_HPP
 #define WORLD_HPP
 
+#include <cmath>
 #include <cstdint>
 #include <memory>
 #include <iostream>
@@ -20,8 +21,8 @@ class World
 	const static uint8_t chunkLoadingRange = 1;
 
 	ChunkMap2D loadedChunks;
-	WorldGenerator generator;
 	Dataset& dataset;
+	WorldGenerator generator;
 protected:
 	std::shared_ptr< Chunk > getChunk( const Point& targetTilePosition );
 	void unloadChunk( const Point& targetChunkPosition );

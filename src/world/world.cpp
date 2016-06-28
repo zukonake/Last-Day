@@ -25,11 +25,19 @@ void World::unloadChunk( const Point& targetChunkPosition )
 
 void World::renderTile( const Point& targetTilePosition, ObjectRenderer* objectRenderer, SDL_Rect& targetRenderPosition )
 {
+	uint8_t maximumAlpha = 150;
+	double heightAlphaMultiplier = maximumAlpha / ( (generator.getMaximumTileHeight() * 2 ));
 	Tile* targetTile = this->operator()( targetTilePosition );
 	targetTile->render( objectRenderer, targetRenderPosition );
+	int8_t alpha = ( targetTile->getHeight() + generator.getMaximumTileHeight() );
+	double alphaModifier = heightAlphaMultiplier * alpha;
+	if( alphaModifier > maximumAlpha )
+	{
+		alphaModifier = maximumAlpha;
+	}
 	//if( targetTile->getSubtypeName() == "Water")
 	//{
-		SDL_SetRenderDrawColor( objectRenderer->getRenderer(), 0, 0, 0, 120 - ((targetTile->getHeight() + 26) * 2) ) ;
+		SDL_SetRenderDrawColor( objectRenderer->getRenderer(), 0, 0, 0, maximumAlpha - alphaModifier ) ;
 		SDL_RenderFillRect( objectRenderer->getRenderer(), &targetRenderPosition );
 	//}
 	SDL_SetRenderDrawColor( objectRenderer->getRenderer(), 0, 0, 0, 63 );
@@ -51,7 +59,8 @@ void World::renderTile( const Point& targetTilePosition, ObjectRenderer* objectR
 	}
 }
 
-World::World( Dataset& dataset ) : dataset( dataset )
+World::World( Dataset& dataset ) :
+	dataset( dataset )
 {
 
 }

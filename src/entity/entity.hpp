@@ -9,20 +9,21 @@
 #include <geometry/direction.hpp>
 #include <render/objectRenderer/objectRenderer.hpp>
 #include <world/world.hpp>
+#include <entity/entitySubtype.hpp>
 
-template < typename Subtype > class Entity
+class Entity
 {
 	friend class EntityProxy;
 protected:
-	Subtype* subtype;
+	EntitySubtype* subtype;
 	Point position;
 	World& world;
 public:
 	virtual void render( ObjectRenderer* renderer, const Point& targetPosition ) const;
-	virtual void teleport( const Point& targetPosition );
-	virtual void move( const Direction& targetDirection );
+	virtual void teleport( const Point& targetPosition ) noexcept;
+	virtual void move( const Direction& targetDirection ) noexcept;
 
-	Entity( Subtype* subtype, const Point& position, World& world ) noexcept :
+	Entity( EntitySubtype* subtype, const Point& position, World& world ) noexcept :
 		subtype( subtype ),
 		position( position ),
 		world( world )
@@ -30,23 +31,5 @@ public:
 
 	}
 };
-
-template < typename Subtype >
-void Entity< Subtype >::render( ObjectRenderer* renderer, const Point& targetPosition ) const
-{
-	//subtype->render( renderer, targetPosition ); TODO
-}
-
-template < typename Subtype >
-void Entity< Subtype >::teleport( const Point& targetPosition )
-{
-	position = targetPosition;
-}
-
-template < typename Subtype >
-void  Entity< Subtype >::move( const Direction& targetDirection )
-{
-	position.move( targetDirection );
-}
 
 #endif
