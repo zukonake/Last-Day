@@ -23,6 +23,8 @@ public:
 	virtual void teleport( const Point& targetPosition ) noexcept;
 	virtual void move( const Direction& targetDirection ) noexcept;
 
+	const Point& getPosition( void ) const noexcept { return position; }
+
 	Entity( EntitySubtype* subtype, const Point& position, World& world ) noexcept :
 		subtype( subtype ),
 		position( position ),
@@ -30,6 +32,8 @@ public:
 	{
 
 	}
+
+	virtual ~Entity() noexcept {};
 };
 
 #endif

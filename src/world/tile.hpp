@@ -15,7 +15,7 @@ class Tile
 public:
 	virtual void render( ObjectRenderer* renderer, const SDL_Rect& targetPosition ) const;
 
-	const std::string getSubtypeName( void ) const noexcept { return subtype->getName(); }
+	const std::string& getSubtypeName( void ) const noexcept { return subtype->getName(); }
 	const int8_t& getHeight( void ) const noexcept { return height; }
 
 	Tile( TileSubtype* subtype, int8_t height ) noexcept : subtype( subtype ), height( height ) { }

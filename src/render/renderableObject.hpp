@@ -14,7 +14,7 @@ class RenderableObject
 protected:
 	virtual void render( ObjectRenderer* objectRenderer, const SDL_Rect& targetPosition ) const = 0;
 public:
-	std::string getImagePath( void ) const noexcept { return imagePath; }
+	const std::string& getImagePath( void ) const noexcept { return imagePath; }
 
 	RenderableObject( std::istream& in ) noexcept;
 	RenderableObject( const std::string& imagePath ) noexcept : imagePath( imagePath ) { }

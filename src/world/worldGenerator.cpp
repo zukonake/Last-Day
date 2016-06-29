@@ -1,6 +1,6 @@
 #include "worldGenerator.hpp"
 
-Chunk& WorldGenerator::generateChunk( Chunk& target, Dataset& availableDataset, const Point& targetChunkPosition )
+Chunk& WorldGenerator::generateChunk( Chunk& target, const Point& targetChunkPosition )
 {
 	for( unsigned int iteratorY = 0; iteratorY < Chunk::sizeInTiles; iteratorY++ )
 	{
@@ -38,7 +38,8 @@ int WorldGenerator::getMaximumTileHeight()
 	return ( int )( heightMultiplier );
 }
 
-WorldGenerator::WorldGenerator()
+WorldGenerator::WorldGenerator( Dataset& availableDataset ) :
+	availableDataset( availableDataset )
 {
 	flatTerrain.SetFrequency( 0.25 );
 	mountainTerrain.SetFrequency( 0.5 );

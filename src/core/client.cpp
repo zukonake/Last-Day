@@ -2,7 +2,7 @@
 
 void Client::render( void ) const
 {
-	camera->render( objectRenderer );
+	camera->render( objectRenderer, entityProxy );
 	return;
 }
 
@@ -61,10 +61,11 @@ bool Client::handleEvents( void )
 	return output;
 }
 
-void Client::connect( World& world )
+void Client::connect( World& world, EntityProxy* _entityProxy )
 {
 	if( !connected)
 	{
+		entityProxy = _entityProxy;
 		camera = new Camera( Point( 0, 0 ), world );
 		camera->updateViewRange( sdl.getWindowSize(), TileSubtype::getSpriteSize() );
 		connected = true;

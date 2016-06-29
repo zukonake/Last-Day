@@ -26,11 +26,12 @@ class WorldGenerator
 	const double scale = 15;
 	const double heightMultiplier = 10;
 	double flatness;
+	Dataset& availableDataset;
 public:
-	Chunk& generateChunk( Chunk& target, Dataset& availableDataset, const Point& targetChunkPosition );
+	Chunk& generateChunk( Chunk& target, const Point& targetChunkPosition );
 	int getMaximumTileHeight();
 
-	WorldGenerator();
+	WorldGenerator( Dataset& availableDataset );
 };
 
 #endif

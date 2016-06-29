@@ -1,6 +1,6 @@
 #include "camera.hpp"
 
-void Camera::render( ObjectRenderer* objectRenderer ) const
+void Camera::render( ObjectRenderer* objectRenderer, EntityProxy* entityProxy ) const
 {
 	if( objectRenderer == NULL )
 	{
@@ -17,6 +17,11 @@ void Camera::render( ObjectRenderer* objectRenderer ) const
 		{
 			SDL_RectWrapper renderPosition( renderX, renderY, TileSubtype::getSpriteSize(), TileSubtype::getSpriteSize() );
 			world.renderTile( Point( iteratorX, iteratorY ), objectRenderer, renderPosition );
+			Entity* tileEntity = entityProxy->findEntity( Point( iteratorX, iteratorY ) );
+			if( tileEntity != NULL )
+			{
+				tileEntity->render( objectRenderer, Point( renderX, renderY ) );
+			}
 		}
 	}
 	return;

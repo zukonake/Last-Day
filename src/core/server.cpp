@@ -8,7 +8,7 @@ void Server::connectClient( Client* target )
 		return;
 	}
 	connectedClients.push_back( target );
-	target->connect( world );
+	target->connect( world, &entityProxy );
 	return;
 }
 

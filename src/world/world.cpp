@@ -14,7 +14,7 @@ std::shared_ptr< Chunk > World::loadChunk( const Point& targetChunkPosition )
 {
 	std::cout << "INFO: Loading chunk: " << targetChunkPosition.x << ", " << targetChunkPosition.y << "\n";
 	loadedChunks[ targetChunkPosition.x ][ targetChunkPosition.y ] = std::make_shared< Chunk > ( Chunk() );
-	generator.generateChunk( *loadedChunks[ targetChunkPosition.x ][ targetChunkPosition.y ], dataset, targetChunkPosition );
+	generator.generateChunk( *loadedChunks[ targetChunkPosition.x ][ targetChunkPosition.y ], targetChunkPosition );
 	return loadedChunks[ targetChunkPosition.x ][ targetChunkPosition.y ];
 }
 
@@ -60,7 +60,8 @@ void World::renderTile( const Point& targetTilePosition, ObjectRenderer* objectR
 }
 
 World::World( Dataset& dataset ) :
-	dataset( dataset )
+	dataset( dataset ),
+	generator( dataset )
 {
 
 }
