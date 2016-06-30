@@ -1,8 +1,8 @@
 #include "entity.hpp"
 
-void Entity::render( ObjectRenderer* renderer, const Point& targetPosition ) const
+void Entity::render( ObjectRenderer* renderer, const SDL_Rect& targetPosition ) const
 {
-	if( subtype != NULL )
+	if( subtype != nullptr )
 	{
 		subtype->render( renderer, targetPosition );
 	}

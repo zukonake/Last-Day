@@ -2,12 +2,12 @@
 
 SDL_Texture* Image::getTexture( SDL_Renderer* renderer )
 {
-	if( texture == NULL )
+	if( texture == nullptr )
 	{
-		if( renderer == NULL )
+		if( renderer == nullptr )
 		{
 			throw std::invalid_argument( "ERROR: Image::getTexture, null pointer given in argument 1." );
-			return NULL;
+			return nullptr;
 		}
 		try
 		{
@@ -16,14 +16,14 @@ SDL_Texture* Image::getTexture( SDL_Renderer* renderer )
 		catch( std::exception& e )
 		{
 			std::cerr << "ERROR: Standard exception: " << e.what() << "\n";
-			return NULL;
+			return nullptr;
 		}
 	}
 	return texture;
 }
 
 Image::Image( std::istream& in ) noexcept :
-	texture( NULL )
+	texture( nullptr )
 {
 	in.ignore( 255, ' ' );
 	in >> path;

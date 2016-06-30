@@ -8,27 +8,30 @@
 #include <geometry/point.hpp>
 #include <geometry/direction.hpp>
 #include <render/objectRenderer/objectRenderer.hpp>
-#include <world/world.hpp>
 #include <entity/entitySubtype.hpp>
 
 class Entity
 {
 	friend class EntityProxy;
+public:
+	enum aiType
+	{
+		none
+	};
 protected:
 	EntitySubtype* subtype;
 	Point position;
-	World& world;
 public:
-	virtual void render( ObjectRenderer* renderer, const Point& targetPosition ) const;
+	virtual void render( ObjectRenderer* renderer, const SDL_Rect& targetPosition ) const;
 	virtual void teleport( const Point& targetPosition ) noexcept;
 	virtual void move( const Direction& targetDirection ) noexcept;
 
-	const Point& getPosition( void ) const noexcept { return position; }
+	const std::string& getName( void ) const noexcept { return subtype->getName(); }
+	Point& getPosition( void ) noexcept { return position; }
 
-	Entity( EntitySubtype* subtype, const Point& position, World& world ) noexcept :
+	Entity( EntitySubtype* subtype, const Point& position ) noexcept :
 		subtype( subtype ),
-		position( position ),
-		world( world )
+		position( position )
 	{
 
 	}

@@ -27,11 +27,12 @@ class WorldGenerator
 	const double heightMultiplier = 10;
 	double flatness;
 	Dataset& availableDataset;
+	std::vector< Entity* >& entities;
 public:
 	Chunk& generateChunk( Chunk& target, const Point& targetChunkPosition );
 	int getMaximumTileHeight();
 
-	WorldGenerator( Dataset& availableDataset );
+	WorldGenerator( Dataset& availableDataset, std::vector< Entity* >& entities );
 };
 
 #endif

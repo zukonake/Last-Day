@@ -13,10 +13,8 @@
 
 class Dataset
 {
-	friend class WorldGenerator;
-	friend class World;
 	const std::string datasetPath = "dataset/generic/";
-protected:
+public:
 	std::map< const std::string, EntitySubtype > initializedEntitySubtypes;
 	std::map< const std::string, TileSubtype > initializedTileSubtypes;
 	std::map< const std::string, MobSubtype > initializedMobSubtypes;

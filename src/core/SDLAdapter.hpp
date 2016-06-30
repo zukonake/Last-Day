@@ -23,7 +23,7 @@ public:
 
 	SDL_Renderer* getRenderer( void ) const noexcept { return renderer; }
 	std::vector< SDL_Event > getEvents( void ) const noexcept;
-	const uint8_t* getKeystate( void ) const noexcept { return SDL_GetKeyboardState( NULL ); }
+	const uint8_t* getKeystate( void ) const noexcept { return SDL_GetKeyboardState( nullptr ); }
 	Rectangle getWindowSize( void ) const noexcept;
 
 	SDLAdapter( const Rectangle& windowSize, const std::string& windowTitle );

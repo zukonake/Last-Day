@@ -7,19 +7,19 @@
 #include <geometry/SDL_RectWrapper.hpp>
 #include <geometry/rectangle.hpp>
 #include <world/tileSubtype.hpp>
-#include <world/world.hpp>
 #include <entity/entity.hpp>
-#include <core/entityProxy.hpp>
+#include <world/world.hpp>
 
 class Camera : public Entity
 {
 	Rectangle viewRange = Rectangle( 5, 3 );
+	World& world;
 public:
-	void render( ObjectRenderer* renderer, EntityProxy* entityProxy ) const;
+	void render( ObjectRenderer* renderer ) const;
 	void updateViewRange( const Rectangle& screenSize, const uint8_t tileSize ) noexcept { viewRange = screenSize / tileSize; }
 
 	Camera( const Point& position, World& world ) :
-		Entity( NULL, position, world ) { }
+		Entity( nullptr, position ), world( world ) { }
 	virtual ~Camera( void ) noexcept { };
 };
 

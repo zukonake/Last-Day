@@ -2,13 +2,13 @@
 
 void BMPImage::load( SDL_Renderer* renderer )
 {
-	if( renderer == NULL )
+	if( renderer == nullptr )
 	{
 		throw std::invalid_argument( "ERROR: BMPImage::load, null pointer given in argument 1." );
 		return;
 	}
 	SDL_Surface* loadingSurface = SDL_LoadBMP( path.c_str() );
-	if( loadingSurface == NULL )
+	if( loadingSurface == nullptr )
 	{
 		throw std::runtime_error( "ERROR: BMPImage::load, couldn't load loadingSurface." );
 		return;

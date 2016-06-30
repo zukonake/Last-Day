@@ -2,7 +2,7 @@
 
 void Client::render( void ) const
 {
-	camera->render( objectRenderer, entityProxy );
+	camera->render( objectRenderer );
 	return;
 }
 
@@ -61,11 +61,10 @@ bool Client::handleEvents( void )
 	return output;
 }
 
-void Client::connect( World& world, EntityProxy* _entityProxy )
+void Client::connect( World& world )
 {
 	if( !connected)
 	{
-		entityProxy = _entityProxy;
 		camera = new Camera( Point( 0, 0 ), world );
 		camera->updateViewRange( sdl.getWindowSize(), TileSubtype::getSpriteSize() );
 		connected = true;
@@ -86,7 +85,7 @@ void Client::disconnect( void ) noexcept
 Client::Client( const Rectangle& windowSize, const std::string& windowTitle ) noexcept :
 	sdl( windowSize, windowTitle ),
 	objectRenderer( new ImageRenderer( sdl.getRenderer() ) ),
-	camera( NULL ),
+	camera( nullptr ),
 	connected( false )
 {
 

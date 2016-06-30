@@ -1,8 +1,8 @@
 #include "camera.hpp"
 
-void Camera::render( ObjectRenderer* objectRenderer, EntityProxy* entityProxy ) const
+void Camera::render( ObjectRenderer* objectRenderer ) const
 {
-	if( objectRenderer == NULL )
+	if( objectRenderer == nullptr )
 	{
 		throw std::invalid_argument( "ERROR: Camera::render, null pointer given in argument 1." );
 		return;
@@ -17,11 +17,6 @@ void Camera::render( ObjectRenderer* objectRenderer, EntityProxy* entityProxy ) 
 		{
 			SDL_RectWrapper renderPosition( renderX, renderY, TileSubtype::getSpriteSize(), TileSubtype::getSpriteSize() );
 			world.renderTile( Point( iteratorX, iteratorY ), objectRenderer, renderPosition );
-			Entity* tileEntity = entityProxy->findEntity( Point( iteratorX, iteratorY ) );
-			if( tileEntity != NULL )
-			{
-				tileEntity->render( objectRenderer, Point( renderX, renderY ) );
-			}
 		}
 	}
 	return;

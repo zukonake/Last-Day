@@ -12,7 +12,6 @@ std::shared_ptr< Chunk > World::getChunk( const Point& targetTilePosition )
 
 std::shared_ptr< Chunk > World::loadChunk( const Point& targetChunkPosition )
 {
-	std::cout << "INFO: Loading chunk: " << targetChunkPosition.x << ", " << targetChunkPosition.y << "\n";
 	loadedChunks[ targetChunkPosition.x ][ targetChunkPosition.y ] = std::make_shared< Chunk > ( Chunk() );
 	generator.generateChunk( *loadedChunks[ targetChunkPosition.x ][ targetChunkPosition.y ], targetChunkPosition );
 	return loadedChunks[ targetChunkPosition.x ][ targetChunkPosition.y ];
@@ -20,7 +19,7 @@ std::shared_ptr< Chunk > World::loadChunk( const Point& targetChunkPosition )
 
 void World::unloadChunk( const Point& targetChunkPosition )
 {
-
+	loadedChunks[ targetChunkPosition.x ][ targetChunkPosition.y ].reset();
 }
 
 void World::renderTile( const Point& targetTilePosition, ObjectRenderer* objectRenderer, SDL_Rect& targetRenderPosition )
@@ -35,11 +34,8 @@ void World::renderTile( const Point& targetTilePosition, ObjectRenderer* objectR
 	{
 		alphaModifier = maximumAlpha;
 	}
-	//if( targetTile->getSubtypeName() == "Water")
-	//{
-		SDL_SetRenderDrawColor( objectRenderer->getRenderer(), 0, 0, 0, maximumAlpha - alphaModifier ) ;
-		SDL_RenderFillRect( objectRenderer->getRenderer(), &targetRenderPosition );
-	//}
+	SDL_SetRenderDrawColor( objectRenderer->getRenderer(), 0, 0, 0, maximumAlpha - alphaModifier ) ;
+	SDL_RenderFillRect( objectRenderer->getRenderer(), &targetRenderPosition );
 	SDL_SetRenderDrawColor( objectRenderer->getRenderer(), 0, 0, 0, 63 );
 	if( this->operator()( Point( targetTilePosition.x - 1, targetTilePosition.y ) )->getHeight() != targetTile->getHeight() )
 	{
@@ -59,14 +55,39 @@ void World::renderTile( const Point& targetTilePosition, ObjectRenderer* objectR
 	}
 }
 
+void World::simulate( void )
+{
+	simulateEntities();
+}
+
+void World::simulateEntities( void )
+{
+	/*for( auto iterator : entities )
+	{
+		//entityAI.simulate( *iterator );
+		if( iterator->getName() == "Human" )
+		{
+			//this->operator()( iterator->getPosition() )->setEntity( nullptr );
+			//iterator->move( Direction::NORTH );//static_cast< Direction::Type >( rand() % 5 ) );
+			//this->operator()( iterator->getPosition() )->setEntity( iterator );
+		}
+	}*///TODO
+}
+
 World::World( Dataset& dataset ) :
 	dataset( dataset ),
-	generator( dataset )
+	generator( dataset, entities )
 {
 
 }
 
 World::~World()
+{
+	unloadChunks();
+	unloadEntities();
+}
+
+void World::unloadChunks()
 {
 	for( auto iteratorY = loadedChunks.begin(); iteratorY != loadedChunks.end(); iteratorY++ )
 	{
@@ -74,6 +95,14 @@ World::~World()
 		{
 			iteratorX->second.reset();
 		}
+	}
+}
+
+void World::unloadEntities()
+{
+	for( auto iterator : entities )
+	{
+		delete iterator;
 	}
 }
 

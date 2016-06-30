@@ -15,6 +15,8 @@ class EntitySubtype : public RenderableObject
 public:
 	virtual void render( ObjectRenderer* renderer, const SDL_Rect& targetPosition ) const override;
 
+	const std::string& getName( void ) const noexcept { return name; }
+
 	EntitySubtype( std::istream& in ) noexcept;
 	EntitySubtype( void ) noexcept { };
 };

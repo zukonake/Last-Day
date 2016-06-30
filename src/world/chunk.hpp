@@ -6,9 +6,9 @@
 struct Chunk
 {
 	const static unsigned int sizeInTiles = 128;
-	typedef Tile tileArray2D[ sizeInTiles ][ sizeInTiles ];
+	typedef Tile TileArray2D[ sizeInTiles ][ sizeInTiles ];
 
-	tileArray2D tiles;
+	TileArray2D tiles;
 };
 
 #endif

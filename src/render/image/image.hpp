@@ -19,8 +19,8 @@ public:
 	void setPath( const std::string& value ) noexcept { path = value; }
 
 	Image( std::istream& in ) noexcept;
-	Image( const std::string& path ) noexcept : texture( NULL ), path( path ) { }
-	Image( void ) noexcept : texture( NULL ) { }
+	Image( const std::string& path ) noexcept : texture( nullptr ), path( path ) { }
+	Image( void ) noexcept : texture( nullptr ) { }
 
 	virtual ~Image( void ) noexcept;
 };

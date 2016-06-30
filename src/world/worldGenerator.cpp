@@ -19,6 +19,12 @@ Chunk& WorldGenerator::generateChunk( Chunk& target, const Point& targetChunkPos
 			else if( heightValue >= -0.1 )
 			{
 				target.tiles[ iteratorX ][ iteratorY ] = Tile( &availableDataset.initializedTileSubtypes[ "grass" ], heightValue*heightMultiplier);
+				if( ( rand() % 10 ) == 1 )
+				{
+					entities.push_back( new Entity( &availableDataset.initializedEntitySubtypes[ "tree" ],
+						Point( firstTile.x + ( int )iteratorX, firstTile.y + ( int )iteratorY ) ) );
+					target.tiles[ iteratorX ][ iteratorY ].setEntity( entities.back() );
+				}
 			}
 			else if( heightValue >= -0.2 )
 			{
@@ -38,8 +44,9 @@ int WorldGenerator::getMaximumTileHeight()
 	return ( int )( heightMultiplier );
 }
 
-WorldGenerator::WorldGenerator( Dataset& availableDataset ) :
-	availableDataset( availableDataset )
+WorldGenerator::WorldGenerator( Dataset& availableDataset, std::vector< Entity* >& entities ) :
+	availableDataset( availableDataset ),
+	entities( entities )
 {
 	flatTerrain.SetFrequency( 0.25 );
 	mountainTerrain.SetFrequency( 0.5 );

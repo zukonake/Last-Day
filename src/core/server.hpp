@@ -7,7 +7,6 @@
 //
 #include <data/dataset.hpp>
 #include <world/world.hpp>
-#include <core/entityProxy.hpp>
 #include <core/client.hpp>
 
 class Server
@@ -15,10 +14,11 @@ class Server
 	std::vector< Client* > connectedClients;
 	Dataset dataset;
 	World world;
-	EntityProxy entityProxy;
 public:
 	void connectClient( Client* target );
 	void disconnectClient( Client* target );
+
+	void simulate( void );
 
 	Server() noexcept;
 	~Server();
