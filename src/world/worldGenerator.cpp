@@ -21,7 +21,7 @@ Chunk& WorldGenerator::generateChunk( Chunk& target, const Point& targetChunkPos
 				target.tiles[ iteratorX ][ iteratorY ] = Tile( &availableDataset.initializedTileSubtypes[ "grass" ], heightValue*heightMultiplier);
 				if( ( rand() % 10 ) == 1 )
 				{
-					entities.push_back( new Entity( &availableDataset.initializedEntitySubtypes[ "tree" ],
+					entities.emplace_back( std::make_shared< Entity >( &availableDataset.initializedEntitySubtypes[ "tree" ],
 						Point( firstTile.x + ( int )iteratorX, firstTile.y + ( int )iteratorY ) ) );
 					target.tiles[ iteratorX ][ iteratorY ].setEntity( entities.back() );
 				}
@@ -44,7 +44,7 @@ int WorldGenerator::getMaximumTileHeight()
 	return ( int )( heightMultiplier );
 }
 
-WorldGenerator::WorldGenerator( Dataset& availableDataset, std::vector< Entity* >& entities ) :
+WorldGenerator::WorldGenerator( Dataset& availableDataset, std::vector< std::shared_ptr< Entity > >& entities ) :
 	availableDataset( availableDataset ),
 	entities( entities )
 {

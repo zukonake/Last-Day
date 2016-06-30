@@ -1,7 +1,7 @@
 #ifndef WORLDGENERATOR_HPP
 #define WORLDGENERATOR_HPP
 
-#include <iomanip>
+#include <memory>
 #include <cstdlib>
 #include <noise/noise.h>
 //
@@ -27,12 +27,12 @@ class WorldGenerator
 	const double heightMultiplier = 10;
 	double flatness;
 	Dataset& availableDataset;
-	std::vector< Entity* >& entities;
+	std::vector< std::shared_ptr< Entity > >& entities;
 public:
 	Chunk& generateChunk( Chunk& target, const Point& targetChunkPosition );
 	int getMaximumTileHeight();
 
-	WorldGenerator( Dataset& availableDataset, std::vector< Entity* >& entities );
+	WorldGenerator( Dataset& availableDataset, std::vector< std::shared_ptr< Entity > >& entities );
 };
 
 #endif

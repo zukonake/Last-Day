@@ -21,7 +21,7 @@
 class World
 {
 	typedef std::map< Point::coordinate, std::map< Point::coordinate, std::shared_ptr< Chunk > > > ChunkMap2D;
-	typedef std::vector< Entity* > EntityVector;
+	typedef std::vector< std::shared_ptr< Entity > > EntityVector;
 	const static uint8_t chunkLoadingRange = 1;
 
 	ChunkMap2D loadedChunks;
@@ -45,7 +45,7 @@ public:
 	void unloadChunks( void );
 	void unloadEntities( void );
 
-	Tile* operator()( const Point& targetTilePosition );
+	std::shared_ptr< Tile > operator()( const Point& targetTilePosition );
 };
 
 #endif

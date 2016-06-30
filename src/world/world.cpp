@@ -26,7 +26,7 @@ void World::renderTile( const Point& targetTilePosition, ObjectRenderer* objectR
 {
 	uint8_t maximumAlpha = 150;
 	double heightAlphaMultiplier = maximumAlpha / ( (generator.getMaximumTileHeight() * 2 ));
-	Tile* targetTile = this->operator()( targetTilePosition );
+	std::shared_ptr< Tile > targetTile = this->operator()( targetTilePosition );
 	targetTile->render( objectRenderer, targetRenderPosition );
 	int8_t alpha = ( targetTile->getHeight() + generator.getMaximumTileHeight() );
 	double alphaModifier = heightAlphaMultiplier * alpha;
@@ -88,26 +88,26 @@ World::~World()
 }
 
 void World::unloadChunks()
-{
+{/*
 	for( auto iteratorY = loadedChunks.begin(); iteratorY != loadedChunks.end(); iteratorY++ )
 	{
 		for( auto iteratorX = iteratorY->second.begin(); iteratorX != iteratorY->second.end(); iteratorX++ )
 		{
 			iteratorX->second.reset();
 		}
-	}
+	}*/
 }
 
 void World::unloadEntities()
-{
+{/*
 	for( auto iterator : entities )
 	{
 		delete iterator;
-	}
+	}*/
 }
 
-Tile* World::operator()( const Point& targetTilePosition )
+std::shared_ptr< Tile > World::operator()( const Point& targetTilePosition )
 {
 	Point targetInternalPosition = targetTilePosition.internalPosition( Chunk::sizeInTiles );
-	return &getChunk( targetTilePosition )->tiles[ targetInternalPosition.x ][ targetInternalPosition.y ];
+	return std::make_shared< Tile >( getChunk( targetTilePosition )->tiles[ targetInternalPosition.x ][ targetInternalPosition.y ] );
 }
