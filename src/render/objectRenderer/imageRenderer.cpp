@@ -8,7 +8,7 @@ void ImageRenderer::renderEntitySubtype( const EntitySubtype* target, const SDL_
 	}
 	if( target == nullptr )
 	{
-		throw std::invalid_argument( "ERROR: ImageRenderer::renderEntitySubtype, null pointer given in argument 1." );
+		throw std::invalid_argument( "ImageRenderer::renderEntitySubtype, null pointer given in argument 1." );
 		return;
 	}
 	SDL_RenderCopy( ObjectRenderer::getRenderer(), images[ target->getImagePath() ]->getTexture( ObjectRenderer::getRenderer() ), nullptr, &targetPosition );
@@ -23,7 +23,7 @@ void ImageRenderer::renderTileSubtype( const TileSubtype* target, const SDL_Rect
 	}
 	if( target == nullptr )
 	{
-		throw std::invalid_argument( "ERROR: ImageRenderer::renderTileSubtype, null pointer given in argument 1." );
+		throw std::invalid_argument( "ImageRenderer::renderTileSubtype, null pointer given in argument 1." );
 		return;
 	}
 	SDL_RenderCopy( ObjectRenderer::getRenderer(), images[ target->getImagePath() ]->getTexture( ObjectRenderer::getRenderer() ), nullptr, &targetPosition );

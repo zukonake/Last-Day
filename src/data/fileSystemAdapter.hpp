@@ -1,6 +1,7 @@
 #ifndef FILESYSTEMADAPTER_HPP
 #define FILESYSTEMADAPTER_HPP
 
+#include <exception>
 #include <iostream>
 #include <fstream>
 #include <string>

@@ -24,7 +24,6 @@ void Point::move( const Direction& direction, const int& difference ) noexcept
 		break;
 
 		default:
-			std::cout << "ERROR: default case called in Point::move()\n";
 		break;
 	}
 	return;

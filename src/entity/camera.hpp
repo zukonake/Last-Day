@@ -14,12 +14,17 @@ class Camera : public Entity
 {
 	Rectangle viewRange = Rectangle( 5, 3 );
 	World& world;
+	Rectangle screenSize;
+	uint8_t zoom = 32;
 public:
 	void render( ObjectRenderer* renderer ) const;
-	void updateViewRange( const Rectangle& screenSize, const uint8_t tileSize ) noexcept { viewRange = screenSize / tileSize; }
 
-	Camera( const Point& position, World& world ) :
-		Entity( nullptr, position ), world( world ) { }
+	void updateViewRange( void ) noexcept { viewRange = screenSize / zoom; }
+
+	uint8_t& getZoom( void ) noexcept { return zoom; }
+	void setZoom( const uint8_t& value ) noexcept;
+
+	Camera( const Point& position, World& world, const Rectangle& screenSize ) noexcept;
 	virtual ~Camera( void ) noexcept { };
 };
 

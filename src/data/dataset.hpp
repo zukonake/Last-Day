@@ -1,6 +1,7 @@
 #ifndef DATASET_HPP
 #define DATASET_HPP
 
+#include <exception>
 #include <iostream>
 #include <string>
 #include <map>
@@ -33,17 +34,22 @@ template< typename ObjectType >
 std::map< const std::string, ObjectType > Dataset::initializeObjectVectorFromDirectory( const std::string& directoryPath )
 {
 	std::map< const std::string, ObjectType > output;
-
-	for( auto iterator : fileSystem.getFilesInDirectory( datasetPath + directoryPath ) )
+	try
 	{
-		fileSystem.open( iterator, std::ios::in );
-		std::string name;
-		fileSystem >> name;
-		std::cout << "INFO: Adding object: " << name << ".\n";
-		output.emplace( name, fileSystem );
-		fileSystem.close();
+		for( auto iterator : fileSystem.getFilesInDirectory( datasetPath + directoryPath ) )
+		{
+			fileSystem.open( iterator, std::ios::in );
+			std::string name;
+			fileSystem >> name;
+			std::cout << "INFO: Adding object: " << name << ".\n";
+			output.emplace( name, fileSystem );
+			fileSystem.close();
+		}
 	}
-
+	catch( std::exception& e)
+	{
+		std::cerr << "ERROR: Standard exception: " << e.what() << ".\n";
+	}
 	return output;
 }
 #endif

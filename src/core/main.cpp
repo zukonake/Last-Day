@@ -1,6 +1,7 @@
 #include <iostream>
 #include <exception>
 //
+#include <geometry/rectangle.hpp>
 #include <core/server.hpp>
 #include <core/client.hpp>
 

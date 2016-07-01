@@ -4,7 +4,7 @@ void Server::connectClient( Client* target )
 {
 	if( target == nullptr )
 	{
-		throw std::invalid_argument( "ERROR: Server::disconnectClient, null pointer given in argument 1." );
+		throw std::invalid_argument( "Server::disconnectClient, null pointer given in argument 1." );
 		return;
 	}
 	connectedClients.push_back( target );
@@ -16,7 +16,7 @@ void Server::disconnectClient( Client* target )
 {
 	if( target == nullptr )
 	{
-		throw std::invalid_argument( "ERROR: Server::disconnectClient, null pointer given in argument 1." );
+		throw std::invalid_argument( "Server::disconnectClient, null pointer given in argument 1." );
 		return;
 	}
 	auto iterator = std::find( connectedClients.begin(), connectedClients.end(), target);

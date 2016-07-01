@@ -6,7 +6,7 @@ SDL_Texture* Image::getTexture( SDL_Renderer* renderer )
 	{
 		if( renderer == nullptr )
 		{
-			throw std::invalid_argument( "ERROR: Image::getTexture, null pointer given in argument 1." );
+			throw std::invalid_argument( "Image::getTexture, null pointer given in argument 1." );
 			return nullptr;
 		}
 		try

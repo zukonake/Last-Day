@@ -2,7 +2,9 @@
 #define SDLADAPTER_HPP
 
 #include <cstdint>
+#include <exception>
 #include <vector>
+#include <iostream>
 #include <string>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
@@ -14,9 +16,9 @@ class SDLAdapter
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 
-	void initializeSDL( void );
-	void initializeSDLWindow( const Rectangle& windowSize, const std::string& windowTitle );
-	void initializeSDLRenderer( void );
+	void initialize( void );
+	void initializeWindow( const Rectangle& windowSize, const std::string& windowTitle );
+	void initializeRenderer( void );
 	void deinitializeSDL( void );
 public:
 	void update( void ) noexcept;

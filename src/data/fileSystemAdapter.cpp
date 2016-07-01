@@ -18,8 +18,7 @@ std::vector< std::string > FileSystemAdapter::getFilesInDirectory( const std::st
 	}
 	else
 	{
-		std::cout << "ERROR: Couldn't open directory: " << directoryPath << "\n";
-		//TODO throw exception
+		throw std::runtime_error( "FileSystemAdapter::getFilesInDirectory, Couldn't open directory: " + directoryPath + "." );
 	}
 	return output;
 }

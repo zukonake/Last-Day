@@ -45,12 +45,10 @@ bool Client::handleEvents( void )
 				output = false;
 		        break;
 			case SDLK_e:
-				TileSubtype::setSpriteSize( TileSubtype::getSpriteSize() / 2 );
-				camera->updateViewRange( sdl.getWindowSize(), TileSubtype::getSpriteSize() );
+				camera->setZoom( camera->getZoom() - 1 );
 			    break;
 			case SDLK_q:
-				TileSubtype::setSpriteSize( TileSubtype::getSpriteSize() * 2 );
-				camera->updateViewRange( sdl.getWindowSize(), TileSubtype::getSpriteSize() );
+				camera->setZoom( camera->getZoom() + 1 );
 				break;
 			default:
 				break;
@@ -61,12 +59,11 @@ bool Client::handleEvents( void )
 	return output;
 }
 
-void Client::connect( World& world )
+void Client::connect( World& world ) noexcept
 {
 	if( !connected)
 	{
-		camera = new Camera( Point( 0, 0 ), world );
-		camera->updateViewRange( sdl.getWindowSize(), TileSubtype::getSpriteSize() );
+		camera = new Camera( Point( 0, 0 ), world, sdl.getWindowSize() );
 		connected = true;
 	}
 	return;

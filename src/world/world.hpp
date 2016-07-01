@@ -31,8 +31,8 @@ class World
 	EntityAI entityAI;
 protected:
 	std::shared_ptr< Chunk > getChunk( const Point& targetTilePosition );
-	void unloadChunk( const Point& targetChunkPosition );
 	std::shared_ptr< Chunk > loadChunk( const Point& targetChunkPosition );
+	void unloadChunk( const Point& targetChunkPosition );
 public:
 	void renderTile( const Point& targetTilePosition, ObjectRenderer* objectRenderer, SDL_Rect& targetRenderPositionn );
 

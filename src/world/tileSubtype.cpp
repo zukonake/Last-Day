@@ -6,7 +6,7 @@ void TileSubtype::render( ObjectRenderer* renderer, const SDL_Rect& targetPositi
 {
 	if( renderer == nullptr )
 	{
-		throw std::invalid_argument( "ERROR: TileSubtype::render, null pointer given in argument 1." );
+		throw std::invalid_argument( "TileSubtype::render, null pointer given in argument 1." );
 		return;
 	}
 	renderer->renderTileSubtype( this, targetPosition );

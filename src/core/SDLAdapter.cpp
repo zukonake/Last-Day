@@ -26,18 +26,26 @@ Rectangle SDLAdapter::getWindowSize( void ) const noexcept
 
 SDLAdapter::SDLAdapter( const Rectangle& windowSize, const std::string& windowTitle )
 {
-	initializeSDL();
-	initializeSDLWindow( windowSize, windowTitle );
-	initializeSDLRenderer();
+	try
+	{
+		initialize();
+		initializeWindow( windowSize, windowTitle );
+		initializeRenderer();
+	}
+	catch( std::exception& e )
+	{
+		std::cerr << "ERROR: Standard exception: " << e.what() << "\n";
+		return;
+	}
 }
 
-void SDLAdapter::initializeSDL( void )
+void SDLAdapter::initialize( void )
 {
 	SDL_Init( SDL_INIT_EVENTS | SDL_INIT_VIDEO );
 	IMG_Init( IMG_INIT_PNG );
 }
 
-void SDLAdapter::initializeSDLWindow( const Rectangle& windowSize, const std::string& windowTitle )
+void SDLAdapter::initializeWindow( const Rectangle& windowSize, const std::string& windowTitle )
 {
 	window = SDL_CreateWindow( windowTitle.c_str(),
 		SDL_WINDOWPOS_UNDEFINED,
@@ -47,16 +55,18 @@ void SDLAdapter::initializeSDLWindow( const Rectangle& windowSize, const std::st
 		0 );
 	if( !window )
 	{
-		std::cout << "ERROR: Couldn't initialize window.\n";
+		throw std::runtime_error( "SDLAdapter::initializeWindow, couldn't initialize window." );
+		return;
 	}
 }
 
-void SDLAdapter::initializeSDLRenderer( void )
+void SDLAdapter::initializeRenderer( void )
 {
 	renderer = SDL_CreateRenderer( window, -1, 0 );
 	if( !renderer )
 	{
-		std::cout << "ERROR: Couldn't initialize renderer.\n";
+		throw std::runtime_error( "SDLAdapter::initializeRenderer, couldn't initialize renderer." );
+		return;
 	}
 	SDL_SetRenderDrawBlendMode( renderer, SDL_BLENDMODE_BLEND );
 	SDL_SetRenderDrawColor( renderer, 0, 0, 0, 63 );
@@ -71,6 +81,7 @@ SDLAdapter::~SDLAdapter( void )
 
 void SDLAdapter::deinitializeSDL( void )
 {
+	IMG_Quit();
 	SDL_DestroyRenderer( renderer );
 	SDL_DestroyWindow( window );
 	SDL_Quit();

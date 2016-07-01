@@ -4,7 +4,7 @@ void EntitySubtype::render( ObjectRenderer* renderer, const SDL_Rect& targetPosi
 {
 	if( renderer == nullptr )
 	{
-		throw std::invalid_argument( "ERROR: EntitySubtype::render, null pointer given in argument 1." );
+		throw std::invalid_argument( "EntitySubtype::render, null pointer given in argument 1." );
 		return;
 	}
 	renderer->renderEntitySubtype( this, targetPosition );

@@ -22,7 +22,7 @@ public:
 	void update( void ) noexcept;
 	bool handleEvents( void );
 
-	void connect( World& world );
+	void connect( World& world ) noexcept;
 	void disconnect( void ) noexcept;
 
 	Client( const Rectangle& windowSize, const std::string& windowTitle ) noexcept;
