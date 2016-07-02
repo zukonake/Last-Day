@@ -8,12 +8,12 @@
 #include <geometry/rectangle.hpp>
 #include <world/tileSubtype.hpp>
 #include <entity/entity.hpp>
-#include <world/world.hpp>
+
+class World;
 
 class Camera : public Entity
 {
 	Rectangle viewRange = Rectangle( 5, 3 );
-	World& world;
 	Rectangle screenSize;
 	uint8_t zoom = 32;
 public:

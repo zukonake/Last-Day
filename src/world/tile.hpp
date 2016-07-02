@@ -12,7 +12,6 @@
 class Tile
 {
 	TileSubtype* subtype;
-	std::shared_ptr< Entity > entity;
 	int8_t height;
 public:
 	virtual void render( ObjectRenderer* renderer, const SDL_Rect& targetPosition ) const;
@@ -20,12 +19,8 @@ public:
 	const std::string& getSubtypeName( void ) const noexcept { return subtype->getName(); }
 	const int8_t& getHeight( void ) const noexcept { return height; }
 
-	std::shared_ptr< Entity > getEntity( void ) const noexcept { return entity; }
-	void setEntity( std::shared_ptr< Entity > value ) noexcept { entity = value; }
-
-
-	Tile( TileSubtype* subtype, int8_t height ) noexcept : subtype( subtype ), entity( nullptr ), height( height ) { }
-	Tile( void ) noexcept : subtype( nullptr ), entity( nullptr ) { }
+	Tile( TileSubtype* subtype, int8_t height ) noexcept : subtype( subtype ), height( height ) { }
+	Tile( void ) noexcept : subtype( nullptr ) { }
 };
 
 #endif

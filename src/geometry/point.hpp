@@ -33,6 +33,7 @@ struct Point
 	Point operator - ( const int& sub ) const noexcept;
 
 	inline bool operator == ( const Point& target ) const noexcept;
+	bool operator < ( const Point& target ) const noexcept;
 
 	virtual operator SDL_Rect( void ) const noexcept;
 	virtual operator SDL_Point( void ) const noexcept;

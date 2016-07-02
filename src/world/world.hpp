@@ -1,51 +1,26 @@
 #ifndef WORLD_HPP
 #define WORLD_HPP
 
-#include <cmath>
 #include <cstdint>
-#include <memory>
-#include <iostream>
-#include <map>
-#include <vector>
 #include <SDL2/SDL.h>
 //
 #include <geometry/point.hpp>
-#include <render/objectRenderer/objectRenderer.hpp>
-#include <entity/entity.hpp>
-#include <world/tile.hpp>
-#include <world/chunk.hpp>
 #include <data/dataset.hpp>
-#include <entity/entityAI.hpp>
-#include <world/worldGenerator.hpp>
+#include <render/objectRenderer/objectRenderer.hpp>
+#include <entity/entityContainer.hpp>
+#include <world/chunkContainer.hpp>
 
-class World
+class World : public EntityContainer
 {
-	typedef std::map< Point::coordinate, std::map< Point::coordinate, std::shared_ptr< Chunk > > > ChunkMap2D;
-	typedef std::vector< std::shared_ptr< Entity > > EntityVector;
-	const static uint8_t chunkLoadingRange = 1;
-
-	ChunkMap2D loadedChunks;
-	EntityVector entities;
-	Dataset& dataset;
-	WorldGenerator generator;
-	EntityAI entityAI;
-protected:
-	std::shared_ptr< Chunk > getChunk( const Point& targetTilePosition );
-	std::shared_ptr< Chunk > loadChunk( const Point& targetChunkPosition );
-	void unloadChunk( const Point& targetChunkPosition );
+	//Dataset& dataset;
+	ChunkContainer chunkContainer;
 public:
-	void renderTile( const Point& targetTilePosition, ObjectRenderer* objectRenderer, SDL_Rect& targetRenderPositionn );
-
+	void renderHeightEffects( const Point& targetTilePosition, ObjectRenderer* objectRenderer, SDL_Rect& targetRenderPositionn );
+	Tile& getTile( const Point& targetTilePosition );
 	void simulate( void );
-	void simulateEntities( void );
 
 	World( Dataset& dataset );
 	~World();
-
-	void unloadChunks( void );
-	void unloadEntities( void );
-
-	std::shared_ptr< Tile > operator()( const Point& targetTilePosition );
 };
 
 #endif

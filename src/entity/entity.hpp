@@ -10,6 +10,8 @@
 #include <render/objectRenderer/objectRenderer.hpp>
 #include <entity/entitySubtype.hpp>
 
+class World;
+
 class Entity
 {
 	friend class EntityProxy;
@@ -20,6 +22,7 @@ public:
 	};
 protected:
 	EntitySubtype* subtype;
+	World& world;
 	Point position;
 public:
 	virtual void render( ObjectRenderer* renderer, const SDL_Rect& targetPosition ) const;
@@ -29,12 +32,7 @@ public:
 	const std::string& getName( void ) const noexcept { return subtype->getName(); }
 	Point& getPosition( void ) noexcept { return position; }
 
-	Entity( EntitySubtype* subtype, const Point& position ) noexcept :
-		subtype( subtype ),
-		position( position )
-	{
-
-	}
+	Entity( EntitySubtype* subtype, World& world, const Point& position ) noexcept;
 
 	virtual ~Entity() noexcept {};
 };

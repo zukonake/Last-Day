@@ -8,9 +8,5 @@ void Tile::render( ObjectRenderer* renderer, const SDL_Rect& targetPosition ) co
 		return;
 	}
 	subtype->render( renderer, targetPosition );
-	if( entity != nullptr )
-	{
-		entity->render( renderer, targetPosition );
-	}
 	return;
 }

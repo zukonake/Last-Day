@@ -8,6 +8,9 @@
 #include <geometry/point.hpp>
 #include <world/chunk.hpp>
 #include <data/dataset.hpp>
+#include <entity/entityContainer.hpp>
+
+class World;
 
 class WorldGenerator
 {
@@ -27,12 +30,12 @@ class WorldGenerator
 	const double heightMultiplier = 10;
 	double flatness;
 	Dataset& availableDataset;
-	std::vector< std::shared_ptr< Entity > >& entities;
+	EntityContainer& entityContainer;
 public:
-	Chunk& generateChunk( Chunk& target, const Point& targetChunkPosition );
+	Chunk& generateChunk( World& world, Chunk& target, const Point& targetChunkPosition );
 	int getMaximumTileHeight();
 
-	WorldGenerator( Dataset& availableDataset, std::vector< std::shared_ptr< Entity > >& entities );
+	WorldGenerator( Dataset& availableDataset, EntityContainer& entityContainer );
 };
 
 #endif

@@ -4,11 +4,13 @@
 #include <entity/entity.hpp>
 #include <entity/mob/mobSubtype.hpp>
 
+class World;
+
 class Mob : public Entity
 {
 	void move();
 public:
-	Mob( MobSubtype* subtype, const Point& position );
+	Mob( MobSubtype* subtype, World& world, const Point& position );
 	~Mob();
 };
 

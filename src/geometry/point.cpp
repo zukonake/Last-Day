@@ -91,6 +91,11 @@ Point Point::operator - ( const int& sub ) const noexcept
 	return Point( x - sub, y - sub );
 }
 
+bool Point::operator < ( const Point& target ) const noexcept
+{
+	return (x < target.x) or (x == target.x and y < target.y);
+}
+
 Point::operator SDL_Rect( void ) const noexcept
 {
 	SDL_Rect output;

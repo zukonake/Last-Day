@@ -1,6 +1,7 @@
 #include "worldGenerator.hpp"
+#include <cassert>
 
-Chunk& WorldGenerator::generateChunk( Chunk& target, const Point& targetChunkPosition )
+Chunk& WorldGenerator::generateChunk( World& world, Chunk& target, const Point& targetChunkPosition )
 {
 	for( unsigned int iteratorY = 0; iteratorY < Chunk::sizeInTiles; iteratorY++ )
 	{
@@ -21,9 +22,9 @@ Chunk& WorldGenerator::generateChunk( Chunk& target, const Point& targetChunkPos
 				target.tiles[ iteratorX ][ iteratorY ] = Tile( &availableDataset.initializedTileSubtypes[ "grass" ], heightValue*heightMultiplier);
 				if( ( rand() % 10 ) == 1 )
 				{
-					entities.emplace_back( std::make_shared< Entity >( &availableDataset.initializedEntitySubtypes[ "tree" ],
+					entityContainer.addEntity( new Entity( &availableDataset.initializedEntitySubtypes[ "tree" ],
+						world,
 						Point( firstTile.x + ( int )iteratorX, firstTile.y + ( int )iteratorY ) ) );
-					target.tiles[ iteratorX ][ iteratorY ].setEntity( entities.back() );
 				}
 			}
 			else if( heightValue >= -0.2 )
@@ -44,9 +45,9 @@ int WorldGenerator::getMaximumTileHeight()
 	return ( int )( heightMultiplier );
 }
 
-WorldGenerator::WorldGenerator( Dataset& availableDataset, std::vector< std::shared_ptr< Entity > >& entities ) :
+WorldGenerator::WorldGenerator( Dataset& availableDataset, EntityContainer& entityContainer ) :
 	availableDataset( availableDataset ),
-	entities( entities )
+	entityContainer( entityContainer )
 {
 	flatTerrain.SetFrequency( 0.25 );
 	mountainTerrain.SetFrequency( 0.5 );

@@ -1,7 +1,7 @@
 #include "building.hpp"
 
-Building::Building( BuildingSubtype* subtype, const Point& position ) :
-	Entity( subtype, position )
+Building::Building( BuildingSubtype* subtype, World& world, const Point& position ) :
+	Entity( subtype, world, position )
 {
 
 }
