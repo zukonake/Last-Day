@@ -6,7 +6,7 @@
 #include <noise/noise.h>
 //
 #include <geometry/point.hpp>
-#include <world/chunk.hpp>
+#include <world/chunk/chunk.hpp>
 #include <data/dataset.hpp>
 #include <entity/entityContainer.hpp>
 

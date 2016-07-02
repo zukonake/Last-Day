@@ -8,7 +8,7 @@
 //
 #include <data/fileSystemAdapter.hpp>
 #include <entity/entitySubtype.hpp>
-#include <world/tileSubtype.hpp>
+#include <world/tile/tileSubtype.hpp>
 #include <entity/mob/mobSubtype.hpp>
 #include <entity/building/buildingSubtype.hpp>
 

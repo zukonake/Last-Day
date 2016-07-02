@@ -7,7 +7,7 @@
 #include <core/SDLAdapter.hpp>
 #include <render/objectRenderer/objectRenderer.hpp>
 #include <render/objectRenderer/imageRenderer.hpp>
-#include <world/tileSubtype.hpp>
+#include <world/tile/tileSubtype.hpp>
 #include <world/world.hpp>
 #include <entity/camera.hpp>
 

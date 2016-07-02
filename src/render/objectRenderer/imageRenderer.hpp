@@ -10,7 +10,7 @@
 #include <render/objectRenderer/objectRenderer.hpp>
 #include <render/image/image.hpp>
 #include <render/image/PNGImage.hpp>
-#include <world/tileSubtype.hpp>
+#include <world/tile/tileSubtype.hpp>
 #include <entity/entitySubtype.hpp>
 
 class ImageRenderer : public ObjectRenderer

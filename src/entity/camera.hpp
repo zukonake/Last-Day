@@ -6,7 +6,7 @@
 #include <geometry/point.hpp>
 #include <geometry/SDL_RectWrapper.hpp>
 #include <geometry/rectangle.hpp>
-#include <world/tileSubtype.hpp>
+#include <world/tile/tileSubtype.hpp>
 #include <entity/entity.hpp>
 
 class World;

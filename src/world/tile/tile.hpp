@@ -5,7 +5,7 @@
 #include <memory>
 #include <cstdint>
 //
-#include <world/tileSubtype.hpp>
+#include <world/tile/tileSubtype.hpp>
 #include <render/objectRenderer/objectRenderer.hpp>
 #include <entity/entity.hpp>
 

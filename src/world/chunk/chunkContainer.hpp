@@ -8,8 +8,8 @@
 #include <geometry/point.hpp>
 #include <data/dataset.hpp>
 #include <entity/entityContainer.hpp>
-#include <world/tile.hpp>
-#include <world/chunk.hpp>
+#include <world/tile/tile.hpp>
+#include <world/chunk/chunk.hpp>
 #include <world/worldGenerator.hpp>
 
 class World;

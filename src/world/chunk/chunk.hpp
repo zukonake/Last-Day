@@ -1,7 +1,7 @@
 #ifndef CHUNK_HPP
 #define CHUNK_HPP
 
-#include <world/tile.hpp>
+#include <world/tile/tile.hpp>
 
 struct Chunk
 {

@@ -8,7 +8,7 @@
 #include <data/dataset.hpp>
 #include <render/objectRenderer/objectRenderer.hpp>
 #include <entity/entityContainer.hpp>
-#include <world/chunkContainer.hpp>
+#include <world/chunk/chunkContainer.hpp>
 
 class World : public EntityContainer
 {
