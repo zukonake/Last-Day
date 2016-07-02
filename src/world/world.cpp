@@ -1,10 +1,11 @@
 #include "world.hpp"
-/*
+
 void World::renderHeightEffects( const Point& targetTilePosition, ObjectRenderer* objectRenderer, SDL_Rect& targetRenderPosition )
 {
 	uint8_t maximumAlpha = 150;
-	double heightAlphaMultiplier = maximumAlpha / ( (generator.getMaximumTileHeight() * 2 ));
-	int8_t alpha = ( ChunkContainer::getTile( targetTilePosition )->getHeight() + generator.getMaximumTileHeight() );
+	double heightAlphaMultiplier = maximumAlpha / ( (WorldGenerator::getMaximumTileHeight() * 2 ));
+	Tile& targetTile = chunkContainer.getTile( targetTilePosition );
+	int8_t alpha = ( targetTile.getHeight() + WorldGenerator::getMaximumTileHeight() );
 	double alphaModifier = heightAlphaMultiplier * alpha;
 	if( alphaModifier > maximumAlpha )
 	{
@@ -13,7 +14,7 @@ void World::renderHeightEffects( const Point& targetTilePosition, ObjectRenderer
 	SDL_SetRenderDrawColor( objectRenderer->getRenderer(), 0, 0, 0, maximumAlpha - alphaModifier ) ;
 	SDL_RenderFillRect( objectRenderer->getRenderer(), &targetRenderPosition );
 	SDL_SetRenderDrawColor( objectRenderer->getRenderer(), 0, 0, 0, 63 );
-	if( this->operator()( Point( targetTilePosition.x - 1, targetTilePosition.y ) )->getHeight() != targetTile->getHeight() )
+	if( chunkContainer.getTile( Point( targetTilePosition.x - 1, targetTilePosition.y ) ).getHeight() != targetTile.getHeight() )
 	{
 		SDL_RenderDrawLine( objectRenderer->getRenderer(),
 			targetRenderPosition.x,
@@ -21,7 +22,7 @@ void World::renderHeightEffects( const Point& targetTilePosition, ObjectRenderer
 			targetRenderPosition.x,
 			targetRenderPosition.y + targetRenderPosition.h);
 	}
-	if( this->operator()( Point( targetTilePosition.x, targetTilePosition.y - 1) )->getHeight() != targetTile->getHeight() )
+	if( chunkContainer.getTile( Point( targetTilePosition.x, targetTilePosition.y - 1) ).getHeight() != targetTile.getHeight() )
 	{
 		SDL_RenderDrawLine( objectRenderer->getRenderer(),
 			targetRenderPosition.x,
@@ -30,7 +31,7 @@ void World::renderHeightEffects( const Point& targetTilePosition, ObjectRenderer
 			targetRenderPosition.y);
 	}
 }
-*/
+
 Tile& World::getTile( const Point& targetTilePosition )
 {
 	return chunkContainer.getTile( targetTilePosition );

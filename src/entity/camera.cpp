@@ -18,6 +18,7 @@ void Camera::render( ObjectRenderer* objectRenderer ) const
 		{
 			SDL_RectWrapper renderPosition( renderX, renderY, zoom, zoom );
 			world.getTile( Point( iteratorX, iteratorY ) ).render( objectRenderer, renderPosition );
+			world.renderHeightEffects( Point( iteratorX, iteratorY ), objectRenderer, renderPosition );
 			Entity* entityOnTile = world.getEntity( Point( iteratorX, iteratorY ) );
 			if( entityOnTile != nullptr )
 			{

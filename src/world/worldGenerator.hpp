@@ -26,14 +26,17 @@ class WorldGenerator
 	noise::module::Select terrainSelector;
 	noise::module::Select landTerrainSelector;
 	noise::module::Turbulence finalTerrain;
-	const double scale = 15;
-	const double heightMultiplier = 10;
+	constexpr static double scale = 15;
+	constexpr static double heightMultiplier = 10;
 	double flatness;
 	Dataset& availableDataset;
 	EntityContainer& entityContainer;
 public:
 	Chunk& generateChunk( World& world, Chunk& target, const Point& targetChunkPosition );
-	int getMaximumTileHeight();
+	static int getMaximumTileHeight()
+	{
+		return ( int )( heightMultiplier );
+	}
 
 	WorldGenerator( Dataset& availableDataset, EntityContainer& entityContainer );
 };

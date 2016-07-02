@@ -40,11 +40,6 @@ Chunk& WorldGenerator::generateChunk( World& world, Chunk& target, const Point& 
 	return target;
 }
 
-int WorldGenerator::getMaximumTileHeight()
-{
-	return ( int )( heightMultiplier );
-}
-
 WorldGenerator::WorldGenerator( Dataset& availableDataset, EntityContainer& entityContainer ) :
 	availableDataset( availableDataset ),
 	entityContainer( entityContainer )
