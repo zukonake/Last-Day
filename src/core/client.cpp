@@ -20,6 +20,13 @@ Client::Client( const Client& that ) noexcept :
 
 }
 
+Client::~Client() noexcept
+{
+	end();
+	disconnect();
+	delete objectRenderer;
+}
+
 Client& Client::operator=( const Client& that ) noexcept
 {
 	dynamic_cast< SDLAdapter& >( *this ) = static_cast< SDLAdapter >( that );
@@ -28,13 +35,6 @@ Client& Client::operator=( const Client& that ) noexcept
 	isConnected = false;
 	isRunning = false;
 	return *this;
-}
-
-Client::~Client() noexcept
-{
-	end();
-	disconnect();
-	delete objectRenderer;
 }
 
 void Client::render( void ) const noexcept

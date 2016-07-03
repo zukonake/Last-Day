@@ -2,8 +2,10 @@
 #define CLIENT_HPP
 
 #include <cstdint>
+#include <iostream>
 #include <exception>
 #include <string>
+#include <SDL2/SDL.h>
 //
 #include <geometry/rectangle.hpp>
 #include <core/SDLAdapter.hpp>
@@ -17,8 +19,9 @@ class Client : public SDLAdapter
 public:
 	Client( const Rectangle& windowSize, const std::string& windowTitle ) noexcept;
 	Client( const Client& that ) noexcept;
-	Client& operator=( const Client& that ) noexcept;
 	~Client() noexcept;
+
+	Client& operator=( const Client& that ) noexcept;
 
 	void render( void ) const noexcept;
 
