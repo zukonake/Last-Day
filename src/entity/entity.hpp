@@ -1,8 +1,6 @@
 #ifndef ENTITY_HPP
 #define ENTITY_HPP
 
-#include <memory>
-#include <iostream>
 #include <SDL2/SDL.h>
 //
 #include <geometry/point.hpp>
@@ -14,27 +12,21 @@ class World;
 
 class Entity
 {
-	friend class EntityProxy;
 public:
-	enum aiType
-	{
-		none
-	};
-protected:
-	EntitySubtype* subtype;
-	World& world;
-	Point position;
-public:
+	Entity( World& world, const Point& position, EntitySubtype* subtype ) noexcept;
+	virtual ~Entity( void ) noexcept { }
+
 	virtual void render( ObjectRenderer* renderer, const SDL_Rect& targetPosition ) const;
 	virtual void teleport( const Point& targetPosition ) noexcept;
 	virtual void move( const Direction& targetDirection ) noexcept;
 
-	const std::string& getName( void ) const noexcept { return subtype->getName(); }
-	Point& getPosition( void ) noexcept { return position; }
-
-	Entity( EntitySubtype* subtype, World& world, const Point& position ) noexcept;
-
-	virtual ~Entity() noexcept {};
+	const std::string& getName( void ) const noexcept;
+	const Point& getPosition( void ) const noexcept;
+protected:
+	World& world;
+	Point position;
+private:
+	EntitySubtype* subtype;
 };
 
 #endif

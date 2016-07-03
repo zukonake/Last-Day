@@ -1,12 +1,7 @@
 #include "mob.hpp"
 
-Mob::Mob( MobSubtype* subtype, World& world, const Point& position ) :
-	Entity( subtype, world, position )
-{
-
-}
-
-Mob::~Mob()
+Mob::Mob( World& world, const Point& position, MobSubtype* subtype ) noexcept :
+	Entity( world, position, subtype )
 {
 
 }

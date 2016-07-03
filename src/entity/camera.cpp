@@ -1,5 +1,13 @@
 #include "camera.hpp"
 #include <world/world.hpp>
+#include <geometry/SDL_RectWrapper.hpp>
+
+Camera::Camera( const Point& position, World& world, const Rectangle& screenSize ) noexcept :
+	Entity( world, position, nullptr ),
+	screenSize( screenSize )
+{
+	updateViewRange();
+}
 
 void Camera::render( ObjectRenderer* objectRenderer ) const
 {
@@ -29,6 +37,11 @@ void Camera::render( ObjectRenderer* objectRenderer ) const
 	return;
 }
 
+const uint8_t& Camera::getZoom( void ) const noexcept
+{
+	return zoom;
+}
+
 void Camera::setZoom( const uint8_t& value ) noexcept
 {
 	if( value <= 0 )
@@ -43,9 +56,7 @@ void Camera::setZoom( const uint8_t& value ) noexcept
 	return;
 }
 
-Camera::Camera( const Point& position, World& world, const Rectangle& screenSize ) noexcept :
-	Entity( nullptr, world, position ),
-	screenSize( screenSize )
+void Camera::updateViewRange( void ) noexcept
 {
-	updateViewRange();
+	viewRange = screenSize / zoom;
 }

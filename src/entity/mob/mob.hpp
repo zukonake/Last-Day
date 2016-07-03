@@ -8,10 +8,8 @@ class World;
 
 class Mob : public Entity
 {
-	void move();
 public:
-	Mob( MobSubtype* subtype, World& world, const Point& position );
-	~Mob();
+	Mob( World& world, const Point& position, MobSubtype* subtype ) noexcept;
 };
 
 #endif

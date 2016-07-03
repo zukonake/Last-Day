@@ -8,9 +8,7 @@
 class MobSubtype : public EntitySubtype
 {
 public:
-	MobSubtype( std::istream& in );
-	MobSubtype() { }
-	~MobSubtype();
+	MobSubtype( std::istream& in ) noexcept;
 };
 
 #endif

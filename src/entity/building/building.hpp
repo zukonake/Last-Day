@@ -10,8 +10,7 @@ class World;
 class Building : public Entity
 {
 public:
-	Building( BuildingSubtype* subtype, World& world, const Point& position );
-	~Building();
+	Building( World& world, const Point& position, BuildingSubtype* subtype ) noexcept;
 };
 
 #endif

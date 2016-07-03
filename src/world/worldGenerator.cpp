@@ -22,9 +22,9 @@ Chunk& WorldGenerator::generateChunk( World& world, Chunk& target, const Point& 
 				target.tiles[ iteratorX ][ iteratorY ] = Tile( &availableDataset.initializedTileSubtypes[ "grass" ], heightValue*heightMultiplier);
 				if( ( rand() % 10 ) == 1 )
 				{
-					entityContainer.addEntity( new Entity( &availableDataset.initializedEntitySubtypes[ "tree" ],
-						world,
-						Point( firstTile.x + ( int )iteratorX, firstTile.y + ( int )iteratorY ) ) );
+					entityContainer.addEntity( new Entity( world,
+						Point( firstTile.x + ( int )iteratorX, firstTile.y + ( int )iteratorY ),
+						&availableDataset.initializedEntitySubtypes[ "tree" ] ) );
 				}
 			}
 			else if( heightValue >= -0.2 )

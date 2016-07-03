@@ -1,4 +1,12 @@
- #include "entitySubtype.hpp"
+#include "entitySubtype.hpp"
+#include <exception>
+
+EntitySubtype::EntitySubtype( std::istream& in ) noexcept :
+RenderableObject( in )
+{
+	in.ignore( 255, ' ' );
+	in >> name;
+}
 
 void EntitySubtype::render( ObjectRenderer* renderer, const SDL_Rect& targetPosition ) const
 {
@@ -11,9 +19,7 @@ void EntitySubtype::render( ObjectRenderer* renderer, const SDL_Rect& targetPosi
 	return;
 }
 
-EntitySubtype::EntitySubtype( std::istream& in ) noexcept :
-	RenderableObject( in )
+const std::string& EntitySubtype::getName( void ) const noexcept
 {
-	in.ignore( 255, ' ' );
-	in >> name;
+	return name;
 }

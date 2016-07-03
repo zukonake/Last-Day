@@ -8,11 +8,10 @@
 
 class BuildingSubtype : public EntitySubtype
 {
-	Rectangle shape;
 public:
-	BuildingSubtype( std::istream& in );
-	BuildingSubtype() { }
-	~BuildingSubtype();
+	BuildingSubtype( std::istream& in ) noexcept;
+private:
+	Rectangle shape;
 };
 
 #endif

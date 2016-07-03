@@ -1,12 +1,7 @@
 #include "building.hpp"
 
-Building::Building( BuildingSubtype* subtype, World& world, const Point& position ) :
-	Entity( subtype, world, position )
-{
-
-}
-
-Building::~Building()
+Building::Building( World& world, const Point& position, BuildingSubtype* subtype ) noexcept :
+	Entity( world, position, subtype )
 {
 
 }
