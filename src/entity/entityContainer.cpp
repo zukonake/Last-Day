@@ -40,4 +40,5 @@ void EntityContainer::simulate( void ) noexcept
     	tempMap.emplace( iterator.first, iterator.second );
 	}
 	tempMap.swap( entities );
+	return;
 }

@@ -59,4 +59,5 @@ void Camera::setZoom( const uint8_t& value ) noexcept
 void Camera::updateViewRange( void ) noexcept
 {
 	viewRange = screenSize / zoom;
+	return;
 }

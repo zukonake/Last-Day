@@ -11,7 +11,11 @@ class EntityContainer
 {
 	typedef std::map< Point, Entity* > EntityMap2D;
 public:
+	EntityContainer( const EntityContainer& that ) = delete;
+
 	virtual ~EntityContainer( void ) noexcept;
+
+	EntityContainer& operator=( const EntityContainer& that ) = delete;
 
 	void addEntity( Entity* value ) noexcept;
 	void moveEntity( const Point& sourcePosition, const Point& targetPosition ) noexcept;

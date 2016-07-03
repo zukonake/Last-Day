@@ -15,12 +15,14 @@ void Entity::render( ObjectRenderer* renderer, const SDL_Rect& targetPosition ) 
 	{
 		subtype->render( renderer, targetPosition );
 	}
+	return;
 }
 
 void Entity::teleport( const Point& targetPosition ) noexcept
 {
 	world.moveEntity( position, targetPosition );
 	position = targetPosition;
+	return;
 }
 
 void Entity::move( const Direction& targetDirection ) noexcept
@@ -28,6 +30,7 @@ void Entity::move( const Direction& targetDirection ) noexcept
 	Point positionBefore = getPosition();
 	position.move( targetDirection );
 	world.moveEntity( positionBefore, position );
+	return;
 }
 
 const std::string& Entity::getName( void ) const noexcept
