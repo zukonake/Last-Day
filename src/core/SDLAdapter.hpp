@@ -12,7 +12,11 @@ class SDLAdapter
 {
 public:
 	SDLAdapter( const Rectangle& windowSize, const std::string& windowTitle );
+	SDLAdapter( const SDLAdapter& that ) = delete;
+
 	virtual ~SDLAdapter( void ) noexcept;
+
+	SDLAdapter& operator=( const SDLAdapter& that ) = delete;
 
 	SDL_Renderer* getRenderer( void ) const noexcept;
 	std::vector< SDL_Event > getEvents( void ) const noexcept;

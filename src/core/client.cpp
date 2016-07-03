@@ -60,11 +60,13 @@ void Client::disconnect( void ) noexcept
 void Client::start( void ) noexcept
 {
 	isRunning = true;
+	return;
 }
 
 void Client::end( void ) noexcept
 {
 	isRunning = false;
+	return;
 }
 
 const bool& Client::getIsRunning( void ) const noexcept
@@ -152,4 +154,5 @@ void Client::checkOperationViability( void ) const
 		throw std::runtime_error( "Client::checkOperationViability, client is not connected." );
 		return;
 	}
+	return;
 }

@@ -11,7 +11,11 @@ class Server
 {
 public:
 	Server( void ) noexcept;
+	Server( const Server& that ) = delete;
+
 	~Server( void ) noexcept;
+
+	Server& operator=( const Server& that ) = delete;
 
 	void connectClient( Client* target );
 	void disconnectClient( Client* target );
