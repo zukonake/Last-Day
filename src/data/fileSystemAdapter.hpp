@@ -1,20 +1,15 @@
 #ifndef FILESYSTEMADAPTER_HPP
 #define FILESYSTEMADAPTER_HPP
 
-#include <exception>
-#include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
-#include <boost/filesystem.hpp>
 
-class FileSystemAdapter : public std::fstream
+struct FileSystemAdapter : std::fstream
 {
-public:
-	std::vector< std::string > getFilesInDirectory( const std::string& directoryPath, const std::string& targetExtension = ".ldo" );
+	~FileSystemAdapter( void );
 
-	FileSystemAdapter();
-	~FileSystemAdapter();
+	std::vector< std::string > getFilesInDirectory( const std::string& directoryPath, const std::string& targetExtension = ".ldo" );
 };
 
 #endif
