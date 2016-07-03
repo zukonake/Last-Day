@@ -11,15 +11,13 @@
 #include <world/world.hpp>
 #include <entity/camera.hpp>
 
-class Client
+class Client : public SDLAdapter
 {
-	SDLAdapter sdl;
 	ObjectRenderer* objectRenderer;
 	Camera* camera;
 	bool connected;
 public:
 	void render( void ) const;
-	void update( void ) noexcept;
 	bool handleEvents( void );
 
 	void connect( World& world ) noexcept;

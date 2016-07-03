@@ -24,7 +24,7 @@ int main( int argc, char* argv[] )
 			client.update();
 			if( tick == 10 )
 			{
-				server->simulate();
+				//server->simulate();
 				tick = 0;
 			}
 		}

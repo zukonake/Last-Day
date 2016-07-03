@@ -6,14 +6,9 @@ void Client::render( void ) const
 	return;
 }
 
-void Client::update( void ) noexcept
-{
-	sdl.update();
-}
-
 bool Client::handleEvents( void )
 {
-	const uint8_t* keystate = sdl.getKeystate();
+	const uint8_t* keystate = SDLAdapter::getKeystate();
 	bool output = true;
 	if(keystate[SDL_SCANCODE_LEFT])
     {
@@ -31,7 +26,7 @@ bool Client::handleEvents( void )
     {
 		camera->move( Direction::SOUTH );
     }
-	for( auto iterator : sdl.getEvents() )
+	for( auto iterator : SDLAdapter::getEvents() )
 	{
 		if( iterator.type == SDL_QUIT )
 		{
@@ -63,7 +58,7 @@ void Client::connect( World& world ) noexcept
 {
 	if( !connected)
 	{
-		camera = new Camera( Point( 0, 0 ), world, sdl.getWindowSize() );
+		camera = new Camera( Point( 0, 0 ), world, SDLAdapter::getWindowSize() );
 		connected = true;
 	}
 	return;
@@ -80,8 +75,8 @@ void Client::disconnect( void ) noexcept
 }
 
 Client::Client( const Rectangle& windowSize, const std::string& windowTitle ) noexcept :
-	sdl( windowSize, windowTitle ),
-	objectRenderer( new ImageRenderer( sdl.getRenderer() ) ),
+	SDLAdapter( windowSize, windowTitle ),
+	objectRenderer( new ImageRenderer( SDLAdapter::getRenderer() ) ),
 	camera( nullptr ),
 	connected( false )
 {

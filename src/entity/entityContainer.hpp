@@ -17,6 +17,8 @@ public:
 	void moveEntity( const Point& sourcePosition, const Point& targetPosition );
 	Entity* getEntity( const Point& targetPosition );
 
+	void simulate( void );
+
 	virtual ~EntityContainer( void );
 };
 

@@ -1,4 +1,5 @@
 #include "world.hpp"
+#include <geometry/direction.hpp>
 
 void World::renderHeightEffects( const Point& targetTilePosition, ObjectRenderer* objectRenderer, SDL_Rect& targetRenderPosition )
 {
@@ -39,7 +40,7 @@ Tile& World::getTile( const Point& targetTilePosition )
 
 void World::simulate( void )
 {
-
+	EntityContainer::simulate();
 }
 
 World::World( Dataset& dataset ) :

@@ -9,8 +9,8 @@ void EntityContainer::addEntity( Entity* value )
 
 void EntityContainer::moveEntity( const Point& sourcePosition, const Point& targetPosition )
 {
-	entities[ targetPosition ] = entities[ sourcePosition ];
-	entities[ sourcePosition ] = nullptr;
+	//entities[ targetPosition ] = entities[ sourcePosition ];
+	//entities.erase( sourcePosition );
 	return;
 }
 
@@ -21,6 +21,17 @@ Entity* EntityContainer::getEntity( const Point& targetPosition )
 		return nullptr;
 	}
 	return entities[ targetPosition ];
+}
+
+void EntityContainer::simulate( void )
+{
+	EntityMap2D tempMap;
+	for (auto& iterator : entities )
+	{
+		iterator.second->move( static_cast< Direction::Type >( rand() % 5));
+    	tempMap.emplace( iterator.first, iterator.second );
+	}
+	tempMap.swap( entities );
 }
 
 EntityContainer::~EntityContainer( void )
