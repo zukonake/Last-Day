@@ -1,11 +1,19 @@
 #include "world.hpp"
 #include <geometry/direction.hpp>
+#include <world/worldGenerator.hpp>
 
-void World::renderHeightEffects( const Point& targetTilePosition, ObjectRenderer* objectRenderer, SDL_Rect& targetRenderPosition )
+World::World( Dataset& dataset ) noexcept :
+	EntityContainer(),
+	chunkContainer( *this, dataset, dynamic_cast< EntityContainer& >( *this ) )
+{
+
+}
+
+void World::renderHeightEffects( const Point& targetTilePosition, ObjectRenderer* objectRenderer, SDL_Rect& targetRenderPosition ) noexcept
 {
 	uint8_t maximumAlpha = 150;
 	double heightAlphaMultiplier = maximumAlpha / ( (WorldGenerator::getMaximumTileHeight() * 2 ));
-	Tile& targetTile = chunkContainer.getTile( targetTilePosition );
+	const Tile& targetTile = chunkContainer.getTile( targetTilePosition );
 	int8_t alpha = ( targetTile.getHeight() + WorldGenerator::getMaximumTileHeight() );
 	double alphaModifier = heightAlphaMultiplier * alpha;
 	if( alphaModifier > maximumAlpha )
@@ -31,26 +39,16 @@ void World::renderHeightEffects( const Point& targetTilePosition, ObjectRenderer
 			targetRenderPosition.x + targetRenderPosition.w,
 			targetRenderPosition.y);
 	}
+	return;
 }
 
-Tile& World::getTile( const Point& targetTilePosition )
-{
-	return chunkContainer.getTile( targetTilePosition );
-}
-
-void World::simulate( void )
+void World::simulate( void ) noexcept
 {
 	EntityContainer::simulate();
+	return;
 }
 
-World::World( Dataset& dataset ) :
-	EntityContainer(),
-	chunkContainer( *this, dataset, dynamic_cast< EntityContainer& >( *this ) )
+Tile& World::getTile( const Point& targetTilePosition ) noexcept
 {
-
-}
-
-World::~World()
-{
-
+	return chunkContainer.getTile( targetTilePosition );
 }

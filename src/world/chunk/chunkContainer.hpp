@@ -3,7 +3,6 @@
 
 #include <cstdint>
 #include <map>
-#include <memory>
 //
 #include <geometry/point.hpp>
 #include <data/dataset.hpp>
@@ -18,22 +17,19 @@ class ChunkContainer
 {
 	typedef std::map< Point, Chunk > ChunkMap2D;
 	const static uint8_t chunkLoadingRange = 1;
-
-	ChunkMap2D loadedChunks;
-	World& world;
-	WorldGenerator generator;
 public:
+	ChunkContainer( World& world, Dataset& availableDataset, EntityContainer& entityContainer ) noexcept;
+	virtual ~ChunkContainer( void ) noexcept { };
+
 	Tile& getTile( const Point& targetTilePosition );
 
 	Chunk& getChunk( const Point& targetChunkPosition );
 private:
 	Chunk& loadChunk( const Point& targetChunkPosition );
-public:
-	ChunkContainer( World& world, Dataset& availableDataset, EntityContainer& entityContainer ) : world( world ), generator( availableDataset, entityContainer ) { }
-	virtual ~ChunkContainer( void );
-private:
-	void unloadChunks( void );
-	void unloadChunk( const Point& targetChunkPosition );
+
+	ChunkMap2D loadedChunks;
+	World& world;
+	WorldGenerator generator;
 };
 
 #endif

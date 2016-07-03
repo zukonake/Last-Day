@@ -1,5 +1,12 @@
 #include "chunkContainer.hpp"
 
+ChunkContainer::ChunkContainer( World& world, Dataset& availableDataset, EntityContainer& entityContainer ) noexcept :
+	world( world ),
+	generator( availableDataset,entityContainer )
+{
+	
+}
+
 Tile& ChunkContainer::getTile( const Point& targetTilePosition )
 {
 	Point targetInternalPosition = targetTilePosition.internalPosition( Chunk::sizeInTiles );
@@ -20,19 +27,4 @@ Chunk& ChunkContainer::loadChunk( const Point& targetChunkPosition )
 {
 	loadedChunks[ targetChunkPosition ] = generator.generateChunk( world, loadedChunks[ targetChunkPosition ], targetChunkPosition );
 	return loadedChunks[ targetChunkPosition ];
-}
-
-ChunkContainer::~ChunkContainer( void )
-{
-	unloadChunks();
-}
-
-void ChunkContainer::unloadChunks( void )
-{
-
-}
-
-void ChunkContainer::unloadChunk( const Point& targetChunkPosition )
-{
-
 }

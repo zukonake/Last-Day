@@ -1,19 +1,34 @@
 #ifndef WORLDGENERATOR_HPP
 #define WORLDGENERATOR_HPP
 
-#include <memory>
-#include <cstdlib>
 #include <noise/noise.h>
 //
 #include <geometry/point.hpp>
 #include <world/chunk/chunk.hpp>
 #include <data/dataset.hpp>
 #include <entity/entityContainer.hpp>
+#include <world/tile/tile.hpp>
 
 class World;
 
 class WorldGenerator
 {
+	constexpr static double scale = 15;
+	constexpr static double heightMultiplier = 10;
+public:
+	WorldGenerator( Dataset& availableDataset, EntityContainer& entityContainer ) noexcept;
+
+	Chunk& generateChunk( World& world, Chunk& target, const Point& targetChunkPosition ) noexcept;
+	Tile& generateTile( World& world, Tile& target, const Point& targetTilePosition ) noexcept;
+
+	static int getMaximumTileHeight()
+	{
+		return ( int )( heightMultiplier );
+	}
+private:
+	Dataset& availableDataset;
+	EntityContainer& entityContainer;
+
 	noise::module::Billow seaTerrain;
 	noise::module::Billow flatTerrain;
 	noise::module::RidgedMulti mountainTerrain;
@@ -26,19 +41,6 @@ class WorldGenerator
 	noise::module::Select terrainSelector;
 	noise::module::Select landTerrainSelector;
 	noise::module::Turbulence finalTerrain;
-	constexpr static double scale = 15;
-	constexpr static double heightMultiplier = 10;
-	double flatness;
-	Dataset& availableDataset;
-	EntityContainer& entityContainer;
-public:
-	Chunk& generateChunk( World& world, Chunk& target, const Point& targetChunkPosition );
-	static int getMaximumTileHeight()
-	{
-		return ( int )( heightMultiplier );
-	}
-
-	WorldGenerator( Dataset& availableDataset, EntityContainer& entityContainer );
 };
 
 #endif

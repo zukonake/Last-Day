@@ -1,11 +1,13 @@
 #ifndef CHUNK_HPP
 #define CHUNK_HPP
 
+#include <cstdint>
+//
 #include <world/tile/tile.hpp>
 
 struct Chunk
 {
-	const static unsigned int sizeInTiles = 128;
+	const static uint8_t sizeInTiles = 128;
 	typedef Tile TileArray2D[ sizeInTiles ][ sizeInTiles ];
 
 	TileArray2D tiles;

@@ -1,46 +1,10 @@
 #include "worldGenerator.hpp"
-#include <cassert>
+#include <cstdint>
+#include <cstdlib>
+//
+#include <entity/entity.hpp>
 
-Chunk& WorldGenerator::generateChunk( World& world, Chunk& target, const Point& targetChunkPosition )
-{
-	for( unsigned int iteratorY = 0; iteratorY < Chunk::sizeInTiles; iteratorY++ )
-	{
-		for( unsigned int iteratorX = 0; iteratorX < Chunk::sizeInTiles; iteratorX++ )
-		{
-			Point firstTile = targetChunkPosition.tilePosition( Chunk::sizeInTiles );
-			double heightValue = finalTerrain.GetValue( (double)( firstTile.x + (int)iteratorX ) / scale, (double)( firstTile.y + (int)iteratorY ) / scale, 0 );
-			if( heightValue >= 0.55 )
-			{
-				target.tiles[ iteratorX ][ iteratorY ] = Tile( &availableDataset.initializedTileSubtypes[ "stone" ], heightValue*heightMultiplier);
-			}
-			else if( heightValue >= 0.5 )
-			{
-				target.tiles[ iteratorX ][ iteratorY ] = Tile( &availableDataset.initializedTileSubtypes[ "dirt" ], heightValue*heightMultiplier);
-			}
-			else if( heightValue >= -0.1 )
-			{
-				target.tiles[ iteratorX ][ iteratorY ] = Tile( &availableDataset.initializedTileSubtypes[ "grass" ], heightValue*heightMultiplier);
-				if( ( rand() % 10 ) == 1 )
-				{
-					entityContainer.addEntity( new Entity( world,
-						Point( firstTile.x + ( int )iteratorX, firstTile.y + ( int )iteratorY ),
-						&availableDataset.initializedEntitySubtypes[ "tree" ] ) );
-				}
-			}
-			else if( heightValue >= -0.2 )
-			{
-				target.tiles[ iteratorX ][ iteratorY ] = Tile( &availableDataset.initializedTileSubtypes[ "sand" ], heightValue*heightMultiplier);
-			}
-			else if( heightValue < -0.2 )
-			{
-				target.tiles[ iteratorX ][ iteratorY ] = Tile( &availableDataset.initializedTileSubtypes[ "water" ], heightValue*heightMultiplier);
-			}
-		}
-	}
-	return target;
-}
-
-WorldGenerator::WorldGenerator( Dataset& availableDataset, EntityContainer& entityContainer ) :
+WorldGenerator::WorldGenerator( Dataset& availableDataset, EntityContainer& entityContainer ) noexcept :
 	availableDataset( availableDataset ),
 	entityContainer( entityContainer )
 {
@@ -76,4 +40,49 @@ WorldGenerator::WorldGenerator( Dataset& availableDataset, EntityContainer& enti
 	finalTerrain.SetSourceModule( 0, landTerrainSelector );
 	finalTerrain.SetFrequency( 2 );
 	finalTerrain.SetPower( 0.0625 );
+}
+
+Chunk& WorldGenerator::generateChunk( World& world, Chunk& target, const Point& targetChunkPosition ) noexcept
+{
+	for( uint8_t iteratorY = 0; iteratorY < Chunk::sizeInTiles; iteratorY++ )
+	{
+		for( uint8_t iteratorX = 0; iteratorX < Chunk::sizeInTiles; iteratorX++ )
+		{
+			Point firstTile = targetChunkPosition.tilePosition( Chunk::sizeInTiles );
+			generateTile( world, target.tiles[ iteratorX ][ iteratorY ], Point( firstTile.x + ( int ) iteratorX, firstTile.y + ( int ) iteratorY ) );
+		}
+	}
+	return target;
+}
+
+Tile& WorldGenerator::generateTile( World& world, Tile& target, const Point& targetTilePosition ) noexcept
+{
+	double heightValue = finalTerrain.GetValue( (double)( targetTilePosition.x ) / scale, (double)( targetTilePosition.y ) / scale, 0 );
+	if( heightValue >= 0.55 )
+	{
+		target = Tile( &availableDataset.initializedTileSubtypes[ "stone" ], heightValue*heightMultiplier);
+	}
+	else if( heightValue >= 0.5 )
+	{
+		target = Tile( &availableDataset.initializedTileSubtypes[ "dirt" ], heightValue*heightMultiplier);
+	}
+	else if( heightValue >= -0.1 )
+	{
+		target = Tile( &availableDataset.initializedTileSubtypes[ "grass" ], heightValue*heightMultiplier);
+		if( ( rand() % 10 ) == 1 )
+		{
+			entityContainer.addEntity( new Entity( world,
+				targetTilePosition,
+				&availableDataset.initializedEntitySubtypes[ "tree" ] ) );
+		}
+	}
+	else if( heightValue >= -0.2 )
+	{
+		target = Tile( &availableDataset.initializedTileSubtypes[ "sand" ], heightValue*heightMultiplier);
+	}
+	else if( heightValue < -0.2 )
+	{
+		target = Tile( &availableDataset.initializedTileSubtypes[ "water" ], heightValue*heightMultiplier);
+	}
+	return target;
 }

@@ -12,15 +12,16 @@
 
 class World : public EntityContainer
 {
-	//Dataset& dataset;
-	ChunkContainer chunkContainer;
 public:
-	void renderHeightEffects( const Point& targetTilePosition, ObjectRenderer* objectRenderer, SDL_Rect& targetRenderPositionn );
-	Tile& getTile( const Point& targetTilePosition );
-	void simulate( void );
+	World( Dataset& dataset ) noexcept;
 
-	World( Dataset& dataset );
-	~World();
+	void renderHeightEffects( const Point& targetTilePosition, ObjectRenderer* objectRenderer, SDL_Rect& targetRenderPosition ) noexcept;
+
+	void simulate( void ) noexcept;
+
+	Tile& getTile( const Point& targetTilePosition ) noexcept;
+private:
+	ChunkContainer chunkContainer;
 };
 
 #endif
