@@ -1,28 +1,7 @@
 #include "SDLAdapter.hpp"
-
-void SDLAdapter::update( void ) noexcept
-{
-	SDL_RenderPresent( renderer );
-	SDL_RenderClear( renderer );
-}
-
-std::vector< SDL_Event > SDLAdapter::getEvents( void ) const noexcept
-{
-	SDL_Event event;
-	std::vector< SDL_Event > output;
-	while( SDL_PollEvent( &event ) )
-	{
-		output.push_back( event );
-	}
-	return output;
-}
-
-Rectangle SDLAdapter::getWindowSize( void ) const noexcept
-{
-	Rectangle output;
-	SDL_GetWindowSize( window, ( int* )&output.width, ( int* )&output.height );
-	return output;
-}
+#include <exception>
+#include <iostream>
+#include <SDL2/SDL_image.h>
 
 SDLAdapter::SDLAdapter( const Rectangle& windowSize, const std::string& windowTitle )
 {
@@ -39,10 +18,56 @@ SDLAdapter::SDLAdapter( const Rectangle& windowSize, const std::string& windowTi
 	}
 }
 
-void SDLAdapter::initialize( void )
+SDLAdapter::~SDLAdapter( void )
+{
+	deinitializeSDL();
+}
+
+void SDLAdapter::update( void ) noexcept
+{
+	SDL_RenderPresent( renderer );
+	SDL_RenderClear( renderer );
+	return;
+}
+
+SDL_Renderer* SDLAdapter::getRenderer( void ) const noexcept
+{
+	return renderer;
+}
+
+std::vector< SDL_Event > SDLAdapter::getEvents( void ) const noexcept
+{
+	SDL_Event event;
+	std::vector< SDL_Event > output;
+	while( SDL_PollEvent( &event ) )
+	{
+		output.push_back( event );
+	}
+	return output;
+}
+
+const uint8_t* SDLAdapter::getKeystate( void ) const noexcept
+{
+	return SDL_GetKeyboardState( nullptr );
+}
+
+Rectangle SDLAdapter::getWindowSize( void ) const noexcept
+{
+	Rectangle output;
+	SDL_GetWindowSize( window, ( int* )&output.width, ( int* )&output.height );
+	return output;
+}
+
+std::string SDLAdapter::getWindowTitle( void ) const noexcept
+{
+	return SDL_GetWindowTitle( window );
+}
+
+void SDLAdapter::initialize( void ) noexcept
 {
 	SDL_Init( SDL_INIT_EVENTS | SDL_INIT_VIDEO );
 	IMG_Init( IMG_INIT_PNG );
+	return;
 }
 
 void SDLAdapter::initializeWindow( const Rectangle& windowSize, const std::string& windowTitle )
@@ -58,6 +83,7 @@ void SDLAdapter::initializeWindow( const Rectangle& windowSize, const std::strin
 		throw std::runtime_error( "SDLAdapter::initializeWindow, couldn't initialize window." );
 		return;
 	}
+	return;
 }
 
 void SDLAdapter::initializeRenderer( void )
@@ -72,17 +98,14 @@ void SDLAdapter::initializeRenderer( void )
 	SDL_SetRenderDrawColor( renderer, 0, 0, 0, 63 );
 	SDL_RenderClear( renderer );
 	SDL_RenderSetLogicalSize( renderer, 1280, 768);
+	return;
 }
 
-SDLAdapter::~SDLAdapter( void )
-{
-	deinitializeSDL();
-}
-
-void SDLAdapter::deinitializeSDL( void )
+void SDLAdapter::deinitializeSDL( void ) noexcept
 {
 	IMG_Quit();
 	SDL_DestroyRenderer( renderer );
 	SDL_DestroyWindow( window );
 	SDL_Quit();
+	return;
 }

@@ -2,34 +2,33 @@
 #define SDLADAPTER_HPP
 
 #include <cstdint>
-#include <exception>
 #include <vector>
-#include <iostream>
 #include <string>
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 //
 #include <geometry/rectangle.hpp>
 
 class SDLAdapter
 {
-	SDL_Window* window;
-	SDL_Renderer* renderer;
+public:
+	SDLAdapter( const Rectangle& windowSize, const std::string& windowTitle );
+	virtual ~SDLAdapter( void ) noexcept;
 
-	void initialize( void );
+	SDL_Renderer* getRenderer( void ) const noexcept;
+	std::vector< SDL_Event > getEvents( void ) const noexcept;
+	const uint8_t* getKeystate( void ) const noexcept;
+	Rectangle getWindowSize( void ) const noexcept;
+	std::string getWindowTitle( void ) const noexcept;
+
+	void update( void ) noexcept;
+private:
+	void initialize( void ) noexcept;
 	void initializeWindow( const Rectangle& windowSize, const std::string& windowTitle );
 	void initializeRenderer( void );
-	void deinitializeSDL( void );
-public:
-	void update( void ) noexcept;
+	void deinitializeSDL( void ) noexcept;
 
-	SDL_Renderer* getRenderer( void ) const noexcept { return renderer; }
-	std::vector< SDL_Event > getEvents( void ) const noexcept;
-	const uint8_t* getKeystate( void ) const noexcept { return SDL_GetKeyboardState( nullptr ); }
-	Rectangle getWindowSize( void ) const noexcept;
-
-	SDLAdapter( const Rectangle& windowSize, const std::string& windowTitle );
-	virtual ~SDLAdapter( void );
+	SDL_Window* window;
+	SDL_Renderer* renderer;
 };
 
 #endif
