@@ -1,4 +1,9 @@
 #include "client.hpp"
+#include <cstdint>
+#include <exception>
+#include <iostream>
+//
+#include <render/objectRenderer/imageRenderer.hpp>
 
 Client::Client( const Rectangle& windowSize, const std::string& windowTitle ) noexcept :
 	SDLAdapter( windowSize, windowTitle ),

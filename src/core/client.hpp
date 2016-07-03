@@ -1,16 +1,12 @@
 #ifndef CLIENT_HPP
 #define CLIENT_HPP
 
-#include <cstdint>
-#include <iostream>
-#include <exception>
 #include <string>
 #include <SDL2/SDL.h>
 //
 #include <geometry/rectangle.hpp>
 #include <core/SDLAdapter.hpp>
 #include <render/objectRenderer/objectRenderer.hpp>
-#include <render/objectRenderer/imageRenderer.hpp>
 #include <world/world.hpp>
 #include <entity/camera.hpp>
 
