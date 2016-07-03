@@ -16,18 +16,18 @@ class Dataset
 {
 	const std::string datasetPath = "dataset/generic/";
 public:
+	Dataset();
+
 	std::map< const std::string, EntitySubtype > initializedEntitySubtypes;
 	std::map< const std::string, TileSubtype > initializedTileSubtypes;
 	std::map< const std::string, MobSubtype > initializedMobSubtypes;
 	std::map< const std::string, BuildingSubtype > initializedBuildingSubtypes;
 private:
-	FileSystemAdapter fileSystem;
-
-	void initializeObjects();
+	void initializeObjects( void ) noexcept;
 	template< typename ObjectType >
 	std::map< const std::string, ObjectType > initializeObjectVectorFromDirectory( const std::string& directoryPath );
-public:
-	Dataset();
+
+	FileSystemAdapter fileSystem;
 };
 
 template< typename ObjectType >
