@@ -12,12 +12,12 @@ struct Direction
 		EAST = 4
 	};
 
-	Type value;
+	Direction( Type value = NONE ) noexcept : value( value ) { }
 
 	virtual void rotateClockwise( void ) noexcept ;
 	virtual void rotateCounterClockwise( void ) noexcept;
 
-	Direction( Type value = NONE ) noexcept;
+	Type value;
 };
 
 #endif

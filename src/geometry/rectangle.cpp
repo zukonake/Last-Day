@@ -7,6 +7,14 @@ Rectangle::Rectangle( std::istream& in ) noexcept
 	in >> height;
 }
 
+Rectangle::operator SDL_Rect( void ) const noexcept
+{
+	SDL_Rect output;
+	output.w = width;
+	output.h = height;
+	return output;
+}
+
 Rectangle Rectangle::operator * ( const int& mul ) const noexcept
 {
 	return Rectangle( width * mul, height * mul );
@@ -30,12 +38,4 @@ Rectangle Rectangle::operator + ( const int& add ) const noexcept
 Rectangle Rectangle::operator - ( const int& sub ) const noexcept
 {
 	return Rectangle( width - sub, height - sub );
-}
-
-Rectangle::operator SDL_Rect( void ) const noexcept
-{
-	SDL_Rect output;
-	output.w = width;
-	output.h = height;
-	return output;
 }

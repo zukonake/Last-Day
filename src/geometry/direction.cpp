@@ -43,9 +43,3 @@ void Direction::rotateCounterClockwise( void ) noexcept
 	}
 	return;
 }
-
-Direction::Direction( Type value ) noexcept :
-	value( value )
-{
-
-}
