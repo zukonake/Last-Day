@@ -8,25 +8,25 @@
 int main( int argc, char* argv[] )
 {
 	int returnValue = 0;
-	bool isRunning = true;
+	int tick = 0;
 
 	Client client( Rectangle( 1280, 768 ), "Neue Spiele" );
+	client.start();
 	Server* server = new Server();
 	server->connectClient( &client );
-	int tick = 0;
 	try
 	{
-		while( isRunning )
+		while( client.getIsRunning() )
 		{
-			tick++;
-			client.render();
-			isRunning = client.handleEvents();
-			client.update();
 			if( tick == 10 )
 			{
-				//server->simulate();
 				tick = 0;
+				server->simulate();
 			}
+			client.render();
+			client.handleInput();
+			client.update();
+			tick++;
 		}
 	}
 	catch( std::exception& e )
@@ -34,6 +34,7 @@ int main( int argc, char* argv[] )
 		std::cerr << "ERROR: Standard exception: " << e.what() << ".\n";
 		returnValue = 1;
 	}
+	client.end();
 	delete server;
 	return returnValue;
 }

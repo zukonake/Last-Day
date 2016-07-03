@@ -1,30 +1,46 @@
 #ifndef CLIENT_HPP
 #define CLIENT_HPP
 
+#include <cstdint>
+#include <exception>
 #include <string>
 //
 #include <geometry/rectangle.hpp>
 #include <core/SDLAdapter.hpp>
 #include <render/objectRenderer/objectRenderer.hpp>
 #include <render/objectRenderer/imageRenderer.hpp>
-#include <world/tile/tileSubtype.hpp>
 #include <world/world.hpp>
 #include <entity/camera.hpp>
 
 class Client : public SDLAdapter
 {
-	ObjectRenderer* objectRenderer;
-	Camera* camera;
-	bool connected;
 public:
-	void render( void ) const;
-	bool handleEvents( void );
+	Client( const Rectangle& windowSize, const std::string& windowTitle ) noexcept;
+	Client( const Client& that ) noexcept;
+	Client& operator=( const Client& that ) noexcept;
+	~Client() noexcept;
+
+	void render( void ) const noexcept;
 
 	void connect( World& world ) noexcept;
 	void disconnect( void ) noexcept;
 
-	Client( const Rectangle& windowSize, const std::string& windowTitle ) noexcept;
-	~Client() noexcept;
+	void start( void ) noexcept;
+	void end( void ) noexcept;
+
+	const bool& getIsRunning( void ) const noexcept;
+
+	void handleInput( void ) noexcept;
+private:
+	void handleKeyState( void ) noexcept;
+	void handleEvents( void ) noexcept;
+
+	void checkOperationViability( void ) const;
+
+	ObjectRenderer* objectRenderer;
+	Camera* camera;
+	bool isConnected;
+	bool isRunning;
 };
 
 #endif
