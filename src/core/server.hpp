@@ -1,9 +1,7 @@
 #ifndef SERVER_HPP
 #define SERVER_HPP
 
-#include <exception>
 #include <vector>
-#include <algorithm>
 //
 #include <data/dataset.hpp>
 #include <world/world.hpp>
@@ -11,17 +9,18 @@
 
 class Server
 {
-	std::vector< Client* > connectedClients;
-	Dataset dataset;
-	World world;
 public:
+	Server( void ) noexcept;
+	~Server( void ) noexcept;
+
 	void connectClient( Client* target );
 	void disconnectClient( Client* target );
 
-	void simulate( void );
-
-	Server() noexcept;
-	~Server();
+	void simulate( void ) noexcept;
+private:
+	std::vector< Client* > connectedClients;
+	Dataset dataset;
+	World world;
 };
 
 #endif

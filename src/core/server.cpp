@@ -1,4 +1,21 @@
 #include "server.hpp"
+#include <exception>
+#include <algorithm>
+
+Server::Server( void ) noexcept :
+	dataset(),
+	world( dataset )
+{
+
+}
+
+Server::~Server( void ) noexcept
+{
+	for( auto iterator : connectedClients )
+	{
+		disconnectClient( iterator );
+	}
+}
 
 void Server::connectClient( Client* target )
 {
@@ -22,24 +39,11 @@ void Server::disconnectClient( Client* target )
 	auto iterator = std::find( connectedClients.begin(), connectedClients.end(), target);
 	connectedClients[ std::distance( connectedClients.begin(), iterator ) ]->disconnect();
 	connectedClients.erase( iterator );
+	return;
 }
 
-void Server::simulate( void )
+void Server::simulate( void ) noexcept
 {
 	world.simulate();
-}
-
-Server::Server() noexcept :
-	dataset(),
-	world( dataset )
-{
-
-}
-
-Server::~Server()
-{
-	for( auto iterator : connectedClients )
-	{
-		disconnectClient( iterator );
-	}
+	return;
 }
