@@ -1,6 +1,6 @@
 #include "dataset.hpp"
 
-Dataset::Dataset()
+Dataset::Dataset( void )
 {
 	initializeObjects();
 }

@@ -16,7 +16,7 @@ class Dataset
 {
 	const std::string datasetPath = "dataset/generic/";
 public:
-	Dataset();
+	Dataset( void );
 
 	std::map< const std::string, EntitySubtype > initializedEntitySubtypes;
 	std::map< const std::string, TileSubtype > initializedTileSubtypes;

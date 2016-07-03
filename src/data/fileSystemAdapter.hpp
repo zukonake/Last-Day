@@ -7,7 +7,11 @@
 
 struct FileSystemAdapter : std::fstream
 {
+	FileSystemAdapter( const FileSystemAdapter& that ) = delete;
+
 	~FileSystemAdapter( void );
+
+	FileSystemAdapter& operator=( const FileSystemAdapter& that ) = delete;
 
 	std::vector< std::string > getFilesInDirectory( const std::string& directoryPath, const std::string& targetExtension = ".ldo" );
 };
