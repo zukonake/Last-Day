@@ -10,7 +10,7 @@ class ObjectRenderer
 {
 public:
 	ObjectRenderer( SDL_Renderer* renderer ) noexcept : renderer( renderer ) { }
-	virtual ~ObjectRenderer() noexcept { }
+	virtual ~ObjectRenderer( void ) noexcept { }
 
 	virtual void renderEntitySubtype( const EntitySubtype* target, const SDL_Rect& targetPosition  ) = 0;
 	virtual void renderTileSubtype( const TileSubtype* target, const SDL_Rect& targetPosition  ) = 0;
