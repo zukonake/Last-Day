@@ -1,4 +1,14 @@
 #include "imageRenderer.hpp"
+#include <exception>
+#include <render/image/PNGImage.hpp>
+
+ImageRenderer::~ImageRenderer( void ) noexcept
+{
+	for( auto iterator = images.begin(); iterator != images.end(); iterator++ )
+	{
+		delete iterator->second;
+	}
+}
 
 void ImageRenderer::renderEntitySubtype( const EntitySubtype* target, const SDL_Rect& targetPosition )
 {
@@ -28,18 +38,4 @@ void ImageRenderer::renderTileSubtype( const TileSubtype* target, const SDL_Rect
 	}
 	SDL_RenderCopy( ObjectRenderer::getRenderer(), images[ target->getImagePath() ]->getTexture( ObjectRenderer::getRenderer() ), nullptr, &targetPosition );
 	return;
-}
-
-ImageRenderer::ImageRenderer( SDL_Renderer* renderer ) noexcept :
-	ObjectRenderer( renderer )
-{
-
-}
-
-ImageRenderer::~ImageRenderer( void ) noexcept
-{
-	for( auto iterator = images.begin(); iterator != images.end(); iterator++ )
-	{
-		delete iterator->second;
-	}
 }

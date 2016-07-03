@@ -1,4 +1,17 @@
 #include "image.hpp"
+#include <exception>
+
+Image::Image( std::istream& in ) noexcept :
+	texture( nullptr )
+{
+	in.ignore( 255, ' ' );
+	in >> path;
+}
+
+Image::~Image( void ) noexcept
+{
+	SDL_DestroyTexture( texture );
+}
 
 SDL_Texture* Image::getTexture( SDL_Renderer* renderer )
 {
@@ -20,16 +33,4 @@ SDL_Texture* Image::getTexture( SDL_Renderer* renderer )
 		}
 	}
 	return texture;
-}
-
-Image::Image( std::istream& in ) noexcept :
-	texture( nullptr )
-{
-	in.ignore( 255, ' ' );
-	in >> path;
-}
-
-Image::~Image( void ) noexcept
-{
-	SDL_DestroyTexture( texture );
 }

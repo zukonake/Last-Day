@@ -14,10 +14,10 @@ class Client : public SDLAdapter
 {
 public:
 	Client( const Rectangle& windowSize, const std::string& windowTitle ) noexcept;
-	Client( const Client& that ) noexcept;
+	Client( const Client& that ) = delete;
 	~Client() noexcept;
 
-	Client& operator=( const Client& that ) noexcept;
+	Client& operator=( const Client& that ) = delete;
 
 	void render( void ) const noexcept;
 

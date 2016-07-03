@@ -1,4 +1,6 @@
 #include "PNGImage.hpp"
+#include <exception>
+#include <SDL2/SDL_image.h>
 
 void PNGImage::load( SDL_Renderer* renderer )
 {

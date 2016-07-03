@@ -1,4 +1,5 @@
 #include "BMPImage.hpp"
+#include <exception>
 
 void BMPImage::load( SDL_Renderer* renderer )
 {

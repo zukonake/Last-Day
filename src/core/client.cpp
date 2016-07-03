@@ -15,31 +15,11 @@ Client::Client( const Rectangle& windowSize, const std::string& windowTitle ) no
 
 }
 
-Client::Client( const Client& that ) noexcept :
-	SDLAdapter( static_cast< SDLAdapter >( that ) ),
-	objectRenderer( new ImageRenderer( that.getRenderer() ) ),
-	camera( nullptr ),
-	isConnected( false ),
-	isRunning( false )
-{
-
-}
-
 Client::~Client() noexcept
 {
 	end();
 	disconnect();
 	delete objectRenderer;
-}
-
-Client& Client::operator=( const Client& that ) noexcept
-{
-	dynamic_cast< SDLAdapter& >( *this ) = static_cast< SDLAdapter >( that );
-	objectRenderer = new ImageRenderer( that.getRenderer() );
-	camera = nullptr;
-	isConnected = false;
-	isRunning = false;
-	return *this;
 }
 
 void Client::render( void ) const noexcept
