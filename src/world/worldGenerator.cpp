@@ -58,7 +58,7 @@ Chunk& WorldGenerator::generateChunk( World& world, Chunk& target, const Point& 
 Tile& WorldGenerator::generateTile( World& world, Tile& target, const Point& targetTilePosition ) noexcept
 {
 	double heightValue = finalTerrain.GetValue( (double)( targetTilePosition.x ) / scale, (double)( targetTilePosition.y ) / scale, 0 );
-	if( heightValue >= 0.55 )
+	if( heightValue >= 0.6 )
 	{
 		target = Tile( &availableDataset.initializedTileSubtypes[ "stone" ], heightValue*heightMultiplier);
 	}
@@ -66,7 +66,7 @@ Tile& WorldGenerator::generateTile( World& world, Tile& target, const Point& tar
 	{
 		target = Tile( &availableDataset.initializedTileSubtypes[ "dirt" ], heightValue*heightMultiplier);
 	}
-	else if( heightValue >= -0.1 )
+	else if( heightValue >= -0.05 )
 	{
 		target = Tile( &availableDataset.initializedTileSubtypes[ "grass" ], heightValue*heightMultiplier);
 		if( ( rand() % 10 ) == 1 )
