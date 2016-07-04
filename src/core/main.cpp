@@ -9,7 +9,7 @@ int main( int argc, char* argv[] )
 {
 	int returnValue = 0;
 	int tick = 0;
-	
+
 	Server* server = new Server();
 	Client client( Rectangle( 1280, 768 ), "Neue Spiele" );
 

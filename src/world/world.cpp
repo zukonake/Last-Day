@@ -2,7 +2,7 @@
 #include <geometry/direction.hpp>
 #include <world/worldGenerator.hpp>
 
-World::World( Dataset& dataset ) noexcept :
+World::World( const Dataset& dataset ) noexcept :
 	EntityContainer(),
 	dataset( dataset ),
 	generator( *this ),

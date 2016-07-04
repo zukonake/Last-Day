@@ -14,7 +14,7 @@
 class World : public EntityContainer
 {
 public:
-	World( Dataset& dataset ) noexcept;
+	World( const Dataset& dataset ) noexcept;
 
 	void renderHeightEffects( const Point& targetTilePosition, ObjectRenderer* objectRenderer, SDL_Rect& targetRenderPosition ) noexcept;
 
@@ -23,7 +23,7 @@ public:
 	const Dataset& getDataset( void ) const noexcept;
 	Tile& getTile( const Point& targetTilePosition ) noexcept;
 private:
-	Dataset& dataset;
+	const Dataset& dataset;
 	WorldGenerator generator;
 	ChunkContainer chunkContainer;
 };
