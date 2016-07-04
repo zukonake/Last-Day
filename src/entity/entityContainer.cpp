@@ -15,6 +15,13 @@ void EntityContainer::addEntity( Entity* value ) noexcept
 	return;
 }
 
+void EntityContainer::removeEntity( const Point& targetPosition ) noexcept
+{
+	delete entities[ targetPosition ];
+	entities.erase( targetPosition );
+	return;
+}
+
 void EntityContainer::moveEntity( const Point& sourcePosition, const Point& targetPosition ) noexcept
 {
 	//entities[ targetPosition ] = entities[ sourcePosition ];

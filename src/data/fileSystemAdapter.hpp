@@ -8,6 +8,7 @@
 struct FileSystemAdapter : std::fstream
 {
 	FileSystemAdapter( const FileSystemAdapter& that ) = delete;
+	FileSystemAdapter( void ) noexcept { }
 
 	~FileSystemAdapter( void );
 
