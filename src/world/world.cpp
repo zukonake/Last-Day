@@ -1,13 +1,14 @@
 #include "world.hpp"
 #include <geometry/direction.hpp>
 #include <world/worldGenerator.hpp>
-#include <entity/entity.hpp> //TODO
 
 World::World( Dataset& dataset ) noexcept :
 	EntityContainer(),
-	chunkContainer( *this, dataset, dynamic_cast< EntityContainer& >( *this ) )
+	dataset( dataset ),
+	generator( *this ),
+	chunkContainer( generator )
 {
-	EntityContainer::addEntity( new Entity( *this, Point( -5, 0 ), &dataset.initializedMobSubtypes[ "human" ] ));
+
 }
 
 void World::renderHeightEffects( const Point& targetTilePosition, ObjectRenderer* objectRenderer, SDL_Rect& targetRenderPosition ) noexcept
@@ -47,6 +48,11 @@ void World::simulate( void ) noexcept
 {
 	EntityContainer::simulate();
 	return;
+}
+
+const Dataset& World::getDataset( void ) const noexcept
+{
+	return dataset;
 }
 
 Tile& World::getTile( const Point& targetTilePosition ) noexcept

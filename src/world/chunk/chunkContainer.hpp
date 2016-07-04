@@ -5,20 +5,16 @@
 #include <map>
 //
 #include <geometry/point.hpp>
-#include <data/dataset.hpp>
-#include <entity/entityContainer.hpp>
 #include <world/tile/tile.hpp>
 #include <world/chunk/chunk.hpp>
 #include <world/worldGenerator.hpp>
-
-class World;
 
 class ChunkContainer
 {
 	typedef std::map< Point, Chunk > ChunkMap2D;
 	const static uint8_t chunkLoadingRange = 1;
 public:
-	ChunkContainer( World& world, Dataset& availableDataset, EntityContainer& entityContainer ) noexcept;
+	ChunkContainer( WorldGenerator& generator ) noexcept;
 	virtual ~ChunkContainer( void ) noexcept { };
 
 	Tile& getTile( const Point& targetTilePosition );
@@ -28,8 +24,7 @@ private:
 	Chunk& loadChunk( const Point& targetChunkPosition );
 
 	ChunkMap2D loadedChunks;
-	World& world;
-	WorldGenerator generator;
+	WorldGenerator& generator;
 };
 
 #endif

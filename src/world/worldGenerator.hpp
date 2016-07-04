@@ -13,21 +13,20 @@ class World;
 
 class WorldGenerator
 {
-	constexpr static double scale = 15;
+	constexpr static double scale = 20;
 	constexpr static double heightMultiplier = 10;
 public:
-	WorldGenerator( Dataset& availableDataset, EntityContainer& entityContainer ) noexcept;
+	WorldGenerator( World& world ) noexcept;
 
-	Chunk& generateChunk( World& world, Chunk& target, const Point& targetChunkPosition ) noexcept;
-	Tile& generateTile( World& world, Tile& target, const Point& targetTilePosition ) noexcept;
+	Chunk& generateChunk( Chunk& target, const Point& targetChunkPosition ) noexcept;
+	Tile& generateTile( Tile& target, const Point& targetTilePosition ) noexcept;
 
 	static int getMaximumTileHeight()
 	{
 		return ( int )( heightMultiplier );
 	}
 private:
-	Dataset& availableDataset;
-	EntityContainer& entityContainer;
+	World& world;
 
 	noise::module::Billow seaTerrain;
 	noise::module::Billow flatTerrain;

@@ -1,7 +1,7 @@
 #include "entity.hpp"
 #include <world/world.hpp>
 
-Entity::Entity( World& world, const Point& position, EntitySubtype* subtype ) noexcept :
+Entity::Entity( World& world, const Point& position, const EntitySubtype* subtype ) noexcept :
 	world( world ),
 	position( position ),
 	subtype( subtype )

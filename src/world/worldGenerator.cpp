@@ -3,10 +3,10 @@
 #include <cstdlib>
 //
 #include <entity/entity.hpp>
+#include <world/world.hpp>
 
-WorldGenerator::WorldGenerator( Dataset& availableDataset, EntityContainer& entityContainer ) noexcept :
-	availableDataset( availableDataset ),
-	entityContainer( entityContainer )
+WorldGenerator::WorldGenerator( World& world ) noexcept :
+	world( world )
 {
 	flatTerrain.SetFrequency( 0.25 );
 	mountainTerrain.SetFrequency( 0.5 );
@@ -42,7 +42,7 @@ WorldGenerator::WorldGenerator( Dataset& availableDataset, EntityContainer& enti
 	finalTerrain.SetPower( 0.0625 );
 }
 
-Chunk& WorldGenerator::generateChunk( World& world, Chunk& target, const Point& targetChunkPosition ) noexcept
+Chunk& WorldGenerator::generateChunk( Chunk& target, const Point& targetChunkPosition ) noexcept
 {
 	for( uint8_t iteratorY = 0; iteratorY < Chunk::sizeInTiles; iteratorY++ )
 	{
@@ -50,40 +50,45 @@ Chunk& WorldGenerator::generateChunk( World& world, Chunk& target, const Point& 
 		{
 			Point firstTile = targetChunkPosition.tilePosition( Chunk::sizeInTiles );
 			Point targetTilePosition = Point( firstTile.x + ( int ) iteratorX, firstTile.y + ( int ) iteratorY );
-			generateTile( world, target.tiles[ iteratorX ][ iteratorY ], targetTilePosition );
+			generateTile( target.tiles[ iteratorX ][ iteratorY ], targetTilePosition );
 		}
 	}
 	return target;
 }
 
-Tile& WorldGenerator::generateTile( World& world, Tile& target, const Point& targetTilePosition ) noexcept
+Tile& WorldGenerator::generateTile( Tile& target, const Point& targetTilePosition ) noexcept
 {
+	const Dataset& dataset = world.getDataset();
+	if( targetTilePosition.x == -5 and targetTilePosition.y == -5 )
+	{
+		world.addEntity( new Entity( world, targetTilePosition, &dataset.getObject< MobSubtype >( "human" ) ) );
+	}
 	double heightValue = finalTerrain.GetValue( (double)( targetTilePosition.x ) / scale, (double)( targetTilePosition.y ) / scale, 0 );
 	if( heightValue >= 0.6 )
 	{
-		target = Tile( &availableDataset.initializedTileSubtypes[ "stone" ], heightValue*heightMultiplier);
+		target = Tile( &dataset.getObject< TileSubtype >( "stone" ), heightValue*heightMultiplier);
 	}
 	else if( heightValue >= 0.5 )
 	{
-		target = Tile( &availableDataset.initializedTileSubtypes[ "dirt" ], heightValue*heightMultiplier);
+		target = Tile( &dataset.getObject< TileSubtype >( "dirt" ), heightValue*heightMultiplier);
 	}
 	else if( heightValue >= -0.05 )
 	{
-		target = Tile( &availableDataset.initializedTileSubtypes[ "grass" ], heightValue*heightMultiplier);
-		if( ( rand() % 10 ) == 1 )
+		target = Tile( &dataset.getObject< TileSubtype >( "grass" ), heightValue*heightMultiplier);
+		if( heightValue >= 0 and heightValue <= 0.45  and ( rand() % 10 ) == 1 )
 		{
-			entityContainer.addEntity( new Entity( world,
+			world.addEntity( new Entity( world,
 				targetTilePosition,
-				&availableDataset.initializedEntitySubtypes[ "tree" ] ) );
+				&dataset.getObject< EntitySubtype >( "tree" ) ) );
 		}
 	}
 	else if( heightValue >= -0.2 )
 	{
-		target = Tile( &availableDataset.initializedTileSubtypes[ "sand" ], heightValue*heightMultiplier);
+		target = Tile( &dataset.getObject< TileSubtype >(  "sand" ), heightValue*heightMultiplier);
 	}
 	else if( heightValue < -0.2 )
 	{
-		target = Tile( &availableDataset.initializedTileSubtypes[ "water" ], heightValue*heightMultiplier);
+		target = Tile( &dataset.getObject< TileSubtype >( "water" ), heightValue*heightMultiplier);
 	}
 	return target;
 }

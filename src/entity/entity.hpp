@@ -13,7 +13,7 @@ class World;
 class Entity
 {
 public:
-	Entity( World& world, const Point& position, EntitySubtype* subtype ) noexcept;
+	Entity( World& world, const Point& position, const EntitySubtype* subtype ) noexcept;
 	virtual ~Entity( void ) noexcept { }
 
 	virtual void render( ObjectRenderer* renderer, const SDL_Rect& targetPosition ) const;
@@ -26,7 +26,7 @@ protected:
 	World& world;
 	Point position;
 private:
-	EntitySubtype* subtype;
+	const EntitySubtype* subtype;
 };
 
 #endif

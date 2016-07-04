@@ -9,6 +9,7 @@
 #include <render/objectRenderer/objectRenderer.hpp>
 #include <entity/entityContainer.hpp>
 #include <world/chunk/chunkContainer.hpp>
+#include <world/worldGenerator.hpp>
 
 class World : public EntityContainer
 {
@@ -19,8 +20,11 @@ public:
 
 	void simulate( void ) noexcept;
 
+	const Dataset& getDataset( void ) const noexcept;
 	Tile& getTile( const Point& targetTilePosition ) noexcept;
 private:
+	Dataset& dataset;
+	WorldGenerator generator;
 	ChunkContainer chunkContainer;
 };
 

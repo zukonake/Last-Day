@@ -9,7 +9,7 @@
 class Tile
 {
 public:
-	Tile( TileSubtype* subtype, int8_t height ) noexcept : subtype( subtype ), height( height ) { }
+	Tile( const TileSubtype* subtype, int8_t height ) noexcept : subtype( subtype ), height( height ) { }
 	Tile( void ) noexcept : subtype( nullptr ) { }
 
 	virtual void render( ObjectRenderer* renderer, const SDL_Rect& targetPosition ) const;
@@ -17,7 +17,7 @@ public:
 	const std::string& getSubtypeName( void ) const noexcept;
 	const int8_t& getHeight( void ) const noexcept;
 private:
-	TileSubtype* subtype;
+	const TileSubtype* subtype;
 	int8_t height;
 };
 
