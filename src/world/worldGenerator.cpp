@@ -49,7 +49,8 @@ Chunk& WorldGenerator::generateChunk( World& world, Chunk& target, const Point& 
 		for( uint8_t iteratorX = 0; iteratorX < Chunk::sizeInTiles; iteratorX++ )
 		{
 			Point firstTile = targetChunkPosition.tilePosition( Chunk::sizeInTiles );
-			generateTile( world, target.tiles[ iteratorX ][ iteratorY ], Point( firstTile.x + ( int ) iteratorX, firstTile.y + ( int ) iteratorY ) );
+			Point targetTilePosition = Point( firstTile.x + ( int ) iteratorX, firstTile.y + ( int ) iteratorY );
+			generateTile( world, target.tiles[ iteratorX ][ iteratorY ], targetTilePosition );
 		}
 	}
 	return target;
