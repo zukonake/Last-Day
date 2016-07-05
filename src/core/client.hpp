@@ -29,7 +29,7 @@ public:
 	void start( void ) noexcept;
 	void end( void ) noexcept;
 
-	const bool isRunning( void ) const noexcept;
+	bool isRunning( void ) const noexcept;
 
 	void handleTime( void ) noexcept;
 	void handleInput( void ) noexcept;

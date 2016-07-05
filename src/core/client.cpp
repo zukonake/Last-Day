@@ -68,7 +68,7 @@ void Client::end( void ) noexcept
 	return;
 }
 
-const bool Client::isRunning( void ) const noexcept
+bool Client::isRunning( void ) const noexcept
 {
 	return SFMLAdapter::isRunning();
 }

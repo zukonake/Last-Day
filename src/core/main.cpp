@@ -5,7 +5,7 @@
 #include <core/server.hpp>
 #include <core/client.hpp>
 
-int main( int argc, char* argv[] )
+int main()
 {
 	int returnValue = 0;
 	int tick = 0;

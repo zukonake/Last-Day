@@ -14,8 +14,8 @@ STD := -std=c++14
 LDLIBS :=  -lboost_filesystem -lboost_system -lsfml-window -lsfml-graphics -lsfml-system -lnoise
 INCFLAGS := -I $(INCLUDE_PATH)
 LIBFLAGS := -L $(LIBRARY_PATH)
-CXXFLAGS := $(STD) -Wall $(DEBUG) $(INCFLAGS)
-LDFLAGS := $(STD) -Wall $(LDLIBS) $(DEBUG) $(INCFLAGS) $(LIBFLAGS)
+CXXFLAGS := $(STD) -Wall -Wextra $(DEBUG) $(INCFLAGS)
+LDFLAGS := $(STD) -Wall -Wextra $(LDLIBS) $(DEBUG) $(INCFLAGS) $(LIBFLAGS)
 COMPILER := clang++
 
 .PHONY : clean run
