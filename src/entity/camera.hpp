@@ -2,6 +2,7 @@
 #define CAMERA_HPP
 
 #include <cstdint>
+#include <SFML/Graphics.hpp>
 //
 #include <geometry/rectangle.hpp>
 #include <entity/entity.hpp>
@@ -16,7 +17,8 @@ class Camera : public Entity
 public:
 	Camera( const Point& position, World& world, const Rectangle& screenSize ) noexcept;
 
-	void render( ObjectRenderer* renderer ) const;
+	void render( sf::RenderWindow& window ) const noexcept;
+	void renderHeightEffects( const Point& targetTilePosition, sf::RenderWindow& window, const Point& targetRenderPosition ) const noexcept;
 	void move( const Direction& targetDirection ) override;
 
 	const uint8_t& getZoom( void ) const noexcept;

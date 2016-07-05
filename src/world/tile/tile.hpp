@@ -4,10 +4,10 @@
 #include <cstdint>
 #include <memory>
 #include <string>
-#include <SDL2/SDL.h>
-//
+#include <SFML/Graphics.hpp>
+
+struct Point;
 class TileSubtype;
-class ObjectRenderer;
 class Entity;
 
 class Tile
@@ -16,7 +16,7 @@ public:
 	Tile( const TileSubtype* subtype, int8_t height ) noexcept : subtype( subtype ), height( height ), entity( nullptr ) { }
 	Tile( void ) noexcept : subtype( nullptr ), entity( nullptr ) { }
 
-	void render( ObjectRenderer* renderer, const SDL_Rect& targetPosition ) const;
+	void render( sf::RenderWindow& window, const Point& targetPosition ) const;
 
 	const std::string& getSubtypeName( void ) const noexcept;
 	const int8_t& getHeight( void ) const noexcept;

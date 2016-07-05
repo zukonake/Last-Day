@@ -1,16 +1,18 @@
 #ifndef CLIENT_HPP
 #define CLIENT_HPP
 
+#include <memory>
 #include <string>
+#include <SFML/System.hpp>
 //
-#include <core/SDLAdapter.hpp>
+#include <core/SFMLAdapter.hpp>
 
 struct Rectangle;
 class ObjectRenderer;
 class World;
 class Camera;
 
-class Client : public SDLAdapter
+class Client : public SFMLAdapter
 {
 public:
 	Client( const Rectangle& windowSize, const std::string& windowTitle ) noexcept;
@@ -19,7 +21,7 @@ public:
 
 	Client& operator=( const Client& that ) = delete;
 
-	void render( void ) const noexcept;
+	void render( void ) noexcept;
 
 	void connect( World& world ) noexcept;
 	void disconnect( void ) noexcept;
@@ -27,8 +29,9 @@ public:
 	void start( void ) noexcept;
 	void end( void ) noexcept;
 
-	const bool& getIsRunning( void ) const noexcept;
+	const bool isRunning( void ) const noexcept;
 
+	void handleTime( void ) noexcept;
 	void handleInput( void ) noexcept;
 private:
 	void handleKeyState( void ) noexcept;
@@ -36,10 +39,9 @@ private:
 
 	void checkOperationViability( void ) const;
 
-	ObjectRenderer* objectRenderer;
-	Camera* camera;
+	std::unique_ptr< Camera > camera;
+	sf::Clock clock;
 	bool isConnected;
-	bool isRunning;
 };
 
 #endif

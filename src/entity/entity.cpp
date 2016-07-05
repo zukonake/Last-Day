@@ -10,11 +10,11 @@ Entity::Entity( World& world, const Point& position, const EntitySubtype* subtyp
 
 }
 
-void Entity::render( ObjectRenderer* renderer, const SDL_Rect& targetPosition ) const
+void Entity::render( sf::RenderWindow& window, const Point& targetPosition ) const
 {
 	if( subtype != nullptr )
 	{
-		subtype->render( renderer, targetPosition );
+		subtype->render( window, targetPosition );
 	}
 	return;
 }
@@ -30,8 +30,6 @@ void Entity::move( const Direction& targetDirection )
 {
 	return;
 }
-
-void Entity::DEBUG( void ) { world.moveEntity( position, Point( position.x - 1, position.y ) ); position.x = position.x - 1; } //TODO
 
 const std::string& Entity::getName( void ) const noexcept
 {

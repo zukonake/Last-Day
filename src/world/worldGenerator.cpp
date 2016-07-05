@@ -46,7 +46,7 @@ WorldGenerator::WorldGenerator( World& world ) noexcept :
 	finalTerrain.SetPower( 0.0625 );
 }
 
-Chunk& WorldGenerator::generateChunk( const Point& targetChunkPosition, Chunk& target ) noexcept
+Chunk& WorldGenerator::generateChunk( const Point& targetChunkPosition, Chunk& target ) const noexcept
 {
 	for( uint8_t iteratorY = 0; iteratorY < Chunk::sizeInTiles; iteratorY++ )
 	{
@@ -60,7 +60,7 @@ Chunk& WorldGenerator::generateChunk( const Point& targetChunkPosition, Chunk& t
 	return target;
 }
 
-Tile& WorldGenerator::generateTile( const Point& targetTilePosition, Tile& target ) noexcept
+Tile& WorldGenerator::generateTile( const Point& targetTilePosition, Tile& target ) const noexcept
 {
 	const Dataset& dataset = world.getDataset();
 	double heightValue = finalTerrain.GetValue( (double)( targetTilePosition.x ) / scale, (double)( targetTilePosition.y ) / scale, 0 );

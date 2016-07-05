@@ -15,8 +15,8 @@ class WorldGenerator
 public:
 	WorldGenerator( World& world ) noexcept;
 
-	Chunk& generateChunk( const Point& targetChunkPosition, Chunk& target ) noexcept;
-	Tile& generateTile( const Point& targetTilePosition, Tile& target ) noexcept;
+	Chunk& generateChunk( const Point& targetChunkPosition, Chunk& target ) const noexcept;
+	Tile& generateTile( const Point& targetTilePosition, Tile& target ) const noexcept;
 
 	static int getMaximumTileHeight()
 	{

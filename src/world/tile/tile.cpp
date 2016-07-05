@@ -4,17 +4,12 @@
 #include <world/tile/tileSubtype.hpp>
 #include <entity/entity.hpp>
 
-void Tile::render( ObjectRenderer* renderer, const SDL_Rect& targetPosition ) const
+void Tile::render( sf::RenderWindow& window, const Point& targetPosition ) const
 {
-	if( renderer == nullptr )
-	{
-		throw std::invalid_argument( "Tile::render, null pointer given in argument 1." );
-		return;
-	}
-	subtype->render( renderer, targetPosition );
+	subtype->render( window, targetPosition );
 	if( entity != nullptr )
 	{
-		entity->render( renderer, targetPosition );
+		entity->render( window, targetPosition );
 	}
 	return;
 }

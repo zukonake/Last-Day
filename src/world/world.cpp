@@ -1,7 +1,8 @@
 #include "world.hpp"
+#include <SFML/Graphics.hpp>
+//
 #include <geometry/direction.hpp>
 #include <geometry/point.hpp>
-#include <render/objectRenderer/objectRenderer.hpp>
 #include <data/dataset.hpp>
 #include <world/worldGenerator.hpp>
 
@@ -14,39 +15,6 @@ World::World( const Dataset& dataset ) noexcept :
 
 }
 
-void World::renderHeightEffects( const Point& targetTilePosition, ObjectRenderer* objectRenderer, SDL_Rect& targetRenderPosition ) noexcept
-{
-	uint8_t maximumAlpha = 150;
-	double heightAlphaMultiplier = maximumAlpha / ( (WorldGenerator::getMaximumTileHeight() * 2 ));
-	const Tile& targetTile = ChunkContainer::getTile( targetTilePosition );
-	int8_t alpha = ( targetTile.getHeight() + WorldGenerator::getMaximumTileHeight() );
-	double alphaModifier = heightAlphaMultiplier * alpha;
-	if( alphaModifier > maximumAlpha )
-	{
-		alphaModifier = maximumAlpha;
-	}
-	SDL_SetRenderDrawColor( objectRenderer->getRenderer(), 0, 0, 0, maximumAlpha - alphaModifier ) ;
-	SDL_RenderFillRect( objectRenderer->getRenderer(), &targetRenderPosition );
-	SDL_SetRenderDrawColor( objectRenderer->getRenderer(), 0, 0, 0, 63 );
-	if( ChunkContainer::getTile( Point( targetTilePosition.x - 1, targetTilePosition.y ) ).getHeight() != targetTile.getHeight() )
-	{
-		SDL_RenderDrawLine( objectRenderer->getRenderer(),
-			targetRenderPosition.x,
-			targetRenderPosition.y,
-			targetRenderPosition.x,
-			targetRenderPosition.y + targetRenderPosition.h);
-	}
-	if( ChunkContainer::getTile( Point( targetTilePosition.x, targetTilePosition.y - 1) ).getHeight() != targetTile.getHeight() )
-	{
-		SDL_RenderDrawLine( objectRenderer->getRenderer(),
-			targetRenderPosition.x,
-			targetRenderPosition.y,
-			targetRenderPosition.x + targetRenderPosition.w,
-			targetRenderPosition.y);
-	}
-	return;
-}
-
 void World::simulate( void ) noexcept
 {
 	EntityContainer::simulate();
@@ -56,4 +24,9 @@ void World::simulate( void ) noexcept
 const Dataset& World::getDataset( void ) const noexcept
 {
 	return dataset;
+}
+
+const WorldGenerator& World::getGenerator( void ) const noexcept
+{
+	return generator;
 }

@@ -8,19 +8,9 @@ Point::Point( std::istream& in ) noexcept
 	in >> y;
 }
 
-Point::operator SDL_Rect( void ) const noexcept
+Point::operator sf::Vector2< float >( void ) const noexcept
 {
-	SDL_Rect output;
-	output.x = x;
-	output.y = y;
-	return output;
-}
-Point::operator SDL_Point( void ) const noexcept
-{
-	SDL_Point output;
-	output.x = x;
-	output.y = y;
-	return output;
+	return sf::Vector2< float >( (float) x, (float) y );
 }
 
 Point Point::operator * ( const int& mul ) const noexcept

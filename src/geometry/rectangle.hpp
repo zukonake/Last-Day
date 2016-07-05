@@ -3,15 +3,12 @@
 
 #include <cstdint>
 #include <iostream>
-#include <SDL2/SDL.h>
 
 struct Rectangle
 {
 	Rectangle( const uint16_t& width, const uint16_t& height ) noexcept : width( width ), height( height ) { }
 	Rectangle( std::istream& in ) noexcept ;
 	Rectangle( void ) noexcept { }
-
-	operator SDL_Rect( void ) const noexcept;
 
 	Rectangle operator * ( const int& mul ) const noexcept;
 	Rectangle operator / ( const int& div ) const noexcept;

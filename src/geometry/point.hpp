@@ -3,7 +3,7 @@
 
 #include <cstdint>
 #include <iostream>
-#include <SDL2/SDL.h>
+#include <SFML/Graphics.hpp>
 
 struct Direction;
 
@@ -15,8 +15,7 @@ struct Point
 	Point( std::istream& in ) noexcept;
 	Point( void ) noexcept { }
 
-	virtual operator SDL_Rect( void ) const noexcept;
-	virtual operator SDL_Point( void ) const noexcept;
+	virtual operator sf::Vector2< float >( void ) const noexcept;
 
 	Point operator * ( const int& mul ) const noexcept;
 	Point operator / ( const int& div ) const noexcept;
