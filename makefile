@@ -11,7 +11,7 @@ HEADERS := $(shell find $(SOURCE_PATH) -type f -name "*.hpp" -printf '%p ')
 OBJS := $(addprefix $(OBJ_PATH),$(patsubst %.cpp,%.o,$(shell find $(SOURCE_PATH) -type f -name "*.cpp" -exec basename {} \;)))
 DEBUG := -g -O0
 STD := -std=c++14
-LDLIBS :=  -lboost_filesystem -lboost_system -lSDL2 -lSDL2_image -lnoise
+LDLIBS :=  -lboost_filesystem -lboost_system -lsfml-window -lsfml-graphics -lsfml-system -lnoise
 INCFLAGS := -I $(INCLUDE_PATH)
 LIBFLAGS := -L $(LIBRARY_PATH)
 CXXFLAGS := $(STD) -Wall $(DEBUG) $(INCFLAGS)

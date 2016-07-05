@@ -3,10 +3,20 @@
 RenderableObject::RenderableObject( std::istream& in ) noexcept
 {
 	in.ignore( 255, ' ' );
-	in >> imagePath;
+	std::string texturePath;
+	in >> texturePath;
+	loadTexture( texturePath );
+	sprite.setTexture( texture );
+	sprite.setTextureRect( sf::IntRect( 0, 0, 32, 32 ) );
 }
 
-const std::string& RenderableObject::getImagePath( void ) const noexcept
+void RenderableObject::render( sf::RenderWindow& window, const Point& targetPosition )
 {
-	return imagePath;
+	sprite.setPosition( targetPosition );
+	window.draw( sprite );
+}
+
+void RenderableObject::loadTexture( const std::string& texturePath )
+{
+	texture.loadFromFile( texturePath );
 }

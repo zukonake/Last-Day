@@ -1,4 +1,4 @@
 sand
-iamge= dataset/generic/tileSubtype/sand.png
+iamge= dataset/generic/tileSubtype/sand.png 32 32
 name= Sand
 isPassable= 1

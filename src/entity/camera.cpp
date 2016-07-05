@@ -1,8 +1,6 @@
 #include "camera.hpp"
 #include <geometry/direction.hpp>
 #include <geometry/point.hpp>
-#include <geometry/SDL_RectWrapper.hpp>
-#include <render/objectRenderer/objectRenderer.hpp>
 #include <world/tile/tile.hpp>
 #include <world/world.hpp>
 
@@ -13,13 +11,8 @@ Camera::Camera( const Point& position, World& world, const Rectangle& screenSize
 	updateViewRange();
 }
 
-void Camera::render( ObjectRenderer* objectRenderer ) const
+void Camera::render( sf::RenderWindow& window ) const noexcept
 {
-	if( objectRenderer == nullptr )
-	{
-		throw std::invalid_argument( "Camera::render, null pointer given in argument 1." );
-		return;
-	}
 	for( Point::coordinate iteratorY = position.y - viewRange.height, renderY = 0;
 		iteratorY < position.y + viewRange.height;
 		iteratorY++, renderY += zoom )
@@ -28,9 +21,8 @@ void Camera::render( ObjectRenderer* objectRenderer ) const
 			iteratorX < position.x + viewRange.width;
 			iteratorX++, renderX += zoom )
 		{
-			SDL_RectWrapper renderPosition( renderX, renderY, zoom, zoom );
-			world.getTile( Point( iteratorX, iteratorY ) ).render( objectRenderer, renderPosition );
-			world.renderHeightEffects( Point( iteratorX, iteratorY ), objectRenderer, renderPosition );
+			world.getTile( Point( iteratorX, iteratorY ) ).render( window, Point( renderX, renderY ) );
+			world.renderHeightEffects( Point( iteratorX, iteratorY ), window , Point( renderX, renderY ) );
 		}
 	}
 	return;

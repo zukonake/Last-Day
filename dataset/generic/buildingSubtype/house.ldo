@@ -1,4 +1,4 @@
 house
-image= dataset/generic/buildingSubtype/house.png
+image= dataset/generic/buildingSubtype/house.png 32 32
 name= House
 shape= 2 2

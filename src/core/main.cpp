@@ -17,7 +17,7 @@ int main( int argc, char* argv[] )
 	server->connectClient( &client );
 	try
 	{
-		while( client.getIsRunning() )
+		while( client.isRunning() )
 		{
 			if( tick == 10 )
 			{

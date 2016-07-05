@@ -1,11 +1,12 @@
 #include "world.hpp"
+#include <SFML/Graphics.hpp>
+//
 #include <geometry/direction.hpp>
 #include <geometry/point.hpp>
-#include <render/objectRenderer/objectRenderer.hpp>
 #include <data/dataset.hpp>
 #include <world/worldGenerator.hpp>
 
-World::World( const Dataset& dataset ) noexcept :
+World::World( Dataset& dataset ) noexcept :
 	ChunkContainer( generator ),
 	EntityContainer( dynamic_cast< ChunkContainer& >( *this )),
 	dataset( dataset ),
@@ -14,7 +15,7 @@ World::World( const Dataset& dataset ) noexcept :
 
 }
 
-void World::renderHeightEffects( const Point& targetTilePosition, ObjectRenderer* objectRenderer, SDL_Rect& targetRenderPosition ) noexcept
+void World::renderHeightEffects( const Point& targetTilePosition, sf::RenderWindow& window, const Point& targetRenderPosition ) noexcept
 {
 	uint8_t maximumAlpha = 150;
 	double heightAlphaMultiplier = maximumAlpha / ( (WorldGenerator::getMaximumTileHeight() * 2 ));
@@ -25,24 +26,23 @@ void World::renderHeightEffects( const Point& targetTilePosition, ObjectRenderer
 	{
 		alphaModifier = maximumAlpha;
 	}
-	SDL_SetRenderDrawColor( objectRenderer->getRenderer(), 0, 0, 0, maximumAlpha - alphaModifier ) ;
-	SDL_RenderFillRect( objectRenderer->getRenderer(), &targetRenderPosition );
-	SDL_SetRenderDrawColor( objectRenderer->getRenderer(), 0, 0, 0, 63 );
+	sf::RectangleShape rectangle( sf::Vector2f( 32, 32 ) );
+	rectangle.setPosition( targetRenderPosition );
+	rectangle.setFillColor( sf::Color( 0, 0, 0, maximumAlpha - alphaModifier ) );
+	window.draw( rectangle );
 	if( ChunkContainer::getTile( Point( targetTilePosition.x - 1, targetTilePosition.y ) ).getHeight() != targetTile.getHeight() )
 	{
-		SDL_RenderDrawLine( objectRenderer->getRenderer(),
-			targetRenderPosition.x,
-			targetRenderPosition.y,
-			targetRenderPosition.x,
-			targetRenderPosition.y + targetRenderPosition.h);
+		sf::RectangleShape horizontalLine( sf::Vector2f( 1.0f, 32 ) );
+		horizontalLine.setPosition( targetRenderPosition );
+		horizontalLine.setFillColor( sf::Color( 0, 0, 0, 70 ) );
+		window.draw( horizontalLine );
 	}
 	if( ChunkContainer::getTile( Point( targetTilePosition.x, targetTilePosition.y - 1) ).getHeight() != targetTile.getHeight() )
 	{
-		SDL_RenderDrawLine( objectRenderer->getRenderer(),
-			targetRenderPosition.x,
-			targetRenderPosition.y,
-			targetRenderPosition.x + targetRenderPosition.w,
-			targetRenderPosition.y);
+		sf::RectangleShape verticalLine( sf::Vector2f( 32, 1.0f ) );
+		verticalLine.setPosition( targetRenderPosition );
+		verticalLine.setFillColor( sf::Color( 0, 0, 0, 70 ) );
+		window.draw( verticalLine );
 	}
 	return;
 }
@@ -53,7 +53,7 @@ void World::simulate( void ) noexcept
 	return;
 }
 
-const Dataset& World::getDataset( void ) const noexcept
+Dataset& World::getDataset( void ) const noexcept
 {
 	return dataset;
 }

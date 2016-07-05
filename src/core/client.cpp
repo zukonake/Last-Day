@@ -2,20 +2,15 @@
 #include <cstdint>
 #include <exception>
 #include <iostream>
-#include <SDL2/SDL.h>
 //
 #include <geometry/direction.hpp>
 #include <geometry/point.hpp>
-#include <render/objectRenderer/objectRenderer.hpp>
-#include <render/objectRenderer/imageRenderer.hpp>
 #include <entity/camera.hpp>
 
 Client::Client( const Rectangle& windowSize, const std::string& windowTitle ) noexcept :
-	SDLAdapter( windowSize, windowTitle ),
-	objectRenderer( new ImageRenderer( SDLAdapter::getRenderer() ) ),
+	SFMLAdapter( windowSize, windowTitle ),
 	camera( nullptr ),
-	isConnected( false ),
-	isRunning( false )
+	isConnected( false )
 {
 
 }
@@ -24,10 +19,9 @@ Client::~Client() noexcept
 {
 	end();
 	disconnect();
-	delete objectRenderer;
 }
 
-void Client::render( void ) const noexcept
+void Client::render( void ) noexcept
 {
 	try
 	{
@@ -38,7 +32,7 @@ void Client::render( void ) const noexcept
 		std::cerr << "ERROR: Standard exception: " << e.what() << ".\n";
 		return;
 	}
-	camera->render( objectRenderer );
+	camera->render( SFMLAdapter::getWindow() );
 	return;
 }
 
@@ -46,7 +40,7 @@ void Client::connect( World& world ) noexcept
 {
 	if( !isConnected)
 	{
-		camera = new Camera( Point( 0, 0 ), world, SDLAdapter::getWindowSize() );
+		camera = std::make_unique< Camera >( Point( 0, 0 ), world, SFMLAdapter::getWindowSize() );
 		isConnected = true;
 	}
 	return;
@@ -56,7 +50,7 @@ void Client::disconnect( void ) noexcept
 {
 	if( isConnected )
 	{
-		delete camera;
+		camera.reset();
 		isConnected = false;
 	}
 	return;
@@ -64,19 +58,19 @@ void Client::disconnect( void ) noexcept
 
 void Client::start( void ) noexcept
 {
-	isRunning = true;
+	SFMLAdapter::initialize();
 	return;
 }
 
 void Client::end( void ) noexcept
 {
-	isRunning = false;
+	SFMLAdapter::deinitialize();
 	return;
 }
 
-const bool& Client::getIsRunning( void ) const noexcept
+const bool Client::isRunning( void ) const noexcept
 {
-	return isRunning;
+	return SFMLAdapter::isRunning();
 }
 
 void Client::handleInput( void ) noexcept
@@ -97,46 +91,45 @@ void Client::handleInput( void ) noexcept
 
 void Client::handleKeyState( void ) noexcept
 {
-	SDL_Delay( 25 ); //Delay for slower camera movement
-	const uint8_t* keyState = SDLAdapter::getKeystate();
-	if( keyState[SDL_SCANCODE_LEFT] )
+	if( SFMLAdapter::isKeyPressed( sf::Keyboard::Left ) )
 	{
 		camera->move( Direction::WEST );
 	}
-	if( keyState[SDL_SCANCODE_RIGHT] )
+	if( SFMLAdapter::isKeyPressed( sf::Keyboard::Right ) )
 	{
 		camera->move( Direction::EAST );
 	}
-	if( keyState[SDL_SCANCODE_UP] )
+	if( SFMLAdapter::isKeyPressed( sf::Keyboard::Up ) )
 	{
 		camera->move( Direction::NORTH );
 	}
-	if( keyState[SDL_SCANCODE_DOWN] )
+	if( SFMLAdapter::isKeyPressed( sf::Keyboard::Down ) )
 	{
 		camera->move( Direction::SOUTH );
 	}
 	return;
 }
 
+
 void Client::handleEvents( void ) noexcept
 {
-	for( auto iterator : SDLAdapter::getEvents() )
+	for( auto iterator : SFMLAdapter::getEvents() )
 	{
-		if( iterator.type == SDL_QUIT )
+		if( iterator.type == sf::Event::Closed )
 		{
 			end();
 		}
-		if( iterator.type == SDL_KEYDOWN ) //TODO remake dis
+		if( iterator.type == sf::Event::KeyPressed ) //TODO remake dis
         {
-            switch( iterator.key.keysym.sym )
+            switch( iterator.key.code )
             {
-			case SDLK_ESCAPE:
+			case sf::Keyboard::Escape:
 				end();
 		        break;
-			case SDLK_e:
+			case sf::Keyboard::E:
 				camera->setZoom( camera->getZoom() / 2 );
 			    break;
-			case SDLK_q:
+			case sf::Keyboard::Q:
 				camera->setZoom( camera->getZoom() * 2 );
 				break;
 			default:
@@ -149,7 +142,7 @@ void Client::handleEvents( void ) noexcept
 
 void Client::checkOperationViability( void ) const
 {
-	if( !isRunning )
+	if( !isRunning() )
 	{
 		throw std::runtime_error( "Client::checkOperationViability, client is not running." );
 		return;

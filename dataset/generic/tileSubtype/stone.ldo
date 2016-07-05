@@ -1,4 +1,4 @@
 stone
-iamge= dataset/generic/tileSubtype/stone.png
+iamge= dataset/generic/tileSubtype/stone.png 32 32
 name= Stone
 isPassable= 0
