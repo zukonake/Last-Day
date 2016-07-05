@@ -16,25 +16,25 @@ void Dataset::initializeObjects( void ) noexcept
 }
 
 template<>
-EntitySubtype& Dataset::getObject( const std::string& key )
+const EntitySubtype& Dataset::getObject( const std::string& key ) const
 {
 	return initializedEntitySubtypes.at( key );
 }
 
 template<>
-TileSubtype& Dataset::getObject( const std::string& key )
+const TileSubtype& Dataset::getObject( const std::string& key ) const
 {
 	return initializedTileSubtypes.at( key );
 }
 
 template<>
-MobSubtype& Dataset::getObject( const std::string& key )
+const MobSubtype& Dataset::getObject( const std::string& key ) const
 {
 	return initializedMobSubtypes.at( key );
 }
 
 template<>
-BuildingSubtype& Dataset::getObject( const std::string& key )
+const BuildingSubtype& Dataset::getObject( const std::string& key ) const
 {
 	return initializedBuildingSubtypes.at( key );
 }

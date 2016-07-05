@@ -13,10 +13,10 @@ class World;
 class Entity
 {
 public:
-	Entity( World& world, const Point& position, EntitySubtype* subtype ) noexcept;
+	Entity( World& world, const Point& position, const EntitySubtype* subtype ) noexcept;
 	virtual ~Entity( void ) noexcept { }
 
-	void render( sf::RenderWindow& window, const Point& targetPosition );
+	void render( sf::RenderWindow& window, const Point& targetPosition ) const;
 	void teleport( const Point& targetPosition ) noexcept;
 	virtual void move( const Direction& targetDirection );
 
@@ -26,7 +26,7 @@ protected:
 	World& world;
 	Point position;
 private:
-	EntitySubtype* subtype;
+	const EntitySubtype* subtype;
 };
 
 #endif

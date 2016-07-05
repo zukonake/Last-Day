@@ -14,15 +14,15 @@ class Dataset;
 class World : public ChunkContainer, public EntityContainer
 {
 public:
-	World( Dataset& dataset ) noexcept;
+	World( const Dataset& dataset ) noexcept;
 
 	void renderHeightEffects( const Point& targetTilePosition, sf::RenderWindow& window, const Point& targetRenderPosition ) noexcept;
 
 	void simulate( void ) noexcept;
 
-	Dataset& getDataset( void ) const noexcept;
+	const Dataset& getDataset( void ) const noexcept;
 private:
-	Dataset& dataset;
+	const Dataset& dataset;
 	WorldGenerator generator;
 };
 

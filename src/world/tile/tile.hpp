@@ -13,10 +13,10 @@ class Entity;
 class Tile
 {
 public:
-	Tile( TileSubtype* subtype, int8_t height ) noexcept : subtype( subtype ), height( height ), entity( nullptr ) { }
+	Tile( const TileSubtype* subtype, int8_t height ) noexcept : subtype( subtype ), height( height ), entity( nullptr ) { }
 	Tile( void ) noexcept : subtype( nullptr ), entity( nullptr ) { }
 
-	void render( sf::RenderWindow& window, const Point& targetPosition );
+	void render( sf::RenderWindow& window, const Point& targetPosition ) const;
 
 	const std::string& getSubtypeName( void ) const noexcept;
 	const int8_t& getHeight( void ) const noexcept;
@@ -24,7 +24,7 @@ public:
 	std::shared_ptr< Entity > getEntity( void ) noexcept;
 	void setEntity( std::shared_ptr< Entity > value ) noexcept;
 private:
-	TileSubtype* subtype;
+	const TileSubtype* subtype;
 	int8_t height;
 	std::shared_ptr< Entity > entity;
 };

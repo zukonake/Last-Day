@@ -6,7 +6,7 @@
 #include <data/dataset.hpp>
 #include <world/worldGenerator.hpp>
 
-World::World( Dataset& dataset ) noexcept :
+World::World( const Dataset& dataset ) noexcept :
 	ChunkContainer( generator ),
 	EntityContainer( dynamic_cast< ChunkContainer& >( *this )),
 	dataset( dataset ),
@@ -53,7 +53,7 @@ void World::simulate( void ) noexcept
 	return;
 }
 
-Dataset& World::getDataset( void ) const noexcept
+const Dataset& World::getDataset( void ) const noexcept
 {
 	return dataset;
 }

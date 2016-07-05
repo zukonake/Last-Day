@@ -14,12 +14,11 @@ public:
 	RenderableObject( std::istream& in ) noexcept;
 	RenderableObject( void ) noexcept { }
 
-	virtual void render( sf::RenderWindow& window, const Point& targetPosition );
+	virtual void render( sf::RenderWindow& window, const Point& targetPosition ) const noexcept;
 private:
 	void loadTexture( const std::string& texturePath );
 
 	sf::Texture texture;
-	sf::Sprite sprite;
 };
 
 #endif

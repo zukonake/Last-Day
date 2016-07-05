@@ -76,7 +76,8 @@ const bool Client::isRunning( void ) const noexcept
 void Client::handleTime( void ) noexcept
 {
 	sf::Time waitingTime = sf::milliseconds( 30 );
-	sf::Time elapsedTime = SFMLAdapter::getElapsedTime();
+	sf::Time elapsedTime = clock.getElapsedTime();
+	clock.restart();
 	sf::sleep( waitingTime - elapsedTime );
 }
 

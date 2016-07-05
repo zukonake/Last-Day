@@ -17,7 +17,7 @@ public:
 	Dataset( void );
 
 	template< typename ObjectType >
-	ObjectType& getObject( const std::string& key );
+	const ObjectType& getObject( const std::string& key ) const;
 private:
 	void initializeObjects( void ) noexcept;
 	template< typename ObjectType >

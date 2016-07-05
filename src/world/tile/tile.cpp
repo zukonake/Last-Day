@@ -4,7 +4,7 @@
 #include <world/tile/tileSubtype.hpp>
 #include <entity/entity.hpp>
 
-void Tile::render( sf::RenderWindow& window, const Point& targetPosition )
+void Tile::render( sf::RenderWindow& window, const Point& targetPosition ) const
 {
 	subtype->render( window, targetPosition );
 	if( entity != nullptr )

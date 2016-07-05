@@ -62,7 +62,7 @@ Chunk& WorldGenerator::generateChunk( const Point& targetChunkPosition, Chunk& t
 
 Tile& WorldGenerator::generateTile( const Point& targetTilePosition, Tile& target ) noexcept
 {
-	Dataset& dataset = world.getDataset();
+	const Dataset& dataset = world.getDataset();
 	double heightValue = finalTerrain.GetValue( (double)( targetTilePosition.x ) / scale, (double)( targetTilePosition.y ) / scale, 0 );
 	if( heightValue >= 0.6 )
 	{

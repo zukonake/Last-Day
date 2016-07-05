@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <string>
+#include <SFML/System.hpp>
 //
 #include <core/SFMLAdapter.hpp>
 
@@ -39,6 +40,7 @@ private:
 	void checkOperationViability( void ) const;
 
 	std::unique_ptr< Camera > camera;
+	sf::Clock clock;
 	bool isConnected;
 };
 

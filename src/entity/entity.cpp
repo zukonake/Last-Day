@@ -2,7 +2,7 @@
 #include <entity/entitySubtype.hpp>
 #include <world/world.hpp>
 
-Entity::Entity( World& world, const Point& position, EntitySubtype* subtype ) noexcept :
+Entity::Entity( World& world, const Point& position, const EntitySubtype* subtype ) noexcept :
 	world( world ),
 	position( position ),
 	subtype( subtype )
@@ -10,7 +10,7 @@ Entity::Entity( World& world, const Point& position, EntitySubtype* subtype ) no
 
 }
 
-void Entity::render( sf::RenderWindow& window, const Point& targetPosition )
+void Entity::render( sf::RenderWindow& window, const Point& targetPosition ) const
 {
 	if( subtype != nullptr )
 	{
