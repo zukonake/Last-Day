@@ -16,11 +16,10 @@ class World : public ChunkContainer, public EntityContainer
 public:
 	World( const Dataset& dataset ) noexcept;
 
-	void renderHeightEffects( const Point& targetTilePosition, sf::RenderWindow& window, const Point& targetRenderPosition ) noexcept;
-
 	void simulate( void ) noexcept;
 
 	const Dataset& getDataset( void ) const noexcept;
+	const WorldGenerator& getGenerator( void ) const noexcept;
 private:
 	const Dataset& dataset;
 	WorldGenerator generator;
