@@ -1,4 +1,4 @@
 dirt
-image= dataset/generic/tileSubtype/dirt.png 32 32
+image= dataset/generic/tileSubtype/dirt.png
 name= Dirt
 isPassable= 1

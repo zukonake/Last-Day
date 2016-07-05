@@ -29,10 +29,12 @@ public:
 	sf::RenderWindow& getWindow( void ) noexcept;
 	const Rectangle& getWindowSize( void ) const noexcept;
 	const std::string& getWindowTitle( void ) const noexcept;
+	sf::Time getElapsedTime( void ) noexcept;
 private:
 	sf::RenderWindow window;
 	sf::Event event;
 	sf::Keyboard keyboard;
+	sf::Clock clock;
 
 	Rectangle windowSize;
 	std::string windowTitle;

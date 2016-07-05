@@ -64,3 +64,10 @@ const std::string& SFMLAdapter::getWindowTitle( void ) const noexcept
 {
 	return windowTitle;
 }
+
+sf::Time SFMLAdapter::getElapsedTime( void ) noexcept
+{
+	sf::Time output = clock.getElapsedTime();
+	clock.restart();
+	return output;
+}

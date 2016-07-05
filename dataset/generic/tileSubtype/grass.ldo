@@ -1,4 +1,4 @@
 grass
-image= dataset/generic/tileSubtype/grass.png 32 32
+image= dataset/generic/tileSubtype/grass.png
 name= Grass
 isPassable= 1

@@ -27,6 +27,7 @@ int main( int argc, char* argv[] )
 			client.render();
 			client.handleInput();
 			client.update();
+			client.handleTime();
 			tick++;
 		}
 	}
