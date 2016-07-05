@@ -2,6 +2,8 @@
 #include <exception>
 #include <iostream>
 #include <SDL2/SDL_image.h>
+//
+#include <geometry/rectangle.hpp>
 
 SDLAdapter::SDLAdapter( const Rectangle& windowSize, const std::string& windowTitle )
 {
@@ -18,7 +20,7 @@ SDLAdapter::SDLAdapter( const Rectangle& windowSize, const std::string& windowTi
 	}
 }
 
-SDLAdapter::~SDLAdapter( void )
+SDLAdapter::~SDLAdapter( void ) noexcept
 {
 	deinitializeSDL();
 }

@@ -1,6 +1,10 @@
 #include "camera.hpp"
-#include <world/world.hpp>
+#include <geometry/direction.hpp>
+#include <geometry/point.hpp>
 #include <geometry/SDL_RectWrapper.hpp>
+#include <render/objectRenderer/objectRenderer.hpp>
+#include <world/tile/tile.hpp>
+#include <world/world.hpp>
 
 Camera::Camera( const Point& position, World& world, const Rectangle& screenSize ) noexcept :
 	Entity( world, position, nullptr ),
@@ -27,14 +31,14 @@ void Camera::render( ObjectRenderer* objectRenderer ) const
 			SDL_RectWrapper renderPosition( renderX, renderY, zoom, zoom );
 			world.getTile( Point( iteratorX, iteratorY ) ).render( objectRenderer, renderPosition );
 			world.renderHeightEffects( Point( iteratorX, iteratorY ), objectRenderer, renderPosition );
-			Entity* entityOnTile = world.getEntity( Point( iteratorX, iteratorY ) );
-			if( entityOnTile != nullptr )
-			{
-				entityOnTile->render( objectRenderer, renderPosition );
-			}
 		}
 	}
 	return;
+}
+
+void Camera::move( const Direction& targetDirection )
+{
+	position = position.move( targetDirection );
 }
 
 const uint8_t& Camera::getZoom( void ) const noexcept
@@ -58,6 +62,6 @@ void Camera::setZoom( const uint8_t& value ) noexcept
 
 void Camera::updateViewRange( void ) noexcept
 {
-	viewRange = screenSize / zoom;
+	viewRange = (screenSize / zoom) / 2;
 	return;
 }

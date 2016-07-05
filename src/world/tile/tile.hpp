@@ -2,23 +2,31 @@
 #define TILE_HPP
 
 #include <cstdint>
+#include <memory>
+#include <string>
+#include <SDL2/SDL.h>
 //
-#include <world/tile/tileSubtype.hpp>
-#include <render/objectRenderer/objectRenderer.hpp>
+class TileSubtype;
+class ObjectRenderer;
+class Entity;
 
 class Tile
 {
 public:
-	Tile( const TileSubtype* subtype, int8_t height ) noexcept : subtype( subtype ), height( height ) { }
-	Tile( void ) noexcept : subtype( nullptr ) { }
+	Tile( const TileSubtype* subtype, int8_t height ) noexcept : subtype( subtype ), height( height ), entity( nullptr ) { }
+	Tile( void ) noexcept : subtype( nullptr ), entity( nullptr ) { }
 
-	virtual void render( ObjectRenderer* renderer, const SDL_Rect& targetPosition ) const;
+	void render( ObjectRenderer* renderer, const SDL_Rect& targetPosition ) const;
 
 	const std::string& getSubtypeName( void ) const noexcept;
 	const int8_t& getHeight( void ) const noexcept;
+	const bool& isPassable( void ) const noexcept;
+	std::shared_ptr< Entity > getEntity( void ) noexcept;
+	void setEntity( std::shared_ptr< Entity > value ) noexcept;
 private:
 	const TileSubtype* subtype;
 	int8_t height;
+	std::shared_ptr< Entity > entity;
 };
 
 #endif

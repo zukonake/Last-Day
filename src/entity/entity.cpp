@@ -1,4 +1,5 @@
 #include "entity.hpp"
+#include <entity/entitySubtype.hpp>
 #include <world/world.hpp>
 
 Entity::Entity( World& world, const Point& position, const EntitySubtype* subtype ) noexcept :
@@ -25,13 +26,12 @@ void Entity::teleport( const Point& targetPosition ) noexcept
 	return;
 }
 
-void Entity::move( const Direction& targetDirection ) noexcept
+void Entity::move( const Direction& targetDirection )
 {
-	Point positionBefore = getPosition();
-	position.move( targetDirection );
-	world.moveEntity( positionBefore, position );
 	return;
 }
+
+void Entity::DEBUG( void ) { world.moveEntity( position, Point( position.x - 1, position.y ) ); position.x = position.x - 1; } //TODO
 
 const std::string& Entity::getName( void ) const noexcept
 {

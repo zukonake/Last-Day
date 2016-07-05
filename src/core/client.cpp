@@ -2,8 +2,13 @@
 #include <cstdint>
 #include <exception>
 #include <iostream>
+#include <SDL2/SDL.h>
 //
+#include <geometry/direction.hpp>
+#include <geometry/point.hpp>
+#include <render/objectRenderer/objectRenderer.hpp>
 #include <render/objectRenderer/imageRenderer.hpp>
+#include <entity/camera.hpp>
 
 Client::Client( const Rectangle& windowSize, const std::string& windowTitle ) noexcept :
 	SDLAdapter( windowSize, windowTitle ),

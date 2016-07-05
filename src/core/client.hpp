@@ -2,13 +2,13 @@
 #define CLIENT_HPP
 
 #include <string>
-#include <SDL2/SDL.h>
 //
-#include <geometry/rectangle.hpp>
 #include <core/SDLAdapter.hpp>
-#include <render/objectRenderer/objectRenderer.hpp>
-#include <world/world.hpp>
-#include <entity/camera.hpp>
+
+struct Rectangle;
+class ObjectRenderer;
+class World;
+class Camera;
 
 class Client : public SDLAdapter
 {

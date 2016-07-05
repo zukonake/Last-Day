@@ -1,0 +1,4 @@
+dirt
+iamge= dataset/generic/tileSubtype/dirt.png
+name= Dirt
+isPassable= 1

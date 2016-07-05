@@ -1,5 +1,6 @@
 #include "tileSubtype.hpp"
 #include <exception>
+#include <render/objectRenderer/objectRenderer.hpp>
 
 uint8_t TileSubtype::spriteSize = 32;
 
@@ -8,6 +9,7 @@ TileSubtype::TileSubtype( std::istream& in ) noexcept :
 {
 	in.ignore( 255, ' ' );
 	in >> name;
+	in.ignore( 255, ' ' );
 	in >> isPassable;
 }
 
@@ -25,4 +27,9 @@ void TileSubtype::render( ObjectRenderer* renderer, const SDL_Rect& targetPositi
 const std::string& TileSubtype::getName( void ) const noexcept
 {
 	return name;
+}
+
+const bool& TileSubtype::getIsPassable( void ) const noexcept
+{
+	return isPassable;
 }

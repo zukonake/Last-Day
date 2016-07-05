@@ -1,31 +1,31 @@
 #ifndef ENTITYCONTAINTER_HPP
 #define ENTITYCONTAINTER_HPP
 
-#include <map>
+#include <memory>
+#include <vector>
 //
-#include <geometry/point.hpp>
+#include <world/chunk/chunkContainer.hpp>
 
+struct Point;
 class Entity;
 
 class EntityContainer
 {
-	typedef std::map< Point, Entity* > EntityMap2D;
+	typedef std::vector< std::shared_ptr< Entity > > entityVector;
 public:
 	EntityContainer( const EntityContainer& that ) = delete;
-	EntityContainer( void ) noexcept { }
+	EntityContainer( ChunkContainer& chunkContainer ) noexcept : chunkContainer( chunkContainer ) { }
 
-	virtual ~EntityContainer( void ) noexcept;
+	virtual ~EntityContainer( void ) noexcept { }
 
 	EntityContainer& operator=( const EntityContainer& that ) = delete;
 
-	void addEntity( Entity* value ) noexcept;
-	void removeEntity( const Point& targetPosition ) noexcept;
-	void moveEntity( const Point& sourcePosition, const Point& targetPosition ) noexcept;
-	Entity* getEntity( const Point& targetPosition ) noexcept;
-
 	void simulate( void ) noexcept;
+
+	void addEntity( std::shared_ptr< Entity > value );
 private:
-	EntityMap2D entities;
+	entityVector entities;
+	ChunkContainer& chunkContainer;
 };
 
 #endif

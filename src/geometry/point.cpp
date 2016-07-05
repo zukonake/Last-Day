@@ -1,4 +1,5 @@
 #include "point.hpp"
+#include <geometry/direction.hpp>
 
 Point::Point( std::istream& in ) noexcept
 {
@@ -57,33 +58,34 @@ bool Point::operator < ( const Point& target ) const noexcept
 	return (x < target.x) or (x == target.x and y < target.y);
 }
 
-void Point::move( const Direction& direction, const int& difference ) noexcept
+Point Point::move( const Direction& direction, const int& difference ) noexcept
 {
+	Point output = *this;
 	switch( direction.value )
 	{
 		case Direction::NONE:
 		break;
 
 		case Direction::NORTH:
-			y -= difference;
+			output.y -= difference;
 		break;
 
 		case Direction::WEST:
-			x -= difference;
+			output.x -= difference;
 		break;
 
 		case Direction::SOUTH:
-			y += difference;
+			output.y += difference;
 		break;
 
 		case Direction::EAST:
-			x += difference;
+			output.x += difference;
 		break;
 
 		default:
 		break;
 	}
-	return;
+	return output;
 }
 
 Point Point::tilePosition( const uint16_t& sizeInTiles ) const noexcept

@@ -1,12 +1,15 @@
 #include "world.hpp"
 #include <geometry/direction.hpp>
+#include <geometry/point.hpp>
+#include <render/objectRenderer/objectRenderer.hpp>
+#include <data/dataset.hpp>
 #include <world/worldGenerator.hpp>
 
 World::World( const Dataset& dataset ) noexcept :
-	EntityContainer(),
+	ChunkContainer( generator ),
+	EntityContainer( dynamic_cast< ChunkContainer& >( *this )),
 	dataset( dataset ),
-	generator( *this ),
-	chunkContainer( generator )
+	generator( *this )
 {
 
 }
@@ -15,7 +18,7 @@ void World::renderHeightEffects( const Point& targetTilePosition, ObjectRenderer
 {
 	uint8_t maximumAlpha = 150;
 	double heightAlphaMultiplier = maximumAlpha / ( (WorldGenerator::getMaximumTileHeight() * 2 ));
-	const Tile& targetTile = chunkContainer.getTile( targetTilePosition );
+	const Tile& targetTile = ChunkContainer::getTile( targetTilePosition );
 	int8_t alpha = ( targetTile.getHeight() + WorldGenerator::getMaximumTileHeight() );
 	double alphaModifier = heightAlphaMultiplier * alpha;
 	if( alphaModifier > maximumAlpha )
@@ -25,7 +28,7 @@ void World::renderHeightEffects( const Point& targetTilePosition, ObjectRenderer
 	SDL_SetRenderDrawColor( objectRenderer->getRenderer(), 0, 0, 0, maximumAlpha - alphaModifier ) ;
 	SDL_RenderFillRect( objectRenderer->getRenderer(), &targetRenderPosition );
 	SDL_SetRenderDrawColor( objectRenderer->getRenderer(), 0, 0, 0, 63 );
-	if( chunkContainer.getTile( Point( targetTilePosition.x - 1, targetTilePosition.y ) ).getHeight() != targetTile.getHeight() )
+	if( ChunkContainer::getTile( Point( targetTilePosition.x - 1, targetTilePosition.y ) ).getHeight() != targetTile.getHeight() )
 	{
 		SDL_RenderDrawLine( objectRenderer->getRenderer(),
 			targetRenderPosition.x,
@@ -33,7 +36,7 @@ void World::renderHeightEffects( const Point& targetTilePosition, ObjectRenderer
 			targetRenderPosition.x,
 			targetRenderPosition.y + targetRenderPosition.h);
 	}
-	if( chunkContainer.getTile( Point( targetTilePosition.x, targetTilePosition.y - 1) ).getHeight() != targetTile.getHeight() )
+	if( ChunkContainer::getTile( Point( targetTilePosition.x, targetTilePosition.y - 1) ).getHeight() != targetTile.getHeight() )
 	{
 		SDL_RenderDrawLine( objectRenderer->getRenderer(),
 			targetRenderPosition.x,
@@ -53,9 +56,4 @@ void World::simulate( void ) noexcept
 const Dataset& World::getDataset( void ) const noexcept
 {
 	return dataset;
-}
-
-Tile& World::getTile( const Point& targetTilePosition ) noexcept
-{
-	return chunkContainer.getTile( targetTilePosition );
 }

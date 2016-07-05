@@ -5,22 +5,25 @@
 #include <map>
 //
 #include <geometry/point.hpp>
-#include <world/tile/tile.hpp>
 #include <world/chunk/chunk.hpp>
-#include <world/worldGenerator.hpp>
+
+class Tile;
+class WorldGenerator;
 
 class ChunkContainer
 {
-	typedef std::map< Point, Chunk > ChunkMap2D;
+	typedef std::map< const Point, Chunk > ChunkMap2D;
 	const static uint8_t chunkLoadingRange = 1;
 public:
 	ChunkContainer( WorldGenerator& generator ) noexcept;
 	virtual ~ChunkContainer( void ) noexcept { };
 
-	Tile& getTile( const Point& targetTilePosition );
+	void moveEntity( const Point& sourcePosition, const Point& targetPosition );
+	bool canMove( const Point& targetPosition );
 
-	Chunk& getChunk( const Point& targetChunkPosition );
+	Tile& getTile( const Point& targetTilePosition );
 private:
+	Chunk& getChunk( const Point& targetChunkPosition );
 	Chunk& loadChunk( const Point& targetChunkPosition );
 
 	ChunkMap2D loadedChunks;

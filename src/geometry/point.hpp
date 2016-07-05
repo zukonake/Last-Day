@@ -4,8 +4,8 @@
 #include <cstdint>
 #include <iostream>
 #include <SDL2/SDL.h>
-//
-#include <geometry/direction.hpp>
+
+struct Direction;
 
 struct Point
 {
@@ -27,7 +27,7 @@ struct Point
 	bool operator == ( const Point& target ) const noexcept;
 	bool operator < ( const Point& target ) const noexcept;
 
-	void move( const Direction& direction, const int& difference = 1 ) noexcept;
+	Point move( const Direction& direction, const int& difference = 1 ) noexcept;
 
 	Point tilePosition( const uint16_t& sizeInTiles ) const noexcept;
 	Point chunkPosition( const uint16_t& sizeInTiles ) const noexcept;

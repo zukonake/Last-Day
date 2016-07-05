@@ -2,14 +2,17 @@
 #define MOB_HPP
 
 #include <entity/entity.hpp>
-#include <entity/mob/mobSubtype.hpp>
 
+struct Point;
+class MobSubtype;
 class World;
 
 class Mob : public Entity
 {
 public:
 	Mob( World& world, const Point& position, const MobSubtype* subtype ) noexcept;
+
+	void move( const Direction& targetDirection ) override;
 };
 
 #endif

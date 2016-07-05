@@ -1,8 +1,6 @@
 #ifndef DATASET_HPP
 #define DATASET_HPP
 
-#include <exception>
-#include <iostream>
 #include <string>
 #include <map>
 //

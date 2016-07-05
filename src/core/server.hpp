@@ -5,7 +5,8 @@
 //
 #include <data/dataset.hpp>
 #include <world/world.hpp>
-#include <core/client.hpp>
+
+class Client;
 
 class Server
 {

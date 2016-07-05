@@ -1,8 +1,12 @@
 #include "worldGenerator.hpp"
 #include <cstdint>
 #include <cstdlib>
+#include <memory>
 //
 #include <entity/entity.hpp>
+#include <entity/mob/mob.hpp>
+#include <data/dataset.hpp>
+#include <world/chunk/chunk.hpp>
 #include <world/world.hpp>
 
 WorldGenerator::WorldGenerator( World& world ) noexcept :
@@ -42,7 +46,7 @@ WorldGenerator::WorldGenerator( World& world ) noexcept :
 	finalTerrain.SetPower( 0.0625 );
 }
 
-Chunk& WorldGenerator::generateChunk( Chunk& target, const Point& targetChunkPosition ) noexcept
+Chunk& WorldGenerator::generateChunk( const Point& targetChunkPosition, Chunk& target ) noexcept
 {
 	for( uint8_t iteratorY = 0; iteratorY < Chunk::sizeInTiles; iteratorY++ )
 	{
@@ -50,19 +54,15 @@ Chunk& WorldGenerator::generateChunk( Chunk& target, const Point& targetChunkPos
 		{
 			Point firstTile = targetChunkPosition.tilePosition( Chunk::sizeInTiles );
 			Point targetTilePosition = Point( firstTile.x + ( int ) iteratorX, firstTile.y + ( int ) iteratorY );
-			generateTile( target.tiles[ iteratorX ][ iteratorY ], targetTilePosition );
+			generateTile( targetTilePosition, target.tiles[ iteratorX ][ iteratorY ] );
 		}
 	}
 	return target;
 }
 
-Tile& WorldGenerator::generateTile( Tile& target, const Point& targetTilePosition ) noexcept
+Tile& WorldGenerator::generateTile( const Point& targetTilePosition, Tile& target ) noexcept
 {
 	const Dataset& dataset = world.getDataset();
-	if( targetTilePosition.x == -5 and targetTilePosition.y == -5 )
-	{
-		world.addEntity( new Entity( world, targetTilePosition, &dataset.getObject< MobSubtype >( "human" ) ) );
-	}
 	double heightValue = finalTerrain.GetValue( (double)( targetTilePosition.x ) / scale, (double)( targetTilePosition.y ) / scale, 0 );
 	if( heightValue >= 0.6 )
 	{
@@ -77,9 +77,15 @@ Tile& WorldGenerator::generateTile( Tile& target, const Point& targetTilePositio
 		target = Tile( &dataset.getObject< TileSubtype >( "grass" ), heightValue*heightMultiplier);
 		if( heightValue >= 0 and heightValue <= 0.45  and ( rand() % 10 ) == 1 )
 		{
-			world.addEntity( new Entity( world,
+			world.addEntity( std::make_shared< Entity >( world,
 				targetTilePosition,
 				&dataset.getObject< EntitySubtype >( "tree" ) ) );
+		}
+		if( ( rand() % 100 ) == 1 )
+		{
+			world.addEntity( std::make_shared< Mob >( world,
+				targetTilePosition,
+				&dataset.getObject< MobSubtype >( "human" ) ) );
 		}
 	}
 	else if( heightValue >= -0.2 )

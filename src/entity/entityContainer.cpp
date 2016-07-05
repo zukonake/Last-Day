@@ -1,51 +1,25 @@
 #include "entityContainer.hpp"
+#include <cstdlib>
+#include <memory>
+//
+#include <geometry/direction.hpp>
 #include <entity/entity.hpp>
-
-EntityContainer::~EntityContainer( void ) noexcept
-{
-	for( auto iterator : entities )
-	{
-		delete iterator.second;
-	}
-}
-
-void EntityContainer::addEntity( Entity* value ) noexcept
-{
-	entities[ value->getPosition() ] = value;
-	return;
-}
-
-void EntityContainer::removeEntity( const Point& targetPosition ) noexcept
-{
-	delete entities[ targetPosition ];
-	entities.erase( targetPosition );
-	return;
-}
-
-void EntityContainer::moveEntity( const Point& sourcePosition, const Point& targetPosition ) noexcept
-{
-	//entities[ targetPosition ] = entities[ sourcePosition ];
-	//entities.erase( sourcePosition ); TODO
-	return;
-}
-
-Entity* EntityContainer::getEntity( const Point& targetPosition ) noexcept
-{
-	if( entities.find( targetPosition ) == entities.end() )
-	{
-		return nullptr;
-	}
-	return entities[ targetPosition ];
-}
 
 void EntityContainer::simulate( void ) noexcept
 {
-	EntityMap2D tempMap; //TODO wip
-	for (auto& iterator : entities )
+	std::vector< std::shared_ptr< Entity > > tempVector;
+	for( auto iterator : entities )
 	{
-		iterator.second->move( static_cast< Direction::Type >( rand() % 5));
-    	tempMap.emplace( iterator.first, iterator.second );
+		tempVector.push_back( iterator );
 	}
-	tempMap.swap( entities );
-	return;
+	for( auto iterator : tempVector )
+	{
+		iterator->move( static_cast< Direction::Type > ( rand() % 5 ) );
+	}
+}
+
+void EntityContainer::addEntity( std::shared_ptr< Entity > value )
+{
+	entities.push_back( value );
+	chunkContainer.getTile( value->getPosition() ).setEntity( value );
 }

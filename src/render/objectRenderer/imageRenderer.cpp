@@ -1,6 +1,9 @@
 #include "imageRenderer.hpp"
 #include <exception>
+#include <render/image/image.hpp>
 #include <render/image/PNGImage.hpp>
+#include <world/tile/tileSubtype.hpp>
+#include <entity/entitySubtype.hpp>
 
 ImageRenderer::~ImageRenderer( void ) noexcept
 {

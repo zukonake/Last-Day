@@ -5,7 +5,7 @@
 #include <string>
 #include <SDL2/SDL.h>
 //
-#include <render/objectRenderer/objectRenderer.hpp>
+class ObjectRenderer;
 
 class RenderableObject
 {

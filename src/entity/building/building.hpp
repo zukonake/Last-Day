@@ -3,8 +3,9 @@
 #define BUILDING_HPP
 
 #include <entity/entity.hpp>
-#include <entity/building/buildingSubtype.hpp>
 
+struct Point;
+class BuildingSubtype;
 class World;
 
 class Building : public Entity

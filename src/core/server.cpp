@@ -1,6 +1,8 @@
 #include "server.hpp"
 #include <exception>
 #include <algorithm>
+//
+#include <core/client.hpp>
 
 Server::Server( void ) noexcept :
 	dataset(),

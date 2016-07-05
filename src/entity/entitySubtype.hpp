@@ -5,8 +5,9 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 //
-#include <render/objectRenderer/objectRenderer.hpp>
 #include <render/renderableObject.hpp>
+
+class ObjectRenderer;
 
 class EntitySubtype : public RenderableObject
 {

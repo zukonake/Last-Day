@@ -1,4 +1,5 @@
 #include "dataset.hpp"
+#include <iostream>
 #include <exception>
 
 Dataset::Dataset( void )
@@ -9,7 +10,7 @@ Dataset::Dataset( void )
 void Dataset::initializeObjects( void ) noexcept
 {
 	initializedEntitySubtypes = initializeObjectVectorFromDirectory< EntitySubtype >( "entitySubtype" );
-	initializedTileSubtypes = initializeObjectVectorFromDirectory< TileSubtype >( "tile" );
+	initializedTileSubtypes = initializeObjectVectorFromDirectory< TileSubtype >( "tileSubtype" );
 	initializedMobSubtypes = initializeObjectVectorFromDirectory< MobSubtype >( "mobSubtype" );
 	initializedBuildingSubtypes = initializeObjectVectorFromDirectory< BuildingSubtype >( "buildingSubtype" );
 }

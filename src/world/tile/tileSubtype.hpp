@@ -6,8 +6,9 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 //
-#include <render/objectRenderer/objectRenderer.hpp>
 #include <render/renderableObject.hpp>
+
+class ObjectRenderer;
 
 class TileSubtype : public RenderableObject
 {
@@ -19,6 +20,7 @@ public:
 	virtual void render( ObjectRenderer* renderer, const SDL_Rect& targetPosition ) const override;
 
 	const std::string& getName( void ) const noexcept;
+	const bool& getIsPassable( void ) const noexcept;
 private:
 	bool isPassable;
 	std::string name;

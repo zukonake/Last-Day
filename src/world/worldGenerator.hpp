@@ -2,13 +2,10 @@
 #define WORLDGENERATOR_HPP
 
 #include <noise/noise.h>
-//
-#include <geometry/point.hpp>
-#include <world/chunk/chunk.hpp>
-#include <data/dataset.hpp>
-#include <entity/entityContainer.hpp>
-#include <world/tile/tile.hpp>
 
+struct Point;
+struct Chunk;
+class Tile;
 class World;
 
 class WorldGenerator
@@ -18,8 +15,8 @@ class WorldGenerator
 public:
 	WorldGenerator( World& world ) noexcept;
 
-	Chunk& generateChunk( Chunk& target, const Point& targetChunkPosition ) noexcept;
-	Tile& generateTile( Tile& target, const Point& targetTilePosition ) noexcept;
+	Chunk& generateChunk( const Point& targetChunkPosition, Chunk& target ) noexcept;
+	Tile& generateTile( const Point& targetTilePosition, Tile& target ) noexcept;
 
 	static int getMaximumTileHeight()
 	{

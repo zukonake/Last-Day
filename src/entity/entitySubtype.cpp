@@ -1,5 +1,7 @@
 #include "entitySubtype.hpp"
 #include <exception>
+//
+#include <render/objectRenderer/objectRenderer.hpp>
 
 EntitySubtype::EntitySubtype( std::istream& in ) noexcept :
 RenderableObject( in )

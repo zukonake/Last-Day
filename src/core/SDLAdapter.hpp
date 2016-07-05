@@ -5,8 +5,8 @@
 #include <vector>
 #include <string>
 #include <SDL2/SDL.h>
-//
-#include <geometry/rectangle.hpp>
+
+struct Rectangle;
 
 class SDLAdapter
 {
