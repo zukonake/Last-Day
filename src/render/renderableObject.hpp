@@ -16,9 +16,10 @@ public:
 
 	virtual void render( sf::RenderWindow& window, const Point& targetPosition ) const noexcept;
 private:
-	void loadTexture( const std::string& texturePath );
+	void loadTexture( void );
 
 	sf::Texture texture;
+	std::string texturePath;
 };
 
 #endif

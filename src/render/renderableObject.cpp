@@ -3,9 +3,8 @@
 RenderableObject::RenderableObject( std::istream& in ) noexcept
 {
 	in.ignore( 255, ' ' );
-	std::string texturePath;
 	in >> texturePath;
-	loadTexture( texturePath );
+	loadTexture();
 }
 
 void RenderableObject::render( sf::RenderWindow& window, const Point& targetPosition ) const noexcept
@@ -18,8 +17,12 @@ void RenderableObject::render( sf::RenderWindow& window, const Point& targetPosi
 	return;
 }
 
-void RenderableObject::loadTexture( const std::string& texturePath )
+void RenderableObject::loadTexture( void )
 {
-	texture.loadFromFile( texturePath );
+	if( !texture.loadFromFile( texturePath ) )
+	{
+		throw std::runtime_error( "RenderableObject::loadTexture, couldn't load texture from file: " + texturePath + "." );
+		return;
+	}
 	return;
 }
