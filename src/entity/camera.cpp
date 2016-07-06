@@ -75,15 +75,11 @@ const uint8_t& Camera::getZoom( void ) const noexcept
 
 void Camera::setZoom( const uint8_t& value ) noexcept
 {
-	if( value <= 0 )
-	{
-		zoom = 1;
-	}
-	else
+	if( value >= 1 and value <= 32 )
 	{
 		zoom = value;
+		updateViewRange();
 	}
-	updateViewRange();
 	return;
 }
 

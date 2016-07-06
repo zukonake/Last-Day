@@ -30,8 +30,8 @@ bool ChunkContainer::canMove( const Point& targetPosition )
 
 Tile& ChunkContainer::getTile( const Point& targetTilePosition )
 {
-	Point targetInternalPosition = targetTilePosition.internalPosition( Chunk::sizeInTiles );
-	Point targetChunkPosition = targetTilePosition.chunkPosition( Chunk::sizeInTiles );
+	Point targetInternalPosition = targetTilePosition.internalPosition( Chunk::getSizeInTiles() );
+	Point targetChunkPosition = targetTilePosition.chunkPosition( Chunk::getSizeInTiles() );
 	return getChunk( targetChunkPosition ).tiles[ targetInternalPosition.x ][ targetInternalPosition.y ];
 }
 

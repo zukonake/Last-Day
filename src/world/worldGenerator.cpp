@@ -63,11 +63,11 @@ WorldGenerator::WorldGenerator( World& world, const int& seed ) noexcept :
 
 Chunk& WorldGenerator::generateChunk( const Point& targetChunkPosition, Chunk& target ) const noexcept
 {
-	for( uint8_t iteratorY = 0; iteratorY < Chunk::sizeInTiles; iteratorY++ )
+	for( uint16_t iteratorY = 0; iteratorY < Chunk::getSizeInTiles(); iteratorY++ )
 	{
-		for( uint8_t iteratorX = 0; iteratorX < Chunk::sizeInTiles; iteratorX++ )
+		for( uint16_t iteratorX = 0; iteratorX < Chunk::getSizeInTiles(); iteratorX++ )
 		{
-			Point firstTile = targetChunkPosition.tilePosition( Chunk::sizeInTiles );
+			Point firstTile = targetChunkPosition.tilePosition( Chunk::getSizeInTiles() );
 			Point targetTilePosition = Point( firstTile.x + ( int ) iteratorX, firstTile.y + ( int ) iteratorY );
 			generateTile( targetTilePosition, target.tiles[ iteratorX ][ iteratorY ] );
 		}

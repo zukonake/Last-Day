@@ -7,8 +7,13 @@
 
 struct Chunk
 {
-	const static uint8_t sizeInTiles = 64;
+	const static uint16_t sizeInTiles = 64;
 	typedef Tile TileArray2D[ sizeInTiles ][ sizeInTiles ];
+
+	static uint16_t getSizeInTiles( void )
+	{
+		return sizeInTiles;
+	}
 
 	TileArray2D tiles;
 };
