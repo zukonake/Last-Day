@@ -19,7 +19,7 @@ int main()
 	{
 		while( client.isRunning() )
 		{
-			if( tick == 10 )
+			if( tick == 25 )
 			{
 				tick = 0;
 				server->simulate();

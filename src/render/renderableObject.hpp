@@ -19,6 +19,7 @@ private:
 	void loadTexture( void );
 
 	sf::Texture texture;
+	sf::Sprite sprite;
 	std::string texturePath;
 };
 

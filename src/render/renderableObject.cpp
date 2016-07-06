@@ -5,15 +5,15 @@ RenderableObject::RenderableObject( std::istream& in ) noexcept
 	in.ignore( 255, ' ' );
 	in >> texturePath;
 	loadTexture();
+	sprite.setTexture( texture );
+	sprite.setTextureRect( sf::IntRect( 0, 0, 32, 32 ) );
 }
 
 void RenderableObject::render( sf::RenderWindow& window, const Point& targetPosition ) const noexcept
 {
-	sf::Sprite sprite;
-	sprite.setTexture( texture );
-	sprite.setTextureRect( sf::IntRect( 0, 0, 32, 32 ) );
-	sprite.setPosition( targetPosition );
-	window.draw( sprite );
+	sf::Sprite renderSprite = sprite;
+	renderSprite.setPosition( targetPosition );
+	window.draw( renderSprite );
 	return;
 }
 
