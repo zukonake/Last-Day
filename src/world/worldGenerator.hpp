@@ -13,17 +13,19 @@ class WorldGenerator
 	constexpr static double scale = 20;
 	constexpr static double heightMultiplier = 10;
 public:
-	WorldGenerator( World& world ) noexcept;
+	WorldGenerator( World& world, const int& seed ) noexcept;
 
 	Chunk& generateChunk( const Point& targetChunkPosition, Chunk& target ) const noexcept;
 	Tile& generateTile( const Point& targetTilePosition, Tile& target ) const noexcept;
 
-	static int getMaximumTileHeight()
+	const int& getSeed( void ) const noexcept;
+	static int getMaximumTileHeight( void )
 	{
 		return ( int )( heightMultiplier );
 	}
 private:
 	World& world;
+	int seed;
 
 	noise::module::Billow seaTerrain;
 	noise::module::Billow flatTerrain;

@@ -6,11 +6,11 @@
 #include <data/dataset.hpp>
 #include <world/worldGenerator.hpp>
 
-World::World( const Dataset& dataset ) noexcept :
+World::World( const Dataset& dataset, const int& seed ) noexcept :
 	ChunkContainer( generator ),
 	EntityContainer( dynamic_cast< ChunkContainer& >( *this )),
 	dataset( dataset ),
-	generator( *this )
+	generator( *this, seed )
 {
 
 }
@@ -29,4 +29,9 @@ const Dataset& World::getDataset( void ) const noexcept
 const WorldGenerator& World::getGenerator( void ) const noexcept
 {
 	return generator;
+}
+
+const int& World::getSeed( void ) const noexcept
+{
+	return generator.getSeed();
 }

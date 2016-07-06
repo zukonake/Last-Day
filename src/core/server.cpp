@@ -1,14 +1,16 @@
 #include "server.hpp"
 #include <exception>
+#include <cstdlib>
 #include <algorithm>
+#include <ctime>
 //
 #include <core/client.hpp>
 
 Server::Server( void ) noexcept :
 	dataset(),
-	world( dataset )
+	world( dataset, ( int ) time( nullptr ) )
 {
-
+	srand( time( nullptr ) );
 }
 
 Server::~Server( void ) noexcept
