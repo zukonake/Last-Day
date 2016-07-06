@@ -48,6 +48,10 @@ void Server::disconnectClient( Client* target )
 
 void Server::simulate( void ) noexcept
 {
-	world.simulate();
+	if( simulationClock.getElapsedTime() >= sf::milliseconds( 250 ) )
+	{
+		world.simulate();
+		simulationClock.restart();
+	}
 	return;
 }

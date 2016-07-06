@@ -8,7 +8,6 @@
 int main()
 {
 	int returnValue = 0;
-	int tick = 0;
 
 	Server* server = new Server();
 	Client client( Rectangle( 1280, 768 ), "Neue Spiele" );
@@ -19,16 +18,11 @@ int main()
 	{
 		while( client.isRunning() )
 		{
-			if( tick == 25 )
-			{
-				tick = 0;
-				server->simulate();
-			}
 			client.render();
 			client.handleInput();
 			client.update();
 			client.handleTime();
-			tick++;
+			server->simulate();
 		}
 	}
 	catch( std::exception& e )

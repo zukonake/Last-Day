@@ -76,8 +76,8 @@ bool Client::isRunning( void ) const noexcept
 void Client::handleTime( void ) noexcept
 {
 	sf::Time waitingTime = sf::milliseconds( 25 );
-	sf::Time elapsedTime = clock.getElapsedTime();
-	clock.restart();
+	sf::Time elapsedTime = renderClock.getElapsedTime();
+	renderClock.restart();
 	sf::sleep( waitingTime - elapsedTime );
 }
 

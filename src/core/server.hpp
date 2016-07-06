@@ -5,6 +5,7 @@
 //
 #include <data/dataset.hpp>
 #include <world/world.hpp>
+#include <SFML/System.hpp>
 
 class Client;
 
@@ -26,6 +27,7 @@ private:
 	std::vector< Client* > connectedClients;
 	Dataset dataset;
 	World world;
+	sf::Clock simulationClock;
 };
 
 #endif

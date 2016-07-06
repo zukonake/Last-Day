@@ -40,7 +40,7 @@ private:
 	void checkOperationViability( void ) const;
 
 	std::unique_ptr< Camera > camera;
-	sf::Clock clock;
+	sf::Clock renderClock;
 	bool isConnected;
 };
 
