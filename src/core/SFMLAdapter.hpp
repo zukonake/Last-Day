@@ -19,7 +19,7 @@ public:
 	SFMLAdapter& operator=( const SFMLAdapter& that ) = delete;
 
 	void initialize( void );
-	void deinitialize( void );
+	void deinitialize( void ) noexcept;
 
 	void update( void ) noexcept;
 

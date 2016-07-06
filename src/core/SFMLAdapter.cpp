@@ -10,24 +10,32 @@ SFMLAdapter::SFMLAdapter( const Rectangle& windowSize, const std::string windowT
 
 SFMLAdapter::~SFMLAdapter( void ) noexcept
 {
-	window.close();
+	deinitialize();
 }
 
 void SFMLAdapter::initialize( void )
 {
 	window.create( sf::VideoMode( windowSize.width, windowSize.height, 32 ), windowTitle );
+	if( !window.isOpen() )
+	{
+		throw std::runtime_error( "SFMLAdapter::initialize, couldn't initialize window." );
+		return;
+	}
 	window.clear( sf::Color( 0, 0, 0 ) );
+	return;
 }
 
-void SFMLAdapter::deinitialize( void )
+void SFMLAdapter::deinitialize( void ) noexcept
 {
 	window.close();
+	return;
 }
 
 void SFMLAdapter::update( void ) noexcept
 {
 	window.display();
 	window.clear( sf::Color( 0, 0, 0 ) );
+	return;
 }
 
 bool SFMLAdapter::isRunning( void ) const noexcept
