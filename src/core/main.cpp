@@ -18,10 +18,12 @@ int main()
 	{
 		while( client.isRunning() )
 		{
-			client.render();
-			client.handleInput();
-			client.update();
-			client.handleTime();
+			if( client.handleTime() )
+			{
+				client.render();
+				client.handleInput();
+				client.update();
+			}
 			server->simulate();
 		}
 	}

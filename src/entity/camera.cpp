@@ -21,8 +21,11 @@ void Camera::render( sf::RenderWindow& window ) const noexcept
 			iteratorX < position.x + viewRange.width;
 			iteratorX++, renderX += zoom )
 		{
-			world.getTile( Point( iteratorX, iteratorY ) ).render( window, Point( renderX, renderY ) );
-			renderHeightEffects( Point( iteratorX, iteratorY ), window , Point( renderX, renderY ) );
+			if( (iteratorX % ( 32 / zoom )*( 32 / zoom )) == 0 and (iteratorY % ( 32 / zoom )*( 32 / zoom )) == 0)
+			{
+				world.getTile( Point( iteratorX, iteratorY ) ).render( window, Point( renderX, renderY ) );
+				renderHeightEffects( Point( iteratorX, iteratorY ), window , Point( renderX, renderY ) );
+			}
 		}
 	}
 	return;

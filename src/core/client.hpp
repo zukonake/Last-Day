@@ -31,7 +31,7 @@ public:
 
 	bool isRunning( void ) const noexcept;
 
-	void handleTime( void ) noexcept;
+	bool handleTime( void ) noexcept;
 	void handleInput( void ) noexcept;
 private:
 	void handleKeyState( void ) noexcept;

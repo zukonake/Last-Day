@@ -73,12 +73,16 @@ bool Client::isRunning( void ) const noexcept
 	return SFMLAdapter::isRunning();
 }
 
-void Client::handleTime( void ) noexcept
+bool Client::handleTime( void ) noexcept
 {
 	sf::Time waitingTime = sf::milliseconds( 25 );
 	sf::Time elapsedTime = renderClock.getElapsedTime();
-	renderClock.restart();
-	sf::sleep( waitingTime - elapsedTime );
+	if( elapsedTime >= waitingTime )
+	{
+		renderClock.restart();
+		return true;
+	}
+	return false;
 }
 
 void Client::handleInput( void ) noexcept
