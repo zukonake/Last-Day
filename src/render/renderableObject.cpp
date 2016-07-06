@@ -9,11 +9,9 @@ RenderableObject::RenderableObject( std::istream& in ) noexcept
 	sprite.setTextureRect( sf::IntRect( 0, 0, 32, 32 ) );
 }
 
-void RenderableObject::render( sf::RenderWindow& window, const Point& targetPosition ) const noexcept
+void RenderableObject::draw( sf::RenderTarget& target, sf::RenderStates states ) const
 {
-	sf::Sprite renderSprite = sprite;
-	renderSprite.setPosition( targetPosition );
-	window.draw( renderSprite );
+	target.draw( sprite , states );
 	return;
 }
 

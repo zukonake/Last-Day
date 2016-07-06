@@ -8,14 +8,13 @@
 //
 #include <geometry/point.hpp>
 
-class RenderableObject
+class RenderableObject : public sf::Drawable
 {
 public:
 	RenderableObject( std::istream& in ) noexcept;
 	RenderableObject( void ) noexcept { }
-
-	virtual void render( sf::RenderWindow& window, const Point& targetPosition ) const noexcept;
 private:
+	virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
 	void loadTexture( void );
 
 	sf::Texture texture;

@@ -4,12 +4,12 @@
 #include <world/tile/tileSubtype.hpp>
 #include <entity/entity.hpp>
 
-void Tile::render( sf::RenderWindow& window, const Point& targetPosition ) const
+void Tile::draw( sf::RenderTarget& target, sf::RenderStates states ) const
 {
-	subtype->render( window, targetPosition );
+	target.draw( *subtype, states );
 	if( entity != nullptr )
 	{
-		entity->render( window, targetPosition );
+		target.draw( *entity, states );
 	}
 	return;
 }

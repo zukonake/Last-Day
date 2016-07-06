@@ -32,7 +32,7 @@ void Client::render( void ) noexcept
 		std::cerr << "ERROR: Standard exception: " << e.what() << ".\n";
 		return;
 	}
-	camera->render( SFMLAdapter::getWindow() );
+	SFMLAdapter::getWindow().draw( *camera );
 	return;
 }
 

@@ -10,13 +10,12 @@ class ObjectRenderer;
 class EntitySubtype;
 class World;
 
-class Entity
+class Entity : public sf::Drawable
 {
 public:
 	Entity( World& world, const Point& position, const EntitySubtype* subtype ) noexcept;
 	virtual ~Entity( void ) noexcept { }
 
-	void render( sf::RenderWindow& window, const Point& targetPosition ) const;
 	void teleport( const Point& targetPosition ) noexcept;
 	virtual void move( const Direction& targetDirection );
 
@@ -26,6 +25,8 @@ protected:
 	World& world;
 	Point position;
 private:
+	virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
+
 	const EntitySubtype* subtype;
 };
 

@@ -11,7 +11,7 @@ Camera::Camera( const Point& position, World& world, const Rectangle& screenSize
 	updateViewRange();
 }
 
-void Camera::render( sf::RenderWindow& window ) const noexcept
+void Camera::draw( sf::RenderTarget& target, sf::RenderStates states ) const
 {
 	for( Point::coordinate iteratorY = position.y - viewRange.height, renderY = 0;
 		iteratorY < position.y + viewRange.height;
@@ -23,8 +23,10 @@ void Camera::render( sf::RenderWindow& window ) const noexcept
 		{
 			if( (iteratorX % ( 32 / zoom )*( 32 / zoom )) == 0 and (iteratorY % ( 32 / zoom )*( 32 / zoom )) == 0)
 			{
-				world.getTile( Point( iteratorX, iteratorY ) ).render( window, Point( renderX, renderY ) );
-				renderHeightEffects( Point( iteratorX, iteratorY ), window , Point( renderX, renderY ) );
+				sf::Transform renderPosition;
+				renderPosition.translate( renderX, renderY );
+				target.draw( world.getTile( Point( iteratorX, iteratorY ) ), renderPosition );
+				//renderHeightEffects( Point( iteratorX, iteratorY ), window , Point( renderX, renderY ), renderPosition );
 			}
 		}
 	}

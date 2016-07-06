@@ -10,11 +10,11 @@ Entity::Entity( World& world, const Point& position, const EntitySubtype* subtyp
 
 }
 
-void Entity::render( sf::RenderWindow& window, const Point& targetPosition ) const
+void Entity::draw( sf::RenderTarget& target, sf::RenderStates states ) const
 {
 	if( subtype != nullptr )
 	{
-		subtype->render( window, targetPosition );
+		target.draw( *subtype, states );
 	}
 	return;
 }
