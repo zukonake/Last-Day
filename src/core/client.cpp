@@ -9,8 +9,8 @@
 
 Client::Client( const Rectangle& windowSize, const std::string& windowTitle ) noexcept :
 	SFMLAdapter( windowSize, windowTitle ),
-	camera( nullptr ),
-	isConnected( false )
+	pCamera( nullptr ),
+	mIsConnected( false )
 {
 
 }
@@ -32,26 +32,26 @@ void Client::render( void ) noexcept
 		std::cerr << "ERROR: Standard exception: " << e.what() << ".\n";
 		return;
 	}
-	SFMLAdapter::getWindow().draw( *camera );
+	SFMLAdapter::getWindow().draw( *pCamera );
 	return;
 }
 
 void Client::connect( World& world ) noexcept
 {
-	if( !isConnected)
+	if( !mIsConnected)
 	{
-		camera = std::make_unique< Camera >( Point( 0, 0 ), world, SFMLAdapter::getWindowSize() );
-		isConnected = true;
+		pCamera = std::make_unique< Camera >( Point( 0, 0 ), world, SFMLAdapter::getWindowSize() );
+		mIsConnected = true;
 	}
 	return;
 }
 
 void Client::disconnect( void ) noexcept
 {
-	if( isConnected )
+	if( mIsConnected )
 	{
-		camera.reset();
-		isConnected = false;
+		pCamera.reset();
+		mIsConnected = false;
 	}
 	return;
 }
@@ -73,13 +73,18 @@ bool Client::isRunning( void ) const noexcept
 	return SFMLAdapter::isRunning();
 }
 
+bool Client::isConnected( void ) const noexcept
+{
+	return mIsConnected;
+}
+
 bool Client::handleTime( void ) noexcept
 {
 	sf::Time waitingTime = sf::milliseconds( 25 );
-	sf::Time elapsedTime = renderClock.getElapsedTime();
+	sf::Time elapsedTime = mRenderClock.getElapsedTime();
 	if( elapsedTime >= waitingTime )
 	{
-		renderClock.restart();
+		mRenderClock.restart();
 		return true;
 	}
 	return false;
@@ -105,19 +110,19 @@ void Client::handleKeyState( void ) noexcept
 {
 	if( SFMLAdapter::isKeyPressed( sf::Keyboard::Left ) )
 	{
-		camera->move( Direction::WEST );
+		pCamera->move( Direction::WEST );
 	}
 	if( SFMLAdapter::isKeyPressed( sf::Keyboard::Right ) )
 	{
-		camera->move( Direction::EAST );
+		pCamera->move( Direction::EAST );
 	}
 	if( SFMLAdapter::isKeyPressed( sf::Keyboard::Up ) )
 	{
-		camera->move( Direction::NORTH );
+		pCamera->move( Direction::NORTH );
 	}
 	if( SFMLAdapter::isKeyPressed( sf::Keyboard::Down ) )
 	{
-		camera->move( Direction::SOUTH );
+		pCamera->move( Direction::SOUTH );
 	}
 	return;
 }
@@ -125,24 +130,24 @@ void Client::handleKeyState( void ) noexcept
 
 void Client::handleEvents( void ) noexcept
 {
-	for( auto iterator : SFMLAdapter::getEvents() )
+	for( auto iEvent : SFMLAdapter::getEvents() )
 	{
-		if( iterator.type == sf::Event::Closed )
+		if( iEvent.type == sf::Event::Closed )
 		{
 			end();
 		}
-		if( iterator.type == sf::Event::KeyPressed ) //TODO remake dis
+		if( iEvent.type == sf::Event::KeyPressed ) //TODO remake dis
         {
-            switch( iterator.key.code )
+            switch( iEvent.key.code )
             {
 			case sf::Keyboard::Escape:
 				end();
 		        break;
 			case sf::Keyboard::E:
-				camera->setZoom( camera->getZoom() / 2 );
+				pCamera->setZoom( pCamera->getZoom() / 2 );
 			    break;
 			case sf::Keyboard::Q:
-				camera->setZoom( camera->getZoom() * 2 );
+				pCamera->setZoom( pCamera->getZoom() * 2 );
 				break;
 			default:
 				break;
@@ -159,7 +164,7 @@ void Client::checkOperationViability( void ) const
 		throw std::runtime_error( "Client::checkOperationViability, client is not running." );
 		return;
 	}
-	if( !isConnected )
+	if( !mIsConnected )
 	{
 		throw std::runtime_error( "Client::checkOperationViability, client is not connected." );
 		return;

@@ -3,26 +3,26 @@
 #include <world/world.hpp>
 
 Entity::Entity( World& world, const Point& position, const EntitySubtype* subtype ) noexcept :
-	world( world ),
-	position( position ),
-	subtype( subtype )
+	mWorld( world ),
+	mPosition( position ),
+	pSubtype( subtype )
 {
 
 }
 
 void Entity::draw( sf::RenderTarget& target, sf::RenderStates states ) const
 {
-	if( subtype != nullptr )
+	if( pSubtype != nullptr )
 	{
-		target.draw( *subtype, states );
+		target.draw( *pSubtype, states );
 	}
 	return;
 }
 
 void Entity::teleport( const Point& targetPosition ) noexcept
 {
-	world.moveEntity( position, targetPosition );
-	position = targetPosition;
+	mWorld.moveEntity( mPosition, targetPosition );
+	mPosition = targetPosition;
 	return;
 }
 
@@ -33,10 +33,10 @@ void Entity::move( const Direction& targetDirection )
 
 const std::string& Entity::getName( void ) const noexcept
 {
-	return subtype->getName();
+	return pSubtype->getName();
 }
 
 const Point& Entity::getPosition( void ) const noexcept
 {
-	return position;
+	return mPosition;
 }

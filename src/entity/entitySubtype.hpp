@@ -14,7 +14,7 @@ public:
 
 	const std::string& getName( void ) const noexcept;
 private:
-	std::string name;
+	std::string mName;
 };
 
 #endif

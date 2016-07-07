@@ -9,45 +9,45 @@ Dataset::Dataset( void )
 
 void Dataset::initializeObjects( void ) noexcept
 {
-	initializedEntitySubtypes = initializeObjectVectorFromDirectory< EntitySubtype >( "entitySubtype" );
-	initializedTileSubtypes = initializeObjectVectorFromDirectory< TileSubtype >( "tileSubtype" );
-	initializedMobSubtypes = initializeObjectVectorFromDirectory< MobSubtype >( "mobSubtype" );
-	initializedBuildingSubtypes = initializeObjectVectorFromDirectory< BuildingSubtype >( "buildingSubtype" );
+	mEntitySubtypes = initializeObjectsFromDirectory< EntitySubtype >( "entitySubtype" );
+	mTileSubtypes = initializeObjectsFromDirectory< TileSubtype >( "tileSubtype" );
+	mMobSubtypes = initializeObjectsFromDirectory< MobSubtype >( "mobSubtype" );
+	mBuildingSubtypes = initializeObjectsFromDirectory< BuildingSubtype >( "buildingSubtype" );
 }
 
 template<>
 const EntitySubtype& Dataset::getObject( const std::string& key ) const
 {
-	return initializedEntitySubtypes.at( key );
+	return mEntitySubtypes.at( key );
 }
 
 template<>
 const TileSubtype& Dataset::getObject( const std::string& key ) const
 {
-	return initializedTileSubtypes.at( key );
+	return mTileSubtypes.at( key );
 }
 
 template<>
 const MobSubtype& Dataset::getObject( const std::string& key ) const
 {
-	return initializedMobSubtypes.at( key );
+	return mMobSubtypes.at( key );
 }
 
 template<>
 const BuildingSubtype& Dataset::getObject( const std::string& key ) const
 {
-	return initializedBuildingSubtypes.at( key );
+	return mBuildingSubtypes.at( key );
 }
 
 template< typename ObjectType >
-std::map< const std::string, ObjectType > Dataset::initializeObjectVectorFromDirectory( const std::string& directoryPath )
+std::map< const std::string, ObjectType > Dataset::initializeObjectsFromDirectory( const std::string& directoryPath )
 {
 	std::map< const std::string, ObjectType > output;
 	try
 	{
-		for( auto iterator : fileSystem.getFilesInDirectory( datasetPath + directoryPath ) )
+		for( auto iFile : fileSystem.getFilesInDirectory( cDatasetPath + directoryPath ) )
 		{
-			fileSystem.open( iterator, std::ios::in );
+			fileSystem.open( iFile, std::ios::in );
 			std::string name;
 			fileSystem >> name;
 			std::cout << "INFO: Adding object: " << name << ".\n";

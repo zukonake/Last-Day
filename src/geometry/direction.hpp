@@ -3,7 +3,7 @@
 
 struct Direction
 {
-	enum Type
+	enum eType
 	{
 		NONE = 0,
 		NORTH = 1,
@@ -12,12 +12,12 @@ struct Direction
 		EAST = 4
 	};
 
-	Direction( Type value = NONE ) noexcept : value( value ) { }
+	Direction( eType type = NONE ) noexcept : type( type ) { }
 
 	virtual void rotateClockwise( void ) noexcept ;
 	virtual void rotateCounterClockwise( void ) noexcept;
 
-	Type value;
+	eType type;
 };
 
 #endif

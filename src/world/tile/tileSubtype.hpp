@@ -9,16 +9,17 @@
 
 class TileSubtype : public RenderableObject
 {
-	static uint8_t spriteSize;
 public:
+	const static uint8_t spriteSize = 32;
+
 	TileSubtype( std::istream& in ) noexcept;
 	TileSubtype( void ) noexcept { };
 
 	const std::string& getName( void ) const noexcept;
 	const bool& getIsPassable( void ) const noexcept;
 private:
-	bool isPassable;
-	std::string name;
+	bool mIsPassable;
+	std::string mName;
 };
 
 #endif

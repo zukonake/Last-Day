@@ -2,8 +2,8 @@
 #include <geometry/rectangle.hpp>
 
 SFMLAdapter::SFMLAdapter( const Rectangle& windowSize, const std::string windowTitle ) noexcept :
-	windowSize( windowSize ),
-	windowTitle( windowTitle )
+	mWindowSize( windowSize ),
+	mWindowTitle( windowTitle )
 {
 
 }
@@ -15,60 +15,60 @@ SFMLAdapter::~SFMLAdapter( void ) noexcept
 
 void SFMLAdapter::initialize( void )
 {
-	window.create( sf::VideoMode( windowSize.width, windowSize.height, 32 ), windowTitle );
-	if( !window.isOpen() )
+	mWindow.create( sf::VideoMode( mWindowSize.width, mWindowSize.height, 32 ), mWindowTitle );
+	if( !mWindow.isOpen() )
 	{
 		throw std::runtime_error( "SFMLAdapter::initialize, couldn't initialize window." );
 		return;
 	}
-	window.clear( sf::Color( 0, 0, 0 ) );
+	mWindow.clear( sf::Color( 0, 0, 0 ) );
 	return;
 }
 
 void SFMLAdapter::deinitialize( void ) noexcept
 {
-	window.close();
+	mWindow.close();
 	return;
 }
 
 void SFMLAdapter::update( void ) noexcept
 {
-	window.display();
-	window.clear( sf::Color( 0, 0, 0 ) );
+	mWindow.display();
+	mWindow.clear( sf::Color( 0, 0, 0 ) );
 	return;
 }
 
 bool SFMLAdapter::isRunning( void ) const noexcept
 {
-	return window.isOpen();
+	return mWindow.isOpen();
 }
 
 bool SFMLAdapter::isKeyPressed( sf::Keyboard::Key key ) const noexcept
 {
-	return keyboard.isKeyPressed( key );
+	return mKeyboard.isKeyPressed( key );
 }
 
 std::vector< sf::Event > SFMLAdapter::getEvents( void ) noexcept
 {
 	std::vector< sf::Event > output;
-	while( window.pollEvent( event ) )
+	while( mWindow.pollEvent( mEvent ) )
 	{
-		output.push_back( event );
+		output.push_back( mEvent );
 	}
 	return output;
 }
 
 sf::RenderWindow& SFMLAdapter::getWindow( void ) noexcept
 {
-	return window;
+	return mWindow;
 }
 
 const Rectangle& SFMLAdapter::getWindowSize( void ) const noexcept
 {
-	return windowSize;
+	return mWindowSize;
 }
 
 const std::string& SFMLAdapter::getWindowTitle( void ) const noexcept
 {
-	return windowTitle;
+	return mWindowTitle;
 }

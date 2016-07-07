@@ -5,6 +5,7 @@
 #include <string>
 #include <SFML/System.hpp>
 //
+#include <nonCopyable.hpp>
 #include <core/SFMLAdapter.hpp>
 
 struct Rectangle;
@@ -16,10 +17,8 @@ class Client : public SFMLAdapter
 {
 public:
 	Client( const Rectangle& windowSize, const std::string& windowTitle ) noexcept;
-	Client( const Client& that ) = delete;
-	~Client() noexcept;
 
-	Client& operator=( const Client& that ) = delete;
+	~Client() noexcept;
 
 	void render( void ) noexcept;
 
@@ -30,6 +29,7 @@ public:
 	void end( void ) noexcept;
 
 	bool isRunning( void ) const noexcept;
+	bool isConnected( void ) const noexcept;
 
 	bool handleTime( void ) noexcept;
 	void handleInput( void ) noexcept;
@@ -39,9 +39,9 @@ private:
 
 	void checkOperationViability( void ) const;
 
-	std::unique_ptr< Camera > camera;
-	sf::Clock renderClock;
-	bool isConnected;
+	std::unique_ptr< Camera > pCamera;
+	sf::Clock mRenderClock;
+	bool mIsConnected;
 };
 
 #endif

@@ -51,7 +51,7 @@ bool Point::operator < ( const Point& target ) const noexcept
 Point Point::move( const Direction& direction, const int& difference ) noexcept
 {
 	Point output = *this;
-	switch( direction.value )
+	switch( direction.type )
 	{
 		case Direction::NONE:
 		break;

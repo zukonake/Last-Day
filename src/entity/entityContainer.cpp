@@ -7,19 +7,19 @@
 
 void EntityContainer::simulate( void ) noexcept
 {
-	std::vector< std::shared_ptr< Entity > > tempVector;
-	for( auto iterator : entities )
+	tEntityVector tempVector;
+	for( auto iEntity : mEntities )
 	{
-		tempVector.push_back( iterator );
+		tempVector.push_back( iEntity );
 	}
-	for( auto iterator : tempVector )
+	for( auto iEntity : tempVector )
 	{
-		iterator->move( static_cast< Direction::Type > ( rand() % 5 ) );
+		iEntity->move( static_cast< Direction::eType > ( rand() % 5 ) );
 	}
 }
 
 void EntityContainer::addEntity( std::shared_ptr< Entity > value )
 {
-	entities.push_back( value );
-	chunkContainer.getTile( value->getPosition() ).setEntity( value );
+	mEntities.push_back( value );
+	mChunkContainer.getTile( value->getPosition() ).setEntity( value );
 }

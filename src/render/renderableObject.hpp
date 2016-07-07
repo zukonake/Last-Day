@@ -17,9 +17,9 @@ private:
 	virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
 	void loadTexture( void );
 
-	sf::Texture texture;
-	sf::Sprite sprite;
-	std::string texturePath;
+	sf::Texture mTexture;
+	sf::Sprite mSprite;
+	std::string mTexturePath;
 };
 
 #endif

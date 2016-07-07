@@ -7,10 +7,10 @@
 #include <world/worldGenerator.hpp>
 
 World::World( const Dataset& dataset, const int& seed ) noexcept :
-	ChunkContainer( generator ),
+	ChunkContainer( mGenerator ),
 	EntityContainer( dynamic_cast< ChunkContainer& >( *this )),
-	dataset( dataset ),
-	generator( *this, seed )
+	mDataset( dataset ),
+	mGenerator( *this, seed )
 {
 
 }
@@ -23,15 +23,15 @@ void World::simulate( void ) noexcept
 
 const Dataset& World::getDataset( void ) const noexcept
 {
-	return dataset;
+	return mDataset;
 }
 
 const WorldGenerator& World::getGenerator( void ) const noexcept
 {
-	return generator;
+	return mGenerator;
 }
 
 const int& World::getSeed( void ) const noexcept
 {
-	return generator.getSeed();
+	return mGenerator.getSeed();
 }

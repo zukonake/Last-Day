@@ -14,13 +14,13 @@ std::vector< std::string > FileSystemAdapter::getFilesInDirectory( const std::st
 	if( boost::filesystem::is_directory( directoryPath ))
 	{
 		boost::filesystem::directory_iterator endIterator;
-		for( boost::filesystem::directory_iterator iterator( directoryPath );
-			iterator != endIterator;
-			++iterator )
+		for( boost::filesystem::directory_iterator iFile( directoryPath );
+			iFile != endIterator;
+			++iFile )
 		{
-			if( !boost::filesystem::is_directory( iterator->status() ) and iterator->path().extension() == targetExtension )
+			if( !boost::filesystem::is_directory( iFile->status() ) and iFile->path().extension() == targetExtension )
 			{
-				output.push_back( iterator->path().string() );
+				output.push_back( iFile->path().string() );
 			}
 		}
 	}

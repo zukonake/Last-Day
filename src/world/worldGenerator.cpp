@@ -10,16 +10,16 @@
 #include <world/world.hpp>
 
 WorldGenerator::WorldGenerator( World& world, const int& seed ) noexcept :
-	world( world ),
-	seed( seed )
+	mWorld( world ),
+	mSeed( seed )
 {
-	flatTerrain.SetSeed( seed );
+	flatTerrain.SetSeed( mSeed );
 	flatTerrain.SetFrequency( 0.25 );
 
-	mountainTerrain.SetSeed( seed );
+	mountainTerrain.SetSeed( mSeed );
 	mountainTerrain.SetFrequency( 0.5 );
 
-	terrainType.SetSeed( seed );
+	terrainType.SetSeed( mSeed );
 	terrainType.SetFrequency( 0.1 );
 	terrainType.SetPersistence( 0.5 );
 	terrainType.SetOctaveCount( 16 );
@@ -55,7 +55,7 @@ WorldGenerator::WorldGenerator( World& world, const int& seed ) noexcept :
 	landTerrainSelector.SetBounds( 0.5, 1000 );
 	landTerrainSelector.SetEdgeFalloff( 0.125 );
 
-	finalTerrain.SetSeed( seed );
+	finalTerrain.SetSeed( mSeed );
 	finalTerrain.SetSourceModule( 0, landTerrainSelector );
 	finalTerrain.SetFrequency( 2 );
 	finalTerrain.SetPower( 0.0625 );
@@ -69,7 +69,7 @@ Chunk& WorldGenerator::generateChunk( const Point& targetChunkPosition, Chunk& t
 		{
 			Point firstTile = targetChunkPosition.tilePosition( Chunk::getSizeInTiles() );
 			Point targetTilePosition = Point( firstTile.x + ( int ) iteratorX, firstTile.y + ( int ) iteratorY );
-			generateTile( targetTilePosition, target.tiles[ iteratorX ][ iteratorY ] );
+			generateTile( targetTilePosition, target.value[ iteratorX ][ iteratorY ] );
 		}
 	}
 	return target;
@@ -77,44 +77,44 @@ Chunk& WorldGenerator::generateChunk( const Point& targetChunkPosition, Chunk& t
 
 Tile& WorldGenerator::generateTile( const Point& targetTilePosition, Tile& target ) const noexcept
 {
-	const Dataset& dataset = world.getDataset();
-	double heightValue = finalTerrain.GetValue( (double)( targetTilePosition.x ) / scale, (double)( targetTilePosition.y ) / scale, 0 );
+	const Dataset& dataset = mWorld.getDataset();
+	double heightValue = finalTerrain.GetValue( (double)( targetTilePosition.x ) / csScale, (double)( targetTilePosition.y ) / csScale, 0 );
 	if( heightValue >= 0.6 )
 	{
-		target = Tile( &dataset.getObject< TileSubtype >( "stone" ), heightValue*heightMultiplier);
+		target = Tile( &dataset.getObject< TileSubtype >( "stone" ), heightValue * csHeightMultiplier);
 	}
 	else if( heightValue >= 0.5 )
 	{
-		target = Tile( &dataset.getObject< TileSubtype >( "dirt" ), heightValue*heightMultiplier);
+		target = Tile( &dataset.getObject< TileSubtype >( "dirt" ), heightValue * csHeightMultiplier);
 	}
 	else if( heightValue >= -0.05 )
 	{
-		target = Tile( &dataset.getObject< TileSubtype >( "grass" ), heightValue*heightMultiplier);
+		target = Tile( &dataset.getObject< TileSubtype >( "grass" ), heightValue * csHeightMultiplier);
 		if( heightValue >= 0 and heightValue <= 0.45  and ( rand() % 10 ) == 1 )
 		{
-			world.addEntity( std::make_shared< Entity >( world,
+			mWorld.addEntity( std::make_shared< Entity >( mWorld,
 				targetTilePosition,
 				&dataset.getObject< EntitySubtype >( "tree" ) ) );
 		}
 		if( ( rand() % 100 ) == 1 )
 		{
-			world.addEntity( std::make_shared< Mob >( world,
+			mWorld.addEntity( std::make_shared< Mob >( mWorld,
 				targetTilePosition,
 				&dataset.getObject< MobSubtype >( "human" ) ) );
 		}
 	}
 	else if( heightValue >= -0.2 )
 	{
-		target = Tile( &dataset.getObject< TileSubtype >(  "sand" ), heightValue*heightMultiplier);
+		target = Tile( &dataset.getObject< TileSubtype >(  "sand" ), heightValue * csHeightMultiplier);
 	}
 	else if( heightValue < -0.2 )
 	{
-		target = Tile( &dataset.getObject< TileSubtype >( "water" ), heightValue*heightMultiplier);
+		target = Tile( &dataset.getObject< TileSubtype >( "water" ), heightValue * csHeightMultiplier);
 	}
 	return target;
 }
 
 const int& WorldGenerator::getSeed( void ) const noexcept
 {
-	return seed;
+	return mSeed;
 }

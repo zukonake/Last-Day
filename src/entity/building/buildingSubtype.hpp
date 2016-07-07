@@ -12,7 +12,7 @@ public:
 	BuildingSubtype( std::istream& in ) noexcept;
 	BuildingSubtype( void ) noexcept { }
 private:
-	Rectangle shape;
+	Rectangle mShape;
 };
 
 #endif

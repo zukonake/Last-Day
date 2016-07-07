@@ -22,8 +22,8 @@ public:
 	const WorldGenerator& getGenerator( void ) const noexcept;
 	const int& getSeed( void ) const noexcept;
 private:
-	const Dataset& dataset;
-	WorldGenerator generator;
+	const Dataset& mDataset;
+	WorldGenerator mGenerator;
 };
 
 #endif

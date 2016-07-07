@@ -2,32 +2,30 @@
 #define SERVER_HPP
 
 #include <vector>
+#include <SFML/System.hpp>
 //
+#include <nonCopyable.hpp>
 #include <data/dataset.hpp>
 #include <world/world.hpp>
-#include <SFML/System.hpp>
 
 class Client;
 
-class Server
+class Server : NonCopyable
 {
 public:
 	Server( void ) noexcept;
-	Server( const Server& that ) = delete;
 
 	~Server( void ) noexcept;
-
-	Server& operator=( const Server& that ) = delete;
 
 	void connectClient( Client* target );
 	void disconnectClient( Client* target );
 
 	void simulate( void ) noexcept;
 private:
-	std::vector< Client* > connectedClients;
-	Dataset dataset;
-	World world;
-	sf::Clock simulationClock;
+	std::vector< Client* > mConnectedClients;
+	Dataset mDataset;
+	World mWorld;
+	sf::Clock mSimulationClock;
 };
 
 #endif

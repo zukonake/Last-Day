@@ -7,17 +7,17 @@
 #include <core/client.hpp>
 
 Server::Server( void ) noexcept :
-	dataset(),
-	world( dataset, ( int ) time( nullptr ) )
+	mDataset(),
+	mWorld( mDataset, ( int ) time( nullptr ) )
 {
 	srand( time( nullptr ) );
 }
 
 Server::~Server( void ) noexcept
 {
-	for( auto iterator : connectedClients )
+	for( auto iClient : mConnectedClients )
 	{
-		disconnectClient( iterator );
+		disconnectClient( iClient );
 	}
 }
 
@@ -28,8 +28,8 @@ void Server::connectClient( Client* target )
 		throw std::invalid_argument( "Server::disconnectClient, null pointer given in argument 1." );
 		return;
 	}
-	connectedClients.push_back( target );
-	target->connect( world );
+	mConnectedClients.push_back( target );
+	target->connect( mWorld );
 	return;
 }
 
@@ -40,18 +40,18 @@ void Server::disconnectClient( Client* target )
 		throw std::invalid_argument( "Server::disconnectClient, null pointer given in argument 1." );
 		return;
 	}
-	auto iterator = std::find( connectedClients.begin(), connectedClients.end(), target);
-	connectedClients[ std::distance( connectedClients.begin(), iterator ) ]->disconnect();
-	connectedClients.erase( iterator );
+	auto iClient = std::find( mConnectedClients.begin(), mConnectedClients.end(), target);
+	mConnectedClients[ std::distance( mConnectedClients.begin(), iClient ) ]->disconnect();
+	mConnectedClients.erase( iClient );
 	return;
 }
 
 void Server::simulate( void ) noexcept
 {
-	if( simulationClock.getElapsedTime() >= sf::milliseconds( 250 ) )
+	if( mSimulationClock.getElapsedTime() >= sf::milliseconds( 250 ) )
 	{
-		world.simulate();
-		simulationClock.restart();
+		mWorld.simulate();
+		mSimulationClock.restart();
 	}
 	return;
 }

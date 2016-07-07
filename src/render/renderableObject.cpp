@@ -3,23 +3,23 @@
 RenderableObject::RenderableObject( std::istream& in ) noexcept
 {
 	in.ignore( 255, ' ' );
-	in >> texturePath;
+	in >> mTexturePath;
 	loadTexture();
-	sprite.setTexture( texture );
-	sprite.setTextureRect( sf::IntRect( 0, 0, 32, 32 ) );
+	mSprite.setTexture( mTexture );
+	mSprite.setTextureRect( sf::IntRect( 0, 0, 32, 32 ) );
 }
 
 void RenderableObject::draw( sf::RenderTarget& target, sf::RenderStates states ) const
 {
-	target.draw( sprite , states );
+	target.draw( mSprite , states );
 	return;
 }
 
 void RenderableObject::loadTexture( void )
 {
-	if( !texture.loadFromFile( texturePath ) )
+	if( !mTexture.loadFromFile( mTexturePath ) )
 	{
-		throw std::runtime_error( "RenderableObject::loadTexture, couldn't load texture from file: " + texturePath + "." );
+		throw std::runtime_error( "RenderableObject::loadTexture, couldn't load texture from file: " + mTexturePath + "." );
 		return;
 	}
 	return;

@@ -1,23 +1,21 @@
 #include "tileSubtype.hpp"
 #include <exception>
 
-uint8_t TileSubtype::spriteSize = 32;
-
 TileSubtype::TileSubtype( std::istream& in ) noexcept :
 	RenderableObject( in )
 {
 	in.ignore( 255, ' ' );
-	in >> name;
+	in >> mName;
 	in.ignore( 255, ' ' );
-	in >> isPassable;
+	in >> mIsPassable;
 }
 
 const std::string& TileSubtype::getName( void ) const noexcept
 {
-	return name;
+	return mName;
 }
 
 const bool& TileSubtype::getIsPassable( void ) const noexcept
 {
-	return isPassable;
+	return mIsPassable;
 }

@@ -4,28 +4,26 @@
 #include <memory>
 #include <vector>
 //
+#include <nonCopyable.hpp>
 #include <world/chunk/chunkContainer.hpp>
 
 struct Point;
 class Entity;
 
-class EntityContainer
+class EntityContainer : NonCopyable
 {
-	typedef std::vector< std::shared_ptr< Entity > > entityVector;
+	typedef std::vector< std::shared_ptr< Entity > > tEntityVector;
 public:
-	EntityContainer( const EntityContainer& that ) = delete;
-	EntityContainer( ChunkContainer& chunkContainer ) noexcept : chunkContainer( chunkContainer ) { }
+	EntityContainer( ChunkContainer& chunkContainer ) noexcept : mChunkContainer( chunkContainer ) { }
 
 	virtual ~EntityContainer( void ) noexcept { }
-
-	EntityContainer& operator=( const EntityContainer& that ) = delete;
 
 	void simulate( void ) noexcept;
 
 	void addEntity( std::shared_ptr< Entity > value );
 private:
-	entityVector entities;
-	ChunkContainer& chunkContainer;
+	tEntityVector mEntities;
+	ChunkContainer& mChunkContainer;
 };
 
 #endif

@@ -2,21 +2,21 @@
 
 void Direction::rotateClockwise( void ) noexcept
 {
-	switch( value )
+	switch( type )
 	{
 	case NONE:
 		break;
 	case NORTH:
-		value = EAST;
+		type = EAST;
 		break;
 	case WEST:
-		value = NORTH;
+		type = NORTH;
 		break;
 	case SOUTH:
-		value = WEST;
+		type = WEST;
 		break;
 	case EAST:
-		value = SOUTH;
+		type = SOUTH;
 		break;
 	}
 	return;
@@ -24,21 +24,21 @@ void Direction::rotateClockwise( void ) noexcept
 
 void Direction::rotateCounterClockwise( void ) noexcept
 {
-	switch( value )
+	switch( type )
 	{
 	case NONE:
 		break;
 	case NORTH:
-		value = WEST;
+		type = WEST;
 		break;
 	case WEST:
-		value = SOUTH;
+		type = SOUTH;
 		break;
 	case SOUTH:
-		value = EAST;
+		type = EAST;
 		break;
 	case EAST:
-		value = NORTH;
+		type = NORTH;
 		break;
 	}
 	return;

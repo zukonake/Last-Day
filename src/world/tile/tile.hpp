@@ -9,12 +9,13 @@
 struct Point;
 class TileSubtype;
 class Entity;
+class World;
 
 class Tile : public sf::Drawable
 {
 public:
-	Tile( const TileSubtype* subtype, int8_t height ) noexcept : subtype( subtype ), height( height ), entity( nullptr ) { }
-	Tile( void ) noexcept : subtype( nullptr ), entity( nullptr ) { }
+	Tile( const TileSubtype* pSubtype, int8_t mHeight ) noexcept : pSubtype( pSubtype ), mHeight( mHeight ), pEntity( nullptr ) { }
+	Tile( void ) noexcept : pSubtype( nullptr ), pEntity( nullptr ) { }
 
 	const std::string& getSubtypeName( void ) const noexcept;
 	const int8_t& getHeight( void ) const noexcept;
@@ -24,9 +25,9 @@ public:
 private:
 	virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
 
-	const TileSubtype* subtype;
-	int8_t height;
-	std::shared_ptr< Entity > entity;
+	const TileSubtype* pSubtype;
+	int8_t mHeight;
+	std::shared_ptr< Entity > pEntity;
 };
 
 #endif

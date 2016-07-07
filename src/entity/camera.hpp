@@ -17,18 +17,19 @@ class Camera : public Entity
 public:
 	Camera( const Point& position, World& world, const Rectangle& screenSize ) noexcept;
 
-	void renderHeightEffects( const Point& targetTilePosition, sf::RenderWindow& window, const Point& targetRenderPosition ) const noexcept;
 	void move( const Direction& targetDirection ) override;
 
 	const uint8_t& getZoom( void ) const noexcept;
 	void setZoom( const uint8_t& value ) noexcept;
 private:
 	virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
+	void renderHeightEffects( const Point& targetTilePosition, sf::RenderTarget& target, sf::RenderStates states ) const noexcept;
+
 	void updateViewRange( void ) noexcept;
 
-	Rectangle viewRange;
-	Rectangle screenSize;
-	uint8_t zoom = 32;
+	const Rectangle& mScreenSize;
+	Rectangle mViewRange;
+	uint8_t mZoom = 32;
 };
 
 #endif

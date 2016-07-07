@@ -10,8 +10,8 @@ class World;
 
 class WorldGenerator
 {
-	constexpr static double scale = 20;
-	constexpr static double heightMultiplier = 10;
+	constexpr static double csScale = 20;
+	constexpr static double csHeightMultiplier = 10;
 public:
 	WorldGenerator( World& world, const int& seed ) noexcept;
 
@@ -21,11 +21,11 @@ public:
 	const int& getSeed( void ) const noexcept;
 	static int getMaximumTileHeight( void )
 	{
-		return ( int )( heightMultiplier );
+		return ( int )( csHeightMultiplier );
 	}
 private:
-	World& world;
-	int seed;
+	World& mWorld;
+	int mSeed;
 
 	noise::module::Billow seaTerrain;
 	noise::module::Billow flatTerrain;

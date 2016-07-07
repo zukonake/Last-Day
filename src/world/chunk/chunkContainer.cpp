@@ -4,7 +4,7 @@
 #include <world/worldGenerator.hpp>
 
 ChunkContainer::ChunkContainer( WorldGenerator& generator ) noexcept :
-	generator( generator )
+	mGenerator( generator )
 {
 
 }
@@ -32,20 +32,20 @@ Tile& ChunkContainer::getTile( const Point& targetTilePosition )
 {
 	Point targetInternalPosition = targetTilePosition.internalPosition( Chunk::getSizeInTiles() );
 	Point targetChunkPosition = targetTilePosition.chunkPosition( Chunk::getSizeInTiles() );
-	return getChunk( targetChunkPosition ).tiles[ targetInternalPosition.x ][ targetInternalPosition.y ];
+	return getChunk( targetChunkPosition ).value[ targetInternalPosition.x ][ targetInternalPosition.y ];
 }
 
 Chunk& ChunkContainer::getChunk( const Point& targetChunkPosition )
 {
-	if( loadedChunks.find( targetChunkPosition ) == loadedChunks.end() )
+	if( mLoadedChunks.find( targetChunkPosition ) == mLoadedChunks.end() )
 	{
 		loadChunk( targetChunkPosition );
 	}
-	return loadedChunks[ targetChunkPosition ];
+	return mLoadedChunks[ targetChunkPosition ];
 }
 
 Chunk& ChunkContainer::loadChunk( const Point& targetChunkPosition )
 {
-	generator.generateChunk( targetChunkPosition, loadedChunks[ targetChunkPosition ] );
-	return loadedChunks[ targetChunkPosition ];
+	mGenerator.generateChunk( targetChunkPosition, mLoadedChunks[ targetChunkPosition ] );
+	return mLoadedChunks[ targetChunkPosition ];
 }

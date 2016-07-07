@@ -4,15 +4,14 @@
 #include <fstream>
 #include <string>
 #include <vector>
+//
+#include <nonCopyable.hpp>
 
-struct FileSystemAdapter : std::fstream
+struct FileSystemAdapter : std::fstream, NonCopyable
 {
-	FileSystemAdapter( const FileSystemAdapter& that ) = delete;
 	FileSystemAdapter( void ) noexcept { }
 
 	~FileSystemAdapter( void );
-
-	FileSystemAdapter& operator=( const FileSystemAdapter& that ) = delete;
 
 	std::vector< std::string > getFilesInDirectory( const std::string& directoryPath, const std::string& targetExtension = ".ldo" );
 };

@@ -5,10 +5,10 @@ EntitySubtype::EntitySubtype( std::istream& in ) noexcept :
 RenderableObject( in )
 {
 	in.ignore( 255, ' ' );
-	in >> name;
+	in >> mName;
 }
 
 const std::string& EntitySubtype::getName( void ) const noexcept
 {
-	return name;
+	return mName;
 }

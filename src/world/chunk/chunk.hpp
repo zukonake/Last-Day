@@ -15,7 +15,7 @@ struct Chunk
 		return sizeInTiles;
 	}
 
-	TileArray2D tiles;
+	TileArray2D value;
 };
 
 #endif

@@ -6,17 +6,15 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 //
+#include <nonCopyable.hpp>
 #include <geometry/rectangle.hpp>
 
-class SFMLAdapter
+class SFMLAdapter : NonCopyable
 {
 public:
 	SFMLAdapter( const Rectangle& windowSize, const std::string windowTitle ) noexcept;
-	SFMLAdapter( const SFMLAdapter& that ) = delete;
 
 	~SFMLAdapter( void ) noexcept;
-
-	SFMLAdapter& operator=( const SFMLAdapter& that ) = delete;
 
 	void initialize( void );
 	void deinitialize( void ) noexcept;
@@ -31,12 +29,12 @@ public:
 	const Rectangle& getWindowSize( void ) const noexcept;
 	const std::string& getWindowTitle( void ) const noexcept;
 private:
-	sf::RenderWindow window;
-	sf::Event event;
-	sf::Keyboard keyboard;
+	sf::RenderWindow mWindow;
+	sf::Event mEvent;
+	sf::Keyboard mKeyboard;
 
-	Rectangle windowSize;
-	std::string windowTitle;
+	Rectangle mWindowSize;
+	std::string mWindowTitle;
 };
 
 #endif

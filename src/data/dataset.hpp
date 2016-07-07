@@ -12,7 +12,7 @@
 
 class Dataset
 {
-	const std::string datasetPath = "dataset/generic/";
+	const std::string cDatasetPath = "dataset/generic/";
 public:
 	Dataset( void );
 
@@ -21,12 +21,12 @@ public:
 private:
 	void initializeObjects( void ) noexcept;
 	template< typename ObjectType >
-	std::map< const std::string, ObjectType > initializeObjectVectorFromDirectory( const std::string& directoryPath );
+	std::map< const std::string, ObjectType > initializeObjectsFromDirectory( const std::string& directoryPath );
 
-	std::map< const std::string, EntitySubtype > initializedEntitySubtypes;
-	std::map< const std::string, TileSubtype > initializedTileSubtypes;
-	std::map< const std::string, MobSubtype > initializedMobSubtypes;
-	std::map< const std::string, BuildingSubtype > initializedBuildingSubtypes;
+	std::map< const std::string, EntitySubtype > mEntitySubtypes;
+	std::map< const std::string, TileSubtype > mTileSubtypes;
+	std::map< const std::string, MobSubtype > mMobSubtypes;
+	std::map< const std::string, BuildingSubtype > mBuildingSubtypes;
 
 	FileSystemAdapter fileSystem;
 };
