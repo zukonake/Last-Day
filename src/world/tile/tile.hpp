@@ -14,7 +14,7 @@ class World;
 class Tile : public sf::Drawable
 {
 public:
-	Tile( const TileSubtype* pSubtype, int8_t mHeight ) noexcept : pSubtype( pSubtype ), mHeight( mHeight ), pEntity( nullptr ) { }
+	Tile( const TileSubtype* subtype, int8_t height ) noexcept : pSubtype( subtype ), mHeight( height ), pEntity( nullptr ) { }
 	Tile( void ) noexcept : pSubtype( nullptr ), pEntity( nullptr ) { }
 
 	const std::string& getSubtypeName( void ) const noexcept;
