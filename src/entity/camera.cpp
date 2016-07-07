@@ -6,7 +6,7 @@
 #include <world/worldGenerator.hpp>
 
 Camera::Camera( const Point& position, World& world, const Rectangle& screenSize ) noexcept :
-	Entity( world, position, nullptr ),
+	Entity( position, nullptr, world ),
 	mScreenSize( screenSize )
 {
 	updateViewRange();

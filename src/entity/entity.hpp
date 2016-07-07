@@ -13,7 +13,7 @@ class World;
 class Entity : public sf::Drawable
 {
 public:
-	Entity( World& world, const Point& position, const EntitySubtype* subtype ) noexcept;
+	Entity( const Point& position, const EntitySubtype* subtype, World& world ) noexcept;
 	virtual ~Entity( void ) noexcept { }
 
 	void teleport( const Point& targetPosition ) noexcept;

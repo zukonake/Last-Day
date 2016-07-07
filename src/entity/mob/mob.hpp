@@ -10,7 +10,7 @@ class World;
 class Mob : public Entity
 {
 public:
-	Mob( World& world, const Point& position, const MobSubtype* subtype ) noexcept;
+	Mob( const Point& position, const MobSubtype* subtype, World& world ) noexcept;
 
 	void move( const Direction& targetDirection ) override;
 };

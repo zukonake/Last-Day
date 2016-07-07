@@ -4,8 +4,8 @@
 #include <entity/mob/mobSubtype.hpp>
 #include <world/world.hpp>
 
-Mob::Mob( World& world, const Point& position, const MobSubtype* subtype ) noexcept :
-	Entity( world, position, subtype )
+Mob::Mob( const Point& position, const MobSubtype* subtype, World& world ) noexcept :
+	Entity( position, subtype, world )
 {
 
 }

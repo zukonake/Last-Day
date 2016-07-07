@@ -2,10 +2,10 @@
 #include <entity/entitySubtype.hpp>
 #include <world/world.hpp>
 
-Entity::Entity( World& world, const Point& position, const EntitySubtype* subtype ) noexcept :
-	mWorld( world ),
+Entity::Entity( const Point& position, const EntitySubtype* subtype, World& world ) noexcept :
 	mPosition( position ),
-	pSubtype( subtype )
+	pSubtype( subtype ),
+	mWorld( world )
 {
 
 }
