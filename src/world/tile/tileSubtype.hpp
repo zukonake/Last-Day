@@ -5,9 +5,9 @@
 #include <string>
 #include <iostream>
 //
-#include <render/renderableObject.hpp>
+#include <render/renderable.hpp>
 
-class TileSubtype : public RenderableObject
+class TileSubtype : public Renderable
 {
 public:
 	const static uint8_t spriteSize = 32;

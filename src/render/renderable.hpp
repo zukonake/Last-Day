@@ -1,5 +1,5 @@
-#ifndef RENDERABLEOBJECT_HPP
-#define RENDERABLEOBJECT_HPP
+#ifndef RENDERABLE_HPP
+#define RENDERABLE_HPP
 
 #include <cstdint>
 #include <iostream>
@@ -8,11 +8,11 @@
 //
 #include <geometry/point.hpp>
 
-class RenderableObject : public sf::Drawable
+class Renderable : public sf::Drawable
 {
 public:
-	RenderableObject( std::istream& in ) noexcept;
-	RenderableObject( void ) noexcept { }
+	Renderable( std::istream& in ) noexcept;
+	Renderable( void ) noexcept { }
 private:
 	virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
 	void loadTexture( void );

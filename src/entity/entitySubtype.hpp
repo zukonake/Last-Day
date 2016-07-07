@@ -4,9 +4,9 @@
 #include <string>
 #include <iostream>
 //
-#include <render/renderableObject.hpp>
+#include <render/renderable.hpp>
 
-class EntitySubtype : public RenderableObject
+class EntitySubtype : public Renderable
 {
 public:
 	EntitySubtype( std::istream& in ) noexcept;

@@ -2,7 +2,7 @@
 #include <exception>
 
 EntitySubtype::EntitySubtype( std::istream& in ) noexcept :
-RenderableObject( in )
+Renderable( in )
 {
 	in.ignore( 255, ' ' );
 	in >> mName;
