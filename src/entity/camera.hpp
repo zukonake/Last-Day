@@ -19,8 +19,7 @@ public:
 
 	void move( const Direction& targetDirection ) override;
 
-	const uint8_t& getZoom( void ) const noexcept;
-	void setZoom( const uint8_t& value ) noexcept;
+	void resizeZoom( const bool& direction ) noexcept;
 private:
 	virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
 	void renderHeightEffects( const Point& targetTilePosition, sf::RenderTarget& target, sf::RenderStates states ) const noexcept;

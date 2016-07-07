@@ -69,16 +69,16 @@ void Camera::move( const Direction& targetDirection )
 	mPosition = mPosition.move( targetDirection );
 }
 
-const uint8_t& Camera::getZoom( void ) const noexcept
+void Camera::resizeZoom( const bool& direction ) noexcept
 {
-	return mZoom;
-}
-
-void Camera::setZoom( const uint8_t& value ) noexcept
-{
-	if( value >= 1 and value <= 32 )
+	if( direction and mZoom <= 16 )
 	{
-		mZoom = value;
+		mZoom *= 2;
+		updateViewRange();
+	}
+	if( !direction and mZoom >= 2 )
+	{
+		mZoom /= 2;
 		updateViewRange();
 	}
 	return;

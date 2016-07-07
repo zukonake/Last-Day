@@ -145,10 +145,10 @@ void Client::handleEvents( void ) noexcept
 				end();
 		        break;
 			case sf::Keyboard::E:
-				pCamera->setZoom( pCamera->getZoom() / 2 );
+				pCamera->resizeZoom( 0 );
 			    break;
 			case sf::Keyboard::Q:
-				pCamera->setZoom( pCamera->getZoom() * 2 );
+				pCamera->resizeZoom( 1 );
 				break;
 			default:
 				break;
