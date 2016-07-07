@@ -7,13 +7,14 @@ struct Point;
 struct Chunk;
 class Tile;
 class World;
+class Dataset;
 
 class WorldGenerator
 {
 	constexpr static double csScale = 20;
 	constexpr static double csHeightMultiplier = 10;
 public:
-	WorldGenerator( World& world, const int& seed ) noexcept;
+	WorldGenerator( World& world, const Dataset& dataset, const int& seed ) noexcept;
 
 	Chunk& generateChunk( const Point& targetChunkPosition, Chunk& target ) const noexcept;
 	Tile& generateTile( const Point& targetTilePosition, Tile& target ) const noexcept;
@@ -25,6 +26,7 @@ public:
 	}
 private:
 	World& mWorld;
+	const Dataset& mDataset;
 	int mSeed;
 
 	noise::module::Billow seaTerrain;

@@ -3,6 +3,7 @@
 #include <geometry/point.hpp>
 #include <world/tile/tile.hpp>
 #include <world/world.hpp>
+#include <world/worldGenerator.hpp>
 
 Camera::Camera( const Point& position, World& world, const Rectangle& screenSize ) noexcept :
 	Entity( world, position, nullptr ),
@@ -37,9 +38,9 @@ void Camera::draw( sf::RenderTarget& target, sf::RenderStates states ) const
 void Camera::renderHeightEffects( const Point& targetTilePosition, sf::RenderTarget& target, sf::RenderStates states ) const noexcept
 {//TODO is a mess, TODO transfer rect rendering to tile class TODO
 	uint8_t maximumAlpha = 150;
-	double heightAlphaMultiplier = maximumAlpha / ( ( mWorld.getGenerator().getMaximumTileHeight() * 2 ));
+	double heightAlphaMultiplier = maximumAlpha / ( ( WorldGenerator::getMaximumTileHeight() * 2 ));
 	const Tile& targetTile = mWorld.getTile( targetTilePosition );
-	int8_t alpha = ( targetTile.getHeight() + mWorld.getGenerator().getMaximumTileHeight() );
+	int8_t alpha = ( targetTile.getHeight() + WorldGenerator::getMaximumTileHeight() );
 	double alphaModifier = heightAlphaMultiplier * alpha;
 	if( alphaModifier > maximumAlpha )
 	{

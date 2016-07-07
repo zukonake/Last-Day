@@ -9,8 +9,9 @@
 #include <world/chunk/chunk.hpp>
 #include <world/world.hpp>
 
-WorldGenerator::WorldGenerator( World& world, const int& seed ) noexcept :
+WorldGenerator::WorldGenerator( World& world, const Dataset& dataset, const int& seed ) noexcept :
 	mWorld( world ),
+	mDataset( dataset ),
 	mSeed( seed )
 {
 	flatTerrain.SetSeed( mSeed );
@@ -77,39 +78,38 @@ Chunk& WorldGenerator::generateChunk( const Point& targetChunkPosition, Chunk& t
 
 Tile& WorldGenerator::generateTile( const Point& targetTilePosition, Tile& target ) const noexcept
 {
-	const Dataset& dataset = mWorld.getDataset();
 	double heightValue = finalTerrain.GetValue( (double)( targetTilePosition.x ) / csScale, (double)( targetTilePosition.y ) / csScale, 0 );
 	if( heightValue >= 0.6 )
 	{
-		target = Tile( &dataset.getObject< TileSubtype >( "stone" ), heightValue * csHeightMultiplier);
+		target = Tile( &mDataset.getObject< TileSubtype >( "stone" ), heightValue * csHeightMultiplier);
 	}
 	else if( heightValue >= 0.5 )
 	{
-		target = Tile( &dataset.getObject< TileSubtype >( "dirt" ), heightValue * csHeightMultiplier);
+		target = Tile( &mDataset.getObject< TileSubtype >( "dirt" ), heightValue * csHeightMultiplier);
 	}
 	else if( heightValue >= -0.05 )
 	{
-		target = Tile( &dataset.getObject< TileSubtype >( "grass" ), heightValue * csHeightMultiplier);
+		target = Tile( &mDataset.getObject< TileSubtype >( "grass" ), heightValue * csHeightMultiplier);
 		if( heightValue >= 0 and heightValue <= 0.45  and ( rand() % 10 ) == 1 )
 		{
 			mWorld.addEntity( std::make_shared< Entity >( mWorld,
 				targetTilePosition,
-				&dataset.getObject< EntitySubtype >( "tree" ) ) );
+				&mDataset.getObject< EntitySubtype >( "tree" ) ) );
 		}
 		if( ( rand() % 100 ) == 1 )
 		{
 			mWorld.addEntity( std::make_shared< Mob >( mWorld,
 				targetTilePosition,
-				&dataset.getObject< MobSubtype >( "human" ) ) );
+				&mDataset.getObject< MobSubtype >( "human" ) ) );
 		}
 	}
 	else if( heightValue >= -0.2 )
 	{
-		target = Tile( &dataset.getObject< TileSubtype >(  "sand" ), heightValue * csHeightMultiplier);
+		target = Tile( &mDataset.getObject< TileSubtype >(  "sand" ), heightValue * csHeightMultiplier);
 	}
 	else if( heightValue < -0.2 )
 	{
-		target = Tile( &dataset.getObject< TileSubtype >( "water" ), heightValue * csHeightMultiplier);
+		target = Tile( &mDataset.getObject< TileSubtype >( "water" ), heightValue * csHeightMultiplier);
 	}
 	return target;
 }

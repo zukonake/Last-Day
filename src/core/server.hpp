@@ -9,6 +9,7 @@
 #include <world/world.hpp>
 
 class Client;
+class Camera;
 
 class Server : NonCopyable
 {
@@ -22,8 +23,7 @@ public:
 
 	void simulate( void ) noexcept;
 
-	World& getWorld( void ) noexcept;
-	const Dataset& getDataset( void ) const noexcept;
+	Camera* createCamera( const Point& position, const Rectangle& screenSize ) noexcept;
 private:
 	Dataset mDataset;
 	World mWorld;

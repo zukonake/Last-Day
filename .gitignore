@@ -2,3 +2,4 @@ build
 bin
 Last-Day-D
 Last-Day
+callgrind*

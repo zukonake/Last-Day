@@ -8,8 +8,10 @@
 #include <world/worldGenerator.hpp>
 
 struct Point;
+struct Rectangle;
 class ObjectRenderer;
 class Dataset;
+class Camera;
 
 class World : public ChunkContainer, public EntityContainer
 {
@@ -18,11 +20,8 @@ public:
 
 	void simulate( void ) noexcept;
 
-	const Dataset& getDataset( void ) const noexcept;
-	const WorldGenerator& getGenerator( void ) const noexcept;
-	const int& getSeed( void ) const noexcept;
+	Camera* createCamera( const Point& position, const Rectangle& screenSize ) noexcept;
 private:
-	const Dataset& mDataset;
 	WorldGenerator mGenerator;
 };
 

@@ -41,7 +41,7 @@ void Client::connect( Server& server ) noexcept
 {
 	if( !mIsConnected)
 	{
-		pCamera = std::make_unique< Camera >( Point( 0, 0 ), server.getWorld(), SFMLAdapter::getWindowSize() );
+		pCamera = server.createCamera( Point( 0, 0 ), SFMLAdapter::getWindowSize() );
 		mIsConnected = true;
 	}
 	return;
@@ -51,7 +51,7 @@ void Client::disconnect( void ) noexcept
 {
 	if( mIsConnected )
 	{
-		pCamera.reset();
+		delete pCamera;
 		mIsConnected = false;
 	}
 	return;
