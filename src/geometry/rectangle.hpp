@@ -16,15 +16,10 @@ struct Rectangle
 	Rectangle operator + ( const int& add ) const noexcept;
 	Rectangle operator - ( const int& sub ) const noexcept;
 
-	inline bool operator == ( const Rectangle& target ) const noexcept;
+	bool operator == ( const Rectangle& target ) const noexcept;
 
 	uint16_t width;
 	uint16_t height;
 };
-
-bool Rectangle::operator == ( const Rectangle& target ) const noexcept
-{
-	return width == target.width and height == target.height;
-}
 
 #endif

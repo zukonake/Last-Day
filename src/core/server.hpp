@@ -21,10 +21,14 @@ public:
 	void disconnectClient( Client* target );
 
 	void simulate( void ) noexcept;
+
+	World& getWorld( void ) noexcept;
+	const Dataset& getDataset( void ) const noexcept;
 private:
-	std::vector< Client* > mConnectedClients;
 	Dataset mDataset;
 	World mWorld;
+
+	std::vector< Client* > mConnectedClients;
 	sf::Clock mSimulationClock;
 };
 

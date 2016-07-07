@@ -12,6 +12,7 @@ struct Rectangle;
 class ObjectRenderer;
 class World;
 class Camera;
+class Server;
 
 class Client : public SFMLAdapter
 {
@@ -22,7 +23,7 @@ public:
 
 	void render( void ) noexcept;
 
-	void connect( World& world ) noexcept;
+	void connect( Server& server ) noexcept;
 	void disconnect( void ) noexcept;
 
 	void start( void ) noexcept;

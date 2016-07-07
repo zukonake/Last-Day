@@ -29,7 +29,7 @@ void Server::connectClient( Client* target )
 		return;
 	}
 	mConnectedClients.push_back( target );
-	target->connect( mWorld );
+	target->connect( *this );
 	return;
 }
 
@@ -54,4 +54,14 @@ void Server::simulate( void ) noexcept
 		mSimulationClock.restart();
 	}
 	return;
+}
+
+World& Server::getWorld( void ) noexcept
+{
+	return mWorld;
+}
+
+const Dataset& Server::getDataset( void ) const noexcept
+{
+	return mDataset;
 }

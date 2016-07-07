@@ -31,3 +31,8 @@ Rectangle Rectangle::operator - ( const int& sub ) const noexcept
 {
 	return Rectangle( width - sub, height - sub );
 }
+
+bool Rectangle::operator == ( const Rectangle& target ) const noexcept
+{
+	return width == target.width and height == target.height;
+}

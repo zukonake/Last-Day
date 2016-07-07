@@ -6,6 +6,7 @@
 #include <geometry/direction.hpp>
 #include <geometry/point.hpp>
 #include <entity/camera.hpp>
+#include <core/server.hpp>
 
 Client::Client( const Rectangle& windowSize, const std::string& windowTitle ) noexcept :
 	SFMLAdapter( windowSize, windowTitle ),
@@ -36,11 +37,11 @@ void Client::render( void ) noexcept
 	return;
 }
 
-void Client::connect( World& world ) noexcept
+void Client::connect( Server& server ) noexcept
 {
 	if( !mIsConnected)
 	{
-		pCamera = std::make_unique< Camera >( Point( 0, 0 ), world, SFMLAdapter::getWindowSize() );
+		pCamera = std::make_unique< Camera >( Point( 0, 0 ), server.getWorld(), SFMLAdapter::getWindowSize() );
 		mIsConnected = true;
 	}
 	return;
