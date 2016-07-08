@@ -15,6 +15,7 @@ struct Chunk
 		return sizeInTiles;
 	}
 
+	int active = 0;
 	TileArray2D value;
 };
 

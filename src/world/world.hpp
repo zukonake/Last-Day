@@ -13,7 +13,7 @@ class ObjectRenderer;
 class Dataset;
 class Camera;
 
-class World : public ChunkContainer, public EntityContainer
+class World : public EntityContainer, public ChunkContainer
 {
 public:
 	World( const Dataset& dataset, const int& seed ) noexcept;

@@ -2,29 +2,38 @@
 #define CHUNKCONTAINER_HPP
 
 #include <cstdint>
+#include <memory>
 #include <map>
 //
 #include <geometry/point.hpp>
 #include <world/chunk/chunk.hpp>
 
 class Tile;
+class EntityContainer;
 class WorldGenerator;
 
 class ChunkContainer
 {
-	typedef std::map< const Point, Chunk > tChunkMap2D;
-	const static uint8_t csChunkLoadingRange = 1;
+	typedef std::map< const Point, Chunk > tChunkMap;
+	const static uint8_t csChunkActiveRange = 2;
+	const static uint8_t csChunkActiveThreshold = 5;
 public:
-	ChunkContainer( WorldGenerator& generator ) noexcept;
-	virtual ~ChunkContainer( void ) noexcept { };
+	ChunkContainer( WorldGenerator& generator, EntityContainer& entityContainer ) noexcept;
 
-	Tile& getTile( const Point& targetTilePosition );
+	virtual ~ChunkContainer( void ) noexcept { }
+
+	void unloadInactiveChunks( void ) noexcept;
+
+	Tile& getTile( const Point& targetTilePosition, const bool& chunkAnchor = false ) noexcept;
 private:
-	Chunk& getChunk( const Point& targetChunkPosition );
-	Chunk& loadChunk( const Point& targetChunkPosition );
+	Chunk& getChunk( const Point& targetChunkPosition, const bool& chunkAnchor = false ) noexcept;
+	void setNearbyChunksActive( const Point& targetChunkPosition ) noexcept;
+	Chunk& loadChunk( const Point& targetChunkPosition ) noexcept;
+	void unloadChunk( const Point& targetChunkPosition ) noexcept;
 
-	tChunkMap2D mLoadedChunks;
+	tChunkMap mLoadedChunks;
 	WorldGenerator& mGenerator;
+	EntityContainer& mEntityContainer;
 };
 
 #endif

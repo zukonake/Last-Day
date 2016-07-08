@@ -27,7 +27,7 @@ void Camera::draw( sf::RenderTarget& target, sf::RenderStates states ) const
 				sf::Transform renderPosition;
 				sf::RenderStates renderStates = states;
 				renderStates.transform.translate( renderX, renderY );
-				target.draw( mWorld.getTile( Point( iteratorX, iteratorY ) ), renderStates );
+				target.draw( mWorld.getTile( Point( iteratorX, iteratorY ), true ), renderStates );
 				std::shared_ptr< Entity > entity = mWorld.getEntity( Point( iteratorX, iteratorY ) );
 				if( entity != nullptr )
 				{

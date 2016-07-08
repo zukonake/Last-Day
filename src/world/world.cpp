@@ -8,8 +8,8 @@
 #include <entity/camera.hpp>
 
 World::World( const Dataset& dataset, const int& seed ) noexcept :
-	ChunkContainer( mGenerator ),
 	EntityContainer(),
+	ChunkContainer( mGenerator, static_cast< EntityContainer& >( *this ) ),
 	mGenerator( *this, dataset, seed )
 {
 
@@ -18,6 +18,7 @@ World::World( const Dataset& dataset, const int& seed ) noexcept :
 void World::simulate( void ) noexcept
 {
 	EntityContainer::simulate();
+	ChunkContainer::unloadInactiveChunks();
 	return;
 }
 
