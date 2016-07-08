@@ -2,7 +2,7 @@
 #define ENTITYCONTAINTER_HPP
 
 #include <memory>
-#include <vector>
+#include <map>
 //
 #include <nonCopyable.hpp>
 
@@ -11,7 +11,7 @@ class Entity;
 
 class EntityContainer : NonCopyable
 {
-	typedef std::vector< std::shared_ptr< Entity > > tEntityVector;
+	typedef std::map< const Point, std::shared_ptr< Entity > > tEntityMap;
 public:
 	EntityContainer( void ) noexcept { }
 
@@ -22,7 +22,7 @@ public:
 	std::shared_ptr< Entity > getEntity( const Point& targetPosition ) noexcept;
 	void addEntity( std::shared_ptr< Entity > value );
 private:
-	tEntityVector mEntities;
+	tEntityMap mEntities;
 };
 
 #endif

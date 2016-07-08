@@ -7,29 +7,28 @@
 
 void EntityContainer::simulate( void ) noexcept
 {
-	tEntityVector tempVector;
+	tEntityMap tempMap;
 	for( auto iEntity : mEntities )
 	{
-		tempVector.push_back( iEntity );
+		tempMap[ iEntity.second->getPosition() ] = iEntity.second;
 	}
-	for( auto iEntity : tempVector )
+	for( auto iEntity : tempMap )
 	{
-		iEntity->move( static_cast< Direction::eType > ( rand() % 5 ) );
+		iEntity.second->move( static_cast< Direction::eType > ( rand() % 5 ) );
 	}
+	tempMap.swap( mEntities );
 }
 
 std::shared_ptr< Entity > EntityContainer::getEntity( const Point& targetPosition ) noexcept
 {
-	auto iEntity = std::find_if( mEntities.begin(), mEntities.end(),
-    	[ = ]( const std::shared_ptr< Entity >& m) -> bool { return m->getPosition() == targetPosition; } );
-	if( iEntity == mEntities.end() )
+	if( mEntities.find( targetPosition ) == mEntities.end() )
 	{
 		return nullptr;
 	}
-	return *iEntity;
+	return mEntities[ targetPosition ];
 }
 
 void EntityContainer::addEntity( std::shared_ptr< Entity > value )
 {
-	mEntities.push_back( value );
+	mEntities[ value->getPosition() ] = value;
 }
