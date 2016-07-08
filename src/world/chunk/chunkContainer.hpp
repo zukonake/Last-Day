@@ -18,9 +18,6 @@ public:
 	ChunkContainer( WorldGenerator& generator ) noexcept;
 	virtual ~ChunkContainer( void ) noexcept { };
 
-	void moveEntity( const Point& sourcePosition, const Point& targetPosition );
-	bool canMove( const Point& targetPosition );
-
 	Tile& getTile( const Point& targetTilePosition );
 private:
 	Chunk& getChunk( const Point& targetChunkPosition );

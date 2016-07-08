@@ -16,7 +16,6 @@ void Mob::move( const Direction& targetDirection )
 	Point positionAfter = mPosition.move( targetDirection.type );
 	if( mWorld.canMove( positionAfter ) and targetDirection.type != Direction::NONE )
 	{
-		mWorld.moveEntity( positionBefore, positionAfter );
 		mPosition = positionAfter;
 	}
 }

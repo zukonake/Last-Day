@@ -6,7 +6,7 @@ Renderable::Renderable( std::istream& in ) noexcept
 	in >> mTexturePath;
 	loadTexture();
 	mSprite.setTexture( mTexture );
-	mSprite.setTextureRect( sf::IntRect( 0, 0, 32, 32 ) );
+	mSprite.setTextureRect( sf::IntRect( 0, 0, mTexture.getSize().x, mTexture.getSize().y ) );
 }
 
 void Renderable::draw( sf::RenderTarget& target, sf::RenderStates states ) const

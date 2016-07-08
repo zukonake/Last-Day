@@ -19,6 +19,7 @@ public:
 	World( const Dataset& dataset, const int& seed ) noexcept;
 
 	void simulate( void ) noexcept;
+	bool canMove( const Point& target ) noexcept;
 
 	Camera* createCamera( const Point& position, const Rectangle& screenSize ) noexcept;
 private:

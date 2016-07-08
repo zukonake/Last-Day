@@ -9,7 +9,7 @@
 
 World::World( const Dataset& dataset, const int& seed ) noexcept :
 	ChunkContainer( mGenerator ),
-	EntityContainer( dynamic_cast< ChunkContainer& >( *this )),
+	EntityContainer(),
 	mGenerator( *this, dataset, seed )
 {
 
@@ -19,6 +19,11 @@ void World::simulate( void ) noexcept
 {
 	EntityContainer::simulate();
 	return;
+}
+
+bool World::canMove( const Point& target ) noexcept
+{
+	return getEntity( target ) == nullptr and getTile( target ).isPassable();
 }
 
 Camera* World::createCamera( const Point& position, const Rectangle& screenSize ) noexcept

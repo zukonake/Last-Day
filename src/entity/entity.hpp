@@ -22,12 +22,11 @@ public:
 	const std::string& getName( void ) const noexcept;
 	const Point& getPosition( void ) const noexcept;
 protected:
-	World& mWorld;
 	Point mPosition;
+	const EntitySubtype* pSubtype;
+	World& mWorld;
 private:
 	virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
-
-	const EntitySubtype* pSubtype;
 };
 
 #endif

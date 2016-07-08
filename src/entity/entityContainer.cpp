@@ -18,8 +18,18 @@ void EntityContainer::simulate( void ) noexcept
 	}
 }
 
+std::shared_ptr< Entity > EntityContainer::getEntity( const Point& targetPosition ) noexcept
+{
+	auto iEntity = std::find_if( mEntities.begin(), mEntities.end(),
+    	[ = ]( const std::shared_ptr< Entity >& m) -> bool { return m->getPosition() == targetPosition; } );
+	if( iEntity == mEntities.end() )
+	{
+		return nullptr;
+	}
+	return *iEntity;
+}
+
 void EntityContainer::addEntity( std::shared_ptr< Entity > value )
 {
 	mEntities.push_back( value );
-	mChunkContainer.getTile( value->getPosition() ).setEntity( value );
 }

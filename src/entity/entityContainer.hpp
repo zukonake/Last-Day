@@ -5,7 +5,6 @@
 #include <vector>
 //
 #include <nonCopyable.hpp>
-#include <world/chunk/chunkContainer.hpp>
 
 struct Point;
 class Entity;
@@ -14,16 +13,16 @@ class EntityContainer : NonCopyable
 {
 	typedef std::vector< std::shared_ptr< Entity > > tEntityVector;
 public:
-	EntityContainer( ChunkContainer& chunkContainer ) noexcept : mChunkContainer( chunkContainer ) { }
+	EntityContainer( void ) noexcept { }
 
 	virtual ~EntityContainer( void ) noexcept { }
 
 	void simulate( void ) noexcept;
 
+	std::shared_ptr< Entity > getEntity( const Point& targetPosition ) noexcept;
 	void addEntity( std::shared_ptr< Entity > value );
 private:
 	tEntityVector mEntities;
-	ChunkContainer& mChunkContainer;
 };
 
 #endif

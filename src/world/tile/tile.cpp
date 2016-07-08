@@ -7,10 +7,6 @@
 void Tile::draw( sf::RenderTarget& target, sf::RenderStates states ) const
 {
 	target.draw( *pSubtype, states );
-	if( pEntity != nullptr )
-	{
-		target.draw( *pEntity, states );
-	}
 	return;
 }
 
@@ -27,14 +23,4 @@ const int8_t& Tile::getHeight( void ) const noexcept
 const bool& Tile::isPassable( void ) const noexcept
 {
 	return pSubtype->getIsPassable();
-}
-
-std::shared_ptr< Entity > Tile::getEntity( void ) noexcept
-{
-	return pEntity;
-}
-
-void Tile::setEntity( std::shared_ptr< Entity > value ) noexcept
-{
-	pEntity = value;
 }

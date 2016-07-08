@@ -5,6 +5,7 @@
 //
 #include <entity/entity.hpp>
 #include <entity/mob/mob.hpp>
+#include <entity/building/building.hpp>
 #include <data/dataset.hpp>
 #include <world/chunk/chunk.hpp>
 #include <world/world.hpp>

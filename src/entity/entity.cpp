@@ -21,7 +21,6 @@ void Entity::draw( sf::RenderTarget& target, sf::RenderStates states ) const
 
 void Entity::teleport( const Point& targetPosition ) noexcept
 {
-	mWorld.moveEntity( mPosition, targetPosition );
 	mPosition = targetPosition;
 	return;
 }

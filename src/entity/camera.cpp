@@ -28,6 +28,11 @@ void Camera::draw( sf::RenderTarget& target, sf::RenderStates states ) const
 				sf::RenderStates renderStates = states;
 				renderStates.transform.translate( renderX, renderY );
 				target.draw( mWorld.getTile( Point( iteratorX, iteratorY ) ), renderStates );
+				std::shared_ptr< Entity > entity = mWorld.getEntity( Point( iteratorX, iteratorY ) );
+				if( entity != nullptr )
+				{
+					target.draw( *entity, renderStates );
+				}
 				renderHeightEffects( Point( iteratorX, iteratorY ), target, renderStates );
 			}
 		}
