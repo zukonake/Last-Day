@@ -14,7 +14,7 @@ class World;
 class Camera;
 class Server;
 
-class Client : public SFMLAdapter
+class Client : public SFMLAdapter, NonCopyable
 {
 public:
 	Client( const Rectangle& windowSize, const std::string& windowTitle ) noexcept;
