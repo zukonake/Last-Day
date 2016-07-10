@@ -12,8 +12,8 @@ int main()
 	Server* server = new Server();
 	Client client( Rectangle( 1280, 768 ), "Neue Spiele" );
 
-	client.start();
 	server->connectClient( &client );
+	client.start();
 	try
 	{
 		while( client.isRunning() )
@@ -21,8 +21,8 @@ int main()
 			if( client.handleTime() )
 			{
 				client.render();
-				client.handleInput();
 				client.update();
+				client.handleInput();
 			}
 			server->simulate();
 		}

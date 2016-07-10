@@ -22,21 +22,6 @@ Client::~Client() noexcept
 	disconnect();
 }
 
-void Client::render( void ) noexcept
-{
-	try
-	{
-		checkOperationViability();
-	}
-	catch( std::exception& e )
-	{
-		std::cerr << "ERROR: Standard exception: " << e.what() << ".\n";
-		return;
-	}
-	SFMLAdapter::getWindow().draw( *pCamera );
-	return;
-}
-
 void Client::connect( Server& server ) noexcept
 {
 	if( !mIsConnected)
@@ -66,6 +51,21 @@ void Client::start( void ) noexcept
 void Client::end( void ) noexcept
 {
 	SFMLAdapter::deinitialize();
+	return;
+}
+
+void Client::render( void ) noexcept
+{
+	try
+	{
+		checkOperationViability();
+	}
+	catch( std::exception& e )
+	{
+		std::cerr << "ERROR: Standard exception: " << e.what() << ".\n";
+		return;
+	}
+	SFMLAdapter::getWindow().draw( *pCamera );
 	return;
 }
 

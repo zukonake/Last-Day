@@ -20,14 +20,13 @@ public:
 	Client( const Rectangle& windowSize, const std::string& windowTitle ) noexcept;
 
 	~Client() noexcept;
-
-	void render( void ) noexcept;
-
 	void connect( Server& server ) noexcept;
 	void disconnect( void ) noexcept;
 
 	void start( void ) noexcept;
 	void end( void ) noexcept;
+
+	void render( void ) noexcept;
 
 	bool isRunning( void ) const noexcept;
 	bool isConnected( void ) const noexcept;
@@ -41,8 +40,8 @@ private:
 	void checkOperationViability( void ) const;
 
 	Camera* pCamera;
-	sf::Clock mRenderClock;
 	bool mIsConnected;
+	sf::Clock mRenderClock;
 };
 
 #endif
