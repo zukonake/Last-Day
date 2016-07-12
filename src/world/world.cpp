@@ -5,12 +5,13 @@
 #include <geometry/point.hpp>
 #include <data/dataset.hpp>
 #include <world/worldGenerator.hpp>
-#include <entity/camera.hpp>
+#include <core/player.hpp>
 
 World::World( const Dataset& dataset, const int& seed ) noexcept :
 	EntityContainer(),
 	ChunkContainer( mGenerator, static_cast< EntityContainer& >( *this ) ),
-	mGenerator( *this, dataset, seed )
+	mDataset( dataset ),
+	mGenerator( *this, mDataset, seed )
 {
 
 }
@@ -27,7 +28,7 @@ bool World::canMove( const Point& target ) noexcept
 	return getEntity( target ) == nullptr and getTile( target ).isPassable();
 }
 
-Camera* World::createCamera( const Point& position, const Rectangle& screenSize ) noexcept
+Player* World::createPlayer( const Point& position, const Rectangle& screenSize ) noexcept
 {
-	return new Camera( position, *this, screenSize );
+	return new Player( position, *this, screenSize, mDataset );
 }

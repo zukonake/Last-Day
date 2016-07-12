@@ -38,6 +38,31 @@ Point Point::operator - ( const int& sub ) const noexcept
 	return Point( x - sub, y - sub );
 }
 
+Point Point::operator * ( const Point& mul ) const noexcept
+{
+	return Point( x * mul.x, y * mul.y );
+}
+
+Point Point::operator / ( const Point& div ) const noexcept
+{
+	return Point( x / div.x, y / div.y );
+}
+
+Point Point::operator % ( const Point& mod ) const noexcept
+{
+	return Point( x % mod.x, y % mod.y );
+}
+
+Point Point::operator + ( const Point& add ) const noexcept
+{
+	return Point( x + add.x, y + add.y );
+}
+
+Point Point::operator - ( const Point& sub ) const noexcept
+{
+	return Point( x - sub.x, y - sub.y );
+}
+
 bool Point::operator == ( const Point& target ) const noexcept
 {
 	return x == target.x and y == target.y;

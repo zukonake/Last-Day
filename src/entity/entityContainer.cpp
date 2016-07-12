@@ -31,12 +31,6 @@ std::shared_ptr< Entity > EntityContainer::getEntity( const Point& targetPositio
 	return mEntities[ targetPosition ];
 }
 
-void EntityContainer::addEntity( std::shared_ptr< Entity > value )
-{
-	mEntities[ value->getPosition() ] = value;
-	return;
-}
-
 void EntityContainer::removeEntity( const Point& targetPosition ) noexcept
 {
 	if( mEntities.find( targetPosition ) == mEntities.end() )

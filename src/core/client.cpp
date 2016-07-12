@@ -5,12 +5,12 @@
 //
 #include <geometry/direction.hpp>
 #include <geometry/point.hpp>
-#include <entity/camera.hpp>
+#include <core/player.hpp>
 #include <core/server.hpp>
 
 Client::Client( const Rectangle& windowSize, const std::string& windowTitle ) noexcept :
 	SFMLAdapter( windowSize, windowTitle ),
-	pCamera( nullptr ),
+	pPlayer( nullptr ),
 	mIsConnected( false )
 {
 
@@ -26,7 +26,7 @@ void Client::connect( Server& server ) noexcept
 {
 	if( !mIsConnected)
 	{
-		pCamera = server.createCamera( Point( 0, 0 ), SFMLAdapter::getWindowSize() );
+		pPlayer = server.createPlayer( Point( 0, 0 ), SFMLAdapter::getWindowSize() );
 		mIsConnected = true;
 	}
 	return;
@@ -36,7 +36,7 @@ void Client::disconnect( void ) noexcept
 {
 	if( mIsConnected )
 	{
-		delete pCamera;
+		delete pPlayer;
 		mIsConnected = false;
 	}
 	return;
@@ -65,7 +65,7 @@ void Client::render( void ) noexcept
 		std::cerr << "ERROR: Standard exception: " << e.what() << ".\n";
 		return;
 	}
-	SFMLAdapter::getWindow().draw( *pCamera );
+	SFMLAdapter::getWindow().draw( *pPlayer );
 	return;
 }
 
@@ -111,19 +111,19 @@ void Client::handleKeyState( void ) noexcept
 {
 	if( SFMLAdapter::isKeyPressed( sf::Keyboard::Left ) )
 	{
-		pCamera->move( Direction::WEST );
+		pPlayer->move( Direction::WEST );
 	}
 	if( SFMLAdapter::isKeyPressed( sf::Keyboard::Right ) )
 	{
-		pCamera->move( Direction::EAST );
+		pPlayer->move( Direction::EAST );
 	}
 	if( SFMLAdapter::isKeyPressed( sf::Keyboard::Up ) )
 	{
-		pCamera->move( Direction::NORTH );
+		pPlayer->move( Direction::NORTH );
 	}
 	if( SFMLAdapter::isKeyPressed( sf::Keyboard::Down ) )
 	{
-		pCamera->move( Direction::SOUTH );
+		pPlayer->move( Direction::SOUTH );
 	}
 	return;
 }
@@ -145,15 +145,19 @@ void Client::handleEvents( void ) noexcept
 				end();
 		        break;
 			case sf::Keyboard::E:
-				pCamera->resizeZoom( 0 );
+				pPlayer->resizeZoom( 0 );
 			    break;
 			case sf::Keyboard::Q:
-				pCamera->resizeZoom( 1 );
+				pPlayer->resizeZoom( 1 );
 				break;
 			default:
 				break;
             }
         }
+		if( sf::Mouse::isButtonPressed( sf::Mouse::Left ) )
+		{
+
+		}
 	}
 	return;
 }

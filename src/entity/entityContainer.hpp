@@ -21,10 +21,19 @@ public:
 	void simulate( void ) noexcept;
 
 	std::shared_ptr< Entity > getEntity( const Point& targetPosition ) noexcept;
-	void addEntity( std::shared_ptr< Entity > value );
+	template < typename ObjectType, typename... Arguments >
+	void addEntity( Arguments&&... arguments );
 	void removeEntity( const Point& targetPosition ) noexcept;
 private:
 	tEntityMap mEntities;
 };
+
+template < typename ObjectType, typename... Arguments >
+void EntityContainer::addEntity( Arguments&&... arguments )
+{
+	std::shared_ptr< ObjectType > value = std::make_shared< ObjectType > ( arguments... );
+	mEntities[ value->getPosition() ] = value;
+	return;
+}
 
 #endif

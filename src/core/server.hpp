@@ -9,7 +9,7 @@
 #include <world/world.hpp>
 
 class Client;
-class Camera;
+class Player;
 
 class Server : NonCopyable
 {
@@ -23,7 +23,7 @@ public:
 
 	void simulate( void ) noexcept;
 
-	Camera* createCamera( const Point& position, const Rectangle& screenSize ) noexcept;
+	Player* createPlayer( const Point& position, const Rectangle& screenSize ) noexcept;
 private:
 	Dataset mDataset;
 	World mWorld;

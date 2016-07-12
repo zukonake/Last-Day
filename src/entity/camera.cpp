@@ -72,6 +72,12 @@ void Camera::renderHeightEffects( const Point& targetTilePosition, sf::RenderTar
 void Camera::move( const Direction& targetDirection )
 {
 	mPosition = mPosition.move( targetDirection );
+	return;
+}
+
+Point Camera::getPositionMouseIsOn( const Point& mousePosition ) noexcept
+{
+	return Entity::getPosition() - ( mousePosition / mZoom );
 }
 
 void Camera::resizeZoom( const bool& direction ) noexcept

@@ -56,7 +56,7 @@ void Server::simulate( void ) noexcept
 	return;
 }
 
-Camera* Server::createCamera( const Point& position, const Rectangle& screenSize ) noexcept
+Player* Server::createPlayer( const Point& position, const Rectangle& screenSize ) noexcept
 {
-	return mWorld.createCamera( position, screenSize );
+	return mWorld.createPlayer( position, screenSize );
 }

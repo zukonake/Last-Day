@@ -11,7 +11,7 @@
 struct Rectangle;
 class ObjectRenderer;
 class World;
-class Camera;
+class Player;
 class Server;
 
 class Client : public SFMLAdapter, NonCopyable
@@ -39,7 +39,7 @@ private:
 
 	void checkOperationViability( void ) const;
 
-	Camera* pCamera;
+	Player* pPlayer;
 	bool mIsConnected;
 	sf::Clock mRenderClock;
 };

@@ -22,6 +22,11 @@ struct Point
 	Point operator % ( const int& mod ) const noexcept;
 	Point operator + ( const int& add ) const noexcept;
 	Point operator - ( const int& sub ) const noexcept;
+	Point operator * ( const Point& mul ) const noexcept;
+	Point operator / ( const Point& div ) const noexcept;
+	Point operator % ( const Point& mod ) const noexcept;
+	Point operator + ( const Point& add ) const noexcept;
+	Point operator - ( const Point& sub ) const noexcept;
 
 	bool operator == ( const Point& target ) const noexcept;
 	bool operator < ( const Point& target ) const noexcept;

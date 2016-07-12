@@ -93,15 +93,15 @@ Tile& WorldGenerator::generateTile( const Point& targetTilePosition, Tile& targe
 		target = Tile( &mDataset.getObject< TileSubtype >( "grass" ), heightValue * csHeightMultiplier);
 		if( heightValue >= 0 and heightValue <= 0.45  and ( rand() % 10 ) == 1 )
 		{
-			mWorld.addEntity( std::make_shared< Entity >( targetTilePosition,
+			mWorld.addEntity< Entity >( targetTilePosition,
 				&mDataset.getObject< EntitySubtype >( "tree" ),
-				mWorld ) );
+				mWorld );
 		}
 		if( ( rand() % 100 ) == 1 )
 		{
-			mWorld.addEntity( std::make_shared< Mob >( targetTilePosition,
+			mWorld.addEntity< Mob >( targetTilePosition,
 				&mDataset.getObject< MobSubtype >( "human" ),
-				mWorld ) );
+				mWorld );
 		}
 	}
 	else if( heightValue >= -0.2 )

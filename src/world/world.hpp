@@ -11,7 +11,7 @@ struct Point;
 struct Rectangle;
 class ObjectRenderer;
 class Dataset;
-class Camera;
+class Player;
 
 class World : public EntityContainer, public ChunkContainer
 {
@@ -21,8 +21,9 @@ public:
 	void simulate( void ) noexcept;
 	bool canMove( const Point& target ) noexcept;
 
-	Camera* createCamera( const Point& position, const Rectangle& screenSize ) noexcept;
+	Player* createPlayer( const Point& position, const Rectangle& screenSize ) noexcept;
 private:
+	const Dataset& mDataset;
 	WorldGenerator mGenerator;
 };
 
