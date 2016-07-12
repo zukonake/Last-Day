@@ -13,6 +13,8 @@ struct Point
 
 	Point( const coordinate& x, const coordinate& y ) noexcept : x(x), y(y) { }
 	Point( std::istream& in ) noexcept;
+	Point( const sf::Vector2f& that ) noexcept;
+	Point( const sf::Vector2i& that ) noexcept;
 	Point( void ) noexcept { }
 
 	virtual operator sf::Vector2< float >( void ) const noexcept;

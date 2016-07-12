@@ -77,7 +77,7 @@ void Camera::move( const Direction& targetDirection )
 
 Point Camera::getPositionMouseIsOn( const Point& mousePosition ) noexcept
 {
-	return Entity::getPosition() - ( mousePosition / mZoom );
+	return Point( Entity::getPosition().x - ( mViewRange.width - ( mousePosition.x / mZoom ) ), Entity::getPosition().y - ( mViewRange.height - ( mousePosition.y / mZoom ) ) );
 }
 
 void Camera::resizeZoom( const bool& direction ) noexcept

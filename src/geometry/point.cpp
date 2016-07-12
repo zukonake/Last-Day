@@ -8,6 +8,18 @@ Point::Point( std::istream& in ) noexcept
 	in >> y;
 }
 
+Point::Point( const sf::Vector2f& that ) noexcept
+{
+	x = that.x;
+	y = that.y;
+}
+
+Point::Point( const sf::Vector2i& that ) noexcept
+{
+	x = that.x;
+	y = that.y;
+}
+
 Point::operator sf::Vector2< float >( void ) const noexcept
 {
 	return sf::Vector2< float >( (float) x, (float) y );

@@ -99,9 +99,9 @@ Tile& WorldGenerator::generateTile( const Point& targetTilePosition, Tile& targe
 		}
 		if( ( rand() % 100 ) == 1 )
 		{
-			mWorld.addEntity< Mob >( targetTilePosition,
-				&mDataset.getObject< MobSubtype >( "human" ),
-				mWorld );
+			//mWorld.addEntity< Mob >( targetTilePosition,
+			//	&mDataset.getObject< MobSubtype >( "human" ),
+			//	mWorld );
 		}
 	}
 	else if( heightValue >= -0.2 )
