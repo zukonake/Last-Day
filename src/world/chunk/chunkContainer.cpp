@@ -73,7 +73,11 @@ Chunk& ChunkContainer::loadChunk( const Point& targetChunkPosition ) noexcept
 }
 
 void ChunkContainer::unloadChunk( const Point& targetChunkPosition ) noexcept
-{//TODO check if chunk exists
+{
+	if( mLoadedChunks.find( targetChunkPosition ) == mLoadedChunks.end() )
+	{
+		return;
+	}
 	std::cout << "INFO: Unloading chunk: " << targetChunkPosition.x << ", " << targetChunkPosition.y << "\n";
 	Point targetTilePosition = targetChunkPosition.tilePosition( Chunk::getSizeInTiles() );
 	for( Point::coordinate iteratorY = targetTilePosition.y; iteratorY < targetTilePosition.y + ( int )Chunk::getSizeInTiles(); iteratorY++ )
