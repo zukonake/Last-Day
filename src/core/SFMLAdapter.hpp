@@ -9,7 +9,7 @@
 #include <nonCopyable.hpp>
 #include <geometry/rectangle.hpp>
 
-class SFMLAdapter : sf::NonCopyable
+class SFMLAdapter : NonCopyable
 {
 public:
 	SFMLAdapter( const Rectangle& windowSize, const std::string windowTitle ) noexcept;

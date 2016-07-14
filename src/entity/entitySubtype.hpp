@@ -9,8 +9,10 @@
 class EntitySubtype : public Renderable
 {
 public:
-	EntitySubtype( std::istream& in ) noexcept;
-	EntitySubtype( void ) noexcept { };
+	explicit EntitySubtype( std::istream& in ) noexcept;
+	EntitySubtype( void ) = default;
+	
+	virtual ~EntitySubtype( void ) = default;
 
 	const std::string& getName( void ) const noexcept;
 private:

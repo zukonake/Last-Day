@@ -20,7 +20,7 @@ class ChunkContainer
 public:
 	ChunkContainer( WorldGenerator& generator, EntityContainer& entityContainer ) noexcept;
 
-	virtual ~ChunkContainer( void ) noexcept { }
+	virtual ~ChunkContainer( void ) = default;
 
 	void unloadInactiveChunks( void ) noexcept;
 

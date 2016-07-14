@@ -4,10 +4,11 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 //
+#include <nonCopyable.hpp>
 #include <geometry/point.hpp>
 #include <render/renderable.hpp>
 
-class UserInterface : public Renderable
+class UserInterface : public Renderable, NonCopyable
 {
 public:
 	UserInterface( const std::string& texturePath ) noexcept;

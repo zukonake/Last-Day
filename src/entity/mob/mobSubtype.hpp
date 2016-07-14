@@ -8,8 +8,8 @@
 class MobSubtype : public EntitySubtype
 {
 public:
-	MobSubtype( std::istream& in ) noexcept;
-	MobSubtype( void ) noexcept { }
+	explicit MobSubtype( std::istream& in ) noexcept;
+	MobSubtype( void ) = default;
 };
 
 #endif

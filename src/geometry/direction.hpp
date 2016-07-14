@@ -14,7 +14,7 @@ struct Direction
 
 	Direction( eType type = NONE ) noexcept : type( type ) { }
 
-	virtual void rotateClockwise( void ) noexcept ;
+	virtual void rotateClockwise( void ) noexcept;
 	virtual void rotateCounterClockwise( void ) noexcept;
 
 	eType type;

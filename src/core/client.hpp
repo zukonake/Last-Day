@@ -14,7 +14,7 @@ class World;
 class Player;
 class Server;
 
-class Client : public SFMLAdapter, NonCopyable
+class Client : public SFMLAdapter
 {
 public:
 	Client( const Rectangle& windowSize, const std::string& windowTitle ) noexcept;

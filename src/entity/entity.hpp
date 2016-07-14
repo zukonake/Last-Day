@@ -14,7 +14,7 @@ class Entity : public sf::Drawable
 {
 public:
 	Entity( const Point& position, const EntitySubtype* subtype, World& world ) noexcept;
-	virtual ~Entity( void ) noexcept { }
+	virtual ~Entity( void ) = default;
 
 	void teleport( const Point& targetPosition ) noexcept;
 	virtual void move( const Direction& targetDirection );

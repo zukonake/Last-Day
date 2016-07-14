@@ -9,8 +9,8 @@
 class BuildingSubtype : public EntitySubtype
 {
 public:
-	BuildingSubtype( std::istream& in ) noexcept;
-	BuildingSubtype( void ) noexcept { }
+	explicit BuildingSubtype( std::istream& in ) noexcept;
+	BuildingSubtype( void ) = default;
 private:
 	Rectangle mShape;
 };

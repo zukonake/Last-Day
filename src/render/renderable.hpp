@@ -11,9 +11,9 @@
 class Renderable : public sf::Drawable
 {
 public:
-	Renderable( std::istream& in ) noexcept;
+	explicit Renderable( std::istream& in ) noexcept;
 	Renderable( const std::string& texturePath ) noexcept;
-	Renderable( void ) noexcept { }
+	Renderable( void ) = default;
 protected:
 	virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
 private:

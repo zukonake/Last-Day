@@ -9,7 +9,7 @@
 
 struct FileSystemAdapter : std::fstream, NonCopyable
 {
-	FileSystemAdapter( void ) noexcept { }
+	FileSystemAdapter( void ) = default;
 
 	~FileSystemAdapter( void );
 

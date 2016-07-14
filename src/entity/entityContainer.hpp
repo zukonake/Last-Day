@@ -13,9 +13,9 @@ class EntityContainer : NonCopyable
 {
 	typedef std::map< Point, std::shared_ptr< Entity > > tEntityMap;
 public:
-	EntityContainer( void ) noexcept { }
+	EntityContainer( void ) = default;
 
-	virtual ~EntityContainer( void ) noexcept { }
+	virtual ~EntityContainer( void ) = default;
 
 	void moveEntity( const Point& sourcePosition, const Point& targetPosition ) noexcept;
 	void simulate( void ) noexcept;

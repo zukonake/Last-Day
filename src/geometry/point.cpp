@@ -22,67 +22,87 @@ Point::Point( const sf::Vector2i& that ) noexcept
 
 Point::operator sf::Vector2< float >( void ) const noexcept
 {
-	return sf::Vector2< float >( (float) x, (float) y );
+	return sf::Vector2< float >( ( float ) x, ( float ) y );
 }
 
-Point Point::operator * ( const int& mul ) const noexcept
+Point::operator sf::Vector2< int >( void ) const noexcept
 {
-	return Point( x * mul, y * mul );
+	return sf::Vector2< int >( ( int ) x, ( int ) y );
 }
 
-Point Point::operator / ( const int& div ) const noexcept
-{
-	return Point( x / div, y / div );
-}
-
-Point Point::operator % ( const int& mod ) const noexcept
-{
-	return Point( x % mod, y % mod );
-}
-
-Point Point::operator + ( const int& add ) const noexcept
-{
-	return Point( x + add, y + add );
-}
-
-Point Point::operator - ( const int& sub ) const noexcept
-{
-	return Point( x - sub, y - sub );
-}
-
-Point Point::operator * ( const Point& mul ) const noexcept
+Point Point::operator*( const Point& mul ) const noexcept
 {
 	return Point( x * mul.x, y * mul.y );
 }
 
-Point Point::operator / ( const Point& div ) const noexcept
+Point Point::operator/( const Point& div ) const noexcept
 {
 	return Point( x / div.x, y / div.y );
 }
 
-Point Point::operator % ( const Point& mod ) const noexcept
+Point Point::operator%( const Point& mod ) const noexcept
 {
 	return Point( x % mod.x, y % mod.y );
 }
 
-Point Point::operator + ( const Point& add ) const noexcept
+Point Point::operator+( const Point& add ) const noexcept
 {
 	return Point( x + add.x, y + add.y );
 }
 
-Point Point::operator - ( const Point& sub ) const noexcept
+Point Point::operator-( const Point& sub ) const noexcept
 {
 	return Point( x - sub.x, y - sub.y );
 }
 
-bool Point::operator == ( const Point& target ) const noexcept
+Point Point::operator*( const int& mul ) const noexcept
+{
+	return Point( x * mul, y * mul );
+}
+
+Point Point::operator/( const int& div ) const noexcept
+{
+	return Point( x / div, y / div );
+}
+
+Point Point::operator%( const int& mod ) const noexcept
+{
+	return Point( x % mod, y % mod );
+}
+
+Point Point::operator+( const int& add ) const noexcept
+{
+	return Point( x + add, y + add );
+}
+
+Point Point::operator-( const int& sub ) const noexcept
+{
+	return Point( x - sub, y - sub );
+}
+
+bool Point::operator==( const Point& target ) const noexcept
 {
 	return x == target.x and y == target.y;
 }
 
-bool Point::operator < ( const Point& target ) const noexcept
+bool Point::operator<=( const Point& target ) const noexcept
+{
+	return (x <= target.x) or (x == target.x and y <= target.y);
+}
+
+bool Point::operator<( const Point& target ) const noexcept
 {
 	return (x < target.x) or (x == target.x and y < target.y);
+}
+
+bool Point::operator>( const Point& target ) const noexcept
+{
+	return (x > target.x) or (x == target.x and y > target.y);
+}
+
+bool Point::operator>=( const Point& target ) const noexcept
+{
+	return (x >= target.x) or (x == target.x and y >= target.y);
 }
 
 Point Point::move( const Direction& direction, const int& difference ) noexcept
