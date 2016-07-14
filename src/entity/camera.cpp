@@ -50,18 +50,18 @@ void Camera::renderHeightEffects( const Point& targetTilePosition, sf::RenderTar
 	{
 		alphaModifier = maximumAlpha;
 	}
-	sf::RectangleShape rectangle( sf::Vector2f( 32, 32 ) );
+	sf::RectangleShape rectangle( { 32.f, 32.f } );
 	rectangle.setFillColor( sf::Color( 0, 0, 0, maximumAlpha - alphaModifier ) );
 	target.draw( rectangle, states );
 	if( mWorld.getTile( { targetTilePosition.x - 1, targetTilePosition.y } ).getHeight() != targetTile.getHeight() )
 	{
-		sf::RectangleShape verticalLine( sf::Vector2f( 1.0f, 32 ) );
+		sf::RectangleShape verticalLine( { 1.0f, 32.f } );
 		verticalLine.setFillColor( sf::Color( 0, 0, 0, 70 ) );
 		target.draw( verticalLine, states );
 	}
 	if( mWorld.getTile( { targetTilePosition.x, targetTilePosition.y - 1 } ).getHeight() != targetTile.getHeight() )
 	{
-		sf::RectangleShape horizontalLine( sf::Vector2f( 32, 1.0f ) );
+		sf::RectangleShape horizontalLine( { 32.f, 1.0f } );
 		horizontalLine.setFillColor( sf::Color( 0, 0, 0, 70 ) );
 		target.draw( horizontalLine, states );
 	}

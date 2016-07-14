@@ -10,7 +10,7 @@ int main()
 	int returnValue = 0;
 
 	Server* server = new Server();
-	Client client( Rectangle( 1280, 768 ), "Neue Spiele" );
+	Client client( { 1280, 768  }, "Neue Spiele" );
 
 	server->connectClient( &client );
 	client.start();
