@@ -17,7 +17,10 @@ void EntityContainer::simulate( void ) noexcept
 	tEntityMap tempMap = mEntities;
 	for( auto& iEntity : tempMap )
 	{
-		iEntity.second->move( static_cast< Direction::eType > ( rand() % 5 ) );
+		if( ( rand() % 3 ) == 1 )
+		{
+			iEntity.second->move( static_cast< DirectionType > ( rand() % 5 ) );
+		}
 	}
 	return;
 }

@@ -1,23 +1,24 @@
 #ifndef DIRECTION_HPP
 #define DIRECTION_HPP
 
+enum class DirectionType
+{
+	NORTH = 0,
+	WEST = 1,
+	SOUTH = 2,
+	EAST = 3
+};
+
 struct Direction
 {
-	enum eType
-	{
-		NONE = 0,
-		NORTH = 1,
-		WEST = 2,
-		SOUTH = 3,
-		EAST = 4
-	};
+	Direction( DirectionType type ) noexcept : type( type ) { }
 
-	Direction( eType type = NONE ) noexcept : type( type ) { }
+	virtual operator DirectionType( void ) const noexcept;
 
 	virtual void rotateClockwise( void ) noexcept;
 	virtual void rotateCounterClockwise( void ) noexcept;
 
-	eType type;
+	DirectionType type;
 };
 
 #endif

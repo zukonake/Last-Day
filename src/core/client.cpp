@@ -111,19 +111,19 @@ void Client::handleKeyState( void ) noexcept
 {
 	if( SFMLAdapter::isKeyPressed( sf::Keyboard::Left ) )
 	{
-		pPlayer->move( Direction::WEST );
+		pPlayer->move( DirectionType::WEST );
 	}
 	if( SFMLAdapter::isKeyPressed( sf::Keyboard::Right ) )
 	{
-		pPlayer->move( Direction::EAST );
+		pPlayer->move( DirectionType::EAST );
 	}
 	if( SFMLAdapter::isKeyPressed( sf::Keyboard::Up ) )
 	{
-		pPlayer->move( Direction::NORTH );
+		pPlayer->move( DirectionType::NORTH );
 	}
 	if( SFMLAdapter::isKeyPressed( sf::Keyboard::Down ) )
 	{
-		pPlayer->move( Direction::SOUTH );
+		pPlayer->move( DirectionType::SOUTH );
 	}
 	return;
 }

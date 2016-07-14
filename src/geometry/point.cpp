@@ -126,28 +126,25 @@ bool Point::operator>=( const Point& target ) const noexcept
 Point Point::move( const Direction& direction, const int& difference ) noexcept
 {
 	Point output = *this;
-	switch( direction.type )
+	switch( direction )
 	{
-		case Direction::NONE:
+	case DirectionType::NORTH:
+		output.y -= difference;
 		break;
 
-		case Direction::NORTH:
-			output.y -= difference;
+	case DirectionType::WEST:
+		output.x -= difference;
 		break;
 
-		case Direction::WEST:
-			output.x -= difference;
+	case DirectionType::SOUTH:
+		output.y += difference;
 		break;
 
-		case Direction::SOUTH:
-			output.y += difference;
+	case DirectionType::EAST:
+		output.x += difference;
 		break;
 
-		case Direction::EAST:
-			output.x += difference;
-		break;
-
-		default:
+	default:
 		break;
 	}
 	return output;

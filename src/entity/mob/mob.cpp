@@ -13,7 +13,7 @@ Mob::Mob( const Point& position, const MobSubtype* subtype, World& world ) noexc
 void Mob::move( const Direction& targetDirection )
 {
 	Point positionAfter = mPosition.move( targetDirection.type );
-	if( mWorld.canMove( positionAfter ) and targetDirection.type != Direction::NONE )
+	if( mWorld.canMove( positionAfter ) )
 	{
 		mWorld.moveEntity( mPosition, positionAfter );
 		mPosition = positionAfter;
