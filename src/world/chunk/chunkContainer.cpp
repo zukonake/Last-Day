@@ -6,7 +6,7 @@
 #include <entity/entityContainer.hpp>
 #include <world/worldGenerator.hpp>
 
-ChunkContainer::ChunkContainer( WorldGenerator& generator, EntityContainer& entityContainer ) noexcept :
+ChunkContainer::ChunkContainer( const WorldGenerator& generator, EntityContainer& entityContainer ) noexcept :
 	mGenerator( generator ),
 	mEntityContainer( entityContainer )
 {

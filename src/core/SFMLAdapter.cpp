@@ -23,6 +23,7 @@ void SFMLAdapter::initialize( void )
 	}
 	mWindow.clear( sf::Color( 0, 0, 0 ) );
 	mWindow.setVerticalSyncEnabled( true );
+	mWindow.setFramerateLimit( 60 );
 	return;
 }
 

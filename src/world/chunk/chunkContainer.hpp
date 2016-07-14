@@ -18,7 +18,7 @@ class ChunkContainer
 	const static uint8_t csChunkActiveRange = 2;
 	const static uint8_t csChunkActiveThreshold = 5;
 public:
-	ChunkContainer( WorldGenerator& generator, EntityContainer& entityContainer ) noexcept;
+	ChunkContainer( const WorldGenerator& generator, EntityContainer& entityContainer ) noexcept;
 
 	virtual ~ChunkContainer( void ) = default;
 
@@ -32,7 +32,7 @@ private:
 	void unloadChunk( const Point& targetChunkPosition ) noexcept;
 
 	tChunkMap mLoadedChunks;
-	WorldGenerator& mGenerator;
+	const WorldGenerator& mGenerator;
 	EntityContainer& mEntityContainer;
 };
 

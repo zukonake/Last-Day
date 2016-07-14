@@ -4,8 +4,9 @@
 class NonCopyable
 {
 protected:
-	NonCopyable( void ) noexcept { };
-	
+	NonCopyable( void ) = default;
+	virtual ~NonCopyable( void ) = default;
+
 	NonCopyable( const NonCopyable& that ) = delete;
 	NonCopyable& operator=( const NonCopyable& that ) = delete;
 };

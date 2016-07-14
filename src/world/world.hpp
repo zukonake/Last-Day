@@ -35,7 +35,7 @@ private:
 	void nextTick( void ) noexcept;
 
 	const Dataset& mDataset;
-	WorldGenerator mGenerator;
+	const WorldGenerator mGenerator;
 
 	uint16_t mTick = 0;
 };
