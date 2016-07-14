@@ -84,7 +84,7 @@ void ChunkContainer::unloadChunk( const Point& targetChunkPosition ) noexcept
 	{
 		for( Point::coordinate iteratorX = targetTilePosition.x; iteratorX < targetTilePosition.x + ( int )Chunk::getSizeInTiles(); iteratorX++ )
 		{
-			mEntityContainer.removeEntity( Point( iteratorX, iteratorY ) );
+			mEntityContainer.removeEntity( { iteratorX, iteratorY } );
 		}
 	}
 	mLoadedChunks.erase( targetChunkPosition );

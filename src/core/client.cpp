@@ -26,7 +26,7 @@ void Client::connect( Server& server ) noexcept
 {
 	if( !mIsConnected)
 	{
-		pPlayer = server.createPlayer( Point( 0, 0 ), SFMLAdapter::getWindowSize() );
+		pPlayer = server.createPlayer( { 0, 0 }, SFMLAdapter::getWindowSize() );
 		mIsConnected = true;
 	}
 	return;

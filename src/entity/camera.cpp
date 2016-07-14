@@ -26,13 +26,13 @@ void Camera::draw( sf::RenderTarget& target, sf::RenderStates states ) const
 			{
 				sf::RenderStates renderStates = states;
 				renderStates.transform.translate( renderX, renderY );
-				target.draw( mWorld.getTile( Point( iteratorX, iteratorY ), true ), renderStates );
-				std::shared_ptr< Entity > entity = mWorld.getEntity( Point( iteratorX, iteratorY ) );
+				target.draw( mWorld.getTile( { iteratorX, iteratorY }, true ), renderStates );
+				std::shared_ptr< Entity > entity = mWorld.getEntity( { iteratorX, iteratorY } );
 				if( entity != nullptr )
 				{
 					target.draw( *entity, renderStates );
 				}
-				renderHeightEffects( Point( iteratorX, iteratorY ), target, renderStates );
+				renderHeightEffects( { iteratorX, iteratorY }, target, renderStates );
 			}
 		}
 	}
@@ -53,13 +53,13 @@ void Camera::renderHeightEffects( const Point& targetTilePosition, sf::RenderTar
 	sf::RectangleShape rectangle( sf::Vector2f( 32, 32 ) );
 	rectangle.setFillColor( sf::Color( 0, 0, 0, maximumAlpha - alphaModifier ) );
 	target.draw( rectangle, states );
-	if( mWorld.getTile( Point( targetTilePosition.x - 1, targetTilePosition.y ) ).getHeight() != targetTile.getHeight() )
+	if( mWorld.getTile( { targetTilePosition.x - 1, targetTilePosition.y } ).getHeight() != targetTile.getHeight() )
 	{
 		sf::RectangleShape verticalLine( sf::Vector2f( 1.0f, 32 ) );
 		verticalLine.setFillColor( sf::Color( 0, 0, 0, 70 ) );
 		target.draw( verticalLine, states );
 	}
-	if( mWorld.getTile( Point( targetTilePosition.x, targetTilePosition.y - 1) ).getHeight() != targetTile.getHeight() )
+	if( mWorld.getTile( { targetTilePosition.x, targetTilePosition.y - 1 } ).getHeight() != targetTile.getHeight() )
 	{
 		sf::RectangleShape horizontalLine( sf::Vector2f( 32, 1.0f ) );
 		horizontalLine.setFillColor( sf::Color( 0, 0, 0, 70 ) );
@@ -76,7 +76,7 @@ void Camera::move( const Direction& targetDirection )
 
 Point Camera::getPositionMouseIsOn( const Point& mousePosition ) noexcept
 {
-	return Point( Entity::getPosition().x - ( mViewRange.width - ( mousePosition.x / mZoom ) ), Entity::getPosition().y - ( mViewRange.height - ( mousePosition.y / mZoom ) ) );
+	return { Entity::getPosition().x - ( mViewRange.width - ( mousePosition.x / mZoom ) ), Entity::getPosition().y - ( mViewRange.height - ( mousePosition.y / mZoom ) ) };
 }
 
 void Camera::resizeZoom( const bool& direction ) noexcept

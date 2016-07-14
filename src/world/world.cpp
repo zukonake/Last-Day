@@ -16,10 +16,16 @@ World::World( const Dataset& dataset, const int& seed ) noexcept :
 
 }
 
+Player* World::createPlayer( const Point& position, const Rectangle& screenSize ) noexcept
+{
+	return new Player( position, *this, screenSize, mDataset );
+}
+
 void World::simulate( void ) noexcept
 {
 	EntityContainer::simulate();
 	ChunkContainer::unloadInactiveChunks();
+	nextTick();
 	return;
 }
 
@@ -28,7 +34,38 @@ bool World::canMove( const Point& target ) noexcept
 	return getEntity( target ) == nullptr and getTile( target ).isPassable();
 }
 
-Player* World::createPlayer( const Point& position, const Rectangle& screenSize ) noexcept
+bool World::isDay( void ) const noexcept
 {
-	return new Player( position, *this, screenSize, mDataset );
+	if( mTick <= csDaytimeLengthInTicks )
+	{
+		return true;
+	}
+	return false;
+}
+
+bool World::isNight( void ) const noexcept
+{
+	if( mTick > csDaytimeLengthInTicks )
+	{
+		return true;
+	}
+	return false;
+}
+
+const uint16_t& World::getTickClock( void ) const noexcept
+{
+	return mTick;
+}
+
+void World::nextTick( void ) noexcept
+{
+	if( mTick >= csDayLengthInTicks )
+	{
+		mTick = 0;
+	}
+	else
+	{
+		mTick++;
+	}
+	return;
 }
