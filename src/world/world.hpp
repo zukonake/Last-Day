@@ -16,8 +16,8 @@ class Player;
 class World : public EntityContainer, public ChunkContainer
 {
 	const static uint16_t csDaytimeLengthInTicks = 30;
-	const static uint16_t csNightLengthInTicks = 20;
-	const static uint16_t csDayLengthInTicks = csDaytimeLengthInTicks + csNightLengthInTicks;
+	const static uint16_t csNighttimeLengthInTicks = 20;
+	const static uint16_t csDayLengthInTicks = csDaytimeLengthInTicks + csNighttimeLengthInTicks;
 public:
 	World( const Dataset& dataset, const int& seed ) noexcept;
 
@@ -27,17 +27,17 @@ public:
 
 	bool canMove( const Point& target ) noexcept;
 
-	bool isDay( void ) const noexcept;
-	bool isNight( void ) const noexcept;
+	bool isDaytime( void ) const noexcept;
+	bool isNighttime( void ) const noexcept;
 
-	const uint16_t& getTickClock( void ) const noexcept;
+	const uint16_t& getTick( void ) const noexcept;
 private:
 	void nextTick( void ) noexcept;
 
 	const Dataset& mDataset;
 	WorldGenerator mGenerator;
 
-	uint16_t mTick;
+	uint16_t mTick = 0;
 };
 
 #endif

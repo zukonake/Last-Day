@@ -26,18 +26,19 @@ public:
 	void start( void ) noexcept;
 	void end( void ) noexcept;
 
-	void render( void ) noexcept;
+	void loop( void ) noexcept;
 
 	bool isRunning( void ) const noexcept;
 	bool isConnected( void ) const noexcept;
+private:
+	void render( void ) noexcept;
 
 	bool handleTime( void ) noexcept;
 	void handleInput( void ) noexcept;
-private:
 	void handleKeyState( void ) noexcept;
 	void handleEvents( void ) noexcept;
 
-	void checkOperationViability( void ) const;
+	bool isReady( void ) noexcept;
 
 	Player* pPlayer;
 	bool mIsConnected;

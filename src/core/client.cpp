@@ -54,18 +54,14 @@ void Client::end( void ) noexcept
 	return;
 }
 
-void Client::render( void ) noexcept
+void Client::loop( void ) noexcept
 {
-	try
+	if( isReady() )
 	{
-		checkOperationViability();
+		render();
+		update();
+		handleInput();
 	}
-	catch( std::exception& e )
-	{
-		std::cerr << "ERROR: Standard exception: " << e.what() << ".\n";
-		return;
-	}
-	SFMLAdapter::getWindow().draw( *pPlayer );
 	return;
 }
 
@@ -77,6 +73,12 @@ bool Client::isRunning( void ) const noexcept
 bool Client::isConnected( void ) const noexcept
 {
 	return mIsConnected;
+}
+
+void Client::render( void ) noexcept
+{
+	SFMLAdapter::getWindow().draw( *pPlayer );
+	return;
 }
 
 bool Client::handleTime( void ) noexcept
@@ -93,15 +95,6 @@ bool Client::handleTime( void ) noexcept
 
 void Client::handleInput( void ) noexcept
 {
-	try
-	{
-		checkOperationViability();
-	}
-	catch( std::exception& e )
-	{
-		std::cerr << "ERROR: Standard exception: " << e.what() << ".\n";
-		return;
-	}
 	handleKeyState();
 	handleEvents();
 	return;
@@ -162,17 +155,7 @@ void Client::handleEvents( void ) noexcept
 	return;
 }
 
-void Client::checkOperationViability( void ) const
+bool Client::isReady( void ) noexcept
 {
-	if( !isRunning() )
-	{
-		throw std::runtime_error( "Client::checkOperationViability, client is not running." );
-		return;
-	}
-	if( !mIsConnected )
-	{
-		throw std::runtime_error( "Client::checkOperationViability, client is not connected." );
-		return;
-	}
-	return;
+	return isRunning() and mIsConnected and handleTime();
 }

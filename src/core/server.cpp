@@ -48,10 +48,9 @@ void Server::disconnectClient( Client* target )
 
 void Server::simulate( void ) noexcept
 {
-	if( mSimulationClock.getElapsedTime() >= sf::milliseconds( 250 ) )
+	if( handleTime() )
 	{
 		mWorld.simulate();
-		mSimulationClock.restart();
 	}
 	return;
 }
@@ -59,4 +58,16 @@ void Server::simulate( void ) noexcept
 Player* Server::createPlayer( const Point& position, const Rectangle& screenSize ) noexcept
 {
 	return mWorld.createPlayer( position, screenSize );
+}
+
+bool Server::handleTime( void ) noexcept
+{
+	sf::Time waitingTime = sf::milliseconds( 150 );
+	sf::Time elapsedTime = mSimulationClock.getElapsedTime();
+	if( elapsedTime >= waitingTime )
+	{
+		mSimulationClock.restart();
+		return true;
+	}
+	return false;
 }

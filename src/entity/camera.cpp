@@ -56,13 +56,13 @@ void Camera::renderHeightEffects( const Point& targetTilePosition, sf::RenderTar
 	target.draw( rectangle, states );
 	if( mWorld.getTile( { targetTilePosition.x - 1, targetTilePosition.y } ).getHeight() != targetTile.getHeight() )
 	{
-		sf::RectangleShape verticalLine( { 1.0f, 32.f } );
+		sf::RectangleShape verticalLine( { 3.0f, 32.f } );
 		verticalLine.setFillColor( sf::Color( 0, 0, 0, 70 ) );
 		target.draw( verticalLine, states );
 	}
 	if( mWorld.getTile( { targetTilePosition.x, targetTilePosition.y - 1 } ).getHeight() != targetTile.getHeight() )
 	{
-		sf::RectangleShape horizontalLine( { 32.f, 1.0f } );
+		sf::RectangleShape horizontalLine( { 32.f, 3.0f } );
 		horizontalLine.setFillColor( sf::Color( 0, 0, 0, 70 ) );
 		target.draw( horizontalLine, states );
 	}
@@ -71,10 +71,10 @@ void Camera::renderHeightEffects( const Point& targetTilePosition, sf::RenderTar
 
 void Camera::renderTimeEffects( sf::RenderTarget& target, sf::RenderStates states ) const noexcept
 {
-	sf::RectangleShape rectangle( mScreenSize );
-	rectangle.setPosition( { 0, 0 } );
-	if( mWorld.isNight() )
+	if( mWorld.isNighttime() )
 	{
+		sf::RectangleShape rectangle( mScreenSize );
+		rectangle.setPosition( { 0, 0 } );
 		rectangle.setFillColor( sf::Color( 0, 0, 30, 150 ) );
 		target.draw( rectangle, states );
 	}

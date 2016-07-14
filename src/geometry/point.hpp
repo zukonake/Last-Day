@@ -48,14 +48,12 @@ struct Point
 
 	Point move( const Direction& direction, const int& difference = 1 ) noexcept;
 
-	virtual Point tilePosition( const uint16_t& sizeInTiles ) const noexcept final;
-	virtual Point chunkPosition( const uint16_t& sizeInTiles ) const noexcept final;
-	virtual Point internalPosition( const uint16_t& sizeInTiles ) const noexcept final;
+	static Point tilePosition( const Point& that, const uint16_t& sizeInTiles );
+	static Point chunkPosition( const Point& that,const uint16_t& sizeInTiles );
+	static Point internalPosition( const Point& that,const uint16_t& sizeInTiles );
 
 	coordinate x;
 	coordinate y;
 };
-
-
 
 #endif

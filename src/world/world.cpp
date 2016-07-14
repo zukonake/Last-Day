@@ -34,7 +34,7 @@ bool World::canMove( const Point& target ) noexcept
 	return getEntity( target ) == nullptr and getTile( target ).isPassable();
 }
 
-bool World::isDay( void ) const noexcept
+bool World::isDaytime( void ) const noexcept
 {
 	if( mTick <= csDaytimeLengthInTicks )
 	{
@@ -43,7 +43,7 @@ bool World::isDay( void ) const noexcept
 	return false;
 }
 
-bool World::isNight( void ) const noexcept
+bool World::isNighttime( void ) const noexcept
 {
 	if( mTick > csDaytimeLengthInTicks )
 	{
@@ -52,7 +52,7 @@ bool World::isNight( void ) const noexcept
 	return false;
 }
 
-const uint16_t& World::getTickClock( void ) const noexcept
+const uint16_t& World::getTick( void ) const noexcept
 {
 	return mTick;
 }

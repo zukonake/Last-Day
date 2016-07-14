@@ -32,8 +32,8 @@ void ChunkContainer::unloadInactiveChunks( void ) noexcept
 
 Tile& ChunkContainer::getTile( const Point& targetTilePosition, const bool& chunkAnchor ) noexcept
 {
-	Point targetInternalPosition = targetTilePosition.internalPosition( Chunk::sizeInTiles );
-	Point targetChunkPosition = targetTilePosition.chunkPosition( Chunk::sizeInTiles );
+	Point targetInternalPosition = Point::internalPosition( targetTilePosition, Chunk::sizeInTiles );
+	Point targetChunkPosition = Point::chunkPosition( targetTilePosition, Chunk::sizeInTiles );
 	return getChunk( targetChunkPosition, chunkAnchor ).value[ targetInternalPosition.x ][ targetInternalPosition.y ];
 }
 
@@ -79,7 +79,7 @@ void ChunkContainer::unloadChunk( const Point& targetChunkPosition ) noexcept
 		return;
 	}
 	std::cout << "INFO: Unloading chunk: " << targetChunkPosition << "\n";
-	Point targetTilePosition = targetChunkPosition.tilePosition( Chunk::sizeInTiles );
+	Point targetTilePosition = Point::tilePosition( targetChunkPosition, Chunk::sizeInTiles );
 	for( Point::coordinate iteratorY = targetTilePosition.y; iteratorY < targetTilePosition.y + ( int )Chunk::sizeInTiles; iteratorY++ )
 	{
 		for( Point::coordinate iteratorX = targetTilePosition.x; iteratorX < targetTilePosition.x + ( int )Chunk::sizeInTiles; iteratorX++ )

@@ -18,12 +18,7 @@ int main()
 	{
 		while( client.isRunning() )
 		{
-			if( client.handleTime() )
-			{
-				client.render();
-				client.update();
-				client.handleInput();
-			}
+			client.loop();
 			server->simulate();
 		}
 	}

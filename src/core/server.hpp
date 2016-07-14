@@ -25,6 +25,8 @@ public:
 
 	Player* createPlayer( const Point& position, const Rectangle& screenSize ) noexcept;
 private:
+	bool handleTime( void ) noexcept;
+
 	Dataset mDataset;
 	World mWorld;
 

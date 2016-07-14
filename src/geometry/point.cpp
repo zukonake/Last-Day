@@ -150,14 +150,14 @@ Point Point::move( const Direction& direction, const int& difference ) noexcept
 	return output;
 }
 
-Point Point::tilePosition( const uint16_t& sizeInTiles ) const noexcept
+Point Point::tilePosition( const Point& that, const uint16_t& sizeInTiles )
 {
-	return *this * sizeInTiles;
+	return that * sizeInTiles;
 }
 
-Point Point::chunkPosition( const uint16_t& sizeInTiles ) const noexcept
+Point Point::chunkPosition( const Point& that, const uint16_t& sizeInTiles )
 {
-	Point output = *this;
+	Point output = that;
 	if( output.x < 0 )
 	{
 		output.x -= sizeInTiles - 1;
@@ -170,9 +170,9 @@ Point Point::chunkPosition( const uint16_t& sizeInTiles ) const noexcept
 	return output;
 }
 
-Point Point::internalPosition( const uint16_t& sizeInTiles ) const noexcept
+Point Point::internalPosition( const Point& that, const uint16_t& sizeInTiles )
 {
-	Point output = *this;
+	Point output = that;
 	output = output % sizeInTiles;
 	if( output.x < 0 )
 	{
