@@ -7,6 +7,30 @@ Rectangle::Rectangle( std::istream& in ) noexcept
 	in >> height;
 }
 
+Rectangle::operator sf::Vector2< float >( void ) const noexcept
+{
+	sf::Vector2< float > output;
+	output.x = width;
+	output.y = height;
+	return output;
+}
+
+Rectangle::operator sf::Vector2< int >( void ) const noexcept
+{
+	sf::Vector2< int > output;
+	output.x = width;
+	output.y = height;
+	return output;
+}
+
+Rectangle::operator Point( void ) const noexcept
+{
+	Point output;
+	output.x = width;
+	output.y = height;
+	return output;
+}
+
 Rectangle Rectangle::operator * ( const int& mul ) const noexcept
 {
 	return Rectangle( width * mul, height * mul );

@@ -24,6 +24,7 @@ public:
 private:
 	virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
 	void renderHeightEffects( const Point& targetTilePosition, sf::RenderTarget& target, sf::RenderStates states ) const noexcept;
+	void renderTimeEffects( sf::RenderTarget& target, sf::RenderStates states ) const noexcept;
 
 	void updateViewRange( void ) noexcept;
 

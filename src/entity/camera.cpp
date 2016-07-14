@@ -36,6 +36,7 @@ void Camera::draw( sf::RenderTarget& target, sf::RenderStates states ) const
 			}
 		}
 	}
+	renderTimeEffects( target, states );
 	return;
 }
 
@@ -66,6 +67,17 @@ void Camera::renderHeightEffects( const Point& targetTilePosition, sf::RenderTar
 		target.draw( horizontalLine, states );
 	}
 	return;
+}
+
+void Camera::renderTimeEffects( sf::RenderTarget& target, sf::RenderStates states ) const noexcept
+{
+	sf::RectangleShape rectangle( mScreenSize );
+	rectangle.setPosition( { 0, 0 } );
+	if( mWorld.isNight() )
+	{
+		rectangle.setFillColor( sf::Color( 0, 0, 30, 150 ) );
+		target.draw( rectangle, states );
+	}
 }
 
 void Camera::move( const Direction& targetDirection )

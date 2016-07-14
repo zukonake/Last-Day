@@ -15,8 +15,8 @@ class Player;
 
 class World : public EntityContainer, public ChunkContainer
 {
-	const static uint16_t csDaytimeLengthInTicks = 200;
-	const static uint16_t csNightLengthInTicks = 100;
+	const static uint16_t csDaytimeLengthInTicks = 30;
+	const static uint16_t csNightLengthInTicks = 20;
 	const static uint16_t csDayLengthInTicks = csDaytimeLengthInTicks + csNightLengthInTicks;
 public:
 	World( const Dataset& dataset, const int& seed ) noexcept;
