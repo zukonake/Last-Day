@@ -67,7 +67,7 @@ void ChunkContainer::setNearbyChunksActive( const Point& targetChunkPosition ) n
 
 Chunk& ChunkContainer::loadChunk( const Point& targetChunkPosition ) noexcept
 {
-	std::cout << "INFO: Loading chunk: " << targetChunkPosition.x << ", " << targetChunkPosition.y << "\n";
+	std::cout << "INFO: Loading chunk: " << targetChunkPosition << "\n";
 	mGenerator.generateChunk( targetChunkPosition, mLoadedChunks[ targetChunkPosition ] );
 	return mLoadedChunks[ targetChunkPosition ];
 }
@@ -78,7 +78,7 @@ void ChunkContainer::unloadChunk( const Point& targetChunkPosition ) noexcept
 	{
 		return;
 	}
-	std::cout << "INFO: Unloading chunk: " << targetChunkPosition.x << ", " << targetChunkPosition.y << "\n";
+	std::cout << "INFO: Unloading chunk: " << targetChunkPosition << "\n";
 	Point targetTilePosition = targetChunkPosition.tilePosition( Chunk::sizeInTiles );
 	for( Point::coordinate iteratorY = targetTilePosition.y; iteratorY < targetTilePosition.y + ( int )Chunk::sizeInTiles; iteratorY++ )
 	{

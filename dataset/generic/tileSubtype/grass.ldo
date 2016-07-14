@@ -1,4 +1,4 @@
 grass
-image= dataset/generic/tileSubtype/grass.png
+texturePath= dataset/generic/tileSubtype/grass.png
 name= Grass
 isPassable= 1

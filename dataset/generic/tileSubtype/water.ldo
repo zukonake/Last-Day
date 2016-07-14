@@ -1,4 +1,4 @@
 water
-iamge= dataset/generic/tileSubtype/water.png
+texturePath= dataset/generic/tileSubtype/water.png
 name= Water
 isPassable= 0

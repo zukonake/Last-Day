@@ -1,4 +1,4 @@
 house
-image= dataset/generic/buildingSubtype/house.png
+texturePath= dataset/generic/buildingSubtype/house.png
 name= House
 shape= 2 2

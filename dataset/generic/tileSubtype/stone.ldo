@@ -1,4 +1,4 @@
 stone
-image= dataset/generic/tileSubtype/stone.png
+texturePath= dataset/generic/tileSubtype/stone.png
 name= Stone
 isPassable= 0

@@ -1,5 +1,21 @@
 #include "point.hpp"
+#include <SFML/System/Vector2.hpp>
+//
 #include <geometry/direction.hpp>
+
+std::ostream& operator<<( std::ostream& out, const Point& obj )
+{
+	out << obj.x << " , " << obj.y;
+	return out;
+}
+
+std::istream& operator>>( std::istream& in, Point& obj )
+{
+	in >> obj.x;
+	in.ignore( 255, ' ' );
+	in >> obj.y;
+	return in;
+}
 
 Point::Point( std::istream& in ) noexcept
 {
@@ -8,16 +24,18 @@ Point::Point( std::istream& in ) noexcept
 	in >> y;
 }
 
-Point::Point( const sf::Vector2f& that ) noexcept
+Point::Point( const sf::Vector2< float >& that ) noexcept :
+	x( ( coordinate )that.x ),
+	y( ( coordinate )that.y )
 {
-	x = that.x;
-	y = that.y;
+
 }
 
-Point::Point( const sf::Vector2i& that ) noexcept
+Point::Point( const sf::Vector2< int >& that ) noexcept :
+	x( ( coordinate )that.x ),
+	y( ( coordinate )that.y )
 {
-	x = that.x;
-	y = that.y;
+
 }
 
 Point::operator sf::Vector2< float >( void ) const noexcept

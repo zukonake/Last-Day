@@ -3,18 +3,25 @@
 
 #include <cstdint>
 #include <iostream>
-#include <SFML/Graphics.hpp>
 
 struct Direction;
 
+namespace sf
+{
+	template < typename T >
+	class Vector2;
+}
+
 struct Point
 {
+	friend std::ostream& operator<<( std::ostream& out, const Point& obj );
+	friend std::istream& operator>>( std::istream& in, Point& obj );
 	typedef int32_t coordinate;
 
 	Point( const coordinate& x, const coordinate& y ) noexcept : x( x ), y( y ) { }
 	explicit Point( std::istream& in ) noexcept;
-	Point( const sf::Vector2f& that ) noexcept;
-	Point( const sf::Vector2i& that ) noexcept;
+	Point( const sf::Vector2< float >& that ) noexcept;
+	Point( const sf::Vector2< int >& that ) noexcept;
 	Point( void ) noexcept : x( 0 ), y ( 0 ) { }
 
 	virtual ~Point( void ) = default;
