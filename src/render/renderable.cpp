@@ -5,8 +5,14 @@ Renderable::Renderable( std::istream& in ) noexcept
 	in.ignore( 255, ' ' );
 	in >> mTexturePath;
 	loadTexture();
-	mSprite.setTexture( mTexture );
-	mSprite.setTextureRect( sf::IntRect( 0, 0, mTexture.getSize().x, mTexture.getSize().y ) );
+	setupSprite();
+}
+
+Renderable::Renderable( const std::string& texturePath ) noexcept :
+	mTexturePath( texturePath )
+{
+	loadTexture();
+	setupSprite();
 }
 
 void Renderable::draw( sf::RenderTarget& target, sf::RenderStates states ) const
@@ -22,5 +28,12 @@ void Renderable::loadTexture( void )
 		throw std::runtime_error( "Renderable::loadTexture, couldn't load texture from file: " + mTexturePath + "." );
 		return;
 	}
+	return;
+}
+
+void Renderable::setupSprite( void ) noexcept
+{
+	mSprite.setTexture( mTexture );
+	mSprite.setTextureRect( sf::IntRect( 0, 0, mTexture.getSize().x, mTexture.getSize().y ) );
 	return;
 }

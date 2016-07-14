@@ -12,10 +12,13 @@ class Renderable : public sf::Drawable
 {
 public:
 	Renderable( std::istream& in ) noexcept;
+	Renderable( const std::string& texturePath ) noexcept;
 	Renderable( void ) noexcept { }
-private:
+protected:
 	virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
+private:
 	void loadTexture( void );
+	void setupSprite( void ) noexcept;
 
 	sf::Texture mTexture;
 	sf::Sprite mSprite;

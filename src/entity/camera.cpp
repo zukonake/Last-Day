@@ -24,7 +24,6 @@ void Camera::draw( sf::RenderTarget& target, sf::RenderStates states ) const
 		{
 			if( (iteratorX % ( 32 / mZoom )*( 32 / mZoom )) == 0 and (iteratorY % ( 32 / mZoom )*( 32 / mZoom )) == 0)
 			{
-				sf::Transform renderPosition;
 				sf::RenderStates renderStates = states;
 				renderStates.transform.translate( renderX, renderY );
 				target.draw( mWorld.getTile( Point( iteratorX, iteratorY ), true ), renderStates );
