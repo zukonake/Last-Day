@@ -2,7 +2,6 @@
 #define TILE_HPP
 
 #include <cstdint>
-#include <memory>
 #include <string>
 #include <SFML/Graphics.hpp>
 

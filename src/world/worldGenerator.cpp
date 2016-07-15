@@ -1,7 +1,6 @@
 #include "worldGenerator.hpp"
 #include <cstdint>
 #include <cstdlib>
-#include <memory>
 //
 #include <entity/entity.hpp>
 #include <entity/mob/mob.hpp>
@@ -96,12 +95,6 @@ Tile& WorldGenerator::generateTile( const Point& targetTilePosition, Tile& targe
 			mWorld.addEntity< Entity >( targetTilePosition,
 				&mDataset.getObject< EntitySubtype >( "tree" ),
 				mWorld );
-		}
-		if( ( rand() % 100 ) == 1 )
-		{
-			//mWorld.addEntity< Mob >( targetTilePosition,
-			//	&mDataset.getObject< MobSubtype >( "human" ),
-			//	mWorld );
 		}
 	}
 	else if( heightValue >= -0.2 )

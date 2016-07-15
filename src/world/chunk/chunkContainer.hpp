@@ -2,7 +2,6 @@
 #define CHUNKCONTAINER_HPP
 
 #include <cstdint>
-#include <memory>
 #include <map>
 //
 #include <geometry/point.hpp>

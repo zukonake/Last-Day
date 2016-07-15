@@ -1,7 +1,6 @@
 #ifndef RENDERABLE_HPP
 #define RENDERABLE_HPP
 
-#include <cstdint>
 #include <iostream>
 #include <string>
 #include <SFML/Graphics.hpp>

@@ -3,14 +3,9 @@
 
 #include <cstdint>
 #include <iostream>
+#include <SFML/System/Vector2.hpp>
 
 struct Direction;
-
-namespace sf
-{
-	template < typename T >
-	class Vector2;
-}
 
 struct Point
 {

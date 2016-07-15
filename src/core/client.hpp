@@ -1,9 +1,8 @@
 #ifndef CLIENT_HPP
 #define CLIENT_HPP
 
-#include <memory>
 #include <string>
-#include <SFML/System.hpp>
+#include <SFML/System/Clock.hpp>
 //
 #include <nonCopyable.hpp>
 #include <core/SFMLAdapter.hpp>
