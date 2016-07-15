@@ -11,11 +11,11 @@
 class UserInterface : public Renderable, NonCopyable
 {
 public:
-	UserInterface( const std::string& texturePath ) noexcept;
+	UserInterface( const Point& position, const std::string& texturePath ) noexcept;
 
 	virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
 private:
-	Point position;
+	Point mPosition;
 };
 
 #endif
