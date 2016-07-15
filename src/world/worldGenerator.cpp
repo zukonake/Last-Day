@@ -90,7 +90,7 @@ Tile& WorldGenerator::generateTile( const Point& targetTilePosition, Tile& targe
 	else if( heightValue >= -0.05 )
 	{
 		target = Tile( &mDataset.getObject< TileSubtype >( "grass" ), heightValue * csHeightMultiplier);
-		if( heightValue >= 0 and heightValue <= 0.45  and ( rand() % 10 ) == 1 )
+		if( heightValue >= 0 and heightValue <= 0.45  and ( rand() % 50 ) == 1 )
 		{
 			mWorld.addEntity< Entity >( targetTilePosition,
 				&mDataset.getObject< EntitySubtype >( "tree" ),
