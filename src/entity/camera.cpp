@@ -42,12 +42,10 @@ void Camera::draw( sf::RenderTarget& target, sf::RenderStates states ) const
 	sf::Font font;
 	font.loadFromFile( "/usr/share/fonts/TTF/Vera.ttf" );
 	std::stringstream sstream;
-	sf::Text text;
-	text.setFont(font);
 	sstream << mPosition.x << "," << mPosition.y ;
 	std::string content;
 	sstream >> content;
-	text.setString( content );
+	sf::Text text( content, font, 24 );
 	target.draw(text);
 	//TODO
 	return;
