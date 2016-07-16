@@ -18,7 +18,7 @@ public:
 	Camera( const Point& position, World& world, const Rectangle& screenSize ) noexcept;
 
 	void move( const Direction& targetDirection ) override;
-	Point getPositionMouseIsOn( const Point& mousePosition ) noexcept;
+	Point getPositionMouseIsOn( const Point& mousePosition ) const noexcept;
 
 	void resizeZoom( const bool& direction ) noexcept;
 private:

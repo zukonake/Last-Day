@@ -4,6 +4,7 @@
 #include <world/tile/tile.hpp>
 #include <world/world.hpp>
 #include <world/worldGenerator.hpp>
+#include <sstream>
 
 Camera::Camera( const Point& position, World& world, const Rectangle& screenSize ) noexcept :
 	Entity( position, nullptr, world ),
@@ -37,6 +38,18 @@ void Camera::draw( sf::RenderTarget& target, sf::RenderStates states ) const
 		}
 	}
 	renderTimeEffects( target, states );
+	//TODO
+	sf::Font font;
+	font.loadFromFile( "/usr/share/fonts/TTF/Vera.ttf" );
+	std::stringstream sstream;
+	sf::Text text;
+	text.setFont(font);
+	sstream << mPosition.x << "," << mPosition.y ;
+	std::string content;
+	sstream >> content;
+	text.setString( content );
+	target.draw(text);
+	//TODO
 	return;
 }
 
@@ -86,7 +99,7 @@ void Camera::move( const Direction& targetDirection )
 	return;
 }
 
-Point Camera::getPositionMouseIsOn( const Point& mousePosition ) noexcept
+Point Camera::getPositionMouseIsOn( const Point& mousePosition ) const noexcept
 {
 	return { Entity::getPosition().x - ( mViewRange.width - ( mousePosition.x / mZoom ) ), Entity::getPosition().y - ( mViewRange.height - ( mousePosition.y / mZoom ) ) };
 }

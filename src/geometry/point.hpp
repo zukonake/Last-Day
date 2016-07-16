@@ -2,8 +2,10 @@
 #define POINT_HPP
 
 #include <cstdint>
+#include <string>
 #include <iostream>
 #include <SFML/System/Vector2.hpp>
+#include <SFML/System/String.hpp>
 
 struct Direction;
 
@@ -21,6 +23,7 @@ struct Point
 
 	virtual ~Point( void ) = default;
 
+	virtual operator std::string( void ) const noexcept;
 	virtual operator sf::Vector2< float >( void ) const noexcept;
 	virtual operator sf::Vector2< int >( void ) const noexcept;
 

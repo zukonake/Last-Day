@@ -1,6 +1,7 @@
 #ifndef TILE_HPP
 #define TILE_HPP
 
+#include <memory>
 #include <cstdint>
 #include <string>
 #include <SFML/Graphics.hpp>
@@ -13,16 +14,17 @@ class World;
 class Tile : public sf::Drawable
 {
 public:
-	Tile( const TileSubtype* subtype, int8_t height ) noexcept : pSubtype( subtype ), mHeight( height ) { }
+	Tile( std::shared_ptr< const TileSubtype > subtype, int8_t height ) noexcept : pSubtype( subtype ), mHeight( height ) { }
 	Tile( void ) noexcept : pSubtype( nullptr ) { }
 
-	const std::string& getSubtypeName( void ) const noexcept;
+	std::shared_ptr< const TileSubtype > getSubtype( void ) const noexcept;
+	void setSubtype( std::shared_ptr< const TileSubtype > value ) noexcept;
+
 	const int8_t& getHeight( void ) const noexcept;
-	const bool& isPassable( void ) const noexcept;
 private:
 	virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
 
-	const TileSubtype* pSubtype;
+	std::shared_ptr< const TileSubtype > pSubtype;
 	int8_t mHeight;
 };
 

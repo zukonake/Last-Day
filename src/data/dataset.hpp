@@ -1,6 +1,7 @@
 #ifndef DATASET_HPP
 #define DATASET_HPP
 
+#include <memory>
 #include <string>
 #include <map>
 //
@@ -17,7 +18,7 @@ public:
 	Dataset( void );
 
 	template< typename ObjectType >
-	const ObjectType& getObject( const std::string& key ) const;
+	std::shared_ptr< const ObjectType > getObject( const std::string& key ) const;
 private:
 	void initializeObjects( void ) noexcept;
 	template< typename ObjectType >

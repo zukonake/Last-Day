@@ -2,12 +2,17 @@
 #include <entity/entitySubtype.hpp>
 #include <world/world.hpp>
 
-Entity::Entity( const Point& position, const EntitySubtype* subtype, World& world ) noexcept :
+Entity::Entity( const Point& position, std::shared_ptr< const EntitySubtype > subtype, World& world ) noexcept :
 	mPosition( position ),
 	pSubtype( subtype ),
 	mWorld( world )
 {
 
+}
+
+std::shared_ptr< const EntitySubtype > Entity::getSubtype( void ) const noexcept
+{
+	return pSubtype;
 }
 
 void Entity::draw( sf::RenderTarget& target, sf::RenderStates states ) const
@@ -28,11 +33,6 @@ void Entity::teleport( const Point& targetPosition ) noexcept
 void Entity::move( const Direction& targetDirection )
 {
 	return;
-}
-
-const std::string& Entity::getName( void ) const noexcept
-{
-	return pSubtype->getName();
 }
 
 const Point& Entity::getPosition( void ) const noexcept

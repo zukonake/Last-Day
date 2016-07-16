@@ -14,7 +14,7 @@ class WorldGenerator;
 class ChunkContainer
 {
 	typedef std::map< const Point, Chunk > tChunkMap;
-	const static uint8_t csChunkActiveRange = 2;
+	const static uint8_t csChunkActiveRange = 1;
 	const static uint8_t csChunkActiveThreshold = 5;
 public:
 	ChunkContainer( const WorldGenerator& generator, EntityContainer& entityContainer ) noexcept;

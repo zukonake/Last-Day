@@ -5,6 +5,7 @@ class NonCopyable
 {
 protected:
 	NonCopyable( void ) = default;
+	
 	virtual ~NonCopyable( void ) = default;
 
 	NonCopyable( const NonCopyable& that ) = delete;

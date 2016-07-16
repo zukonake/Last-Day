@@ -21,6 +21,7 @@ public:
 	void simulate( void ) noexcept;
 
 	std::shared_ptr< Entity > getEntity( const Point& targetPosition ) noexcept;
+
 	template < typename ObjectType, typename... Arguments >
 	void addEntity( Arguments&&... arguments );
 	void removeEntity( const Point& targetPosition ) noexcept;

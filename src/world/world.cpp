@@ -31,7 +31,7 @@ void World::simulate( void ) noexcept
 
 bool World::canMove( const Point& target ) noexcept
 {
-	return getEntity( target ) == nullptr and getTile( target ).isPassable();
+	return getEntity( target ) == nullptr and getTile( target ).getSubtype()->getIsPassable();
 }
 
 bool World::isDaytime( void ) const noexcept

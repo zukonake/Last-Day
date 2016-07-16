@@ -1,0 +1,4 @@
+wall
+texturePath= dataset/generic/tileSubtype/wall.png
+name= Wall
+isPassable= 0
