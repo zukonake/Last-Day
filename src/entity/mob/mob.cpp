@@ -4,7 +4,7 @@
 #include <entity/mob/mobSubtype.hpp>
 #include <world/world.hpp>
 
-Mob::Mob( const Point& position, std::shared_ptr< const MobSubtype > subtype, World& world ) noexcept :
+Mob::Mob( const Point& position, const MobSubtype* subtype, World& world ) noexcept :
 	Entity( position, subtype, world )
 {
 

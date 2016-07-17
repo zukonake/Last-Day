@@ -13,9 +13,9 @@ Player::Player( const Point& position, World& world, const Rectangle& screenSize
 
 }
 
-void Player::placeMob( const Point& position ) noexcept
+void Player::placeEntity( const Point& position ) noexcept
 {
-	//mWorld.addEntity< Mob >( Camera::getPositionMouseIsOn( position ), mDataset.getObject< MobSubtype >( "human" ), mWorld );
-	mWorld.getTile( Camera::getPositionMouseIsOn( position  ) ).setSubtype( mDataset.getObject< TileSubtype >( "wall" ) ); //TODO
+	//mWorld.addEntity< Mob >( Camera::getPositionMouseIsOn( position ), &mDataset.getObject< MobSubtype >( "human" ), mWorld );
+	mWorld.getTile( Camera::getPositionMouseIsOn( position  ) ).setSubtype( &mDataset.getObject< TileSubtype >( "wall" ) ); //TODO
 	return;
 }

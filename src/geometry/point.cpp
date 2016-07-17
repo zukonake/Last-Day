@@ -38,11 +38,6 @@ Point::Point( const sf::Vector2< int >& that ) noexcept :
 
 }
 
-Point::operator std::string( void ) const noexcept
-{
-	return x + ", " + y;
-}
-
 Point::operator sf::Vector2< float >( void ) const noexcept
 {
 	return sf::Vector2< float >( ( float ) x, ( float ) y );

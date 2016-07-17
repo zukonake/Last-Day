@@ -2,7 +2,7 @@
 #include <entity/entitySubtype.hpp>
 #include <world/world.hpp>
 
-Entity::Entity( const Point& position, std::shared_ptr< const EntitySubtype > subtype, World& world ) noexcept :
+Entity::Entity( const Point& position, const EntitySubtype* subtype, World& world ) noexcept :
 	mPosition( position ),
 	pSubtype( subtype ),
 	mWorld( world )
@@ -10,7 +10,7 @@ Entity::Entity( const Point& position, std::shared_ptr< const EntitySubtype > su
 
 }
 
-std::shared_ptr< const EntitySubtype > Entity::getSubtype( void ) const noexcept
+const EntitySubtype* Entity::getSubtype( void ) const noexcept
 {
 	return pSubtype;
 }

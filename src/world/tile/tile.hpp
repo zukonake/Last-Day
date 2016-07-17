@@ -14,17 +14,17 @@ class World;
 class Tile : public sf::Drawable
 {
 public:
-	Tile( std::shared_ptr< const TileSubtype > subtype, int8_t height ) noexcept : pSubtype( subtype ), mHeight( height ) { }
+	Tile( const TileSubtype* subtype, int8_t height ) noexcept : pSubtype( subtype ), mHeight( height ) { }
 	Tile( void ) noexcept : pSubtype( nullptr ) { }
 
-	std::shared_ptr< const TileSubtype > getSubtype( void ) const noexcept;
-	void setSubtype( std::shared_ptr< const TileSubtype > value ) noexcept;
+	const TileSubtype* getSubtype( void ) const noexcept;
+	void setSubtype( const TileSubtype* value ) noexcept;
 
 	const int8_t& getHeight( void ) const noexcept;
 private:
 	virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
 
-	std::shared_ptr< const TileSubtype > pSubtype;
+	const TileSubtype* pSubtype;
 	int8_t mHeight;
 };
 

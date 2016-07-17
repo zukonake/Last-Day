@@ -11,7 +11,7 @@ class World;
 class Mob : public Entity
 {
 public:
-	Mob( const Point& position, std::shared_ptr< const MobSubtype > subtype, World& world ) noexcept;
+	Mob( const Point& position, const MobSubtype* subtype, World& world ) noexcept;
 	Mob( void ) = default;
 
 	void move( const Direction& targetDirection ) override;

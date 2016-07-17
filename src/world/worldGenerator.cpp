@@ -81,29 +81,29 @@ Tile& WorldGenerator::generateTile( const Point& targetTilePosition, Tile& targe
 	double heightValue = finalTerrain.GetValue( (double)( targetTilePosition.x ) / csScale, (double)( targetTilePosition.y ) / csScale, 0 );
 	if( heightValue >= 0.6 )
 	{
-		target = Tile( mDataset.getObject< TileSubtype >( "stone" ), heightValue * csHeightMultiplier);
+		target = Tile( &mDataset.getObject< TileSubtype >( "stone" ), heightValue * csHeightMultiplier);
 	}
 	else if( heightValue >= 0.5 )
 	{
-		target = Tile( mDataset.getObject< TileSubtype >( "dirt" ), heightValue * csHeightMultiplier);
+		target = Tile( &mDataset.getObject< TileSubtype >( "dirt" ), heightValue * csHeightMultiplier);
 	}
 	else if( heightValue >= -0.05 )
 	{
-		target = Tile( mDataset.getObject< TileSubtype >( "grass" ), heightValue * csHeightMultiplier);
+		target = Tile( &mDataset.getObject< TileSubtype >( "grass" ), heightValue * csHeightMultiplier);
 		if( heightValue >= 0 and heightValue <= 0.45  and ( rand() % 50 ) == 1 )
 		{
 			mWorld.addEntity< Entity >( targetTilePosition,
-				mDataset.getObject< EntitySubtype >( "tree" ),
+				&mDataset.getObject< EntitySubtype >( "tree" ),
 				mWorld );
 		}
 	}
 	else if( heightValue >= -0.2 )
 	{
-		target = Tile( mDataset.getObject< TileSubtype >(  "sand" ), heightValue * csHeightMultiplier);
+		target = Tile( &mDataset.getObject< TileSubtype >(  "sand" ), heightValue * csHeightMultiplier);
 	}
 	else if( heightValue < -0.2 )
 	{
-		target = Tile( mDataset.getObject< TileSubtype >( "water" ), heightValue * csHeightMultiplier);
+		target = Tile( &mDataset.getObject< TileSubtype >( "water" ), heightValue * csHeightMultiplier);
 	}
 	return target;
 }

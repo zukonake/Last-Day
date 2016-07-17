@@ -23,7 +23,6 @@ struct Point
 
 	virtual ~Point( void ) = default;
 
-	virtual operator std::string( void ) const noexcept;
 	virtual operator sf::Vector2< float >( void ) const noexcept;
 	virtual operator sf::Vector2< int >( void ) const noexcept;
 

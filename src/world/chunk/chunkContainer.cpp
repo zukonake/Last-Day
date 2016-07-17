@@ -52,9 +52,9 @@ Chunk& ChunkContainer::getChunk( const Point& targetChunkPosition, const bool& c
 
 void ChunkContainer::setNearbyChunksActive( const Point& targetChunkPosition ) noexcept
 {
-	for( Point::coordinate iteratorY = targetChunkPosition.y - csChunkActiveRange; iteratorY < targetChunkPosition.y + csChunkActiveRange; iteratorY++ )
+	for( Point::coordinate iteratorY = targetChunkPosition.y - csChunkActiveRange; iteratorY <= targetChunkPosition.y + csChunkActiveRange; iteratorY++ )
 	{
-		for( Point::coordinate iteratorX = targetChunkPosition.x - csChunkActiveRange; iteratorX < targetChunkPosition.x + csChunkActiveRange; iteratorX++ )
+		for( Point::coordinate iteratorX = targetChunkPosition.x - csChunkActiveRange; iteratorX <= targetChunkPosition.x + csChunkActiveRange; iteratorX++ )
 		{
 			Point iteratorChunkPosition( iteratorX, iteratorY );
 			if( getChunk( iteratorChunkPosition ).active < csChunkActiveThreshold )

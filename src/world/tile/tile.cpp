@@ -4,14 +4,15 @@
 #include <world/tile/tileSubtype.hpp>
 #include <entity/entity.hpp>
 
-std::shared_ptr< const TileSubtype > Tile::getSubtype( void ) const noexcept
+const TileSubtype* Tile::getSubtype( void ) const noexcept
 {
 	return pSubtype;
 }
 
-void Tile::setSubtype( std::shared_ptr< const TileSubtype > value ) noexcept
+void Tile::setSubtype( const TileSubtype* value ) noexcept
 {
 	pSubtype = value;
+	return;
 }
 
 void Tile::draw( sf::RenderTarget& target, sf::RenderStates states ) const

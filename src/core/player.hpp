@@ -12,7 +12,7 @@ class Player : public Camera
 public:
 	Player( const Point& position, World& world, const Rectangle& screenSize, const Dataset& dataset ) noexcept;
 
-	void placeMob( const Point& position ) noexcept; //TODO delet this
+	void placeEntity( const Point& position ) noexcept; //TODO delet this
 private:
 	const Dataset& mDataset;
 };

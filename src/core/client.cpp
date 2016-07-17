@@ -149,7 +149,7 @@ void Client::handleEvents( void ) noexcept
         }
 		if( sf::Mouse::isButtonPressed( sf::Mouse::Left ) )
 		{
-			pPlayer->placeMob( sf::Mouse::getPosition( SFMLAdapter::getWindow() ) );
+			pPlayer->placeEntity( sf::Mouse::getPosition( SFMLAdapter::getWindow() ) );
 		}
 	}
 	return;

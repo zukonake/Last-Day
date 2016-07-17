@@ -1,6 +1,7 @@
 #include "camera.hpp"
 #include <geometry/direction.hpp>
 #include <geometry/point.hpp>
+#include <world/tile/tileSubtype.hpp> //TODO
 #include <world/tile/tile.hpp>
 #include <world/world.hpp>
 #include <world/worldGenerator.hpp>
@@ -42,10 +43,8 @@ void Camera::draw( sf::RenderTarget& target, sf::RenderStates states ) const
 	sf::Font font;
 	font.loadFromFile( "/usr/share/fonts/TTF/Vera.ttf" );
 	std::stringstream sstream;
-	sstream << mPosition.x << "," << mPosition.y ;
-	std::string content;
-	sstream >> content;
-	sf::Text text( content, font, 24 );
+	sstream << mPosition.x << ", " << mPosition.y << " : " << mWorld.getTile( mPosition, true ).getSubtype()->getName();
+	sf::Text text( sstream.str(), font, 24 );
 	target.draw(text);
 	//TODO
 	return;

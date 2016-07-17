@@ -16,27 +16,27 @@ void Dataset::initializeObjects( void ) noexcept
 }
 
 template<>
-std::shared_ptr< const EntitySubtype > Dataset::getObject( const std::string& key ) const
+const EntitySubtype& Dataset::getObject( const std::string& key ) const
 {
-	return std::make_shared< EntitySubtype >( mEntitySubtypes.at( key ) );
+	return mEntitySubtypes.at( key );
 }
 
 template<>
-std::shared_ptr< const TileSubtype > Dataset::getObject( const std::string& key ) const
+const TileSubtype& Dataset::getObject( const std::string& key ) const
 {
-	return std::make_shared< TileSubtype >( mTileSubtypes.at( key ) );
+	return mTileSubtypes.at( key );
 }
 
 template<>
-std::shared_ptr< const MobSubtype > Dataset::getObject( const std::string& key ) const
+const MobSubtype& Dataset::getObject( const std::string& key ) const
 {
-	return std::make_shared< MobSubtype >( mMobSubtypes.at( key ) );
+	return mMobSubtypes.at( key );
 }
 
 template<>
-std::shared_ptr< const BuildingSubtype > Dataset::getObject( const std::string& key ) const
+const BuildingSubtype& Dataset::getObject( const std::string& key ) const
 {
-	return std::make_shared< BuildingSubtype >( mBuildingSubtypes.at( key ) );
+	return mBuildingSubtypes.at( key );
 }
 
 template< typename ObjectType >

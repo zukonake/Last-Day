@@ -18,7 +18,7 @@ public:
 	Dataset( void );
 
 	template< typename ObjectType >
-	std::shared_ptr< const ObjectType > getObject( const std::string& key ) const;
+	const ObjectType& getObject( const std::string& key ) const;
 private:
 	void initializeObjects( void ) noexcept;
 	template< typename ObjectType >

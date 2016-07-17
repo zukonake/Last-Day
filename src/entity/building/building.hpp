@@ -12,7 +12,7 @@ class World;
 class Building : public Entity
 {
 public:
-	Building( const Point& position, std::shared_ptr< const BuildingSubtype > subtype, World& world ) noexcept;
+	Building( const Point& position, const BuildingSubtype* subtype, World& world ) noexcept;
 	Building( void ) = default;
 };
 

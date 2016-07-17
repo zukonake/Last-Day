@@ -14,12 +14,12 @@ class World;
 class Entity : public sf::Drawable
 {
 public:
-	Entity( const Point& position, std::shared_ptr< const EntitySubtype > subtype, World& world ) noexcept;
+	Entity( const Point& position, const EntitySubtype* subtype, World& world ) noexcept;
 	Entity( void ) = delete;
 
 	virtual ~Entity( void ) = default;
 
-	std::shared_ptr< const EntitySubtype > getSubtype( void ) const noexcept;
+	const EntitySubtype* getSubtype( void ) const noexcept;
 
 	void teleport( const Point& targetPosition ) noexcept;
 	virtual void move( const Direction& targetDirection );
@@ -27,7 +27,7 @@ public:
 	const Point& getPosition( void ) const noexcept;
 protected:
 	Point mPosition;
-	std::shared_ptr< const EntitySubtype > pSubtype;
+	const EntitySubtype* pSubtype;
 	World& mWorld;
 private:
 	virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const override;
