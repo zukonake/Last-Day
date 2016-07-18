@@ -1,11 +1,10 @@
 #ifndef POINT_HPP
 #define POINT_HPP
 
+#include <functional>
 #include <cstdint>
-#include <string>
 #include <iostream>
 #include <SFML/System/Vector2.hpp>
-#include <SFML/System/String.hpp>
 
 struct Direction;
 
