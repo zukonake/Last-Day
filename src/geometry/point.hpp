@@ -53,4 +53,13 @@ struct Point
 	coordinate y;
 };
 
+struct PointHasher
+{
+	std::size_t operator()( const Point& k ) const
+	{
+		return ( ( std::hash< Point::coordinate >()( k.x ) xor
+			( std::hash< Point::coordinate >()( k.y ) << 1 ) ) >> 1 );
+  }
+};
+
 #endif

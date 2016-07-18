@@ -40,9 +40,9 @@ const BuildingSubtype& Dataset::getObject( const std::string& key ) const
 }
 
 template< typename ObjectType >
-std::map< const std::string, ObjectType > Dataset::initializeObjectsFromDirectory( const std::string& directoryPath )
+std::unordered_map< std::string, ObjectType > Dataset::initializeObjectsFromDirectory( const std::string& directoryPath )
 {
-	std::map< const std::string, ObjectType > output;
+	std::unordered_map< std::string, ObjectType > output;
 	try
 	{
 		for( auto iFile : fileSystem.getFilesInDirectory( cDatasetPath + directoryPath ) )

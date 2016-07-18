@@ -3,7 +3,7 @@
 
 #include <memory>
 #include <string>
-#include <map>
+#include <unordered_map>
 //
 #include <data/fileSystemAdapter.hpp>
 #include <entity/entitySubtype.hpp>
@@ -22,12 +22,12 @@ public:
 private:
 	void initializeObjects( void ) noexcept;
 	template< typename ObjectType >
-	std::map< const std::string, ObjectType > initializeObjectsFromDirectory( const std::string& directoryPath );
+	std::unordered_map< std::string, ObjectType > initializeObjectsFromDirectory( const std::string& directoryPath );
 
-	std::map< const std::string, EntitySubtype > mEntitySubtypes;
-	std::map< const std::string, TileSubtype > mTileSubtypes;
-	std::map< const std::string, MobSubtype > mMobSubtypes;
-	std::map< const std::string, BuildingSubtype > mBuildingSubtypes;
+	std::unordered_map< std::string, EntitySubtype > mEntitySubtypes;
+	std::unordered_map< std::string, TileSubtype > mTileSubtypes;
+	std::unordered_map< std::string, MobSubtype > mMobSubtypes;
+	std::unordered_map< std::string, BuildingSubtype > mBuildingSubtypes;
 
 	FileSystemAdapter fileSystem;
 };
