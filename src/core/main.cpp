@@ -1,7 +1,7 @@
 #include <iostream>
 #include <exception>
 //
-#include <geometry/rectangle.hpp>
+
 #include <core/server.hpp>
 #include <core/client.hpp>
 
@@ -10,10 +10,10 @@ int main()
 	int returnValue = 0;
 
 	Server* server = new Server();
-	Client client( { 1280, 768  }, "Neue Spiele" );
+	Client client;
 
+	client.start( { 1280, 768  }, "Neue Spiele" );
 	server->connectClient( &client );
-	client.start();
 	try
 	{
 		while( client.isRunning() )

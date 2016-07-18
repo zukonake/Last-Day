@@ -16,7 +16,7 @@ World::World( const Dataset& dataset, const int& seed ) noexcept :
 
 }
 
-Player* World::createPlayer( const Point& position, const Rectangle& screenSize ) noexcept
+Player* World::createPlayer( const Point& position, const Point& screenSize ) noexcept
 {
 	return new Player( position, *this, screenSize, mDataset );
 }

@@ -18,6 +18,7 @@ struct Point
 	explicit Point( std::istream& in ) noexcept;
 	Point( const sf::Vector2< float >& that ) noexcept;
 	Point( const sf::Vector2< int >& that ) noexcept;
+	Point( const sf::Vector2< unsigned int >& that ) noexcept;
 	Point( void ) noexcept : x( 0 ), y ( 0 ) { }
 
 	virtual ~Point( void ) = default;
@@ -35,6 +36,8 @@ struct Point
 	virtual Point operator%( const int& mod ) const noexcept;
 	virtual Point operator+( const int& add ) const noexcept;
 	virtual Point operator-( const int& sub ) const noexcept;
+
+	virtual Point& operator=( const Point& that ) = default;
 
 	virtual bool operator==( const Point& target ) const noexcept;
 	virtual bool operator<=( const Point& target ) const noexcept;

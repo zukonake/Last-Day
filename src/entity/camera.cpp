@@ -7,7 +7,7 @@
 #include <world/worldGenerator.hpp>
 #include <sstream>
 
-Camera::Camera( const Point& position, World& world, const Rectangle& screenSize ) noexcept :
+Camera::Camera( const Point& position, World& world, Point screenSize ) noexcept :
 	Entity( position, nullptr, world ),
 	mScreenSize( screenSize )
 {
@@ -16,12 +16,12 @@ Camera::Camera( const Point& position, World& world, const Rectangle& screenSize
 
 void Camera::draw( sf::RenderTarget& target, sf::RenderStates states ) const
 {
-	for( Point::coordinate iteratorY = mPosition.y - mViewRange.height, renderY = 0;
-		iteratorY < mPosition.y + mViewRange.height;
+	for( Point::coordinate iteratorY = mPosition.y - mViewRange.x, renderY = 0;
+		iteratorY < mPosition.y + mViewRange.x;
 		iteratorY++, renderY += mZoom )
 	{
-		for( Point::coordinate iteratorX = mPosition.x - mViewRange.width, renderX = 0;
-			iteratorX < mPosition.x + mViewRange.width;
+		for( Point::coordinate iteratorX = mPosition.x - mViewRange.x, renderX = 0;
+			iteratorX < mPosition.x + mViewRange.x;
 			iteratorX++, renderX += mZoom )
 		{
 			if( (iteratorX % ( 32 / mZoom )*( 32 / mZoom )) == 0 and (iteratorY % ( 32 / mZoom )*( 32 / mZoom )) == 0)
@@ -98,7 +98,7 @@ void Camera::move( const Direction& targetDirection )
 
 Point Camera::getPositionMouseIsOn( const Point& mousePosition ) const noexcept
 {
-	return { Entity::getPosition().x - ( mViewRange.width - ( mousePosition.x / mZoom ) ), Entity::getPosition().y - ( mViewRange.height - ( mousePosition.y / mZoom ) ) };
+	return { Entity::getPosition().x - ( mViewRange.x - ( mousePosition.x / mZoom ) ), Entity::getPosition().y - ( mViewRange.x - ( mousePosition.y / mZoom ) ) };
 }
 
 void Camera::resizeZoom( const bool& direction ) noexcept

@@ -1,12 +1,12 @@
 #include "player.hpp"
 #include <data/dataset.hpp>
 #include <entity/mob/mob.hpp>
+#include <world/tile/tile.hpp>
 #include <world/world.hpp>
-#include <iostream> //TODO
 
 class MobSubtype;
 
-Player::Player( const Point& position, World& world, const Rectangle& screenSize, const Dataset& dataset ) noexcept :
+Player::Player( const Point& position, World& world, Point screenSize, const Dataset& dataset ) noexcept :
 	Camera( position, world, screenSize ),
 	mDataset( dataset )
 {

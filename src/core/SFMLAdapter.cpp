@@ -1,21 +1,14 @@
 #include "SFMLAdapter.hpp"
-#include <geometry/rectangle.hpp>
-
-SFMLAdapter::SFMLAdapter( const Rectangle& windowSize, const std::string windowTitle ) noexcept :
-	mWindowSize( windowSize ),
-	mWindowTitle( windowTitle )
-{
-
-}
+#include <iostream>
 
 SFMLAdapter::~SFMLAdapter( void ) noexcept
 {
 	deinitialize();
 }
 
-void SFMLAdapter::initialize( void )
+void SFMLAdapter::initialize( const Point& windowSize, const std::string& windowTitle )
 {
-	mWindow.create( sf::VideoMode( mWindowSize.width, mWindowSize.height, 32 ), mWindowTitle );
+	mWindow.create( sf::VideoMode( windowSize.x, windowSize.x, 32 ), windowTitle );
 	if( !mWindow.isOpen() )
 	{
 		throw std::runtime_error( "SFMLAdapter::initialize, couldn't initialize window." );
@@ -65,12 +58,7 @@ sf::RenderWindow& SFMLAdapter::getWindow( void ) noexcept
 	return mWindow;
 }
 
-const Rectangle& SFMLAdapter::getWindowSize( void ) const noexcept
+Point SFMLAdapter::getWindowSize( void ) const noexcept
 {
-	return mWindowSize;
-}
-
-const std::string& SFMLAdapter::getWindowTitle( void ) const noexcept
-{
-	return mWindowTitle;
+	return mWindow.getSize();
 }

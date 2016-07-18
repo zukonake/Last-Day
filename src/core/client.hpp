@@ -4,10 +4,9 @@
 #include <string>
 #include <SFML/System/Clock.hpp>
 //
-#include <nonCopyable.hpp>
 #include <core/SFMLAdapter.hpp>
 
-struct Rectangle;
+struct Point;
 class ObjectRenderer;
 class World;
 class Player;
@@ -16,13 +15,13 @@ class Server;
 class Client : public SFMLAdapter
 {
 public:
-	Client( const Rectangle& windowSize, const std::string& windowTitle ) noexcept;
+	Client( void ) noexcept;
 
 	~Client() noexcept;
 	void connect( Server& server ) noexcept;
 	void disconnect( void ) noexcept;
 
-	void start( void ) noexcept;
+	void start( const Point& windowSize, const std::string& windowTitle ) noexcept;
 	void end( void ) noexcept;
 
 	void loop( void ) noexcept;

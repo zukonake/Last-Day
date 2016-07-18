@@ -4,18 +4,17 @@
 #include <cstdint>
 #include <SFML/Graphics.hpp>
 //
-#include <geometry/rectangle.hpp>
+
 #include <entity/entity.hpp>
 
 struct Direction;
 struct Point;
-struct Rectangle;
 class World;
 
 class Camera : public Entity
 {
 public:
-	Camera( const Point& position, World& world, const Rectangle& screenSize ) noexcept;
+	Camera( const Point& position, World& world, Point screenSize ) noexcept;
 
 	void move( const Direction& targetDirection ) override;
 	Point getPositionMouseIsOn( const Point& mousePosition ) const noexcept;
@@ -28,8 +27,8 @@ private:
 
 	void updateViewRange( void ) noexcept;
 
-	const Rectangle& mScreenSize;
-	Rectangle mViewRange;
+	Point mScreenSize;
+	Point mViewRange;
 	uint8_t mZoom = 32;
 };
 

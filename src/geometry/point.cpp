@@ -38,6 +38,13 @@ Point::Point( const sf::Vector2< int >& that ) noexcept :
 
 }
 
+Point::Point( const sf::Vector2< unsigned int >& that ) noexcept :
+	x( ( coordinate )that.x ),
+	y( ( coordinate )that.y )
+{
+
+}
+
 Point::operator sf::Vector2< float >( void ) const noexcept
 {
 	return sf::Vector2< float >( ( float ) x, ( float ) y );

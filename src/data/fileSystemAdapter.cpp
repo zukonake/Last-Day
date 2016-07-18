@@ -1,6 +1,5 @@
 #include "fileSystemAdapter.hpp"
 #include <exception>
-#include <iostream>
 #include <boost/filesystem.hpp>
 
 FileSystemAdapter::~FileSystemAdapter( void )

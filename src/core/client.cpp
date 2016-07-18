@@ -1,15 +1,9 @@
 #include "client.hpp"
-#include <cstdint>
-#include <exception>
-#include <iostream>
-//
 #include <geometry/direction.hpp>
-#include <geometry/point.hpp>
 #include <core/player.hpp>
 #include <core/server.hpp>
 
-Client::Client( const Rectangle& windowSize, const std::string& windowTitle ) noexcept :
-	SFMLAdapter( windowSize, windowTitle ),
+Client::Client( void ) noexcept :
 	pPlayer( nullptr ),
 	mIsConnected( false )
 {
@@ -42,9 +36,9 @@ void Client::disconnect( void ) noexcept
 	return;
 }
 
-void Client::start( void ) noexcept
+void Client::start( const Point& windowSize, const std::string& windowTitle ) noexcept
 {
-	SFMLAdapter::initialize();
+	SFMLAdapter::initialize( windowSize, windowTitle );
 	return;
 }
 

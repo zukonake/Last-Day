@@ -1,8 +1,8 @@
 #include "server.hpp"
-#include <exception>
 #include <cstdlib>
 #include <algorithm>
 #include <ctime>
+#include <SFML/System/Time.hpp>
 //
 #include <core/client.hpp>
 
@@ -21,25 +21,15 @@ Server::~Server( void ) noexcept
 	}
 }
 
-void Server::connectClient( Client* target )
+void Server::connectClient( Client* target ) noexcept
 {
-	if( target == nullptr )
-	{
-		throw std::invalid_argument( "Server::disconnectClient, null pointer given in argument 1." );
-		return;
-	}
 	mConnectedClients.push_back( target );
 	target->connect( *this );
 	return;
 }
 
-void Server::disconnectClient( Client* target )
+void Server::disconnectClient( Client* target ) noexcept
 {
-	if( target == nullptr )
-	{
-		throw std::invalid_argument( "Server::disconnectClient, null pointer given in argument 1." );
-		return;
-	}
 	auto iClient = std::find( mConnectedClients.begin(), mConnectedClients.end(), target);
 	mConnectedClients[ std::distance( mConnectedClients.begin(), iClient ) ]->disconnect();
 	mConnectedClients.erase( iClient );
@@ -55,7 +45,7 @@ void Server::simulate( void ) noexcept
 	return;
 }
 
-Player* Server::createPlayer( const Point& position, const Rectangle& screenSize ) noexcept
+Player* Server::createPlayer( const Point& position, const Point& screenSize ) noexcept
 {
 	return mWorld.createPlayer( position, screenSize );
 }

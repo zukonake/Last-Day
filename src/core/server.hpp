@@ -2,7 +2,7 @@
 #define SERVER_HPP
 
 #include <vector>
-#include <SFML/System.hpp>
+#include <SFML/System/Clock.hpp>
 //
 #include <nonCopyable.hpp>
 #include <data/dataset.hpp>
@@ -18,12 +18,12 @@ public:
 
 	~Server( void ) noexcept;
 
-	void connectClient( Client* target );
-	void disconnectClient( Client* target );
+	void connectClient( Client* target ) noexcept;
+	void disconnectClient( Client* target ) noexcept;
 
 	void simulate( void ) noexcept;
 
-	Player* createPlayer( const Point& position, const Rectangle& screenSize ) noexcept;
+	Player* createPlayer( const Point& position, const Point& screenSize ) noexcept;
 private:
 	bool handleTime( void ) noexcept;
 

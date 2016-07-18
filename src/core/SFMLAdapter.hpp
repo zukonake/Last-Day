@@ -7,16 +7,16 @@
 #include <SFML/Graphics.hpp>
 //
 #include <nonCopyable.hpp>
-#include <geometry/rectangle.hpp>
+#include <geometry/point.hpp>
 
 class SFMLAdapter : NonCopyable
 {
 public:
-	SFMLAdapter( const Rectangle& windowSize, const std::string windowTitle ) noexcept;
+	SFMLAdapter( void ) = default;
 
-	~SFMLAdapter( void ) noexcept;
+	virtual ~SFMLAdapter( void ) noexcept;
 
-	void initialize( void );
+	void initialize( const Point& windowSize, const std::string& windowTitle );
 	void deinitialize( void ) noexcept;
 
 	void update( void ) noexcept;
@@ -26,15 +26,11 @@ public:
 
 	std::vector< sf::Event > getEvents( void ) noexcept;
 	sf::RenderWindow& getWindow( void ) noexcept;
-	const Rectangle& getWindowSize( void ) const noexcept;
-	const std::string& getWindowTitle( void ) const noexcept;
+	Point getWindowSize( void ) const noexcept;
 private:
 	sf::RenderWindow mWindow;
 	sf::Event mEvent;
 	sf::Keyboard mKeyboard;
-
-	Rectangle mWindowSize;
-	std::string mWindowTitle;
 };
 
 #endif

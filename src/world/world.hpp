@@ -8,7 +8,6 @@
 #include <world/worldGenerator.hpp>
 
 struct Point;
-struct Rectangle;
 class ObjectRenderer;
 class Dataset;
 class Player;
@@ -23,7 +22,7 @@ public:
 
 	void simulate( void ) noexcept;
 
-	Player* createPlayer( const Point& position, const Rectangle& screenSize ) noexcept;
+	Player* createPlayer( const Point& position, const Point& screenSize ) noexcept;
 
 	bool canMove( const Point& target ) noexcept;
 
