@@ -1,2 +1,2 @@
 # last-day
-Economic RTS game with open world.
+Old project, discontinued.
