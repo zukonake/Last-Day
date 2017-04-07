@@ -14,7 +14,7 @@ class World;
 class Camera : public Entity
 {
 public:
-	Camera( const Point& position, World& world, Point screenSize ) noexcept;
+	Camera( const Point& position, World& world, Point windowSize ) noexcept;
 
 	void move( const Direction& targetDirection ) override;
 	Point getPositionMouseIsOn( const Point& mousePosition ) const noexcept;
@@ -27,7 +27,7 @@ private:
 
 	void updateViewRange( void ) noexcept;
 
-	Point mScreenSize;
+	Point mWindowSize;
 	Point mViewRange;
 	uint8_t mZoom = 32;
 };

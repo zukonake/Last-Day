@@ -6,8 +6,8 @@
 
 class MobSubtype;
 
-Player::Player( const Point& position, World& world, Point screenSize, const Dataset& dataset ) noexcept :
-	Camera( position, world, screenSize ),
+Player::Player( const Point& position, World& world, Point windowSize, const Dataset& dataset ) noexcept :
+	Camera( position, world, windowSize ),
 	mDataset( dataset )
 {
 

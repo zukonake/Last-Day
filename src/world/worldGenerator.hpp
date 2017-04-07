@@ -11,7 +11,7 @@ class Dataset;
 
 class WorldGenerator
 {
-	constexpr static double csScale = 75;
+	constexpr static double csScale = 10;
 	constexpr static double csHeightMultiplier = 10;
 public:
 	WorldGenerator( World& world, const Dataset& dataset, const int& seed ) noexcept;

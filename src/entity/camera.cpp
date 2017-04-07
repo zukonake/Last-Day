@@ -7,9 +7,9 @@
 #include <world/worldGenerator.hpp>
 #include <sstream>
 
-Camera::Camera( const Point& position, World& world, Point screenSize ) noexcept :
+Camera::Camera( const Point& position, World& world, Point windowSize ) noexcept :
 	Entity( position, nullptr, world ),
-	mScreenSize( screenSize )
+	mWindowSize( windowSize )
 {
 	updateViewRange();
 }
@@ -83,7 +83,7 @@ void Camera::renderTimeEffects( sf::RenderTarget& target, sf::RenderStates state
 {
 	if( mWorld.isNighttime() )
 	{
-		sf::RectangleShape rectangle( mScreenSize );
+		sf::RectangleShape rectangle( mWindowSize );
 		rectangle.setPosition( { 0, 0 } );
 		rectangle.setFillColor( sf::Color( 0, 0, 30, 150 ) );
 		target.draw( rectangle, states );
@@ -118,6 +118,6 @@ void Camera::resizeZoom( const bool& direction ) noexcept
 
 void Camera::updateViewRange( void ) noexcept
 {
-	mViewRange = ( mScreenSize / mZoom ) / 2;
+	mViewRange = ( mWindowSize / mZoom ) / 2;
 	return;
 }

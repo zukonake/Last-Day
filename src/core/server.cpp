@@ -45,9 +45,9 @@ void Server::simulate( void ) noexcept
 	return;
 }
 
-Player* Server::createPlayer( const Point& position, const Point& screenSize ) noexcept
+Player* Server::createPlayer( const Point& position, const Point& windowSize ) noexcept
 {
-	return mWorld.createPlayer( position, screenSize );
+	return mWorld.createPlayer( position, windowSize );
 }
 
 bool Server::handleTime( void ) noexcept

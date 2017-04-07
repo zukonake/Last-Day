@@ -5,7 +5,7 @@ DEBUG_PATH := Last-Day-D
 RELEASE_PATH := Last-Day
 TARGET_PATH := $(DEBUG_PATH)
 INCLUDE_PATH := $(SOURCE_PATH)
-LIBRARY_PATH := /usr/lib
+LIBRARY_PATH := /usr/lib -L lib
 SOURCES := $(shell find $(SOURCE_PATH) -type f -name "*.cpp" -printf '%p ')
 HEADERS := $(shell find $(SOURCE_PATH) -type f -name "*.hpp" -printf '%p ')
 OBJS := $(addprefix $(OBJ_PATH),$(patsubst %.cpp,%.o,$(shell find $(SOURCE_PATH) -type f -name "*.cpp" -exec basename {} \;)))
@@ -16,7 +16,7 @@ INCFLAGS := -I $(INCLUDE_PATH)
 LIBFLAGS := -L $(LIBRARY_PATH)
 CXXFLAGS := $(STD) -Wall -Wextra $(DEBUG) $(INCFLAGS)
 LDFLAGS := $(STD) -Wall -Wextra $(LDLIBS) $(DEBUG) $(INCFLAGS) $(LIBFLAGS)
-COMPILER := clang++
+COMPILER := g++
 
 .PHONY : clean run
 

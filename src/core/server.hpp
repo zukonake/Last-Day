@@ -23,7 +23,7 @@ public:
 
 	void simulate( void ) noexcept;
 
-	Player* createPlayer( const Point& position, const Point& screenSize ) noexcept;
+	Player* createPlayer( const Point& position, const Point& windowSize ) noexcept;
 private:
 	bool handleTime( void ) noexcept;
 

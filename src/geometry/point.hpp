@@ -37,7 +37,7 @@ struct Point
 	virtual Point operator+( const int& add ) const noexcept;
 	virtual Point operator-( const int& sub ) const noexcept;
 
-	virtual Point& operator=( const Point& that ) = default;
+	Point& operator=( const Point& that ) = default;
 
 	virtual bool operator==( const Point& target ) const noexcept;
 	virtual bool operator<=( const Point& target ) const noexcept;
